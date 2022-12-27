@@ -1,0 +1,270 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak id="popupContainer"  ng-show="queue.length==0">
+    <br />
+    <md-content class="md-no-momentum">
+        
+        <md-toolbar class="md-menu-toolbar">
+          
+
+            <!--INCIDENT-->
+              <md-content >
+           
+
+
+                <div  ng-cloak >
+                  <md-card >
+
+                    <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+											<div class="md-toolbar-tools">
+												
+												<div flex=20>
+													<md-button class="md-fab read-me "  ng-href="{{rtdNuovoTickets}}" target="_blank">
+														<md-icon  class="material-icons">local_library</md-icon>
+														<md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+													</md-button>
+												
+												</div>
+												<div flex>
+                          <md-card-title>
+                            <md-card-title-text layout-align="center center">
+                                <span class="md-headline titolo-sezione">
+                                  <md-icon class="icon-card-header-green">support</md-icon> {{ 'assistenza.richiesta_supporto' | translate}}
+                                </span>
+                                <div class="callout callout-info">
+                                </div>
+                            </md-card-title-text>
+                        </md-card-title>
+												</div>
+												<div flex=20 layout="row" layout-align="end center">
+												
+												</div>
+											</div>
+										</md-toolbar>
+
+
+
+                </md-card>
+                  <md-content class="md-padding" layout-xs="column" layout="row" layout-align="center center" >
+                   
+                    <div flex-xs flex-gt-xs="100" layout="row">
+                      <md-card md-theme="{{ 'dark-blue'  }}" md-theme-watch>
+                        <md-card-title>
+                          <md-card-title-text>
+                            <span class="md-headline"> {{ 'assistenza.forms.headers.MALFUNZIONAMENTO' | translate }}</span>
+                            <span class="md-subhead">{{ 'assistenza.forms.tipo.one' | translate }}</span>
+                          </md-card-title-text>
+                          <md-card-title-media>
+                            <div class="md-media-sm card-media"></div>
+                          </md-card-title-media>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="end center">
+                          <md-button class="md-primary md-raised" ng-click="actions.jumpToStep('1' , null)"  >
+                            <!-- <md-icon>report_problem</md-icon> -->
+                            {{ 'assistenza.btn.next' | translate }}
+                          </md-button>
+                        </md-card-actions>
+                      </md-card>
+
+                      <md-card md-theme="{{ 'blue'  }}" md-theme-watch>
+                        <md-card-title>
+                          <md-card-title-text>
+                            <span class="md-headline">{{ 'assistenza.forms.headers.SERV_INFO' | translate }}</span>
+                            <span class="md-subhead">{{ 'assistenza.forms.tipo.two' | translate }}</span>
+                          </md-card-title-text>
+                          <md-card-title-media>
+                            <div class="md-media-sm card-media"></div>
+                          </md-card-title-media>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="end center">
+                          <md-button class="md-primary md-raised" ng-click="actions.jumpToStep('2', null)"  >
+                           
+                            {{ 'assistenza.btn.next' | translate }}
+                          </md-button>
+                        </md-card-actions>
+                      </md-card>
+
+                      <md-card md-theme="{{ 'dark-blue'  }}" md-theme-watch>
+                        <md-card-title>
+                          <md-card-title-text>
+                            <span class="md-headline">{{ 'assistenza.forms.headers.BACKUPRIPRISTINI'  | translate }}</span>
+                            <span class="md-subhead">{{ 'assistenza.forms.tipo.three' | translate }}</span>
+                          </md-card-title-text>
+                          <md-card-title-media>
+                            <div class="md-media-sm card-media"></div>
+                          </md-card-title-media>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="end center">
+                          <md-button class="md-primary md-raised" ng-click="actions.jumpToStep('11', null)"  >
+                           
+                            {{ 'assistenza.btn.next' | translate }}
+                          </md-button>
+                        </md-card-actions>
+                      </md-card>
+
+
+          
+                    
+                    </div>
+
+
+
+                
+                  
+                  </md-content>
+
+                     
+                  <md-content  layout-xs="column" layout="row" layout-align="center center" >
+                   
+                  
+
+                    <div flex-xs flex-gt-xs="100" layout="row">
+                    
+                
+
+                      <md-card  md-theme="{{ 'blue'  }}" md-theme-watch>
+                        <md-card-title>
+                          <md-card-title-text>
+                            <span class="md-headline">VPN</span>
+                            <span class="md-subhead">{{ 'assistenza.forms.tipo.four'  | translate }}</span>
+                          </md-card-title-text>
+                          <md-card-title-media>
+                            <div class="md-media-sm card-media"></div>
+                          </md-card-title-media>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="end center">
+                          <md-button class="md-primary md-raised" ng-click="actions.jumpToStep('13', null)"  >
+                           
+                            {{ 'assistenza.btn.next' | translate }}
+                          </md-button>
+                        </md-card-actions>
+                      </md-card>
+
+
+                      <md-card md-theme="{{ 'dark-blue'  }}" md-theme-watch>
+                        <md-card-title>
+                          <md-card-title-text>
+                            <span class="md-headline">PAAS</span>
+                            <span class="md-subhead">{{ 'assistenza.forms.tipo.five' | translate }}</span>
+                          </md-card-title-text>
+                          <md-card-title-media>
+                            <div class="md-media-sm card-media"></div>
+                          </md-card-title-media>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="end center">
+                          <md-button class="md-primary md-raised" ng-click="actions.jumpToStep('14', null)" >
+                           
+                            {{ 'assistenza.btn.next' | translate }}
+                          </md-button>
+                        </md-card-actions>
+                      </md-card>
+
+
+
+                      <md-card md-theme="{{ 'blue'  }}" md-theme-watch>
+                        <md-card-title>
+                          <md-card-title-text>
+                            <span class="md-headline">{{ 'assistenza.forms.headers.ALTRERICHIESTE' | translate }}</span>
+                            <span class="md-subhead">{{ 'assistenza.forms.tipo.six' | translate }}</span>
+                          </md-card-title-text>
+                          <md-card-title-media>
+                            <div class="md-media-sm card-media"></div>
+                          </md-card-title-media>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="end center">
+                          <md-button class="md-primary md-raised" ng-click="actions.jumpToStep('15', null)"  >
+                           
+                            {{ 'assistenza.btn.next' | translate }}
+                          </md-button>
+                        </md-card-actions>
+                      </md-card>
+                  
+                    
+                    </div>
+                    
+
+                
+                  
+                  </md-content> 
+                  
+
+
+                
+                </div>
+
+
+
+                
+
+                
+                
+
+
+                
+
+
+              </md-content>
+        </md-toolbar>
+        <md-button class="animation-target md-raised  md-primary md-hue-2"  ng-click="historyBack()">
+            <md-icon>keyboard_backspace</md-icon> {{ 'annulla' | translate}}
+        </md-button>
+    </md-content>
+</div>
+
+
+
+<div  ng-cloak  ng-show="queue.length!=0">
+  <md-card>
+    <md-card-title>
+        <md-card-title-text layout-align="center center">
+            <span class="md-headline titolo-sezione">
+              {{ titolo }}
+            </span>
+            <div class="callout callout-info">
+            </div>
+        </md-card-title-text>
+    </md-card-title>
+  </md-card>
+  <md-content class="md-padding" layout-xs="column"  layout-align="center center">
+    <div flex-xs flex-gt-xs="100" >
+      <md-card ng-repeat="card in cards"  md-theme="{{ $even ? 'dark-blue' : 'blue' }}" md-theme-watch>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline"> {{ card.head }}</span>
+            <span class="md-subhead">{{ card.subhead }}</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-sm card-media"></div>
+          </md-card-title-media>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button class="md-primary md-raised" ng-click="actions.jumpToStep(card.next, card)"  >
+              <!-- <md-icon>storage</md-icon> -->
+              {{ 'assistenza.btn.next' | translate }}
+            </md-button>
+          </md-card-actions>
+        </md-card-title>
+        
+      </md-card>
+    
+    
+    </div>
+
+  
+  </md-content>
+
+  
+
+  <md-button class="animation-target md-raised  md-primary md-hue-2"  ng-click="actions.stepPreccedente()">
+    <md-icon ng-style="iconStyle" class="material-icons">chevron_left
+    </md-icon> {{ 'indietro' | translate}}
+  </md-button>
+</div>
+

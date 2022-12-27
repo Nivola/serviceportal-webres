@@ -1,0 +1,65 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-dialog aria-label="textConferma">
+    <form ng-cloak name="creaSnaphotForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <md-icon class="md-36">shutter_speed</md-icon><h2 style="margin-left:5px;"> {{title}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon class="md-icon-button" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content class="md-dialog-content ng-scope" margin-bottom='0'>
+                <md-progress-linear md-mode="query" ng-disabled="!status.pending"> </md-progress-linear>
+            <div >
+                <b>{{ 'vm.snapshot.nuova.nome' | translate }} </b>
+                <div layout="column" flex="60">
+                    <md-input-container class="md-block" flex-gt-sm id="md-input-container-dialog-dbaas" style="margin-bottom: 1px;">
+                        <input ng-model="snapshotNome" id="nome" name="snapshotNome" ng-model-options="{ debounce: 250 }"
+                            ng-change="onNomeChange()" placeholder="{{ 'vm.snapshot.nuova.nome_placeholder' | translate }}" pattern="^[A-Za-z_-]{1}[A-Za-z0-9_-]{7,39}" >
+                        <!-- <div ng-messages="creaSnaphotForm.snapshotNome.$error" role="alert" multiple>
+                            <div class="md-char-counter"></div>
+                            <div ng-if="snapshot.errorNamePresente" style="color:red;">{{ 'vm.snapshot.nuova.nome_presente' | translate }}</div>
+                            <div ng-message="pattern" ng-bind-html="'vm.snapshot.nuova.nome_pattern' | translate">
+                            </div>
+                        </div> -->
+                        <div  ng-if="!snapshot.enableCrea && creaSnaphotForm.snapshotNome.$dirty" 
+                                style="color:red; font-size: 11px;"
+                                ng-bind-html="'vm.snapshot.nuova.nome_pattern' | translate"></div>
+                    </md-input-container>
+                </div>
+                <div ng-hide="!snapshot.enableCrea">
+                    <b>{{ 'vm.snapshot.nuova.nome_completo' | translate }} : </b>
+                    <div  layout="column" flex="80">
+                        <md-input-container class="md-block" flex-gt-sm id="md-input-container-dialog-dbaas" style="margin-bottom: 1px;">
+                            <input ng-model="snapshotFullName" name="snapshotFullName" ng-model-options="{ debounce: 250 }" ng-readonly="true">
+                        </md-input-container>
+                    </div>
+                </div>
+                
+                <div>
+                    <b class="ng-binding">{{textInfo}}</b>
+                </div>
+                
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+                <span flex></span>
+                <button class="md-primary md-button ng-scope md-default-theme md-ink-ripple" type="button"
+                    ng-click="closeDialog()"><span class="ng-binding ng-scope">{{ 'annulla' | translate }}</span></button>
+                <button ng-disabled="!snapshot.enableCrea"  class="md-primary md-button md-default-theme md-ink-ripple"
+                    type="button" ng-click="crea()"><span class="ng-binding ng-scope">{{ 'vm.snapshot.nuova.crea' | translate }}</span></button>
+            
+        </md-dialog-actions>
+    </form>
+</md-dialog>

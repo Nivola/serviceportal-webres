@@ -1,0 +1,102 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-toolbar class="md-table-toolbar alternate" ng-show="$ctrl.selectedVms.length && options.rowSelection">
+    <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <md-button class="md-icon-button" ng-click="$ctrl.unselectAll()" aria-label="Unselect items">
+            <md-icon class="material-icons">close</md-icon>
+        </md-button>
+        <div flex>
+            <span>
+                {{ $ctrl.selectedVms.length }} {{$ctrl.selectedVms.length > 1 ? ('vm.selezionate' | translate) : ('vm.selezionata' |
+                translate)}}
+            </span>
+        </div>
+        <div layout="row" layout-align="end center">
+            <md-button class="animation-target md-fab md-mini md-primary md-hue-2"
+                ui-sref="app.vm.manage({idVm: $ctrl.selectedVms[0].instanceId})" require-uc="{{::$ctrl.actions.auth.manage}}">
+                <md-icon>dns</md-icon>
+                <md-tooltip>{{'vm.gestione' | translate}}</md-tooltip>
+            </md-button>
+            <md-button class="animation-target md-fab md-mini md-primary md-hue-2"
+                ng-click="$ctrl.callRecoveryPoint()" require-uc="{{::$ctrl.actions.auth.change}}">
+                <md-icon>backup</md-icon>
+                <md-tooltip>Elenco recovery point della VM</md-tooltip>
+            </md-button>
+            <md-button class="animation-target md-fab md-mini md-primary" ng-href="{{$ctrl.rtdVmConnect}}" target="_blank">
+                <md-icon>link</md-icon>
+                <md-tooltip>{{'vm.connetti.bottone' | translate}}</md-tooltip>
+            </md-button>
+            <md-button class="md-fab md-mini md-warn" ng-click="$ctrl.callDelete({event:$event})" aria-label="delete"
+                require-uc="{{::$ctrl.actions.auth.delete}}">
+                <md-icon class="material-icons">delete</md-icon>
+                <md-tooltip>{{'vm.elimina.bottone' | translate}}</md-tooltip>
+            </md-button>
+        </div>
+    </div>
+</md-toolbar>
+
+<md-toolbar class="md-table-toolbar md-default">
+    <div class="md-toolbar-tools">
+        <form name="$ctrl.filter.form" flex>
+            <md-input-container class="md-icon-float md-block" flex>
+                <label>{{'ricerca' | translate}}</label>
+                <md-icon class="material-icons">search</md-icon>
+                <input id="filterSearch" class="layout-fill" type="text" ng-model="$ctrl.filter.search"
+                    ng-model-options="$ctrl.filter.options" esc-key="$ctrl.resetFilter()">
+            </md-input-container>
+        </form>
+    </div>
+</md-toolbar>
+
+<md-table-container>
+    <table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}" ng-model="$ctrl.selectedVms"
+        md-progress="promise">
+        <thead ng-if="!options.decapitate" md-head md-order="$ctrl.query.order">
+            <tr md-row>
+                <th md-column md-order-by="name"><span>{{'vm.lista.name' | translate}}</span></th>
+                <th md-column md-order-by="region_az"><span>{{'vm.lista.region_az' | translate}}</span></th>
+                <th md-column md-order-by="cpu_ram"><span>{{'vm.lista.cpu' | translate}}</span></th>
+                <th md-column md-order-by="tags"><span>{{'vm.lista.tags' | translate}}</span></th>
+                <th md-column md-order-by="os"><span>{{'vm.lista.os' | translate }}</span></th>
+                <th md-column md-order-by="secGroup"><span>{{ 'vm.lista.security_group' | translate}}</span></th>
+                <th md-column md-order-by="ip"><span>{{'vm.lista.ip' | translate }}</span></th>
+                <th md-column md-order-by="status"><span>{{ 'vm.lista.stato' | translate}}</span></th>
+            </tr>
+        </thead>
+        <tbody md-body>
+            <tr md-row md-select="instance" md-auto-select="options.autoSelect"
+                ng-repeat="instance in $ctrl.vmList | filter: $ctrl.filter.search | orderBy: $ctrl.query.order | limitTo: $ctrl.query.limit : ($ctrl.query.page -1) * $ctrl.query.limit">
+                <td md-cell>
+                    {{instance.name}}
+                    <md-tooltip md-direction="top">
+                        {{instance.privateDnsName}}
+                    </md-tooltip>
+                </td>
+                <td md-cell>{{instance.region_az}}</td>
+                <td md-cell>{{instance.cpu_ram}}</td>
+                <td md-cell>{{instance.tags}}</td>
+                <td md-cell>{{instance.os}}</td>
+                <td md-cell>{{instance.secGroup}}</td>
+                <td md-cell>{{instance.ip}}</td>
+                <td md-cell hide-gt-xs hide-xs show-gt-sm>
+                    <span ng-class="instance.stato.badge">
+                        {{instance.stato.stato}}
+                    </span>
+                    <md-tooltip>{{instance.stato.tooltip}}</md-tooltip>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</md-table-container>
+
+<md-table-pagination md-limit="$ctrl.query.limit" md-limit-options="limitOptions" md-page="$ctrl.query.page"
+    md-total="{{$ctrl.vmList.length}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks">
+</md-table-pagination>

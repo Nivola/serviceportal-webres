@@ -1,0 +1,69 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div ng-if="!widget.loading && !widget.failed">
+    <div layout="row">
+        <div flex="20">
+            <md-icon
+                class="material-icons ">
+                payment
+            </md-icon>
+        </div>
+        <div flex="80">
+            {{ 'homepage.costi_mese_in_corso' | translate}} <b>{{widget.data.meseRiferimento}} {{widget.data.annoRiferimento }}</b>
+        </div>
+    </div>   
+    
+    <div layout="row">
+        <div flex="20"></div>
+        <div layout="row" layout-align="center center"  flex="80">
+            <div flex="50">
+                {{widget.data.costoMeseInCorso | currency:'€ ':2}} 
+            </div>
+            <md-card-actions flex="50" layout-align="end center"  id="widget-card-action">
+                <md-button aria-label="visualizza dettagli costi"  ui-sref="app.costiconsumi.org">
+                    {{ 'homepage.dettaglio' | translate }}
+                </md-button>
+            </md-card-actions>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- STA CARICATO I DATI -->
+<div ng-if="widget.loading">
+    <md-list class="md-dense" flex>
+        <md-list-item class="md-2-line" ng-click="null" >
+            <div style="min-width:60px;">
+                <md-icon>autorenew</md-icon>
+            </div>
+            <div class="md-list-item-text" layout="column">
+                <h3>{{ 'caricamento.in_corso' | translate }}</h3>
+                <p style="margin-top:10px;">
+                    <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+                </p>
+            </div>
+        </md-list-item>
+    </md-list>
+</div>
+    
+<!-- CARICAMENTO ERRORE -->
+<div ng-if="widget.failed">
+    <md-list class="md-dense" flex>
+        <md-list-item class="md-2-line md-long-text">
+            <md-icon  style="color: red;">error</md-icon>
+            <div class="md-list-item-text" layout="column">
+                <h3 style="color: red;">{{ 'caricamento.fallito' | translate }}</h3>
+                <p>{{ 'caricamento.controlla' | translate }}</p>
+            </div>
+        </md-list-item>
+    </md-list>
+</div>

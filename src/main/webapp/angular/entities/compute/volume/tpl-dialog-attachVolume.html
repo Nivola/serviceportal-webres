@@ -1,0 +1,73 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+
+<md-dialog aria-label="{{ 'volume.dialog.titolo' | translate}}">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{ 'volume.dialog.titolo' | translate}}  <span style="font-weight: bold;">{{volumeDetails['nvl-name']}}</span> <span span style="font-weight: bold;" ng-if="isSelected">a  {{VMSelected.name}}</span> </h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="hide()">
+                    <md-icon class="md-icon-button" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+
+
+        <md-dialog-content>
+            <div flex="100" class="md-dialog-content">
+                <table flex md-table md-row-select="options.rowSelection" 	ng-model="selectedVM"
+                    multiple="{{options.multiSelect}}" 
+                    md-progress="promise">
+                    <thead  md-head md-order="query.order">
+                        <tr md-row>
+                            <th md-column><span>{{ 'volume.dialog.nome' | translate}}</span></th>
+                            <th md-column><span>{{ 'volume.dialog.az_region' | translate}}</span></th>
+                            <th md-column><span>{{ 'volume.dialog.cpu_ram' | translate}}</span></th>
+                            <th md-column><span>{{ 'volume.dialog.template' | translate}}</span></th>
+                            <th md-column><span>{{ 'volume.dialog.stato' | translate}}</span></th>
+                            <!-- <th md-column><span>Disco</span></th> -->
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row md-select="istanza" md-auto-select="options.autoSelect" md-on-select="onVMSelected" md-on-deselect="onDeselect"
+                            ng-repeat="istanza in istanze | orderBy: query.order ">
+                            <td md-cell>{{istanza.name}}</td>
+							<td md-cell>{{istanza.region_az}}</td>
+							<td md-cell>{{istanza.cpu_ram}}</td>
+							<td md-cell>{{istanza.os}}</td>
+							<!-- <td md-cell>{{istanza.secGroup}}</td>
+							<td md-cell>{{istanza.ip}}</td> -->
+							<td md-cell>
+								<md-icon class="material-icons" ng-style="{ 'color': istanza.stato.color }">
+									{{istanza.stato.icon}}
+								</md-icon>
+								<md-tooltip>{{istanza.stato.tooltip}}</md-tooltip>
+							</td>
+                        </tr>
+                    </tbody>
+            </table>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            
+            <span flex>
+                <div layout="row" layout-align="end end">
+                    <md-button class="md-raised pull-right md-primary md-hue-2" type="button" ng-click="showConfirm()"   flex="40" ng-disabled="!isSelected" >
+                        <md-icon>play_arrow</md-icon> {{ 'volume.dialog.attacca' | translate}}
+                    </md-button>
+                
+                </div>
+             </span>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

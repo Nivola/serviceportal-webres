@@ -1,0 +1,766 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+<!-- INIZIO HEAD SP -->
+
+<head>
+	<title>NIVOLA Service Portal</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes" name="viewport" />
+	<meta name="author" content="CSI-Piemonte" />
+	<meta name="description" content="Nivola - Il portale del cloud Piemontese" />
+	<meta name="keywords" content="cloud, piemonte, servizi, cittadini, imprese, sistema, amministrazione" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- FAVICON -->
+	<link rel="icon" href="https://www.nivolapiemonte.it/wp-content/uploads/2017/10/cropped-NIVOLA_favicon_01-32x32.png" sizes="32x32" />
+	
+	<!-- STYLE -->
+	<!-- <link href="css/allegati-custom.css" type="text/css" rel="stylesheet" media="screen" /> -->
+	<link href="css/animations.css" rel="stylesheet" type="text/css" />
+	<link href="lib/toastr/toastr.min.css" rel="stylesheet" />
+	<link href="lib/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" />
+
+	
+	<!--
+	<link rel="stylesheet" href="lib/font1">
+	<link rel="stylesheet" href="lib/font2">
+	-->
+
+	<link rel="stylesheet" href="lib/angular-material.min.css" />
+	<link rel="stylesheet" href="lib/mdl/material.min.css" />
+
+	<link rel="stylesheet" href="css/md-data-table.css">
+
+	<link rel="stylesheet" href="css/collapsible.min.css">
+
+	<!-- Angular Material Widget engine css custom-->
+	<link href="css/amwe-custom.css" type="text/css" rel="stylesheet" media="screen" />
+
+	<link href="css/nivola.css" type="text/css" rel="stylesheet" media="screen" />
+	
+	<!-- <link href="css/allegati-custom.css" type="text/css" rel="stylesheet" media="screen" /> -->
+
+	<!-- JQUERY Library -->
+
+	<script type="text/javascript" src="global/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="global/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="global/jquery-ui.js"></script>
+	<script type="text/javascript" src="global/jquery.validationEngine-it-2.5.4.js"></script>
+	<script type="text/javascript" src="global/jquery.validationEngine-2.5.4.js"></script>
+	<!--<script type="text/javascript" src="global/jqapri.js"></script>-->
+	<script type="text/javascript" src="global/autoNumeric-1.9.26.js"></script>
+	<script src="global/bootstrap-datepicker.js"></script>
+	<script src="global/bootstrap-datepicker.it.js"></script>
+
+	<!-- ANGULARJS Library -->
+
+	<script src="lib/angular.min.js"></script>
+	<script src="lib/angular-ui-router.min.js"></script>
+	<script src="lib/chart.min.js"></script>
+	<script src="lib/angular-chart.min.js"></script>
+	<script src="lib/angular-upload.min.js"></script>
+	<script src="lib/angular-animate.js"></script>
+	<script src="lib/angular-sanitize.min.js"></script>
+	<script src="lib/angular-aria.min.js"></script>
+	<script src="lib/angular-messages.min.js"></script>
+	<script src="lib/angular-material.min.js"></script>
+	<script src="lib/angular-resource.min.js"></script>
+
+	<script src="lib/anim-in-out.js"></script>
+	<script src="lib/ui-bootstrap-tpls-2.2.0.min.js"></script>
+	<script src="lib/toastr/toastr.min.js"></script>
+	<script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+	<script src="lib/angular-cookies.js"></script>
+	<script src="lib/select.min.js"></script>
+	<script src="lib/md-data-table.js"></script>
+	<script src="lib/collapsible.min.js"></script>
+	<script src="lib/collapsibleDirective.min.js"></script>
+
+	<!--BOWER COMPONENT ANGULAR TRANSLATE  EK -->
+	<script src="bower_components/angular-translate/angular-translate.js"></script>
+	<script src="bower_components/angular-translate/angular-translate.min.js"></script>
+
+	<script src="bower_components/angular-file-upload/angular-file-upload.min.js"></script>
+
+	<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+	<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+
+	<script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+	<script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.min.js"></script>
+	<!-- SCRIPT -->
+
+	<script src="lib/polyfills.js"></script>
+
+	<!-- APPLICATION FILE -->
+
+	<!-- module -->
+	<script src="angular/app/application.js"></script>
+
+	<!-- constant -->
+	<script src="angular/constant/authLevel.js"></script>
+	<script src="angular/constant/config.js"></script>
+	<script src="angular/constant/events.js"></script>
+	<script src="angular/constant/strings.js"></script>
+
+	<!-- config -->
+	<script src="angular/config/iconProvider.js"></script>
+	<script src="angular/config/mdThemingProvider.js"></script>
+	<script src="angular/config/httpProvider.js"></script>
+	<script src="angular/config/i18n.js"></script>
+	<script src="angular/config/http-logging-interceptor.js"></script>
+	<script src="angular/config/materialConfig.js"></script>
+
+	<!-- <script src="angular/config/http-event-signaling-interceptor.js"></script> -->
+	<!-- <script src="angular/config/http-identity-checksum-interceptor.js"></script> -->
+	<script src="angular/config/routing-base.js"></script>
+	<script src="angular/config/entitiesRestProvider.js"></script>
+	<script src="angular/config/date-picker.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js"></script>
+
+	<!-- factory-->
+	<script src="angular/app/leftMenuFactory.js"></script>
+
+	<!-- service logger-->
+	<script src="angular/app/loggers.js"></script>
+
+	<!-- service - utility -->
+	<script src="angular/utils/utils.js"></script>
+	<script src="angular/utils/notification-manager.js"></script>
+	<script src="angular/utils/operation-queue.js"></script>
+	<script src="angular/app/operations.js"></script>
+	<script src="angular/utils/validator.js"></script>
+	<script src="angular/utils/browser-storage.js"></script>
+	<script src="angular/utils/data-utils.js"></script>
+
+	<!-- service - mock -->
+	<script src="angular/services/srv-mock.js"></script>
+	<script src="angular/controllers/ctrl-mock.js"></script>
+
+	<!-- service - string map -->
+	<script src="angular/services/srv-string-map.js"></script>
+
+	<!-- service - REST -->
+	<script src="angular/services/srv-rest-client-dispatcher.js"></script>
+	<script src="angular/services/srv-rest-client-factory.js"></script>
+
+	<script src="angular/services/rest-client/srv-account-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-activate-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-announcementCategories-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-announcements-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-authenticate-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-divisione-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-documentAttachment-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-documentCategories-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-documents-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-messages-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-myDocuments-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-myNews-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-myTutorials-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-profileInfo-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-publicTest-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-register-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-tutorialCategories-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-tutorials-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-users-rest-client.js"></script>
+	<script src="angular/services/rest-client/srv-organizzazione-rest-client.js"></script>
+
+	<!-- service - REST (new) -->
+	<script src="angular/entities-rest/entitiesRestProvider.js"></script>
+	<script src="angular/entities-rest/assistenza.js"></script>
+	<script src="angular/entities-rest/dashboard.js"></script>
+	<script src="angular/entities-rest/messaggi.js"></script>
+	<script src="angular/entities-rest/organizzazione.js"></script>
+	<script src="angular/entities-rest/divisione.js"></script>
+	<script src="angular/entities-rest/account.js"></script>
+	<script src="angular/entities-rest/allegati.js"></script>
+	<script src="angular/entities-rest/amministrazione.js"></script>
+	<script src="angular/entities-rest/utente.js"></script>
+	<script src="angular/entities-rest/vm.js"></script>
+	<script src="angular/entities-rest/tags.js"></script>
+	<script src="angular/entities-rest/job.js"></script>
+	<script src="angular/entities-rest/dbaas.js"></script>
+	<script src="angular/entities-rest/staas.js"></script>
+	<script src="angular/entities-rest/securityGroup.js"></script>
+	<script src="angular/entities-rest/vpc.js"></script>
+	<script src="angular/entities-rest/wbs.js"></script>
+	<script src="angular/entities-rest/prezzario.js"></script>
+	<script src="angular/entities-rest/remedy.js"></script>
+
+
+	<!-- TMP -->
+	<script src="angular/entities-rest/dns.js"></script>
+	<script src="angular/entities-rest/lb.js"></script>
+	<script src="angular/entities-rest/nat.js"></script>
+
+
+	<script src="angular/entities-rest/infoRendicontazione.js"></script>
+
+	<!-- system status-->
+	<script src="angular/services/srv-system-status.js"></script>
+
+	<!-- controller principali-->
+	<script src="angular/controllers/ctrl-background.js"></script>
+	<script src="angular/controllers/ctrl-home.js"></script>
+	<script src="angular/controllers/ctrl-login.js"></script>
+
+	<!-- componenti routing/service/template - dashboard -->
+	<script src="angular/entities/dashboard/dashboard.js"></script>
+	<script src="angular/entities/dashboard/srv-dashboard-manager.js"></script>
+	<!---->
+	<script src="angular/entities/dashboard/directives/mdWidgetEngine.js"></script>
+	<script src="angular/entities/dashboard/directives/mdWidgetEngineColumn.js"></script>
+	<script src="angular/entities/dashboard/directives/mdWidgetEngineWidgetTile.js"></script>
+	<script src="angular/entities/dashboard/directives/mdWidgetEngineWidgetTileContentHtml.js"></script>
+	<script src="angular/entities/dashboard/directives/mdWidgetEngineWidgetDragger.js"></script>
+	<!---->
+	<script src="angular/entities/dashboard/services/avviso&NotificheDataProviderService.js"></script>
+	<script src="angular/entities/dashboard/services/avviso&NotificheDataProviderService.js"></script>
+	<script src="angular/entities/dashboard/services/computeServiceDataProviderService.js"></script>
+	<script src="angular/entities/dashboard/services/costiDataProviderService.js"></script>
+	<script src="angular/entities/dashboard/services/statoUtilizzatoriDataProviderService.js"></script>
+	<script src="angular/entities/dashboard/services/creditDataProviderService.js"></script>
+	<script src="angular/entities/dashboard/services/dbaasDataProviderService.js"></script>
+	<script src="angular/entities/dashboard/services/appEngineDataProviderService.js"></script>
+	<script src="angular/entities/dashboard/services/notizieDataProviderService.js"></script>
+	<script src="angular/entities/dashboard/services/portafoglioDivisioneDataProviderService.js"></script>
+	<script src="angular/entities/dashboard/services/portafoglioOrganizzazioneDataProviderService.js"></script>
+	<script src="angular/entities/dashboard/services/risorseDivisioneDataProviderService.js"></script>
+	<script src="angular/entities/dashboard/services/risorseOrganizzazioneDataProviderService.js"></script>
+	<script src="angular/entities/dashboard/services/servicesStatusDataProviderService.js"></script>
+	<script src="angular/entities/dashboard/services/serviziAccountDataProviderService.js"></script>
+	<script src="angular/entities/dashboard/services/staasDataProviderService.js"></script>
+	<script src="angular/entities/dashboard/services/vmDataProviderService.js"></script>
+
+	<!-- componenti routing/service/template - messaggistica -->
+	<script src="angular/entities/messaggistica/routing.js"></script>
+	<script src="angular/entities/messaggistica/srv-messaggi.js"></script>
+	<script src="angular/entities/messaggistica/ctrl-messaggi.js"></script>
+	<script src="angular/entities/messaggistica/ctrl-list-messaggi.js"></script>
+	<script src="angular/entities/messaggistica/ctrl-messaggio-modifica.js"></script>
+
+	<!-- componenti routing/service/template - documentazione -->
+	<script src="angular/entities/documentazione/routing.js"></script>
+	<script src="angular/entities/documentazione/srv-documenti.js"></script>
+	<script src="angular/entities/documentazione/ctrl-documentiEManuali.js"></script>
+	<script src="angular/entities/documentazione/ctrl-documenti.js"></script>
+	<script src="angular/entities/documentazione/ctrl-documento-modifica.js"></script>
+	<script src="angular/entities/documentazione/ctrl-condizioni-generali.js"></script>
+	<script src="angular/entities/documentazione/ctrl-sla.js"></script>
+	<script src="angular/entities/documentazione/ctrl-compliance.js"></script>
+
+	<!-- componenti routing/service/template - tutorial -->
+	<script src="angular/entities/tutorial/routing.js"></script>
+	<script src="angular/entities/tutorial/srv-tutorial.js"></script>
+	<script src="angular/entities/tutorial/ctrl-tutorial.js"></script>
+	<script src="angular/entities/tutorial/ctrl-tutorial-modifica.js"></script>
+	<script src="angular/entities/tutorial/ctrl-tutorial-visualizza.js"></script>
+
+	<!-- componenti routing/service/template - assistenza -->
+	<script src="angular/entities/assistenza/routing.js"></script>
+	<script src="angular/entities/assistenza/ctrl-form-assistenza.js"></script>
+	<script src="angular/entities/assistenza/ctrl-anomalia-servizi-cloud.js"></script>
+	<script src="angular/entities/assistenza/ctrl-dettaglio-richiesta.js"></script>
+	<script src="angular/entities/assistenza/ctrl-list-richieste.js"></script>
+	<script src="angular/entities/assistenza/ctrl-list-richieste-BOAdmin.js"></script>
+	<script src="angular/entities/assistenza/ctrl-dialog-filtro-account.js"></script>
+	<script src="angular/entities/assistenza/ctrl-anomalia-connessione-di-rete.js"></script>
+	<script src="angular/entities/assistenza/ctrl-form-output.js"></script>
+
+	<!-- componenti routing/service/template - utente -->
+	<script src="angular/entities/utente/routing.js"></script>
+	<script src="angular/entities/utente/ctrl-dialog-details.js"></script>
+	<script src="angular/entities/utente/ctrl-dialog-accredit.js"></script>
+	<script src="angular/entities/utente/ctrl-dialog-advanced-search.js"></script>
+	<script src="angular/entities/utente/ctrl-registra-utente.js"></script>
+	<script src="angular/entities/utente/ctrl-registra-ospite.js"></script>
+	<script src="angular/entities/utente/ctrl-form-utente-accredita.js"></script>
+	<script src="angular/entities/utente/ctrl-form-utente-accredita-org.js"></script>
+	<script src="angular/entities/utente/ctrl-list-utenti.js"></script>
+	<script src="angular/entities/utente/ctrl-modifica-utente.js"></script>
+	<script src="angular/entities/utente/ctrl-visualizza-utente.js"></script>
+	<script src="angular/entities/utente/ctrl-visualizza-info-utente.js"></script>
+	<script src="angular/entities/utente/ctrl-list-utenti-account.js"></script>
+	<script src="angular/entities/utente/ctrl-list-utenti-divisione.js"></script>
+
+
+	
+    <!-- Include the Quill library -->
+	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+	<!-- Include stylesheet -->
+	<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+
+
+ <!-- componenti routing/service/template - notizie -->
+ <script src="angular/entities/notizie/routing.js"></script>
+ <script src="angular/entities/notizie/ctrl-list-notizie.js"></script> 
+ <script src="angular/entities/notizie/ctrl-notizia-crea.js"></script> 
+ <script src="angular/entities/notizie/ctrl-notizia-details.js"></script> 
+ <script src="angular/entities/notizie/ctrl-dialog-notizie-contenuto.js"></script> 
+ <script src="angular/entities/notizie/ctrl-notizia-modifica.js"></script>
+ <script src="angular/entities-rest/notizia.js"></script>
+
+<!--   QUOTE-->
+ <script src="angular/entities-rest/quote.js"></script>
+
+
+ <script src="angular/entities-rest/attivita.js"></script>
+ <script src="angular/entities-rest/stimaCosti.js"></script>
+ <script src="angular/entities-rest/sharesNetapp.js"></script>
+
+
+
+
+	<!-- componenti routing/service/template - organizzazioni -->
+	<script src="angular/entities/struttura-organizzativa/organizzazioni/routing.js"></script>
+	<script src="angular/entities/struttura-organizzativa/organizzazioni/ctrl-list-organizzazioni.js"></script>
+	<script src="angular/entities/struttura-organizzativa/organizzazioni/ctrl-visualizza-organizzazione.js"></script>
+	<script src="angular/entities/struttura-organizzativa/organizzazioni/ctrl-modifica-organizzazione.js"></script>
+	<script src="angular/entities/struttura-organizzativa/organizzazioni/ctrl-nuova-organizzazione.js"></script>
+
+	<!-- componenti routing/service/template - divisioni -->
+	<script src="angular/entities/struttura-organizzativa/divisioni/routing.js"></script>
+	<script src="angular/entities/struttura-organizzativa/divisioni/ctrl-list-divisioni.js"></script>
+	<script src="angular/entities/struttura-organizzativa/divisioni/ctrl-visualizza-divisione.js"></script>
+	<script src="angular/entities/struttura-organizzativa/divisioni/ctrl-modifica-divisione.js"></script>
+	<script src="angular/entities/struttura-organizzativa/divisioni/ctrl-nuova-divisione.js"></script>
+
+	<!-- componenti routing/service/template - accounts -->
+	<script src="angular/entities/struttura-organizzativa/accounts/routing.js"></script>
+	<script src="angular/entities/struttura-organizzativa/accounts/ctrl-list-accounts.js"></script>
+	<script src="angular/entities/struttura-organizzativa/accounts/ctrl-list-attivita-accounts.js"></script>
+	<script src="angular/entities/struttura-organizzativa/accounts/ctrl-dialog-dettaglio-attivita.js"></script>
+	<script src="angular/entities/struttura-organizzativa/accounts/ctrl-visualizza-account.js"></script>
+	<script src="angular/entities/struttura-organizzativa/accounts/ctrl-modifica-account.js"></script>
+	<script src="angular/entities/struttura-organizzativa/accounts/ctrl-allegati-account.js"></script>
+	<script src="angular/entities/struttura-organizzativa/accounts/ctrl-servizi-gestione-account.js"></script>
+	<script src="angular/entities/struttura-organizzativa/accounts/ctrl-nuovo-account.js"></script>
+	<script src="angular/entities/struttura-organizzativa/accounts/ctrl-quote-accounts.js"></script>
+	<script src="angular/entities/struttura-organizzativa/accounts/ctrl-listini-accounts.js"></script>
+	<script src="angular/entities/struttura-organizzativa/accounts/ctrl-list-allegati-accounts.js"></script>
+	<script src="angular/entities/struttura-organizzativa/accounts/ctrl-dialog-associa-wbs.js"></script>
+	<!-- info rendicontazioni account  -->
+	<script src="angular/entities/struttura-organizzativa/accounts/ctrl-nuova-info-rendicontazione-account.js"></script>
+	<script src="angular/entities/struttura-organizzativa/accounts/ctrl-modifica-info-rendicontazione-account.js"></script>
+
+	<!-- info rendicontazioni account  -->
+	<script src="angular/entities/struttura-organizzativa/accounts/ctrl-nuova-associazione-share-account.js"></script>
+	<script src="angular/entities/struttura-organizzativa/accounts/ctrl-modifica-associazione-share-account.js"></script>
+
+
+	<!-- componenti routing/service/template - vm -->
+	<script src="angular/entities/compute/vm/routing.js"></script>
+	<script src="angular/entities/compute/vm/ctrl-list-vm.js"></script>
+	<script src="angular/entities/compute/volume/routing.js"></script>
+	<script src="angular/entities/compute/vm/ctrl-modifica-vm.js"></script>
+	<script src="angular/entities/compute/vm/ctrl-nuova-vm.js"></script>
+	<script src="angular/entities/compute/vm/ctrl-manage-vm.js"></script>
+	<script src="angular/entities/compute/vm/ctrl-dialog-connect.js"></script>
+	<script src="angular/entities/compute/vm/ctrl-dialog-manage.js"></script>
+	<script src="angular/entities/compute/vm/ctrl-dialog-modifica-flavour.js"></script>
+
+
+	<!-- componenti routing/service/template - volumes -->
+	<script src="angular/entities/compute/volume/ctrl-list-volumi.js"></script>
+	<script src="angular/entities/compute/volume/crtl-nuovo-volume.js"></script>
+	<script src="angular/entities/compute/volume/ctrl-manage-volume.js"></script>
+	<script src="angular/entities/compute/volume/ctrl-dialog-detach.js"></script>
+	<script src="angular/entities/compute/volume/ctrl-dialog-attachVolume.js"></script>
+	<script src="angular/entities-rest/volumes.js"></script>
+	
+	
+	<!-- keypair ssh keys-->
+	<script src="angular/entities/networking/keypair/routing.js"></script>
+	<script src="angular/entities/networking/keypair/ctrl-dialog-nuova-keypair.js"></script>
+	<script src="angular/entities/networking/keypair/ctrl-dialog-importa-keypair.js"></script>
+	<script src="angular/entities/networking/keypair/ctrl-list-keypairs.js"></script>
+	<script src="angular/entities-rest/keypair.js"></script>
+
+		<!-- keypair snapshots-->
+		<script src="angular/entities/compute/snapshot/routing.js"></script>
+		<script src="angular/entities/compute/snapshot/ctrl-list-snapshot.js"></script>
+		<script src="angular/entities/compute/snapshot/ctrl-dialog-nuova-snapshot.js"></script>
+		<script src="angular/entities-rest/snapshot.js"></script>
+
+
+		<!--reports -->
+		<script src="angular/entities-rest/report-csv.js"></script>
+		
+
+
+	<!--   listini   -->
+	<script src="angular/entities/listini/routing.js"></script>
+	<script src="angular/entities/listini/ctrl-list-listini.js"></script>
+	<script src="angular/entities/listini/ctrl-manage-listini.js"></script>
+	<script src="angular/entities/listini/ctrl-dialog-nuovo-listino.js"></script>
+	<script src="angular/entities-rest/listini.js"></script>
+	
+	<!-- OLD -->
+	<script src="angular/entities/compute/vm/srv-istanze.js"></script>
+	<!-- <script src="angular/entities/compute/vm/ctrl-istanze.js"></script>
+	<script src="angular/entities/compute/vm/ctrl-istanza-dettaglio.js"></script>
+	<script src="angular/entities/compute/vm/ctrl-istanza-nuova.js"></script>
+	<script src="angular/entities/compute/vm/ctrl-istanza-nuova-wizard.js"></script> -->
+
+	<!-- componenti routing/service/template - backup -->
+	<script src="angular/entities/compute/backup/routing.js"></script>
+	<script src="angular/entities/compute/backup/ctrl-list-jobs.js"></script>
+	<script src="angular/entities/compute/backup/ctrl-nuovo-job.js"></script>
+	<script src="angular/entities/compute/backup/ctrl-modifica-job.js"></script>
+	<script src="angular/entities/compute/backup/ctrl-manage-job.js"></script>
+	<script src="angular/entities/compute/backup/ctrl-dialog-volumes.js"></script>
+
+	<!-- componenti routing/service/template - dbaas -->
+	<script src="angular/entities/compute/dbaas/routing.js"></script>
+	<script src="angular/entities/compute/dbaas/ctrl-list-dbaas.js"></script>
+	<script src="angular/entities/compute/dbaas/ctrl-nuovo-dbaas.js"></script>
+	<script src="angular/entities/compute/dbaas/ctrl-modifica-dbaas.js"></script>
+	<script src="angular/entities/compute/dbaas/ctrl-manage-dbaas.js"></script>
+	<script src="angular/entities/compute/dbaas/ctrl-dialog-delete.js"></script>
+	<script src="angular/entities/compute/dbaas/ctrl-dialog-connect.js"></script>
+
+	<!-- OLD -->
+	<script src="angular/entities/compute/dbaas/srv-istanze.js"></script>
+	<!-- <script src="angular/entities/compute/dbaas/ctrl-istanze.js"></script>
+	<script src="angular/entities/compute/dbaas/ctrl-istanza-dettaglio.js"></script>
+	<script src="angular/entities/compute/dbaas/ctrl-istanza-nuova.js"></script>
+	<script src="angular/entities/compute/dbaas/ctrl-istanza-nuova-wizard.js"></script> -->
+
+	<!-- componenti routing/service/template - vpc -->
+	<script src="angular/entities/networking/vpc/routing.js"></script>
+	<script src="angular/entities/networking/vpc/ctrl-list-vpc.js"></script>
+
+	<!-- componenti routing/service/template - security group -->
+	<script src="angular/entities/networking/sg/routing.js"></script>
+	<script src="angular/entities/networking/sg/ctrl-list-security-group.js"></script>
+	<script src="angular/entities/networking/sg/ctrl-manage-security-group.js"></script>
+	<script src="angular/entities/networking/sg/ctrl-dialog-delete.js"></script>
+	<script src="angular/entities/networking/sg/ctrl-nuovo-security-group.js"></script>
+
+	<!-- componenti routing/service/template - dns -->
+	<script src="angular/entities/networking/dns/routing.js"></script>
+	<script src="angular/entities/networking/dns/ctrl-list-dns.js"></script>
+
+	<!-- componenti routing/service/template - load balancer -->
+	<script src="angular/entities/networking/lb/routing.js"></script>
+	<script src="angular/entities/networking/lb/ctrl-list-lb.js"></script>
+
+	<!-- componenti routing/service/template - nat -->
+	<script src="angular/entities/networking/nat/routing.js"></script>
+	<script src="angular/entities/networking/nat/ctrl-list-nat.js"></script>
+
+	<!-- componenti routing/service/template - backup -->
+	<script src="angular/entities/storage/volumi/routing.js"></script>
+	<script src="angular/entities/storage/volumi/ctrl-list-volumes.js"></script>
+	<script src="angular/entities/storage/volumi/ctrl-nuovo-volume.js"></script>
+	<script src="angular/entities/storage/volumi/ctrl-modifica-volume.js"></script>
+	<script src="angular/entities/storage/volumi/ctrl-manage-volume.js"></script>
+	<script src="angular/entities/storage/volumi/ctrl-dialog-delete.js"></script>
+	<script src="angular/entities/storage/volumi/ctrl-nuovo-grant.js"></script>
+
+
+	<!-- costi e consumi -->
+	<script src="angular/entities-rest/costiConsumi.js"></script>
+	<script src="angular/entities/costiconsumi/routing.js"></script>
+	<script src="angular/entities/costiconsumi/ctrl-list-costiconsumi.js"></script>
+	<script src="angular/entities/costiconsumi/ctrl-div-list-costiconsumi.js"></script> 
+	<script src="angular/entities/costiconsumi/ctrl-org-list-costiconsumi.js"></script> 
+
+	<!-- filters -->
+	<script src="angular/filters/filters.js"></script>
+
+
+	<!-- directives -->
+	<script src="angular/directives/cfCheck.js"></script>
+	<script src="angular/directives/fileread.js"></script>
+	<script src="angular/directives/compareTo.js"></script>
+	<script src="angular/directives/limit-to.js"></script>
+	<script src="angular/directives/file-drag.js"></script>
+	<script src="angular/directives/drop-zone.js"></script>
+	<script src="angular/directives/html-formatter.js"></script>
+	<script src="angular/directives/escKey.js"></script>
+	<script src="angular/directives/enterKey.js"></script>
+	<script src="angular/directives/requireUc.js"></script>
+	<script src="angular/directives/sezioneMenuSp.js"></script>
+	<script src="angular/directives/ddTextCollapse.js"></script>
+
+
+	<!-- run -->
+	<script src="angular/run/runRegisterRoutingDebugging.js"></script>
+	<script src="angular/run/runStateSwitchingInterceptor.js"></script>
+
+	<!-- text - editor -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.9.2/trix.css">
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/trix/0.9.2/trix.js"></script>
+	<script src="bower_components/angular-trix/dist/angular-trix.min.js"></script>
+
+		<!-- service - autentication -->
+	<script src="angular/services/srv-authentication.js"></script>
+<script src="angular/services/srv-readTheDoc.js"></script> 
+
+	<!-- tawkto chat  -->	
+	<!-- <script src="angular/services/srv-tawk-chat.js"></script>
+	<script src="angular/directives/tawkTo.js"></script> -->
+
+	<!-- reportistica -->
+	<script src="angular/entities/report/routing.js"></script>
+	<script src="angular/entities/report/ctrl-form-csv.js"></script>
+
+	<!-- reusable components -->
+	<script src="angular/entities/compute/components/restore-points-detail/restore-points-detail.component.js"></script>
+	<script src="angular/entities/compute/components/simple-istance-list/simple-instance-list.component.js"></script>
+	<script src="angular/entities/compute/components/vm-list/vm-list.component.js"></script>
+	
+	<script src="angular/entities/struttura-organizzativa/accounts/components/billing-details/billing-details.component.js"></script>
+	<script src="angular/entities/struttura-organizzativa/accounts/components/general-informations/general-informations.component.js"></script>
+
+
+</head>
+<!-- FINE HEAD SP -->
+
+<div id="overlay" ng-if="loadingElement">
+	<!-- <div  layout-align="center center" style="margin-top: 22rem ;" aria-label="wait" >
+		<md-progress-circular md-mode="indeterminate"></md-progress-circular>
+	</div> -->
+	
+	<div layout="row" layout-sm="column" layout-align="space-around" style="position: absolute;bottom:1%;height:2000px;width:100%">
+		<md-progress-circular md-mode="indeterminate" md-diameter="200" style="position:fixed;bottom:50%" ></md-progress-circular>
+		
+		
+	 </div>
+</div>
+
+<body ng-app="app" ng-controller="controllerBackground">
+	<div layout="row" layout-fill ng-cloak>
+		<md-sidenav ng-show="showNavMenu" class="md-sidenav-left" md-component-id="sidenav-left"
+			md-is-locked-open="$mdMedia('gt-md')" disabled-md-disable-backdrop md-whiteframe="6">
+			<md-toolbar class="md-theme-indigo" hide-gt-md>
+				<h1 class="md-toolbar-tools">Navigazione</h1>
+			</md-toolbar>
+			<md-content>
+
+				<!--LOGO-->
+				<div layout-padding layout="row" layout-align="space-between center" class="no-v-space">
+					<form flex="grow" layout-align="center center" layout="row">
+						<a ui-sref="app.home">
+							<img src="img/logo0.png" style="height: 75px;" flex="initial" />
+						</a>
+					</form>
+				</div>
+
+				<!--cerca-->
+				<div layout-padding layout="row" layout-align="center center" class="no-v-space">
+					<form flex="grow" layout-align="center center" layout="row" class="no-v-space">
+						<div flex="grow" class="no-v-space">
+							<md-input-container
+								style="margin-bottom:0px;padding-bottom:0px;margin-top:0px;padding-top:0px;">
+								<label class="md-subhead" for="leftMenuFilterInput">{{ 'cerca...' | translate }}</label>
+								<input type="text" id="leftMenuFilterInput" ng-change="leftFilterChanged()"
+									ng-model="leftMenuFilterInput" md-autofocus>
+							</md-input-container>
+						</div>
+						<div flex="initial">
+							<md-button ng-show="leftMenuFilterInput" ng-click="clearMenuFilter()">
+								<md-icon>clear</md-icon>
+							</md-button>
+						</div>
+					</form>
+				</div>
+
+				<md-content ng-repeat="sezioneMenu in menuCompleto">
+					<sezione-menu-sp sezione="sezioneMenu.content" title="{{sezioneMenu.title}}"
+						filtro="leftMenuFilterInput"></sezione-menu-sp>
+				</md-content>
+
+			</md-content>
+		</md-sidenav>
+
+		<div layout="column" flex="grow">
+			 <!--EK -->
+			 <!-- <md-progress-linear md-mode="query" ng-disabled="!loadingElement" ></md-progress-linear> -->
+			<md-toolbar class="md-hue-2" layout-align="center center" ng-if="utente && utente.login">
+				<div class="md-toolbar-tools" layout="row" ng-if="utente">
+
+					<!-- Trigger element is a md-button with an icon -->
+					<md-button x-disabled-ng-click="$mdOpenMenu()" ng-click="toggleLeft()" class="md-icon-button"
+						aria-label="Menu" hide-gt-md>
+						<i class="material-icons">view_headline</i>
+					</md-button>
+
+					<div layout="row" layout-xs="column" layout-align="space-between center"
+						layout-align-xs="space-around center" flex layout-padding>
+						<div layout="row" layout-align="start center" layout-align-xs="center center">
+							<div class="md-caption" ng-show="showNavMenu">
+								<md-button class="md-icon-button clickable" aria-label="account"
+									onclick='$("#selectedAccount").click()'>
+									<md-tooltip>{{ 'header.selezione_account' | translate }}</md-tooltip>
+									<md-icon>account_circle</md-icon>
+								</md-button>
+							</div>
+
+							<!-- <div layout-padding ng-show="showNavMenu" style="font-size: 0.8em; padding-left: 1.5em;padding-left:0px;"
+							 onclick='$("#selectedAccount").click()' class='clickable'>
+								Regione Piemonte
+								<i class="material-icons" style="font-size: 1em;">chevron_right</i>
+								Direzione Territorio
+								<i class="material-icons" style="font-size: 1em;">chevron_right</i>
+							</div> -->
+
+							<div class="md-subhead" ng-show="showNavMenu">
+								<md-select ng-model=ruoloCorrente ng-model-options="{trackBy: '$value.id'}"
+									ng-change="onChangeRole(ruoloCorrente)" aria-label="profili">
+									<md-optgroup label="{{ 'header.cambia_profilo' | translate }}">
+										<md-option class="md-subhead"
+											ng-repeat="p in utente.elencoAbilitazioni | orderBy:['orgName','divName','accountName','userRoleDescription']"
+											ng-value="p">
+											{{ p.orgName }}
+											<i ng-if="p.divName" class="material-icons">chevron_right</i>
+											{{ p.divName }}
+											<i ng-if="p.accountName" class="material-icons">chevron_right</i>
+											{{ p.accountName }}
+											<!-- ({{ p.userRoleDescription }}) -->
+											({{ ('ruoli_elenco.' + p.userRole) | translate }})
+										</md-option>
+									</md-optgroup>
+								</md-select>
+							</div>
+						</div>
+
+						<!-- <div flex md-truncate> -->
+						<!-- EMPTY -->
+						<!-- </div> -->
+
+						<div layout="row" layout-align="center center" hide-xs>
+
+							<div class="md-caption">
+								<md-button  class="md-icon-button" ng-click="cambiareLingua('it')" translate>
+									<div layout="row">
+										<img src="img/italy-flag-round-icon-16.png" style="height: 25px;" flex="initial" />
+										<!-- <p flex>{{'IT' | translate}}</p> -->
+									</div>
+								</md-button>
+							</div>
+							<div class="md-caption">
+								<md-button  class="md-icon-button" ng-click="cambiareLingua('en')" translate>
+									<div layout="row">
+										<img src="img/united-kingdom-flag-round-icon-16.png" style="height: 25px;" flex="initial" />
+										<!-- <p flex>{{'EN' | translate}}</p> -->
+									</div>
+								</md-button>
+							</div>
+							
+
+							<div class="md-caption">
+								<md-button class="md-icon-button" aria-label="Utente"
+									ui-sref="app.visualizzaInfoUtente">
+									<md-icon>face</md-icon>
+									<md-tooltip>{{ 'header.visualizza_info_utente' | translate }}</md-tooltip>
+								</md-button>
+							</div>
+
+							<div class="md-subhead" ui-sref="app.visualizzaInfoUtente">
+								<strong ng-if="utente && utente.login">{{utente.firstName}} {{utente.lastName}}</strong>
+								<span hide-gt-xs ng-if="utente && utente.login"
+									style="white-space: nowrap;">{{utente.idProvider}} -
+									{{utente.descrizioneRuolo}}</span>
+								<md-tooltip>{{ 'header.visualizza_info_utente' | translate }}</md-tooltip>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					<md-menu hide-gt-xs md-position-mode="target-right target">
+						<md-button aria-label="Toolbar Menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+							<md-icon md-menu-origin class="material-icons">more_vert</md-icon>
+						</md-button>
+
+						<md-menu-content width="4">
+							<!-- <md-menu-item>
+								<md-button aria-label="Guida" ng-click="openChat()">
+									<div layout="row">
+										<p flex>{{ 'header.contatta_assistenza' | translate }}</p>
+										<md-icon md-menu-align-target>perm_phone_msg</md-icon>
+									</div>
+								</md-button>
+							</md-menu-item> -->
+							<md-menu-item>
+								<md-button aria-label="Guida"
+									ng-click="openNewWindows('https://doc.nivolapiemonte.it/userguide/getting_started.html')">
+									<div layout="row">
+										<p flex>{{ 'header.csi_piemonte' | translate }}</p>
+										<md-icon md-menu-align-target>open_in_new</md-icon>
+									</div>
+								</md-button>
+							</md-menu-item>
+							<md-menu-item>
+								<md-button aria-label="Guida" ng-click="app.logout">
+									<div layout="row">
+										<p flex>{{ 'header.esci' | translate }}</p>
+										<md-icon md-menu-align-target>cloud_off</md-icon>
+									</div>
+								</md-button>
+							</md-menu-item>
+							
+							
+
+
+						
+						</md-menu-content>
+					</md-menu>
+					<div hide-xs layout="row" class="md-caption" layout-align="center center" layout-padding>
+						<!-- <md-button class="md-icon-button" aria-label="Guida" ng-click="openChat()">
+							<md-tooltip>{{ 'header.contatta_assistenza' | translate }}</md-tooltip>
+							<md-icon>perm_phone_msg</md-icon>
+						</md-button> -->
+
+						<md-button class="md-icon-button" aria-label="Guida"
+							ng-click="openNewWindows('https://nivola-userguide.readthedocs.io/it/latest/index.html')">
+							<md-tooltip>{{ 'header.documentazione_nivola' | translate }}
+							</md-tooltip>
+							<md-icon>description</md-icon>
+						</md-button>
+
+						<md-button class="md-icon-button" aria-label="Guida" ui-sref="app.logout">
+							<md-tooltip>{{ 'header.esci' | translate }}</md-tooltip>
+							<md-icon>cloud_off</md-icon>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+			<!--EK -->
+			<!-- <md-progress-linear md-mode="query" ng-disabled="!loadingElement" ></md-progress-linear> -->
+			<div style="height: 10px;" class="page-content-neighbour" flex="initial">
+				<md-progress-linear md-mode="indeterminate" ng-if="stateChangingAny || anyOperationRunningLong">
+				</md-progress-linear>
+			</div>
+
+			<md-content flex="grow" class="md-padding" class="page-content page-content-view" ui-view="content">
+			</md-content>
+		</div>
+		
+
+		<!-- <div  ng-if="idToChat" tawk-to="{{idToChat}}"></div> -->
+		<tawk-to idproprieta="{{idToChat}}" it="{{widgetIt}}" en="{{widgetEn}}" />
+	</div>
+
+</body>
+
+</html>

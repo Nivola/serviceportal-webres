@@ -1,0 +1,131 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<!-- per test risorse-org.html -->
+<!-- CARICAMENTO OK -->
+<div ng-if="!widget.loading && !widget.failed">
+    <md-list class="md-dense" flex>
+        <!-- Divisioni -->
+        <md-list-item class="md-2-line" ng-if="widget.data.numeroDivisioni">
+            <md-icon>group_work</md-icon>
+            <div class="md-list-item-text">
+                <h3><b>{{widget.data.numeroDivisioni}} {{widget.data.numeroDivisioni === 1 ? ('divisione' | translate) : ('divisioni.label' | translate)}}</b>
+                </h3>
+            </div>
+        </md-list-item>
+
+        <!-- Accounts -->
+        <md-list-item class="md-2-line" ng-if="widget.data.numeroAccounts">
+            <md-icon>account_circle</md-icon>
+            <div class="md-list-item-text">
+                <h3><b>{{widget.data.numeroAccounts}} {{widget.data.numeroAccounts === 1 ? ('account' | translate) : ('accounts.label' | translate)}}</b></h3>
+            </div>
+        </md-list-item>
+
+        <!-- Compute Service -->
+        <md-list-item class="md-2-line md-long-text" ng-if="widget.data.computeService">
+            <md-icon ng-style="{ 'color': widget.data.computeService.isActive ? 'green' : '#FF8C00' }">computer</md-icon>
+            <div class="md-list-item-text">
+                <h3><b>{{ 'homepage.compute.risorse' | translate }}</b>&nbsp;<span
+                        ng-style="{ 'color': widget.data.computeService.isActive ? 'green' : '#FF8C00' }">{{widget.data.computeService.stato}}</span>
+                </h3>
+                <!-- 
+                <p style="margin-top:10px;" ng-if="widget.data.computeService.isActive">
+                    {{widget.data.computeService.numeroIstanze}} VM
+                   
+                </p>
+                -->
+            </div>
+        </md-list-item>
+
+        <!-- DBAAS -->
+        <md-list-item class="md-2-line md-long-text" ng-if="widget.data.dbaas">
+            <md-icon ng-style="{ 'color': widget.data.dbaas.isActive ? 'green' : '#FF8C00' }">storage</md-icon>
+            <div class="md-list-item-text">
+                <h3><b>{{ 'homepage.dbaas.sigla' | translate }}</b>&nbsp;<span
+                        ng-style="{ 'color': widget.data.dbaas.isActive ? 'green' : '#FF8C00' }">{{widget.data.dbaas.stato}}</span>
+                </h3>
+                <!-- 
+                <p style="margin-top:10px;" ng-if="widget.data.dbaas.isActive">
+                    {{widget.data.dbaas.numeroIstanze}} istanz{{widget.data.dbaas.numeroIstanze === 1 ? 'a' : 'e'}}
+                    
+                </p>
+                 -->
+            </div>
+        </md-list-item> 
+
+        <!-- STAAS -->
+        <md-list-item class="md-2-line md-long-text" ng-if="widget.data.staas">
+            <md-icon ng-style="{ 'color': widget.data.staas.isActive ? 'green' : '#FF8C00' }">memory</md-icon>
+            <div class="md-list-item-text">
+                <h3><b>{{ 'homepage.staas.sigla' | translate }}</b>&nbsp;<span
+                        ng-style="{ 'color': widget.data.staas.isActive ? 'green' : '#FF8C00' }">{{widget.data.staas.stato}}</span>
+                </h3>
+                <!--
+                <p style="margin-top:10px;" ng-if="widget.data.staas.isActive">
+                    {{widget.data.staas.spazioDisco}} GB Spazio disco  
+                </p>
+                 -->
+            </div>
+        </md-list-item>
+
+        <!-- AppEngine -->
+        <md-list-item class="md-2-line md-long-text" ng-if="widget.data.appEngine">
+            <md-icon ng-style="{ 'color': widget.data.appEngine.isActive ? 'green' : '#FF8C00' }">devices_other</md-icon>
+            <div class="md-list-item-text">
+                <h3><b>{{ 'homepage.appengine.sigla' | translate }}</b>&nbsp;<span
+                        ng-style="{ 'color':widget.data.appEngine.isActive ? 'green' : '#FF8C00' }">{{widget.data.appEngine.stato}}</span>
+                </h3>
+                <p style="margin-top:10px;" ng-if="widget.data.appEngine.isActive">
+                    {{widget.data.appEngine.numeroIstanze}}
+                    {{widget.data.appEngine.numeroIstanze === 1 ? ('istanza' | translate) : ('istanze' | translate)}}
+                   
+                </p>
+            </div>
+        </md-list-item>
+
+    </md-list>
+    <!--<md-card-actions layout="row" layout-align="end center" require-uc="BOADMIN">
+        <md-button class="md-icon-button" aria-label="visualizza tutto">
+            <md-icon>more_horiz</md-icon>
+        </md-button>
+    </md-card-actions>
+    -->
+</div>
+
+<!-- STA CARICATO I DATI -->
+<div ng-if="widget.loading">
+    <md-list class="md-dense" flex>
+        <md-list-item class="md-2-line" ng-click="null">
+            <div style="min-width:60px;" flex="20">
+                <md-icon>autorenew</md-icon>
+            </div>
+            <div class="md-list-item-text" flex="80">
+                <h3>{{ 'caricamento.in_corso' | translate }}</h3>
+                <p style="margin-top:10px; width: 150px">
+                    <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+                </p>
+            </div>
+        </md-list-item>
+    </md-list>
+</div>
+
+<!-- CARICAMENTO ERRORE -->
+<div ng-if="widget.failed">
+    <md-list class="md-dense" flex>
+        <md-list-item class="md-2-line md-long-text">
+            <md-icon style="color: red;">error</md-icon>
+            <div class="md-list-item-text" layout="column">
+                <h3 style="color: red;">{{ 'caricamento.fallito' | translate }}</h3>
+                <p>{{ 'caricamento.controlla' | translate }}</p>
+            </div>
+        </md-list-item>
+    </md-list>
+</div>

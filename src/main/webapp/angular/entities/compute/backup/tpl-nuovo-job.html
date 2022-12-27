@@ -1,0 +1,601 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+    <br />
+    <md-content class="md-no-momentum">
+        <md-card>
+            <md-card-title>
+                <md-card-actions layout="row" layout-align="start center" flex="20">
+                    <md-button class="md-default" ng-click="historyBack()">
+                        <md-icon class="material-icons">keyboard_backspace</md-icon> INDIETRO
+                    </md-button>
+                </md-card-actions>
+                <md-card-title-text layout-align="center center" flex>
+                    <span class="md-headline titolo-sezione">
+                        <md-icon class="icon-card-header-green">backup</md-icon> Crea un Nuovo Job di Backup
+                    </span>
+                    <div class="callout callout-info">
+                    </div>
+                </md-card-title-text>
+                <md-card-actions layout="row" layout-align="end center" flex="20">
+                    <!-- <md-button type="submit" ng-click="actions.invia()" class="md-raised">
+                        <md-icon ng-style="iconStyle" class="material-icons">send</md-icon> CREA JOB
+                    </md-button> -->
+                </md-card-actions>
+            </md-card-title>
+
+            <md-card-content>
+                <form name="vmForm">
+                    <md-tabs md-dynamic-height md-border-bottom md-center-tabs class="tab-min-200"
+                        md-selected="status.tabIndex">
+                        <md-tab label="1. Nome Job">
+                            <md-content class="md-padding">
+                                <p>
+                                    Dai un nome al job di backup.
+                                </p>
+
+                                <div layout="column">
+                                    <md-input-container class="md-block">
+                                        <md-icon>comment</md-icon>
+                                        <label>Nome del job di backup</label>
+                                        <input ng-model="vm.selectedJobName" required md-maxlength="50" id="selectedJobName"
+                                            placeholder="Specificare il nome del job di backup">
+                                    </md-input-container>
+                                </div>
+
+                                <br />
+
+                                <div class="pull-right" ng-if="vm.selectedJobName">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(1)">
+                                        <md-icon ng-style="iconStyle" class="material-icons">keyboard_arrow_right
+                                        </md-icon> VAI A A.Z. & TECNOLOGIA
+                                    </md-button>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="2. A.Z. & Tecnologia" ng-disabled="!(vm.selectedJobName)">
+                            <md-content class="md-padding">
+                                <p>
+                                    Scegli la Region e Availability Zone.
+                                </p>
+
+                                <div layout="row">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>public</md-icon>
+                                        <label>Region</label>
+                                        <md-select ng-model="vm.selectedRegion">
+                                            <md-option ng-repeat="opt in vm.availableRegions" value="{{opt.id}}">
+                                                {{opt.description}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>location_on</md-icon>
+                                        <label>Availability Zone</label>
+                                        <md-select ng-model="vm.selectedAvailabilityZone">
+                                            <md-option ng-repeat="opt in vm.availableAvailabilityZones"
+                                                value="{{opt.id}}">
+                                                {{opt.description}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+
+                                <p>
+                                    Scegli la tecnologia di virtualizzazione.
+                                </p>
+
+                                <div layout="column">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>memory</md-icon>
+                                        <label>Tecnologia di Virtualizzazione</label>
+                                        <md-select ng-model="vm.selectedVirtualizationOption">
+                                            <md-option ng-repeat="opt in vm.availableVirtualizationOptions"
+                                                value="{{opt.id}}">
+                                                {{opt.description}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+
+                                <div class="pull-right"
+                                    ng-if="vm.selectedRegion && vm.selectedAvailabilityZone && vm.selectedVirtualizationOption">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(2)">
+                                        <md-icon ng-style="iconStyle" class="material-icons">keyboard_arrow_right
+                                        </md-icon> VAI A LISTA VM
+                                    </md-button>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="3. Lista VM" ng-disabled="!(vm.selectedJobName)">
+                            <md-content laout="md-padding column md-no-momentum">
+                                <md-card>
+                                    <md-toolbar class="md-table-toolbar alternate"
+                                        ng-show="vm.selectedVMs.length && vmList.dataTable.options.rowSelection">
+                                        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                                            <md-button class="md-icon-button" ng-click="unselectAll()"
+                                                aria-label="Unselect items">
+                                                <md-icon class="material-icons">close</md-icon>
+                                            </md-button>
+                                            <div flex>
+                                                <span>
+                                                    {{ vm.selectedVMs.length }}
+                                                    {{vm.selectedVMs.length > 1 ? 'VM selezionate' : 'VM selezionata'}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </md-toolbar>
+                                    <md-toolbar class="md-table-toolbar md-default">
+                                        <div class="md-toolbar-tools">
+                                            <form name="filter.form" flex>
+                                                <md-input-container class="md-icon-float md-block" flex>
+                                                    <label>Ricerca</label>
+                                                    <md-icon class="material-icons">search</md-icon>
+                                                    <input class="layout-fill" type="text" id="filterSearch1"
+                                                        ng-model="vmList.dataTable.filter.search"
+                                                        ng-model-options="vmList.dataTable.filter.options"
+                                                        esc-key="resetFilter()">
+                                                </md-input-container>
+                                            </form>
+                                        </div>
+                                    </md-toolbar>
+
+                                    <md-table-container>
+                                        <table md-table md-row-select="vmList.dataTable.options.rowSelection"
+                                            multiple="{{vmList.dataTable.options.multiSelect}}"
+                                            ng-model="vm.selectedVMs" md-progress="promise">
+                                            <thead ng-if="!vmList.dataTable.options.decapitate" md-head
+                                                md-order="vmList.dataTable.query.order">
+                                                <tr md-row>
+                                                    <th md-column md-order-by="name"><span>Nome VM</span></th>
+                                                    <th md-column md-order-by="region_zone"><span>Region - A.Z.</span>
+                                                    </th>
+                                                    <th md-column md-order-by="cpu_ram"><span>CPU e RAM</span></th>
+                                                    <th md-column md-order-by="os"><span>Sistema operativo</span></th>
+                                                    <th md-column md-order-by="ip"><span>IP assegnato</span></th>
+                                                    <th md-column md-order-by="status"><span>Stato</span></th>
+                                                    <th md-column md-order-by="volumes"><span>Volumi</span></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody md-body>
+                                                <tr md-row md-select="istanza"
+                                                    md-auto-select="vmList.dataTable.options.autoSelect"
+                                                    ng-repeat="istanza in vmList.istanze | filter: fromIdToObj(vm.availableRegions, vm.selectedRegion).description | filter: fromIdToObj(vm.availableAvailabilityZones, vm.selectedAvailabilityZone).description | filter: vmList.dataTable.filter.search | orderBy: vmList.dataTable.query.order | limitTo: vmList.dataTable.query.limit : (vmList.dataTable.query.page -1) * vmList.dataTable.query.limit">
+                                                    <td md-cell>{{istanza.name}}</td>
+                                                    <td md-cell>{{istanza.region_zone}}</td>
+                                                    <td md-cell>{{istanza.cpu_ram}}</td>
+                                                    <td md-cell>{{istanza.os}}</td>
+                                                    <td md-cell>{{istanza.ip}}</td>
+                                                    <td md-cell hide-gt-xs hide-xs show-gt-sm>
+                                                        <span
+                                                            ng-class="istanza.status == 'running' ? 'badge badge-success' : 'badge badge-danger'">
+                                                            {{istanza.status}}
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <md-button class="md-icon-button md-primary"
+                                                            ng-disabled="!vm.selectedVMs.includes(istanza)"
+                                                            ng-click="selectVolumes(istanza.id, $event)"
+                                                            aria-label="seleziona volumi">
+                                                            <md-icon>storage</md-icon>
+                                                            <md-tooltip>
+                                                                Seleziona volumi
+                                                            </md-tooltip>
+                                                        </md-button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </md-table-container>
+
+                                    <md-table-pagination md-limit="vmList.dataTable.query.limit"
+                                        md-limit-options="vmList.dataTable.limitOptions"
+                                        md-page="vmList.dataTable.query.page"
+                                        md-total="{{(vmList.istanze | filter: fromIdToObj(vm.availableRegions, vm.selectedRegion).description | filter: fromIdToObj(vm.availableAvailabilityZones, vm.selectedAvailabilityZone).description).length}}"
+                                        md-page-select="vmList.dataTable.options.pageSelect"
+                                        md-boundary-links="vmList.dataTable.options.boundaryLinks">
+                                    </md-table-pagination>
+                                </md-card>
+
+                                <br />
+
+                                <div class="pull-right" ng-if="vm.selectedVMs.length">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(3)">
+                                        <md-icon ng-style="iconStyle" class="material-icons">keyboard_arrow_right
+                                        </md-icon> VAI ALLA CONFIGURAZIONE
+                                    </md-button>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="4. Configurazione" ng-disabled="!(vm.selectedJobName)">
+                            <md-content class="md-padding">
+                                <p>
+                                    Scegli il massimo numero di Restore Points da conservare e la frequenza di backup.
+                                </p>
+
+                                <!-- <div layout="row">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>restore_page</md-icon>
+                                        <label>Massimo numero di Restore Points</label>
+                                        <input ng-model="vm.selectedRestorePoints" min="1" type="number" step="1"
+                                            placeholder="Specificare il massimo numero di Restore Points da conservare"
+                                            required>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>timer</md-icon>
+                                        <label>Intervallo tra due backup</label>
+                                        <input ng-model="vm.selectedBackupPeriod" min="0" type="number" step="1"
+                                            placeholder="Specificare la frequenza di backup" required>
+                                    </md-input-container>
+                                </div> -->
+
+                                <div layout="column" layout-gt-md="row">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>restore_page</md-icon>
+                                        <label>Massimo numero di Restore Points</label>
+                                        <md-select ng-model="vm.selectedRestorePoints">
+                                            <md-option ng-repeat="opt in vm.availableRestorePoints" value="{{opt}}">
+                                                {{opt}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>timer</md-icon>
+                                        <label>Frequenza di backup</label>
+                                        <md-select ng-model="vm.selectedBackupPeriod">
+                                            <md-option ng-repeat="opt in vm.availableBackupPeriod" value="{{opt}}">
+                                                {{opt}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>timelapse</md-icon>
+                                        <label>Fascia oraria</label>
+                                        <md-select ng-model="vm.selectedTimeSlot">
+                                            <md-option ng-repeat="opt in vm.availableTimeSlot" value="{{opt}}">
+                                                {{opt}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+
+                                <br />
+
+                                <div class="pull-right"
+                                    ng-if="vm.selectedRestorePoints && vm.selectedBackupPeriod && vm.selectedTimeSlot">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(4)">
+                                        <md-icon ng-style="iconStyle" class="material-icons">keyboard_arrow_right
+                                        </md-icon> VAI AL RIEPILOGO
+                                    </md-button>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="6. Riepilogo"
+                            ng-disabled="!(vm.selectedJobName && vm.selectedVMs.length && vm.selectedRestorePoints && vm.selectedBackupPeriod && vm.selectedTimeSlot)">
+                            <md-content class="md-padding">
+                                <p>
+                                    Assicurati di aver selezionato le opzioni corrette, dopodich&egrave;
+                                    avvia la creazione del Job di Backup.
+                                </p>
+
+                                <md-card>
+                                    <md-table-container>
+                                        <table md-table>
+                                            <!-- <thead md-head>
+                                                    <tr md-row>
+                                                        <th md-column><span>Proprietà</span></th>
+                                                        <th md-column><span>Valore</span></th>
+                                                    </tr>
+                                                </thead> -->
+                                            <tbody md-body>
+                                                <!-- Nome VM -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <md-icon>comment</md-icon>
+                                                            <b>Nome Job</b>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{vm.selectedJobName}}
+                                                    </td>
+                                                    <td md-cell>
+                                                        <md-button class="md-icon-button md-primary"
+                                                            ng-click="actions.gotoTab(0)"
+                                                            aria-label="modifica nome Job">
+                                                            <md-icon>edit</md-icon>
+                                                            <md-tooltip>
+                                                                Modifica Nome Job
+                                                            </md-tooltip>
+                                                        </md-button>
+                                                    </td>
+                                                </tr>
+                                                <!-- Region - A.Z. -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <md-icon>public</md-icon>
+                                                            <b>Region - A.Z.</b>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{fromIdToObj(vm.availableRegions, vm.selectedRegion).description}}
+                                                        -
+                                                        {{fromIdToObj(vm.availableAvailabilityZones, vm.selectedAvailabilityZone).description}}
+                                                    </td>
+                                                    <td md-cell>
+                                                        <md-button class="md-icon-button md-primary"
+                                                            ng-click="actions.gotoTab(1)"
+                                                            aria-label="modifica region - a.z.">
+                                                            <md-icon>edit</md-icon>
+                                                            <md-tooltip>
+                                                                Modifica Region - A.Z.
+                                                            </md-tooltip>
+                                                        </md-button>
+                                                    </td>
+                                                </tr>
+                                                <!-- Tecnologia di Virtualizzazione -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <md-icon>memory</md-icon>
+                                                            <b>Tecnologia</b>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{fromIdToObj(vm.availableVirtualizationOptions, vm.selectedVirtualizationOption).description}}
+                                                    </td>
+                                                    <td md-cell>
+                                                        <md-button class="md-icon-button md-primary"
+                                                            ng-click="actions.gotoTab(1)"
+                                                            aria-label="modifica tecnologia">
+                                                            <md-icon>edit</md-icon>
+                                                            <md-tooltip>
+                                                                Modifica tecnologia
+                                                            </md-tooltip>
+                                                        </md-button>
+                                                    </td>
+                                                </tr>
+                                                <!-- Restore Points -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <md-icon>restore_page</md-icon>
+                                                            <b>Restore Points</b>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{ vm.selectedRestorePoints }}
+                                                    </td>
+                                                    <td md-cell>
+                                                        <md-button class="md-icon-button md-primary"
+                                                            ng-click="actions.gotoTab(3)"
+                                                            aria-label="modifica restore points">
+                                                            <md-icon>edit</md-icon>
+                                                            <md-tooltip>
+                                                                Modifica Restore Points
+                                                            </md-tooltip>
+                                                        </md-button>
+                                                    </td>
+                                                </tr>
+                                                <!-- Frequenza di Backup -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <md-icon>timer</md-icon>
+                                                            <b>Frequenza di Backup</b>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{ vm.selectedBackupPeriod }}
+                                                    </td>
+                                                    <td md-cell>
+                                                        <md-button class="md-icon-button md-primary"
+                                                            ng-click="actions.gotoTab(3)"
+                                                            aria-label="modifica frequenza di backup">
+                                                            <md-icon>edit</md-icon>
+                                                            <md-tooltip>
+                                                                Modifica frequenza di Backup
+                                                            </md-tooltip>
+                                                        </md-button>
+                                                    </td>
+                                                </tr>
+                                                <!-- Fascia oraria -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <md-icon>timelapse</md-icon>
+                                                            <b>Fascia oraria</b>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{ vm.selectedTimeSlot }}
+                                                    </td>
+                                                    <td md-cell>
+                                                        <md-button class="md-icon-button md-primary"
+                                                            ng-click="actions.gotoTab(3)"
+                                                            aria-label="modifica fascia oraria">
+                                                            <md-icon>edit</md-icon>
+                                                            <md-tooltip>
+                                                                Modifica fascia oraria
+                                                            </md-tooltip>
+                                                        </md-button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </md-table-container>
+                                </md-card>
+
+                                <br />
+
+                                <md-card>
+                                    <md-collapsible class="md-accordion">
+                                        <md-collapsible-item>
+                                            <md-collapsible-header layout="row">
+                                                <div layout="row" flex>
+                                                    <md-card-title flex ng-click="collapsed=!collapsed">
+                                                        <md-card-title-text layout-align="center center">
+                                                            <div class="md-headline">
+                                                                <md-icon class="material-icons">laptop</md-icon>
+                                                                VM selezionate
+                                                                <md-button class="md-icon-button md-primary"
+                                                                    ng-click="actions.gotoTab(2)"
+                                                                    aria-label="modifica lista vm">
+                                                                    <md-icon>edit</md-icon>
+                                                                    <md-tooltip>
+                                                                        Modifica Lista VM
+                                                                    </md-tooltip>
+                                                                </md-button>
+                                                            </div>
+                                                        </md-card-title-text>
+                                                    </md-card-title>
+                                                    <div layout="column" layout-align="center end">
+                                                        <md-icon ng-if="collapsed">arrow_drop_down</md-icon>
+                                                        <md-icon ng-if="!collapsed">arrow_drop_up</md-icon>
+                                                        <!-- <md-button class="md-icon-button md-primary"
+                                                            aria-label="expand" ng-if="collapsed">
+                                                            <md-icon>arrow_drop_down</md-icon>
+                                                            <md-tooltip>
+                                                                Espandi Lista VM
+                                                            </md-tooltip>
+                                                        </md-button>
+                                                        <md-button class="md-icon-button md-primary"
+                                                            aria-label="collapse" ng-if="!collapsed">
+                                                            <md-icon>arrow_drop_up</md-icon>
+                                                            <md-tooltip>
+                                                                Riduci Lista VM
+                                                            </md-tooltip>
+                                                        </md-button> -->
+                                                    </div>
+                                                </div>
+                                            </md-collapsible-header>
+                                            <md-collapsible-body>
+                                                <md-toolbar class="md-table-toolbar md-default">
+                                                    <div class="md-toolbar-tools">
+                                                        <form name="filter.form" flex>
+                                                            <md-input-container class="md-icon-float md-block" flex>
+                                                                <label>Ricerca</label>
+                                                                <md-icon class="material-icons">search</md-icon>
+                                                                <input class="layout-fill" type="text" id="filterSearch2"
+                                                                    ng-model="vmSelectedList.dataTable.filter.search"
+                                                                    ng-model-options="vmSelectedList.dataTable.filter.options"
+                                                                    esc-key="resetFilter()">
+                                                            </md-input-container>
+                                                        </form>
+                                                    </div>
+                                                </md-toolbar>
+
+                                                <md-table-container>
+                                                    <table md-table ng-model="vm.selectedVMs" md-progress="promise">
+                                                        <thead ng-if="!vmSelectedList.dataTable.options.decapitate"
+                                                            md-head md-order="vmSelectedList.dataTable.query.order">
+                                                            <tr md-row>
+                                                                <th md-column md-order-by="name">
+                                                                    <span>Nome VM</span>
+                                                                </th>
+                                                                <th md-column md-order-by="region_zone">
+                                                                    <span>Region - A.Z.</span>
+                                                                </th>
+                                                                <th md-column md-order-by="cpu_ram">
+                                                                    <span>CPU e RAM</span></th>
+                                                                <th md-column md-order-by="os">
+                                                                    <span>Sistema operativo</span></th>
+                                                                <th md-column md-order-by="ip">
+                                                                    <span>IP assegnato</span>
+                                                                </th>
+                                                                <th md-column md-order-by="status">
+                                                                    <span>Stato</span>
+                                                                </th>
+                                                                <th md-column md-order-by="volumes">
+                                                                    <span>Volumi</span></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody md-body>
+                                                            <tr md-row
+                                                                ng-repeat="istanza in vm.selectedVMs | filter: vmSelectedList.dataTable.filter.search | orderBy: vmSelectedList.dataTable.query.order | limitTo: vmSelectedList.dataTable.query.limit : (vmSelectedList.dataTable.query.page -1) * vmSelectedList.dataTable.query.limit">
+                                                                <td md-cell>{{istanza.name}}</td>
+                                                                <td md-cell>{{istanza.region_zone}}</td>
+                                                                <td md-cell>{{istanza.cpu_ram}}</td>
+                                                                <td md-cell>{{istanza.os}}</td>
+                                                                <td md-cell>{{istanza.ip}}</td>
+                                                                <td md-cell hide-gt-xs hide-xs show-gt-sm>
+                                                                    <span
+                                                                        ng-class="istanza.status == 'running' ? 'badge badge-success' : 'badge badge-danger'">
+                                                                        {{istanza.status}}
+                                                                    </span>
+                                                                </td>
+                                                                <td md-cell>
+                                                                    <md-button class="md-icon-button md-primary"
+                                                                        ng-disabled="!vm.selectedVMs.includes(istanza)"
+                                                                        ng-click="selectVolumes(istanza.id, $event, true)"
+                                                                        aria-label="seleziona volumi">
+                                                                        <md-icon>storage</md-icon>
+                                                                        <md-tooltip>
+                                                                            Seleziona volumi
+                                                                        </md-tooltip>
+                                                                    </md-button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </md-table-container>
+
+                                                <md-table-pagination md-limit="vmSelectedList.dataTable.query.limit"
+                                                    md-limit-options="vmSelectedList.dataTable.limitOptions"
+                                                    md-page="vmSelectedList.dataTable.query.page"
+                                                    md-total="{{vm.selectedVMs.length}}"
+                                                    md-page-select="vmSelectedList.dataTable.options.pageSelect"
+                                                    md-boundary-links="vmSelectedList.dataTable.options.boundaryLinks">
+                                                </md-table-pagination>
+                                            </md-collapsible-body>
+                                        </md-collapsible-item>
+                                    </md-collapsible>
+                                </md-card>
+
+                                <br />
+                                <md-divider></md-divider>
+                                <br />
+
+                                <div layout="column" layout-align="center center" flex>
+                                    <!-- <p align="center">
+                                        <small>
+                                            La creazione del job di backup potrebbe richiedere del tempo.
+                                        </small>
+
+                                        <br />
+
+                                        <small>
+                                            Verrai comunque avvisato al completamento dell'operazione.
+                                        </small>
+                                    </p> -->
+
+                                    <div layout="row" layout-align="start center" layout-margin
+                                        ng-if="vm.selectedVirtualizationOption">
+                                        <md-button class="md-raised md-primary" ng-click="submit()">
+                                            <md-icon ng-style="iconStyle" class="material-icons">
+                                                keyboard_arrow_right
+                                            </md-icon> CONFERMA E CREA IL JOB DI BACKUP
+                                        </md-button>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </form>
+            </md-card-content>
+        </md-card>
+    </md-content>
+</div>

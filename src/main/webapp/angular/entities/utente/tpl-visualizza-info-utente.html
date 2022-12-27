@@ -1,0 +1,103 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+    <br />
+    <md-content class="md-no-momentum">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text layout-align="start start" flex="80">
+                    <span class="md-headline titolo-sezione">
+                        <md-icon hide-xs class="icon-card-header-green">person</md-icon>{{ 'utente.informazioni' | translate }}
+                    </span>
+                    <div class="callout callout-info">
+                    </div>
+                </md-card-title-text>
+                <md-card-actions layout="row" layout-align="end center" flex="20">
+                </md-card-actions>
+            </md-card-title>
+            <md-progress-linear id="chartProgressBar" ng-show="!options.isDettaglioLoaded" md-mode="indeterminate">
+            </md-progress-linear>
+            <md-card-content>
+                <form name="visualizzaUtenteForm">
+                                <div layout="row" class="riepilogo-utente-row"></div>
+                                <md-card>
+                                <div layout="row" class="riepilogo-utente-row">
+                                    <div layout="column" flex="15">
+                                        <div layout="row" layout-align="start start">
+                                            <img flex="95" ng-src="{{userDetails.imageUrl}}"
+                                                class="md-card-image img-utente">
+                                        </div>
+                                    </div>
+                                    <div layout="column" flex="85">
+                                        <md-card md-theme-watch id="cardNoBorder">
+                                            <div layout="row" class="riepilogo-utente-row">
+                                                <div flex="20">
+                                                    <b>{{ 'utente.username_portale' | translate }}</b>
+                                                </div>
+                                                <div flex="35">{{userDetails.login}}</div>
+                                                <div flex="20">
+                                                    <b>{{ 'utente.stato.label' | translate }}</b>
+                                                </div>
+                                                <div flex="10">
+                                                    <span ng-if="userDetails.attivo===true"
+                                                        class="badge badge-success">{{ 'utente.stato.attivo' | translate }}</span>
+                                                    <span ng-if="userDetails.attivo===false"
+                                                        class="badge badge-danger">{{ 'utente.stato.disattivo' | translate }}</span>
+                                                </div>
+                                            </div>
+                                            <div layout="row" class="riepilogo-utente-row">
+                                                <div flex="20">
+                                                    <b>{{ 'utente.codice_fiscale' | translate }}</b>
+                                                </div>
+                                                <div flex="35">{{userDetails.login}}</div>
+                                            </div>
+                                            <div layout="row" class="riepilogo-utente-row">
+                                                <div flex="20">
+                                                    <b>{{ 'utente.nome' | translate }}</b>
+                                                </div>
+                                                <div flex="40">{{userDetails.firstName}} </div>
+                                            </div>
+                                            <div layout="row" class="riepilogo-utente-row">
+                                                <div flex="20">
+                                                    <b>{{ 'utente.cognome' | translate }}</b>
+                                                </div>
+                                                <div flex="40">{{userDetails.lastName}} </div>
+                                            </div>
+                                            <div layout="row" class="riepilogo-utente-row">
+                                                <div flex="20">
+                                                    <b>{{ 'utente.email' | translate }}</b>
+                                                </div>
+                                                <div flex="40">{{userDetails.email}} </div>
+                                            </div>
+                                            <div layout="row" class="riepilogo-utente-row"
+                                                ng-if="userDetails.matricolaCsi">
+                                                <div flex="20">
+                                                    <b>{{ 'utente.matricola' | translate }}</b>
+                                                </div>
+                                                <div flex="40">{{userDetails.matricolaCsi}} </div>
+                                            </div>
+                                        </md-card>
+                                    </div>
+                                </div>
+
+                </md-card>
+                <md-card-actions layout="row" layout-align="space-between center">
+                    <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+                        <md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate }}
+                    </md-button>
+                </md-card-actions>
+                </form>
+
+            </md-card-content>
+        </md-card>
+
+    </md-content>
+</div>

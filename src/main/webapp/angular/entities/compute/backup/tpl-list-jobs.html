@@ -1,0 +1,201 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<md-content class ="md-no-momentum" layout="column">
+		<!-- <md-card>
+			<div layout="row">
+				<md-card-title flex>
+					<md-card-title-text layout-align="center center">
+						<div class="md-headline titolo-sezione">
+							<md-icon class="icon-card-header-green">backup</md-icon>
+							Elenco Jobs di Backup
+						</div>
+					</md-card-title-text>
+				</md-card-title>
+				<div layout="column" layout-align="center end">
+					<div>
+						<span class="riepilogo-info">Totale</span>
+						<span class="badge badge-primary">
+							{{numeroAttivi + numeroDisattivi}}
+						</span>
+					</div>
+					<div>
+						<span class="riepilogo-info">Successo</span>
+						<span class="badge badge-success">
+							{{numeroAttivi}}
+						</span>
+					</div>
+					<div><span class="riepilogo-info">Errore</span>
+						<span class="badge badge-danger">
+							{{numeroDisattivi}}
+						</span>
+					</div>
+				</div>
+			</div>
+		</md-card> -->
+		<md-card>
+			<md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length || filter.show">
+				<div class="md-toolbar-tools">
+					<div flex=20></div>
+					<div flex>
+						<md-card-title flex>
+							<md-card-title-text layout-align="center center">
+								<div class="md-headline titolo-sezione">
+									<md-icon class="icon-card-header-green">backup</md-icon>
+									Elenco Jobs di Backup
+								</div>
+							</md-card-title-text>
+						</md-card-title>
+					</div>
+					<div flex=20 layout="row" layout-align="end center">
+						
+						<!-- SP-2.9.0(Sprint 37): funzione per creazione di Job sospesa fino a data da destinarsi -->
+						<!-- <md-button class="animation-target md-fab md-mini md-primary md-hue-2" ng-click="actions.add()"
+							require-uc="{{::actions.auth.new}}">
+							<md-icon>add</md-icon>
+							<md-tooltip>Crea un Nuovo Job</md-tooltip>
+						</md-button> -->
+						
+						<md-button class="animation-target md-fab md-mini md-primary" ng-click="actions.refresh()">
+							<md-icon>autorenew</md-icon>
+							<md-tooltip>Aggiorna Elenco</md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+
+			<md-toolbar class="md-table-toolbar alternate" ng-show="selected.length && options.rowSelection">
+				<div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+					<md-button class="md-icon-button" ng-click="unselectAll()" aria-label="Unselect items">
+						<md-icon class="material-icons">close</md-icon>
+					</md-button>
+					<div flex>
+						<span>
+							{{ selected.length }}
+							{{selected.length > 1 ? 'job selezionati' : 'job selezionato'}}
+						</span>
+					</div>
+					<div layout="row" layout-align="end center">
+					<!-- Funzione temporaneamente nascosta per rilascio SP-2.8.0 -->
+						<!-- 
+						<md-button class="animation-target md-fab md-mini md-primary md-hue-2"
+							ng-click="actions.manage()" require-uc="{{::actions.auth.manage}}">
+							<md-icon>dns</md-icon>
+							<md-tooltip>Pannello gestione Job</md-tooltip>
+						</md-button>
+						<md-button class=" animation-target md-fab md-mini md-primary md-hue-2"
+							ng-click="actions.change()" require-uc="{{::actions.auth.change}}">
+							<md-icon>edit</md-icon>
+							<md-tooltip>Modifica Elemento</md-tooltip>
+						</md-button>
+						<md-button class="animation-target md-fab md-mini md-warn" ng-click="actions.delete($event)"
+							require-uc="{{::actions.auth.delete}}">
+							<md-icon>delete</md-icon>
+							<md-tooltip>Elimina Elemento </md-tooltip>
+						</md-button>
+						-->
+						<md-button class="animation-target md-fab md-mini md-primary md-hue-2"
+						ng-click="actions.manage($event)" require-uc="{{::actions.auth.manage}}">
+						<md-icon>remove_red_eye</md-icon>
+						<md-tooltip>{{'job.bottoni.dettaglio' | translate}}</md-tooltip>
+					</md-button>
+						<!-- SP-2.9.0(Sprint 37): funzione per creazione di Job sospesa fino a data da destinarsi -->
+					<!-- <md-button class="md-fab md-mini md-warn" ng-click="actions.delete($event)" aria-label="delete"
+					require-uc="{{::actions.auth.delete}}">
+					<md-icon class="material-icons">delete</md-icon>
+					<md-tooltip>{{'job.bottoni.elimina' | translate}}</md-tooltip>
+				</md-button> -->
+					</div>
+				</div>
+			</md-toolbar>
+
+			<md-toolbar class="md-table-toolbar md-default">
+				<div class="md-toolbar-tools">
+					<form name="filter.form" flex>
+						<md-input-container class="md-icon-float md-block" flex>
+							<label>Ricerca</label>
+							<md-icon class="material-icons">search</md-icon>
+							<input class="layout-fill" type="text" ng-model="filter.search"
+								ng-model-options="filter.options" esc-key="resetFilter()">
+						</md-input-container>
+					</form>
+				</div>
+			</md-toolbar>
+
+			<md-table-container>
+				<table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}"
+					ng-model="selected" md-progress="promise">
+					<thead ng-if="!options.decapitate" md-head md-order="query.order">
+						<tr md-row>
+							<th md-column md-order-by="name"><span>Nome</span></th>
+							<th md-column md-order-by="active_flag"><span>Stato</span></th>
+							<th md-column md-order-by="region_az"><span>Region - A.Z.</span></th>
+							<th md-column md-order-by="hypervisor"><span>Hypervisor</span></th>
+							<th md-column md-order-by="instanceNum"><span>Numero VM</span></th>
+							<th md-column md-order-by="created"><span>Created</span></th>
+							<th md-column md-order-by="updated"><span>Updated</span></th>
+
+
+							<!-- <th md-column md-order-by="policy.fullbackup_interval"><span>Fullbackup interval</span></th> -->
+							<th md-column md-order-by="policy.start_time"><span>start_time</span></th>
+							<th md-column md-order-by="policy.interval"><span>interval</span></th>
+							<th md-column md-order-by="policy.retention_policy"><span>Retention policy</span></th>
+							<!-- <th md-column md-order-by="result"><span>Esito</span></th>  -->
+
+
+							<!-- <th md-column md-order-by="restore_point"><span>Restore Point</span></th> -->
+							
+
+
+
+
+
+							
+
+						</tr>
+					</thead>
+					<tbody md-body>
+						<tr md-row md-select="job" md-auto-select="options.autoSelect"
+							ng-repeat="job in jobs | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+							<td md-cell>{{job.name}}</td>
+							<td md-cell>
+								<span ng-class="job.jobState == 'available' ? 'badge badge-success' : 'badge badge-danger'">
+									{{job.jobState}}
+								</span>
+							</td>
+							<td md-cell>{{job.region_az}}</td>
+							<td md-cell>{{job.hypervisor}}</td>
+							<td md-cell>{{job.instanceNum}}</td>
+							<td md-cell>{{job.created}}</td>
+							<td md-cell>{{job.updated}}</td>
+							<!-- <td md-cell>{{job.policy.fullbackup_interval}}</td> -->
+							<td md-cell>{{job.policy.start_time}}</td>
+							<td md-cell>{{job.policy.interval}}</td>
+							<td md-cell>{{job.policy.retention_policy}}</td>
+							<!-- td md-cell>
+								<md-icon class="material-icons" ng-style="{ 'color': job.stato.color }">
+									{{job.stato.icon}}
+								</md-icon>
+							</td>
+							 -->
+
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>
+
+			<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+				md-total="{{jobs.length}}" md-page-select="options.pageSelect"
+				md-boundary-links="options.boundaryLinks"></md-table-pagination>
+		</md-card>
+
+	</md-content>
+</div>

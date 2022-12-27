@@ -1,0 +1,169 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<md-content class ="md-no-momentum" layout="column">
+		
+		<md-card>
+			<md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+				<div class="md-toolbar-tools">
+					
+					<div flex=20>
+						<md-card-actions layout="row" layout-align="start center" flex="20">
+							<md-button class="md-fab read-me "  ng-href="{{rtdlistVolumi}}" target="_blank">
+								<md-icon  class="material-icons">local_library</md-icon>
+								<md-tooltip>{{'guida' | translate}}</md-tooltip>
+							</md-button>
+						</md-card-actions> 
+					</div>
+					<div flex>
+						<md-card-title flex>
+							<md-card-title-text layout-align="center center">
+								<div class="md-headline titolo-sezione">
+									<md-icon class="icon-card-header-green">save</md-icon>
+									{{ 'volume.elenco' | translate}}
+								</div>
+							</md-card-title-text>
+						</md-card-title>
+					</div>
+					<div flex=20 layout="row" layout-align="end center">
+					 <md-button class="md-fab md-mini md-warn" ng-click="actions.advancedSearch($event)"
+							aria-label="advancedSearch" ng-if="filter.form.$dirty && filter.search.length !== 0"
+							require-uc="{{::actions.auth.advancedSearch}}">
+							<md-icon class="material-icons">location_searching</md-icon>
+							<md-tooltip>{{ 'ricerca_avanzata' | translate}}</md-tooltip>
+						</md-button> 
+						<md-button class="md-fab md-mini md-primary" ng-click="actions.add()" aria-label="register"
+						require-uc="{{::actions.auth.add}}">
+							<md-icon class="material-icons">add</md-icon>
+							<md-tooltip>{{ 'volume.nuovo.bottone' | translate}}</md-tooltip>
+						</md-button>
+						
+						<md-button class="animation-target md-fab md-mini md-primary md-hue-2"
+							require-uc="{{::actions.auth.add}}" ng-click="actions.downloadCSV($event)">
+							<md-icon>get_app</md-icon>
+							<md-tooltip>{{ 'scarica_csv' | translate}}</md-tooltip>
+						</md-button>
+						
+						<md-button class="md-fab md-mini md-primary md-hue-2" ng-click="actions.refresh()">
+							<md-icon>refresh</md-icon>
+							<md-tooltip>{{ 'volume.ricarica' | translate}}</md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+
+			<md-toolbar class="md-table-toolbar alternate" ng-show="options.rowSelection && selected.length">
+				<div class="md-toolbar-tools">
+					<md-button class="md-icon-button" ng-click="unselectAll()" aria-label="Unselect items">
+						<md-icon class="material-icons">close</md-icon>
+					</md-button>
+					<div flex>
+						<span>
+							{{selected.length}} {{selected.length > 1 ? ('volume.selezionati' | translate) : ('volume.selezionato' | translate)}}
+						</span>
+					</div>
+
+					
+					<div layout="row" layout-align="end center">
+						<!-- <md-button class=" animation-target md-fab md-mini md-primary md-hue-2" ng-click="actions.change()"  	ng-if="selected.length === 1" >
+							<md-icon>edit</md-icon>
+							<md-tooltip>{{ 'volume.modifica.bottone' | translate}}</md-tooltip>
+						</md-button> -->
+						<md-button  ng-if="selected.length === 1" class="animation-target md-fab md-mini md-primary md-hue-2"
+							ng-click="actions.view()"
+							require-uc="{{::actions.auth.manage}}">
+							<md-icon>dns</md-icon>
+							<md-tooltip>{{ 'volume.dettaglio.bottone' | translate}}</md-tooltip>
+						</md-button>
+						<md-button class="animation-target md-fab md-mini md-primary md-hue-2" 
+							ng-if="!(item.instanceId && VolumeDetails.multiAttachEnabled=='false')"
+							ng-click="AttachVolume(item)">
+							<md-icon >add_link</md-icon>
+							<md-tooltip>{{ 'volume.attachment.btnAttach' | translate }}</md-tooltip>
+						</md-button>
+					</md-button>
+						
+						<md-button class="md-fab md-mini md-warn" ng-click="actions.delete($event)" aria-label="delete">
+							<md-icon class="material-icons">delete</md-icon>
+							<md-tooltip> {{selected.length > 1 ? ('volume.elimina.volumi' | translate) : ('volume.elimina.volume' | translate)}}</md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+
+			<md-toolbar class="md-table-toolbar md-default">
+				<div class="md-toolbar-tools">
+					<form name="filter.form" flex>
+						<md-input-container class="md-icon-float md-block" flex>
+							
+							<label>{{ 'ricerca' | translate}}</label>
+							<md-icon class="material-icons">search</md-icon>
+							<input id="search" class="layout-fill" type="text" ng-model="filter.search"
+								ng-model-options="filter.options" esc-key="resetFilter()">
+						</md-input-container>
+					</form>
+				</div>
+			</md-toolbar>
+
+			<md-table-container>
+				<table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}"
+					ng-model="selected" md-progress="promise">
+					<thead ng-if="!options.decapitate" md-head md-order="query.order" md-on-reorder="logOrder">
+						<tr md-row>
+							<th md-column ><span>{{ 'volume.lista.name' | translate}}</span></th>
+							<th md-column ><span>{{ 'volume.lista.tipo' | translate}}</span></th>
+							<th md-column ><span>{{ 'volume.lista.size' | translate}}</span></th>
+							<th md-column ><span>{{ 'volume.lista.availabilityZone' | translate}}</span></th>
+							<th md-column ><span>{{ 'volume.lista.createTime' | translate}}</span></th>
+							<th md-column ><span>{{ 'volume.lista.hypervisor' | translate}}</span></th>
+							<th md-column ><span>{{ 'volume.lista.status' | translate}}</span></th>
+							<!-- <th md-column ><span>{{ 'volume.lista.collegamenti' | translate}}</span></th> -->
+						</tr>
+					</thead>
+
+					
+					<tbody md-body>
+						 <tr md-row md-select="vol" md-auto-select="options.autoSelect"  
+							ng-repeat="vol in volumi | filter: filter.search | orderBy: 'createTime' : 'desc' | limitTo: query.limit : (query.page -1) * query.limit">
+							<td md-cell  >{{vol['nvl-name']}}</td>
+							<td md-cell  >{{vol['volumeTypeDesc']}}</td>
+							<td md-cell  >{{vol.size }} GB</td>
+							<td md-cell  >{{vol.availabilityZone }}</td>
+							<td md-cell>{{vol.createTime | date:'dd/MM/yyyy'}}</td>
+							<td md-cell  >{{vol['nvl-hypervisor'] }}</td>
+							<td md-cell hide-gt-xs hide-xs show-gt-sm>
+								<span ng-class="vol.stato.badge">
+									{{vol.stato.stato}}
+								</span>
+							</td> 
+							<!-- <td md-cell  >{{vol.status }}</td> -->
+							<!-- <td md-cell >
+								
+								<button type="button" class="btn btn-primary" ng-disabled="vol.collegamenti==0"
+								 ui-sref="app.volume.manage({volume: vol , idVolume: vol.volumeId , tabIndex : 1})">
+									<span class="badge badge-info"><b > {{vol.collegamenti }} </b></span>
+									
+								</button>
+							</td> -->
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>
+
+			
+			<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+				md-total="{{volumi.length}}" md-page-select="options.pageSelect"
+				md-boundary-links="options.boundaryLinks">
+			</md-table-pagination>
+		</md-card>
+	</md-content>
+</div> 
+

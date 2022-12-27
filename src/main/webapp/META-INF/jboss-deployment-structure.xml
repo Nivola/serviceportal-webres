@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+
+<jboss-deployment-structure>
+	<deployment>
+		<exclusions>
+			<module name="org.slf4j" />
+			<module name="org.slf4j.ext" />
+			<module name="org.slf4j.impl" />
+		</exclusions>
+	</deployment>
+</jboss-deployment-structure>

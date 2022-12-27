@@ -1,0 +1,144 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="row" layout-fill layout-align="start start">
+
+    <md-card flex="grow">
+        <md-card-title>
+            <md-card-title-text layout-align="center center">
+	      	    <span class="md-headline"> Istanze VM</span>
+                <span class="md-subhead"> Visualizza le istanze di Virtual Machine</span>
+            </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+            <loading-placeholder status="status" ></loading-placeholder>
+
+            <div ng-show="status.loaded">
+
+                <div flex="grow" layout="row" layout-padding>
+                    <div flex="grow">
+                        <md-list class="" flex>
+                            <div layout="row" layout-align="space-between center" class="well">
+                                <div flex="50">
+                                    {{vm.list.length}} VM configurate
+                                </div>
+                                <div flex="50" layout="row" layout-align="end center">
+                                    <md-input-container class="no-v-padding no-v-margin" style="margin-top:1em;">
+                                        <label for="vmListFilterInput">Cerca ...</label>
+                                        <input type="text" id="vmListFilterInput"
+                                               ng-model="status.vmListFilterInput" md-autofocus>
+                                    </md-input-container>
+                                    <!--
+                                    <md-button ng-show="status.vmListFilterInput" ng-click="actions.clearVmListFilterInput()">
+                                        <md-icon>clear</md-icon>
+                                    </md-button>
+                                    -->
+                                </div>
+                            </div>
+
+                            <md-list-item class="md-3-line"
+                              ng-repeat="v in vm.list | filter:helpers.vmListFilter | orderBy:'instanceId'"
+                              ng-click="actions.clickOnVmInList(v)"
+                              ng-class="{'menu-item-selected':v == vm.vmDetail}"
+                            >
+
+                                <span ng-if="v.state.code == 16" title="{{v.state.name}}">
+                                    <md-icon>memory</md-icon>
+                                </span>
+
+                                <span ng-if="v.state.code != 16" title="{{v.state.name}}">
+                                    <md-icon>error_outline</md-icon>
+                                </span>
+
+                                <div class="md-list-item-text" ng-class="{'md-offset': 1 }">
+                                    <h3>
+                                        {{ v.instanceId }}
+                                    </h3>
+                                    <h4>
+                                        ec2 {{ v.instanceType }} instance -
+                                        <span ng-if="v.state.code == 16"> ( {{v.state.name}} at {{v.publicDnsName}} ) </span>
+                                        <span ng-if="v.state.code != 16"> ( {{v.state.name}} ) </span>
+                                    </h4>
+
+                                    <p ng-if="v.pendingOperations">
+                                    <md-progress-circular md-mode="indeterminate" md-diameter="15"
+                                          style="display:inline;margin-right:2em;"
+                                    ></md-progress-circular> faccio cose
+                                    </p>
+
+                                </div>
+
+                                <md-button class="md-secondary md-icon-button" title="fai cose" aria-label="fai cose"
+                                           ng-if="v.authorizations.canUse"
+                                           ng-disabled="v.pendingOperations"
+                                           ng-click="actions.gotoVmDetail(v)"
+                                >
+                                    <md-icon>build</md-icon>
+                                </md-button>
+
+                            </md-list-item>
+
+                        </md-list>
+                    </div>
+
+                    <div flex="grow" ng-show="status.vmDetailOpened" style="border-left: solid 1px #fafafa;">
+
+                        <md-list class="" flex>
+
+                            <div class="well" layout="row" layout-align="space-between center" >
+                                <div flex="100">
+                                    {{vm.vmDetail.name}}
+                                </div>
+                            </div>
+
+                            <md-list-item class="md-3-line"
+                              ng-repeat="resource in vm.vmDetail.resources"
+                            >
+                                <md-icon>timeline</md-icon>
+                                <div class="md-list-item-text" ng-class="{'md-offset': 1 }">
+                                    <h3> {{ resource.name }} </h3>
+
+                                    <h4> {{ resource.valueDescription }} </h4>
+
+                                </div>
+
+                                <md-button class="md-secondary md-icon-button" title="avvia" ng-if="vm.authorizations.canUse" aria-label="start"
+                                           ng-disabled="vm.pendingOperations"
+                                >
+                                    <md-icon>play_arrow</md-icon>
+                                </md-button>
+
+                                <md-button class="md-secondary md-icon-button" title="ferma" ng-if="vm.authorizations.canUse" aria-label="stop"
+                                           ng-disabled="vm.pendingOperations"
+                                >
+                                    <md-icon>stop</md-icon>
+                                </md-button>
+
+                            </md-list-item>
+
+                        </md-list>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </md-card-content>
+    </md-card>
+
+    <md-button class="md-fab md-primary button-fab-primary-low"
+               aria-label="Crea nuova VM"
+               ng-click="actions.gotoNewVm()"
+    >
+        <md-icon>add</md-icon>
+    </md-button>
+
+</div>

@@ -1,0 +1,146 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="row" layout-fill layout-align="start start">
+
+    <md-card flex="grow">
+        <md-card-title>
+            <md-card-title-text layout-align="center center">
+	      	    <span class="md-headline"> {{MODIFICA ? 'Modifica' : 'Crea'}} Documento </span>
+            </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+            <loading-placeholder status="status" ></loading-placeholder>
+
+            <div ng-show="status.loaded">
+
+                <form name="form">
+
+                    <md-input-container class="md-block">
+                        <label>Titolo del documento</label>
+                        <input id="title" ng-model="vm.entity.title" name="title" tabindex="1" required md-maxlength="50"
+                        >
+
+                        <div ng-messages="form.title.$error" role="alert" multiple>
+                            <div ng-message="required" class="my-message">
+                                Devi specificare il titolo del documento
+                            </div>
+                            <div ng-message="md-maxlength" class="my-message">
+                                Il titolo specificato &egrave; troppo lungo
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <p style="padding-top:1em;"></p>
+
+                    <md-input-container class="md-block">
+                        <label>Descrizione del documento</label>
+                        <textarea id="description" ng-model="vm.entity.description" name="description" tabindex="2" 
+                        	md-maxlength="250"
+                        	rows="3"
+                        ></textarea>
+
+                        <div ng-messages="form.description.$error" role="alert" multiple>
+                            <div ng-message="required" class="my-message">
+                                Devi specificare la descrizione del documento
+                            </div>
+                            <div ng-message="md-maxlength" class="my-message">
+                                Il contenuto specificato &egrave; troppo lungo
+                            </div>
+                        </div>
+                    </md-input-container>
+                    
+                    <p style="padding-top:1em;"></p>
+                    
+                    
+                    <md-input-container class="md-block">
+                        <label>File allegato</label>
+                        
+                        <input id="fileName" value="{{vm.entity.documentFileName ? vm.entity.documentFileName + ', ' + vm.entity.documentSize + ' bytes' : 'nessun file allegato'}}" ng-disabled="true" >
+                        
+			            <div ng-show="editForm.document.$invalid">
+			                <p class="help-block"
+			                    ng-show="form.document.$error.required">
+			                    &Egrave; necessario selezionare un file.
+			                </p>
+			            </div>
+                    </md-input-container>
+                   
+		            <input type="hidden" class="form-control" name="document" id="field_document"
+		                    ng-model="vm.entity.document"
+		                    />
+		            <input type="hidden" class="form-control" name="documentContentType" id="field_documentContentType"
+		                    ng-model="vm.entity.documentContentType" />
+		                    
+		            <div>
+	                    <md-button type="button" ngf-select class="md-raised" ng-if="!vm.entity.documentFileName"
+                	        ngf-change="vm.setDocument($file, vm.entity)">
+		                    Scegli un file
+		                </md-button>
+		                
+	                    <md-button type="button" ngf-select class="md-raised" ng-if="vm.entity.documentFileName"
+                	        ngf-change="vm.setDocument($file, vm.entity)">
+		                    Cambia file
+		                </md-button>
+		                
+		                <md-button type="button" ng-if="vm.entity.documentFileName" 
+	                    	ng-click="vm.openFile(vm.entity.documentContentType, vm.entity.document)"
+                            class="md-raised">
+	                        apri
+	                    </md-button>
+	                    
+	                    <md-button type="button" ng-click="vm.clearDocument(vm.entity)"
+	                     	ng-if="vm.entity.documentFileName"
+	                        class="md-raised pull-right">
+	                        <md-icon>delete</md-icon>
+	                    </md-button>
+		            </div>
+		            
+                    <p style="padding-top:1em;"></p>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Stato del documento</label>
+                        <md-select ng-model="vm.entity.status">
+                            <md-option ng-repeat="opt in vm.availableStatuses | orderBy:'name'" value="{{opt.code}}">
+                                {{opt.description}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <p style="padding-top:1em;"></p>
+
+                    <div style="padding-top:2em;padding-bottom:2em;">
+                        <md-button class="md-raised md-primary" style="padding:1em 1em 1em 1em;min-width:200px;"
+                        	ng-disabled="!form.$valid || form.$pristine" 
+                        	ng-click="actions.save()"
+                        >
+                            Salva
+                        </md-button>
+                        
+                        <md-button class="md-raised" style="padding:1em 1em 1em 1em;min-width:75px;float:right;"
+                        	ng-if="MODIFICA" 
+                        	ng-click="actions.delete()"
+                        >
+                            <md-icon>delete_forever</md-icon>
+                        </md-button>
+                    </div>
+                </form>
+
+            </div>
+            
+            <md-button class="animation-target md-raised  md-primary md-hue-2"  ng-click="historyBack()">
+				<md-icon>keyboard_backspace</md-icon> indietro
+			</md-button>
+			
+        </md-card-content>
+    </md-card>
+
+</div>

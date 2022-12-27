@@ -1,0 +1,35 @@
+{
+    "costi_consumi": {
+        "aggiorna_grafico": "Refresh chart",
+        "andamento_costi": "Cost trend",
+        "costi_del_account": "Costs by account",
+        "costi_del_divisione": "Costs by division",
+        "costi_del_periodo": "Costs for the period",
+        "costi_non_rendicontati_a": "to",
+        "costi_non_rendicontati_da": "Not reported costs from",
+        "costo": "Fee(\u20ac)",
+        "no_rendiconti": "There are no reports",
+        "parametro": "Parameter",
+        "report_mensili": "Monthly Reports",
+        "scarica_file": "download file",
+        "scarica_file_csv": "download CSV",
+        "scarica_file_dettaglio": "download pdf",
+        "scarica_file_sintetico": "download pdf",
+        "servizio": "Service",
+        "suddivisi_per_account": "by account",
+        "suddivisi_per_divisione": "by division",
+        "suddivisi_per_mese": "by mounth",
+        "totale": "Total",
+        "rendicontazioni": {
+            "consolidato": "Consolidated",
+            "file": "File",
+            "file_sintesi": "CSV Summary",
+            "importo": "Amount",
+            "in_corso": "In progress",
+            "pdf_dettaglio": "Pdf Detail",
+            "pdf_sintesi": "Pdf Summary",
+            "periodo": "Period",
+            "stato": "Status"
+        }
+    }
+}

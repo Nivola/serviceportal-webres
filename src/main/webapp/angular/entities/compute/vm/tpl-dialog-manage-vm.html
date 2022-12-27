@@ -1,0 +1,106 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-dialog aria-label="Pannello di Gestione VM">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Pannello di Gestione VM</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon class="md-icon-button" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-card>
+                    <md-card-content>
+                        <div layout="column">
+                            <md-subheader class="md-no-sticky">Anagrafica VM</md-subheader>
+
+                            <div layout="row" layout-xs="column">
+                                <md-input-container class="md-icon-float md-block" flex>
+                                    <md-icon>computer</md-icon>
+                                    <input id="nome" readonly aria-label="nome" ng-model="vmDetails.name">
+                                </md-input-container>
+                                <md-input-container md-no-float class="md-block" flex>
+                                    <md-icon class="material-icons" md-svg-src='{{::getOsIcon(vmDetails.os)}}'
+                                        aria-label="os">
+                                    </md-icon>
+                                    <input id="os" readonly aria-label="os" ng-model="vmDetails.os">
+                                </md-input-container>
+                            </div>
+
+                            <div layout="row" layout-xs="column">
+                                <md-input-container class="md-block" flex>
+                                    <md-icon>tune</md-icon>
+                                    <input id="tipo" readonly aria-label="tipo" ng-model="vmDetails.cpu_ram">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex>
+                                    <md-icon>storage</md-icon>
+                                    <input id="instanceType" readonly aria-label="cf" ng-model="vmDetails.instanceType">
+                                </md-input-container>
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div layout="column">
+                            <md-subheader class="md-no-sticky">Network</md-subheader>
+
+                            <div layout="row" layout-xs="column">
+                                <md-input-container class="md-icon-float md-block" flex>
+                                    <md-icon>public</md-icon>
+                                    <input id="region"  readonly aria-label="region" ng-model="vmDetails.region">
+                                </md-input-container>
+                                <md-input-container class="md-icon-float md-block" flex>
+                                    <md-icon>location_on</md-icon>
+                                    <input id="zone"  readonly aria-label="availability zone" ng-model="vmDetails.az">
+                                </md-input-container>
+                            </div>
+
+                            <!-- <div layout="row" layout-xs="column">
+                                <md-input-container class="md-block" flex>
+                                    <md-icon>router</md-icon>
+                                    <input readonly aria-label="subnet" ng-model="vmDetails.subnet">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex>
+                                    <md-icon>security</md-icon>
+                                    <input readonly aria-label="security group" ng-model="vmDetails.sg">
+                                </md-input-container>
+                            </div> -->
+
+                            <div layout="row" layout-xs="column">
+                                <md-input-container class="md-block" flex>
+                                    <md-icon>router</md-icon>
+                                    <input id="ip" readonly aria-label="ip" ng-model="vmDetails.ip">
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </md-card-content>
+                    <md-card-action>
+                        <div layout="row" layout-xs="column" layout-align="space-around center">
+                            <md-button class="md-raised pull-right md-warn md-hue-2" type="button" ng-click="stop()"
+                                ng-if="isRunning" flex>
+                                <md-icon>stop</md-icon>STOP
+                            </md-button>
+                            <md-button class="md-raised pull-right md-primary md-hue-2" type="button" ng-click="start()"
+                                ng-if="!isRunning" flex>
+                                <md-icon>play_arrow</md-icon>START
+                            </md-button>
+                        </div>
+                    </md-card-action>
+                </md-card>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

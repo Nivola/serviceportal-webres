@@ -1,0 +1,67 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="row" layout-fill layout-align="start start">
+
+    <md-card flex="grow">
+        <md-card-title>
+            <md-card-title-text layout-align="center center">
+	      	    <span class="md-headline"> Visualizza Tutorial </span>
+            </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+            <loading-placeholder status="status" ></loading-placeholder>
+
+            <div ng-show="status.loaded" style="text-align:center;">
+
+				<p> {{vm.entity.title}} </p>
+				<p><small> {{vm.entity.description}} </small></p>
+
+				<video 
+					id="tutorialVideoPlayer" 
+					style="max-height:80%;max-width:90%;" 
+					ng-if="status.loaded && vm.videoSource"
+					deact-controls 
+					autoplay
+				>
+				  <source ng-src="{{vm.videoSource}}" type="video/mp4">
+				  Il tuo browser non supporta la riproduzione di video in HTML5. Per favore, aggiorna il tuo browser.
+				</video>
+
+				<p ng-if="!vm.entity.mediaResourceLocation">
+					Nessuna risorsa video associata al tutorial selezionato.
+				</p>
+				
+            </div>
+            
+            <div ng-show="status.loaded" style="text-align:center;">
+	            <md-button class="md-default md-raised" ng-click="actions.play()" 
+	            	ng-disabled="!helpers.isPaused() || helpers.isSeeking()">
+					<md-icon>play_arrow</md-icon>
+				</md-button>
+				
+	            
+	            <md-button class="md-default md-raised" ng-click="actions.pause()" 
+	            	ng-disabled="!helpers.isPlaying() || helpers.isSeeking()">
+					<md-icon>pause</md-icon>
+				</md-button>
+			</div>
+			
+            <br/><br/>
+            
+            <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+				<md-icon>keyboard_backspace</md-icon> indietro
+			</md-button>
+			
+        </md-card-content>
+    </md-card>
+
+</div>

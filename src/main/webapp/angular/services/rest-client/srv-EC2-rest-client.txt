@@ -1,0 +1,358 @@
+Elenco dei vecchi servizi che invocavano aws/ec2
+
+    /**
+     * getEC2Instances
+     * @method
+     * @name RestClientFactory#getEC2InstancesUsingGET
+     * @param {object} parameters - method options and parameters
+     */
+    RestClientFactory.prototype.getEC2InstancesUsingGET = function(parameters) {
+      if (parameters === undefined) {
+        parameters = {};
+      }
+      var deferred = $q.defer();
+      var domain = this.domain,
+        path = "/api/public/aws/ec2";
+      var body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+      headers["Accept"] = ["*/*"];
+      headers["Content-Type"] = ["application/json"];
+
+      queryParameters = mergeQueryParams(parameters, queryParameters);
+
+      this.request(
+        "GET",
+        domain + path,
+        parameters,
+        body,
+        headers,
+        queryParameters,
+        form,
+        deferred
+      );
+
+      return deferred.promise;
+    };
+    /**
+     * getEC2Instance
+     * @method
+     * @name RestClientFactory#getEC2InstanceUsingGET
+     * @param {object} parameters - method options and parameters
+     * @param {string} parameters.id - id
+     */
+    RestClientFactory.prototype.getEC2InstanceUsingGET = function(parameters) {
+      if (parameters === undefined) {
+        parameters = {};
+      }
+      var deferred = $q.defer();
+      var domain = this.domain,
+        path = "/api/public/aws/ec2/{id}";
+      var body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+      headers["Accept"] = ["*/*"];
+      headers["Content-Type"] = ["application/json"];
+
+      path = path.replace("{id}", parameters["id"]);
+
+      if (parameters["id"] === undefined) {
+        deferred.reject(new Error("Missing required  parameter: id"));
+        return deferred.promise;
+      }
+
+      queryParameters = mergeQueryParams(parameters, queryParameters);
+
+      this.request(
+        "GET",
+        domain + path,
+        parameters,
+        body,
+        headers,
+        queryParameters,
+        form,
+        deferred
+      );
+
+      return deferred.promise;
+    };
+    /**
+     * doEC2InstanceSnapshotsDeletion
+     * @method
+     * @name RestClientFactory#doEC2InstanceSnapshotsDeletionUsingGET
+     * @param {object} parameters - method options and parameters
+     * @param {string} parameters.id - id
+     */
+    RestClientFactory.prototype.doEC2InstanceSnapshotsDeletionUsingGET = function(
+      parameters
+    ) {
+      if (parameters === undefined) {
+        parameters = {};
+      }
+      var deferred = $q.defer();
+      var domain = this.domain,
+        path = "/api/public/aws/ec2/{id}/delete-snapshots";
+      var body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+      headers["Accept"] = ["*/*"];
+      headers["Content-Type"] = ["application/json"];
+
+      path = path.replace("{id}", parameters["id"]);
+
+      if (parameters["id"] === undefined) {
+        deferred.reject(new Error("Missing required  parameter: id"));
+        return deferred.promise;
+      }
+
+      queryParameters = mergeQueryParams(parameters, queryParameters);
+
+      this.request(
+        "GET",
+        domain + path,
+        parameters,
+        body,
+        headers,
+        queryParameters,
+        form,
+        deferred
+      );
+
+      return deferred.promise;
+    };
+    /**
+     * doEC2InstanceDestroy
+     * @method
+     * @name RestClientFactory#doEC2InstanceDestroyUsingGET
+     * @param {object} parameters - method options and parameters
+     * @param {string} parameters.id - id
+     */
+    RestClientFactory.prototype.doEC2InstanceDestroyUsingGET = function(
+      parameters
+    ) {
+      if (parameters === undefined) {
+        parameters = {};
+      }
+      var deferred = $q.defer();
+      var domain = this.domain,
+        path = "/api/public/aws/ec2/{id}/destroy";
+      var body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+      headers["Accept"] = ["*/*"];
+      headers["Content-Type"] = ["application/json"];
+
+      path = path.replace("{id}", parameters["id"]);
+
+      if (parameters["id"] === undefined) {
+        deferred.reject(new Error("Missing required  parameter: id"));
+        return deferred.promise;
+      }
+
+      queryParameters = mergeQueryParams(parameters, queryParameters);
+
+      this.request(
+        "GET",
+        domain + path,
+        parameters,
+        body,
+        headers,
+        queryParameters,
+        form,
+        deferred
+      );
+
+      return deferred.promise;
+    };
+    /**
+     * doEC2InstanceRestart
+     * @method
+     * @name RestClientFactory#doEC2InstanceRestartUsingGET
+     * @param {object} parameters - method options and parameters
+     * @param {string} parameters.id - id
+     */
+    RestClientFactory.prototype.doEC2InstanceRestartUsingGET = function(
+      parameters
+    ) {
+      if (parameters === undefined) {
+        parameters = {};
+      }
+      var deferred = $q.defer();
+      var domain = this.domain,
+        path = "/api/public/aws/ec2/{id}/restart";
+      var body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+      headers["Accept"] = ["*/*"];
+      headers["Content-Type"] = ["application/json"];
+
+      path = path.replace("{id}", parameters["id"]);
+
+      if (parameters["id"] === undefined) {
+        deferred.reject(new Error("Missing required  parameter: id"));
+        return deferred.promise;
+      }
+
+      queryParameters = mergeQueryParams(parameters, queryParameters);
+
+      this.request(
+        "GET",
+        domain + path,
+        parameters,
+        body,
+        headers,
+        queryParameters,
+        form,
+        deferred
+      );
+
+      return deferred.promise;
+    };
+    /**
+     * doEC2InstanceSnapshot
+     * @method
+     * @name RestClientFactory#doEC2InstanceSnapshotUsingGET
+     * @param {object} parameters - method options and parameters
+     * @param {string} parameters.id - id
+     */
+    RestClientFactory.prototype.doEC2InstanceSnapshotUsingGET = function(
+      parameters
+    ) {
+      if (parameters === undefined) {
+        parameters = {};
+      }
+      var deferred = $q.defer();
+      var domain = this.domain,
+        path = "/api/public/aws/ec2/{id}/snapshot";
+      var body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+      headers["Accept"] = ["*/*"];
+      headers["Content-Type"] = ["application/json"];
+
+      path = path.replace("{id}", parameters["id"]);
+
+      if (parameters["id"] === undefined) {
+        deferred.reject(new Error("Missing required  parameter: id"));
+        return deferred.promise;
+      }
+
+      queryParameters = mergeQueryParams(parameters, queryParameters);
+
+      this.request(
+        "GET",
+        domain + path,
+        parameters,
+        body,
+        headers,
+        queryParameters,
+        form,
+        deferred
+      );
+
+      return deferred.promise;
+    };
+    /**
+     * doEC2InstanceStart
+     * @method
+     * @name RestClientFactory#doEC2InstanceStartUsingGET
+     * @param {object} parameters - method options and parameters
+     * @param {string} parameters.id - id
+     */
+    RestClientFactory.prototype.doEC2InstanceStartUsingGET = function(
+      parameters
+    ) {
+      if (parameters === undefined) {
+        parameters = {};
+      }
+      var deferred = $q.defer();
+      var domain = this.domain,
+        path = "/api/public/aws/ec2/{id}/start";
+      var body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+      headers["Accept"] = ["*/*"];
+      headers["Content-Type"] = ["application/json"];
+
+      path = path.replace("{id}", parameters["id"]);
+
+      if (parameters["id"] === undefined) {
+        deferred.reject(new Error("Missing required  parameter: id"));
+        return deferred.promise;
+      }
+
+      queryParameters = mergeQueryParams(parameters, queryParameters);
+
+      this.request(
+        "GET",
+        domain + path,
+        parameters,
+        body,
+        headers,
+        queryParameters,
+        form,
+        deferred
+      );
+
+      return deferred.promise;
+    };
+    /**
+     * doEC2InstanceStop
+     * @method
+     * @name RestClientFactory#doEC2InstanceStopUsingGET
+     * @param {object} parameters - method options and parameters
+     * @param {string} parameters.id - id
+     */
+    RestClientFactory.prototype.doEC2InstanceStopUsingGET = function(
+      parameters
+    ) {
+      if (parameters === undefined) {
+        parameters = {};
+      }
+      var deferred = $q.defer();
+      var domain = this.domain,
+        path = "/api/public/aws/ec2/{id}/stop";
+      var body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+      headers["Accept"] = ["*/*"];
+      headers["Content-Type"] = ["application/json"];
+
+      path = path.replace("{id}", parameters["id"]);
+
+      if (parameters["id"] === undefined) {
+        deferred.reject(new Error("Missing required  parameter: id"));
+        return deferred.promise;
+      }
+
+      queryParameters = mergeQueryParams(parameters, queryParameters);
+
+      this.request(
+        "GET",
+        domain + path,
+        parameters,
+        body,
+        headers,
+        queryParameters,
+        form,
+        deferred
+      );
+
+      return deferred.promise;
+    };

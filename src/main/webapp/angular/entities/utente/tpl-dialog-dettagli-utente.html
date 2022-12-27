@@ -1,0 +1,116 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-dialog aria-label="Dettagli Utente">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Dettagli Utente</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon class="md-icon-button" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-card>
+                    <md-card-content>
+                        <div layout="column">
+                            <md-subheader class="md-no-sticky">Anagrafica</md-subheader>
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon>picture_in_picture</md-icon>
+                                <input id="codiceFiscale" readonly aria-label="cf" style="text-transform: uppercase;"
+                                    ng-model="userDetails.codiceFiscale">
+                            </md-input-container>
+
+                            <div layout="row" layout-xs="column">
+                                <md-input-container class="md-icon-float md-block" flex>
+                                    <md-icon>person</md-icon>
+                                    <input id="firstName" readonly aria-label="nome" ng-model="userDetails.firstName">
+                                </md-input-container>
+                                <md-input-container md-no-float class="md-block" flex>
+                                    <md-icon hide>person</md-icon>
+                                    <input id="lastName" readonly aria-label="cognome" ng-model="userDetails.lastName">
+                                </md-input-container>
+                            </div>
+
+                            <div layout="row" layout-xs="column">
+                                <md-input-container class="md-block" flex>
+                                    <md-icon>email</md-icon>
+                                    <input id="email" readonly aria-label="email" ng-model="userDetails.email" type="email">
+                                </md-input-container>
+                                <md-input-container
+                                    ng-if="userDetails.email.includes('@csi.it') || userDetails.email.includes('@consulenti.csi.it')"
+                                    class="md-block" flex>
+                                    <md-icon>confirmation_number</md-icon>
+                                    <input id="matricolaCsi" readonly aria-label="cf" ng-model="userDetails.matricolaCsi">
+                                </md-input-container>
+                            </div>
+
+                            <div layout="row" layout-xs="column">
+                                <md-input-container class="md-icon-float md-block" flex>
+                                    <md-icon>account_box</md-icon>
+                                    <input id="username" readonly aria-label="username" ng-model="userDetails.login">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex>
+                                    <md-icon>account_circle</md-icon>
+                                    <input id="cmpUser" readonly aria-label="userCMP" ng-model="userDetails.cmpUser">
+                                </md-input-container>
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div layout="column">
+                            <md-table-container>
+                                <table md-table>
+                                    <thead md-head>
+                                        <tr md-row>
+                                            <th md-column><span>Ruolo</span></th>
+                                            <th md-column><span>Account</span></th>
+                                            <th md-column><span>Divisione</span></th>
+                                            <th md-column><span>Organizzazione</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody md-body>
+                                        <tr md-row ng-repeat="role in userDetails.elencoAbilitazioni">
+                                            <td md-cell>{{ ('ruoli_elenco.' + role.userRole) | translate }}</td>
+                                            <td md-cell>{{role.accountDesc}}</td>
+                                            <td md-cell>{{role.divDesc}}</td>
+                                            <td md-cell>{{role.orgDesc}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </md-table-container>
+                        </div>
+
+                        <br />
+
+                        <md-subheader class="md-no-sticky">Permessi</md-subheader>
+                        <br />
+                        <div layout="row" layout-xs="column" layout-align="space-around center">
+                            <md-checkbox ng-disabled="true" ng-model="userDetails.attivo"
+                                aria-label="Accesso al Service Portal">
+                                Accesso al Service Portal
+                            </md-checkbox>
+
+                            <md-checkbox ng-disabled="true" ng-model="userDetails.attivoCMP"
+                                aria-label="Accesso alla CLI Utente">
+                                Accesso alla CLI Utente
+                            </md-checkbox>
+                        </div>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

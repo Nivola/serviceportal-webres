@@ -1,0 +1,65 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-subheader ng-if="isFilteredSectionVisible && title && (title != 'MAIN')"
+    class="md-no-sticky clickable left-menu-list-macro-header left-menu-list-macro-header-active"
+    ng-click="clickSezione(filteredSection, $event)"
+    >
+    <!-- ng-class="{'left-menu-list-macro-header-active':isActiveSession, 'left-menu-list-macro-header-not-active':!isActiveSession}"> -->
+    <div class="md-hue-2" layout="row" layout-align="space-between">
+        <div class="md-subhead">{{title | translate}} </div>
+        <md-icon></md-icon>
+        <md-icon></md-icon>
+        <md-icon></md-icon>
+        <md-icon></md-icon>
+        <md-icon></md-icon>
+        <md-icon ng-if="!title.lenght>=10"></md-icon>
+        <md-icon  style="font-size: 20px; color: white;" ng-if="!filteredSection.opened" layout-align="end center">expand_more</md-icon>
+        <md-icon style="font-size: 20px; color: white;" ng-if="filteredSection.opened"  layout-align="end center">expand_less</md-icon>
+    </div>
+</md-subheader>
+<md-list ng-repeat="section in filteredSection | filter:filtro" 
+    ng-if="filteredSection.opened || filtro"
+    class="no-v-space">
+    <md-subheader ng-if="section.title && section.isDirect" class="md-no-sticky clickable"
+        ng-click="navigateTo(section, $event)"
+        ng-class="{'left-menu-list-section-active':section.isActive, 'left-menu-list-section-fake':!section.real}">
+        <div layout="row" layout-align="space-between">
+            <div class="md-subhead">
+                <md-icon ng-if="section.icon" style="margin-right:10px;">{{section.icon}}</md-icon>
+                {{section.title | translate}} 
+            </div>
+        </div>
+    </md-subheader>
+    <md-subheader ng-if="section.title && !section.isDirect" 
+        class="md-no-sticky clickable"
+        ng-click="toggleMenuSection(section)"
+        ng-class="{'left-menu-list-section-active':section.isActive, 'left-menu-list-section-fake':!section.real}">
+        <div layout="row" layout-align="space-between">
+            <div class="md-subhead">
+                <md-icon ng-if="section.icon" style="margin-right:10px;">{{section.icon}}</md-icon>
+                {{section.title | translate}} 
+            </div>
+            <div>
+                <md-icon ng-if="!filtro && section.opened">expand_less</md-icon>
+                <md-icon ng-if="!filtro && !section.opened">expand_more</md-icon>
+            </div>
+        </div>
+    </md-subheader>
+    <md-list-item ng-repeat="setting in section.options | filter:filtro" ng-click="navigateTo(setting, $event)"
+        ng-if="(section.opened || filtro) && setting.display" class="left-menu-list-item"
+        ng-class="{'left-menu-list-item-active':setting.isActive, 'left-menu-list-item-fake':!setting.real}">
+        <md-icon ng-if="setting.identation">remove</md-icon>
+        <span ng-if="setting.identation" style="width: {{setting.identation}}"></span>
+        <p class="md-subhead">{{ setting.name | translate}} </p>
+        <md-icon class="md-secondary">{{setting.icon}}</md-icon>
+    </md-list-item>
+    <md-divider></md-divider>
+</md-list>

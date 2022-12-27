@@ -1,0 +1,22 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="row" layout-align="center center">
+    <h3 flex="50" style="text-align: center;">{{'attention'|translate}}</h3>
+</div>
+<div layout="row" layout-align="center center" >
+    <p flex="90" style="font-size: 1.5em;" ng-bind-html="'assistenza.popup.urgent.msg_1' | translate"></p>
+</div>
+<div layout="row" layout-align="center center" >
+    <p flex="90" style="font-size: 1.5em;" ng-bind-html="'assistenza.popup.urgent.msg_2' | translate"></p>
+</div>
+    <div layout="row"       layout-align="end end">
+    <md-button class="md-primary md-raised" ng-click="cancel()">{{'chiudi'|translate|capitalize}}</md-button>
+</div>

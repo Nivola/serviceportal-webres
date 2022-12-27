@@ -1,0 +1,661 @@
+## 2.0.0. (febbraio 04, 2022)
+  - Integrazione con Remedy
+
+## 2.0.0. (luglio 31, 2020)
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - piccole correttive sprint #26 e #27
+  - #1074 Visibilità sul SP del report mensile (S3) con dettaglio giornaliero per il backoffice
+  - issue #1082 controllo max 550 caratteri note autoregistrazione
+  - #1080 Autoregistrazione : gestire in modo puntuale gli errori che arrivano dal backend
+  - #1079 Autoregistrazione: Aprire la pagina del disclaimer su un nuovo tab
+  - #1061 dettaglio storage per amministratore di backoffice
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - bug fixing
+  - Merge branch 'sprint27' into develop
+  - messaggi errore secutitygroup
+  - messaggi di errori sec Group e Dbaas
+  - #1048 Bug creazione regole da/verso S.G.
+  - Correzione richiesta supporto generica e per DBAAS
+  - previsione costi staas
+  - #1072 Creazione VM : Identificazione VM Microsoft
+  - #1071 Creazione VM : aggiungere notifica quando il flavour non è ancora stato selezionato
+  - #1069 Dettagli Utente (Backoffice e Master di accout) : Ripristinare il nome cmpusername e lo stato
+  - stima costi staas
+  - controllo regex nomi tags vm
+  - regex controllo nome tag dbaas
+  - delete security group
+  - entityrest delete security group
+  - modificato file di configurazione per l'indirizzo localhost
+  - #1017 bug dischi aggiuntivi: dettaglio vm .
+  - stima costi creazione staas , colona costo aggiunta
+  - info rendicontazione account per i ruoli master di org e mater di divizione
+  - info rendicontazione master/viewer di account
+  - nuova voce di menu sotto gestione account
+  - #1059 Frontend rimozione SG
+  - eliminato editor quilljs
+  - nascosto " TAB Quote" da dettaglio account per il BO
+  - nascosto voce di menu "Listini" per il BOADMIN
+  - nascosta voce menu 'Quote Servizi'  per master di account
+  - creazione notizia con editor , pulizia codice
+  - quiljs , inseriemento notizia
+  - bug fixing modifica account , tipologia prezzi
+  - auto registrazione  utente guest
+  - front end registrazione utente guest
+  - form registrazione utente guest prepopolato
+  - template , routing , controller per la registrazione dell'utente ospite
+  - tasto registra utente ospite
+  - icon assistenza cambiata
+  - errori su add SG
+  - errori su regole SG
+  - errori su lista SG
+  - errori cmp list vm e delete vm
+  - evento mouse over cambiato in click
+  - #892 scrolling su scelta Flavour - verifica
+  - #1031 errori cmp read staas
+  - errori cmp delete staas
+  - errori puntuali cmp manage staas
+  - #1030 errori cmp create staas
+  - #1028 errori manage dbaas
+  - #1026 errori creazione dbaas
+  - #1027 errori cancellazione dbaas
+  - #966 Dettaglio account: aggiungere "Ricalcolo costi" e "data valorizzazione consumi"
+  - edit account : bug fixing data valorizazzione consumi
+  - edit associazione share account : init select shares netapp
+  - edit associazione sharenetapp con account, bug fixing data inzio
+  - #976 Elenco servizi Storage per amministratore BackOffice
+  - #987 Listino : Visualizza elenco Listini (backoffice)
+  - edit associazione share
+  - routing tpl e ctrl per edit associazione shares account
+  - lista shares associati ad un account
+  - chiamata BE salvattaggio nuova associazione share
+  - form associazione nuova share
+  - chiamata servizi BE neccessari per nuova associazione share account
+  - routing , template e controller nuova associazione share account
+  - left menu : aggiunto listini
+  - pulizia codice
+  - front end list shares netapp
+  - #960 Frontend : presentazione stima costo istanza DBAAS
+  - tolto disco da tipo istanza
+  - servizio stama costi creazione dbaas
+  - entityrest 'StimaCostiDbass'
+  - #1005 CPAAS : Notifica puntuale errori ricevuta dalla CMP
+  - #1011 Adeguamento frontend su lista VM
+  - #1012 Adeguamento frontend Creazione VM
+  - cmp messaggio errore  keys pairs
+  - messaggio cmp : durante il caricamento del dettaglio account
+  - messaggio cmp : errore durante il caricamento dei gruppi di sicurezza
+  - caricamento delle subnet! bug fixing
+  -  cmp errore durante il caricamento delle subnet
+  - cmp messaggio errore durante il caricamento dei flavour
+  - creazione vm : messaggio errore carricamento zone
+  - #1003 Pannello gestione VM
+  - #1016 Opzioni spazio di archiviazione creazione DBAAS
+  - #843 Aggiunta Tags istanze DBAAS (Pannello di controllo)
+  - costo totale mensile VM
+  - pulizia codice
+  - calcolo costi i di ogni disco della vm
+  - modificato parametri della chiamata servizio stima costi
+  - creazione vm, tab riepilogo , TOLTO SPAZIO DISCO DA Tipo VM
+  - stima costo totale mensile
+  - stima costi vm
+  - servizio stima costi  vm : pulizia codice
+  - chiamata servizio stima costi
+  - stimmacosti.js refferenziato nel file index.html
+  - entityrest stimacosti bug fixing
+  - entityrest stimacosti.js
+  - aggiunto percentuale utilizzo delle quote sull' acount per il BO
+  - nuova classe css
+  - Quote servizi: visualizzazione per "Master di Account". voce di menu e lista pronte
+  - servizio quote pronto ma con dati mockup
+  - funzione per chiamate servizi quote
+  - tab e template "quote" aggiunti
+  - #970 Richiesta password per vm windows : messaggi di errore regex password
+  - #972 POp up errore caricamento servizi Storage
+  - list attivita account dal ruolo di master di org/div rifatta la logica di chiamata al servizio
+  - list attivita account . aggiunto parametro alla chiamata del servizio
+  - #975 Uniformare tasto "Indietro"
+  - Tasto back  uniforme servizi: dbaas e vm
+  - logica del tasto "indietro" cambiata
+  - "indietro" cambiato in "abbandona"
+  - #1000 Visualizzazione storage su elenco VM
+  - "cancellato codice commentato "
+  - #1001 Costi aggiuntivi - numero server
+  - pulizia codice
+  - Tags nei DBaas in inserimento / cancellazione
+  - bugs fixing
+  - Merge branch 'release-1.9.0' into develop
+  - release 1.9.0
+  - #937 Inserimento nuova Divisione - ordine Lista
+  - #952 Frontend : rimozione tag da DBAAS
+  - #951 Frontend : Assegnazione nuvo tag
+  - #938 flag costi di listino : default to true
+  - Inserimento nuovo account - ordine liste
+  - Dbaas , creazione tag e salvataggio ok . ma con dati mock perche il BE ora non manda l'elenco dei tags
+  - rimozione tag ok
+  - aggiunto su entityrest tags la factory TagsRemove
+  - pulizia codice
+  - mappaggio dell'enco tag che manda il BE
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - salvattaggio tag ok
+  - funzioni per la ricerca del'ultimo tag aggiunto / eliminato
+  - cambiato entity-rest di tags
+  - recupero file ctrl-modifica-account.js
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - naming conventio DBAAS aggiornata
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - Datepicker
+  - manage dbbas : sezione tag modificata
+  - entityrest tags.js aggiunto
+  - adesso da manage vm si puo anche aggiungere / eleminare dei tags
+  - Nuova versione del Pannello di controllo VM (specificare sempre il nome dell VM a fianco del titolo "Pannello di Controllo VM")
+  - #909 Specifica di dettaglio : La data di inizio valorizzazione consumi deve essere lunga 10 caratteri "AAAA/MM/GG".
+  - #953 Creazione DBAAS : Escludere step richiesta tags
+  - #949 Crezione VM : Nascondere step richiesta tags.
+  - creazione vm : tab tags nascosto
+  - #941 Menu per profilo "Master di Organizzazione"
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - #942 ampliare il campo "Ente Remedy"
+  - romosso cartella angular-trix
+  - aggiunto angular-trix.min.js a index.html
+  - aggiunta cartela angular-trix-master al progetto
+  - Ottimizzato grafico
+  - nascosto campo azione della lista azioni utente
+  - aggiunto controllo sul ruolo che sta operando
+  - aggiunto un controlo per evitare che la lista attivita venga rinfrescata senza $stateparams
+  - message di notifica quando non ci sono attivita effettuate
+  - #921 Frontend : Ricerca e presentazione risultati (Azioni Account per amministratore backoffice)
+  - aggiunto parametri al state app.attivitaAccount
+  - implementata la logica passare dalla lista degli account (ruolo BO) alla lista delle attivita di un determinato account
+  - creato dialog per mostrare il contenuto del campo "parametri"
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - elenco attivita master di account : aggiunto altri campi alla lista
+  - 1-chiamata servizio di BE  per l'elenco attivita 2-pulsante "azioni utente" per il ruolo di BO
+  - list attivita account per il ruolo master di account pronta ma senza il BE
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - Sostituito il termino Non Attivo con Servizi non attivi sulla dashboard
+  - rimosso tab cronologia dalla pagina dettaglio account
+  - Corretta data inizio consumi
+  - left menu : aggiunto voce "attivita" sotto "gestione account"
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - #912 I CDU di "Creazione Account" e "Modifica Account" devono essere adeguati per gestire la data di inizio valorizzazione dei consumi
+  - create account : aggiunto date piker per la scelta daa inizio valorizzazione costi
+  - Patch per recuperare url ReadTheDocs quando il servizio non ha ancora risposto
+  - aggiunto logica di controllo sul tasto salva del modifica account
+  - Bug fixing minimi a dashnoard Master di Divisione
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - Adeguanto link a ReadTheDocs in Guida (link superiore dx)
+  - #879 Creazione/Modifica Account - Evoluzione attributo data inizio valorizzazione consumi
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - #879 Creazione/Modifica Account - Evoluzione attributo data inizio valorizzazione consumi : aggiunto date picker al template
+  - Issue #931 visualizzazione utenti per Master di Division
+  - #911 Autorizzazioni share - campi invertiti
+  - #930 Dashboard Costi Home page
+  - templeate portafoglio eliminato e nuovo template per portafoglio org e div
+  - #927 Modifica Account ( Backoffice) : Verificare che venga selezionato un listino se si sceglie opzione "Applica i costi del listino a tutti i consumi"
+  - modifica account , bug default value tipologia prezzario
+  - Viewer di Account - Pannello di gestione DB
+  - menu logwatch diventa log management
+  - #907 Home Page - Dashboard "Servizi attivi Account"
+  - tab cronologia
+  - aggiunto nuovo tab "cronologia "
+  - #910 inserire voce di Menu "LogWatch
+  - aggiornato link read the doc nuova vm
+  - aggiornato link read the doc new db
+  - aggiornato link read the doc list db
+  - link read the doc compliance e guida utente aggiornati
+  - #856 mail "Creazione VPC"
+  - #880 Nome VM - bloccare inserimento "_"
+  - Merge branch 'release_1.8.0' into develop
+  - Fixed bugnotizie da dashboard
+  - Merge branch 'develop' into release_1.8.0
+  - Fixing creazione DBAAS e invio mail
+  - #804 Aggiunta campi in "Scegli il Database"
+  - #834 ordinamento tagli DB e VM
+  - #837 oggetto mail creazione utenze DB
+  - #820 Box "Storage" nella pagina iniziale
+  - #832 dashboard storage
+  - #878 Revoca accreditamento da parte del Master di Account
+  - read the doc staas manage
+  - read the doc staas grant new
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - read the doc grants share
+  - read the doc shares list
+  - Completati grafici di sintesi strutture organizzative con passaggio al dettaglio con click su colonne
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - read the doc manage sec group
+  - Grafico costi divisione separato per account
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - Grafico costi divisione separato per account
+  - read the doc security group
+  - read the doc mange dbaas
+  - read the doc create account
+  - read the doc crete utente master di account
+  - ruolo mater di organization->dettaglio account -> tab utenti : layout lista utenti modificato
+  - read the doc accredita utenti ruole master di organization
+  - read the doc dettaglio utente
+  - dettaglio utente  layout pagina modificato
+  - read the doc list utenti org, div, account
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - #890 revoca ruolo dal master di divisione
+  - Grafici costi organizzazione e divisione
+  - ritorna alla lista degli utenti dopo accreditamento con successo
+  - torna alla lista degli utenti dopo accreditamento dal master di div
+  - #889 Registrazione utente ruolo per Master di Divisione
+  - function onroleChanged
+  - aggiunto role master di division ai ruoli che master div puo accreditare
+  - Costi e consumi di DIVISIONE
+  - #888 Accreditamento utente ruolo master divisione per Master di Divisione
+  - #882 Accreditamento nuovo utente dal master di account
+  - #881 Accreditamento utente dal master di account
+  - pulsante e modale accredit acccount dal master di account
+  - #836 Costi Aggiuntivi Backup - valore max errato
+  - #784 Pannello Gestione VM - non vengono presentati dischi aggiuntivi
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - #829 Adeguare Tagli spazio disco DBAAS
+  - CSV solo per admin
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - #831 Tagli spazio disco STAAS : adeguare modifica dimensione disco share già esistente
+  - Correzione tooltip barra grafico
+  - Ente remedy in modifica, creazione div e org
+  - Visualizzazione attributi su divisione ed organizzazione
+  - Ente di riferimento per richieste Remedy su modifica divisione
+  - Autocomplete enti
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - Autocomplete enti su divisione
+  - password per dbaas postgres
+  - Aggiunto download file CSV per account
+  - Grafico costi account reso dinamico
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - Correzione accreditamento utente backoffice
+  - #779 Testo dashboard iniziali
+  - Pannello di Gestione DB : viewer di account
+  - #835 Formato "data creazione"
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - #826 Frontend : Adeguamento STAAS(Lista e dettaglio)
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - Regressione accreditamento backoffice
+  - dettaglio Vm viewer di account
+  - viewer di account : storage e sotto voci in lettura sola
+  - viewer di account : database e sotto voci in solo lettura
+  - viewer di account di account : compute e sotto voci  in solo lettura
+  - Il ruolo di Viewer di Account mantiene le stesse caratteristiche del Master di Account per :Le voci del menu "Utenti";
+  - Il ruolo di Viewer di Account mantiene le stesse caratteristiche del Master di Account per :La dashboard
+  - #823 Frontend : Adeguamento dashboard e menu : La dashboard
+  - ruolo "viewer di account" fra i possibilii accreditamenti
+  - elimninata funzione revocaAccreditamento
+  - cancellata old funzione accreditamento
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - controllo su valori utente in inseriemento master di org
+  - controllo valori utenti in inserimento
+  - impostazione uuidEntity
+  - struttura organizzativa  account
+  - reimpostata password db come recuperata da frontend
+  - accreditamento utente master Organizazzione
+  - accreditamente nuovo untente dal master di divisione
+  - loadRoles filtered
+  - accredit account modal
+  - routing per l'operazione di create/acc new utente master di org
+  - accreditamento utente da master di divisione ok
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - dettaglio account ->tab UTENTI modificato
+  - Tab servizi dell'account
+  - abbilitazione / disabilitazione tab accreditamento
+  - strutturaOrganizzativa aggiunto al json
+  - submit form ceate/accredita new user
+  - form Accredita nuovo utente ok pronto per la submit
+  - lista accreditamenti gia dell'utente
+  - reset form quando cf change
+  - se utente gia registrato pre-popolare il form con i suoi dati
+  - tab accreditamento creato
+  - tabellazione pagina rigistrazione
+  - routing e pagina per l'accreditamento nuovo utente
+  - button accredit nuovo user
+  - #809 Frontend : implementazione caso d'uso accreditamento utente già esistente tra quelli della lista
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - modal accredit utente
+  - buttone accredit user per il ruole master di divisione
+  - #803 Bug creazione VM OracleLinux
+  - #795 Tagli dimensioni storage
+  - #800 Modifica lista Tipologia di Utenza DB
+  - #801 Form inserimento Password per VM windows
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - Bug fixing issue #802
+  - Nome del pdf corretto in download. Correzioni duplicazione mese in corso.
+
+## 1.7.2 (marzo 05, 2020)
+  - Nascosta voce di menu Costi e Consumi per master di divisione e di organizzazione
+  - Modificato il messaggio per password VM Windows
+  - Bug fix Invio richiesta assistenza ritorna alla Lista delle richieste
+  - Aggiustato menu per Master Account e Amministratore di backoffice
+  - #639 Impossibile registrare utenti
+  - revocato permesso di edit / accredit utente a divAdmin e orgAdmin
+  - left menu costi e consumi pulsante attivo
+  - readthedoc
+  - implementato servizio per readthe doc
+  - create keypair control sul nome univoco
+  - #606 Nome chiavi univoco nel sistema  : import
+  - #606 Nome chiavi univoco per create
+  - #788 Frontend : oggetto richiesta assitenza . diventa di tipo select
+  - #783 Master di Division/Orgs - togliere permessi modifica creazione : revocato alcuni permessi al orgAdminRole e divAdminRole
+  - connecti VM . cambiato link
+  - Cambiata implementazione regola per nomenclatura del DBAAS per eliminare eventuali caratteri di underscore
+  - left menu
+  - left menu : master di account : costi e consumi ok
+  - #751 Frontend : Creazione VM
+  - Merge branch 'release-1.7.1' into develop
+  - Modificato link voce di menu compliance
+  - create vm
+  - tab 3 attivo/inattivo
+  - switch tra ssh e password per sicurezza vm
+  - select tecnologia new VM
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - Merge branch 'release-1.7.0' into develop
+  - Merge branch 'release-1.7.0'
+  - Modificato link a documentazione per puntare a readthedocs
+  - form create vm : password wm
+  - Ripristinato template servizi attivi account
+  - regex et messagi errori per password vm
+  - form creazione vm, aggiunto un imput per la password della vm
+  - list utenti divisione : aggiunto nome divisione nell'intestazione della pagina
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - costruita e popolata la pagina per la lista utenti per ogni divisione
+  - leftmenu : voce di menu per lista utenti accreditati della divisione
+  - Lista Utenti accreditati per l'account: aggiunta funzione per dettaglio sull'elemento selezionato
+  - #758 Frntend : Lista Utenti accreditati per l'account
+  - #757 Frontend : Menu Utenti per il master di account e sottomenu "Lista Utenti"
+
+## 1.7.0 (febbraio 25, 2020)
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - #640 Form registrazione nuovo utente
+  - #734 modifica termine share con Volume
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - Aggiornato puntamento a myphpadmin
+  - #742 form modifica info rendicontazione
+  - #742 form modifica info rendicontazione
+  - #704 Implementazione menu per Division Master ; Frontend : nascosto dal menu
+  - #743 Campo "Data di Creazione" su Pannello di controllo Risorse
+  - #745 modifica icone "Database"
+  - #748 Frontend : implementare regola nomenclatura . creata una direttiva limitTo che limita il numero di carreteri inseribili in un input field
+  - #699 Implementazione Menu per Organization Master : Frontend
+  - #704 Implementazione menu per Division Master ; Frontend; pulsante readthedocs sulla vm
+  - aggiornato link readthedoc "list-dbaas"
+  - readThedocs : chiamata al servizio e funzione per il filtraggio del risultato della chiamata
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - #736 Nomenclatura DBAAS : aggiunto un campo che permette di scegliere il progressivo
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - #736 Nomenclatura DBAAS
+  - cambiato icona sul menu e nella lista "chiavi ssh"
+  - #738 Anagrafica Account - aggiungere flag ricalcolo costi
+  - #738 Anagrafica Account - aggiungere flag ricalcolo costi
+  - #704 Implementazione menu per Division Master ; Frontend
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - left menu ->divisione e servizi -> Divisioni : visualizza la lista delle divisioni sotto l'organization
+  - #682 Creazione VM: scelta tecnologia
+  - #686 pulsante "Dettagli" associato a Storage
+  - #685 modifica flavour VM - inserimento warning
+  - #187 Homepage per il ruolo di Organization Master : bug fixing : numero istanze
+  - #722 Riepilogo creazione VM : Togliere la stime dai costi
+  - #727 Includere riferimenti a ReadTheDocs in "Elenco VM" e "Crea nuova VM"
+  - #701 Implementazione Dashboard per Organization Master Frontend
+  - dashboard master di organization pronta
+  - dashboard master di divisione pronta
+  - dashboard :nuovi template per compute , dbaas , staas
+  - aggiornato uno dei card(quello delle risorse) del dashboard
+  - Merge branch 'master' into develop
+  - aggiornata versione
+  - Aggiornamento 1.5.0
+  - Bump version to 1.5.0.
+  - aggiornamento file VERSION
+  - Bump version to 1.4.0.
+  - risolto conflitto VERSION
+  - Aggiunti costi fittizi per account Acc1_demo1_nmsflike
+  - Bump version to 1.2.05.
+
+## 1.6.0 (febbraio 10, 2020)
+  - Merge branch 'develop' into release-1.6.0
+  - aggiunto messaggio info su chiave ssh importata
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - aggiornao link per compliance e Guida Utente
+  - bugfixing lista richieste(remedy)
+  - Fixing valori istanze DBAAS e spazio disco STAAS
+  - #723 Riepilogo creazione DBAAS : Togliere la stime dai costi
+  - #733 Creazione share STAAS : forzare il protocollo a NFS
+  - implemtata la tabella list richieste
+  - aggiornata "class" per il css dei button "indietro"
+  - Ripristinata apertura chat nei profili di produzione
+  - #690 Pannello di gestione VM - dettaglio IP Address
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - #691 Dashboard iniziale - colore servizi "Non Attivi"
+  - #671 Escludere e ignorare i ruoli non ancora implementati
+  - modificata funzione dimissione utente dbaas. modfificato anche i tasti per confermare le operazioni di crea e dismiss utente
+  - aggiunto metodo dismetti utente su dbaas
+  - aggiunta la funzione per la creazione utente  su DBaas
+  - #692 CREAZIONE ACCOUNT : Lunghezza acronimo e obligatorietà. CREAZIONE UTENTE(DBAAS): obligatorietà nome.
+  - #681 Assegnazione nuova autorizzazione share : Verificare che tutti i dati siano stati inseriti
+  - pannello gestione DB (dettagli DB e form creazione/dismissione utente)
+  - #617 Spostamento voce di menu Chiavi SSH
+  - #638 Form di Accreditamento - modificare label
+  - #646 colori barre "Costi e Consumi"
+  - #664 Creazione Grant di una share - Attivare il tasto Salva solo se i dati sono corretti
+  - al delete di una "autorizzazione" su una Share , c'è una cancellazione logica di quella autorizzazione dalla lista
+  - #665 Elenco Autorizzazioni Share - Messaggio "Non ci sono Grant presenti"
+  - #647 Controllo su Registrazione Nuovo Utente
+  - #631 Visualizzatione Stati lista shares
+  - #645 Creazione SG : segnalare errore assenza template
+  - #633 Creazione nuovo SG : Dopo la conferma creazione non ritorna alla pagina "Lista del SG"
+  - #632 Cancellazione autorizzazione share
+  - refresh list autorizzazioni dopo add nuova autorizzazione su una share
+  - #629 Autorizzazione Share : IP range è un CIDR
+  - #630 Nuova autorizzazione share : errori dopo la creazione
+  - aggiunta function 'convertValues' che mappa i flavour per favorire la orderBy
+  - filtro sulla lista di flavour al momento della "aggiorna flavour"
+  - operazione di "update flavour" funzionante
+  - #219 Pannello gestione VM : evoluzione 2 - include modifica Flavour
+  - resise dimensione share ok
+  - bottoni per "modifica" e "annula modifica"  dimensione share
+  - #608 Frontend : dettaglio info pannello di gestione
+  - pagina "gestione share" implementata
+  - date-picker risolto per  "modifica" e "detail" notizia
+  - #613 Cambiare la denominazione Volume in Share per lo STAAS
+  - #614 STAAS : cambiare icona "modifica" in "autorizzazioni"
+  - modificato l'entitie-rest 'notizia.js'
+  - funzione che "aggiorna la notizia"
+  - pulsante e pagine "modifica notizia"
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - modal per mostrare il contenuto della notizia
+  - possibilità di cancellare la notizia dal dettaglio
+  - nuova maschera:  dettaglio notizia
+  - ricerca utenti
+  - #582 Tipologia prezzario (creazione, modifica, dettaglio account)
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - #580 Intestazione Struttura organizzativa : nome -> Organizzazione/Divisione/Account
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - modifica  info rendiconto
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - messaggio errore creazione nuovo share
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - sprint-12 p2
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - corretta visualizzazione istanze total dbaas
+  - Info Rendicontazione Account
+  - #574 Creazione Volumi : sostituire "Volumi"/"Volume" con "Share"/"Shares"
+  - #575 Creazione Shares STAAS : Aggiornare lista dimensioni shares
+  - #576 Creazione Share STAAS : Nascondere Tipologia . di defaut diventa 'store.m1 - Storage medium'
+  - #537 Conferma Creazione Volume  : Inserito nel riepilogo anche la dimensione del share e modifica 'volume' in 'share'
+  - tooltip "elimina Utenti " quando piu utenti selezionati
+  - dettaglio costi
+  - sg correzione
+  - corretto
+  - issue #539 Cancellazione DBAAS
+  - modifica visualizza account
+  - Correzioni
+  - Correzioni grant volumi e capabilities
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - correzione grant volumi e capabilities
+  - security group descrizione
+  - importa chiave
+  - issue #533 creazione /importazione chiave SSH
+  - issue #522 taiga ordinamento
+  - TEST
+  - test
+  - issue riepilogo vm
+  - issue-creazione vm riepilogo
+  - Creazione Security Group
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - Capabilities
+
+## 1.3.2 (novembre 29, 2019)
+  - issue#533
+  - Creazione di un grant sul volume
+  - Gestito keysize chiavi SSH a  2048 bits
+  - minor bugs fixing on create news
+
+## 1.3.1 (novembre 27, 2019)
+  - ssh vm step
+  - Corretto ordinamento per priorità notizie dashboard
+  - Elenco grants Staas
+  - corretta
+  - delete from compute
+  - menu ssh change
+  - Bump version to 1.3.0.
+  - aggiunto caricamento Region e AZ di default se il servizio CMP va in errore (per VM e DBAAS
+  - Modificata lista volumi per visualizzare ipaddresses e protocols
+  - Bump version to 1.2.11.
+  - chiave vm
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - Bump version to 1.2.10.
+  - Ordinamento dashboard Notizie per priorità e data
+  - Bump version to 1.2.9.
+  - Bump version to 1.2.8.
+  - import chiave
+  - keypairs-add
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - mount target
+  - Bump version to 1.2.7.
+  - Regole security groups
+  - list SSH
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - rimossa forzatura costi su account demo
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - staas delete
+  - creazione volume staas : utilizza lista AZ di default se il servizio relativo è in errore
+  - GRAFICO + DELETE STAAS
+  - adminer v1.0
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - eliminazione-staas(manca agganciare il servizio)
+  - Gestione priorità nelle notizie
+  - Correzione etichetta stato dbaas e corretta descrizione regola SG
+  - staas change
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - aggiunti costi fittizi a activeservice
+  - issue#460 grafico
+  - Inserimento news
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - forzatura costi account demo1
+  - staas
+  - sessione scaduta
+  - sessione utente local
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - Corretta gestione cookie chat
+  - Merge branch 'master' into develop
+  - list staas #version1
+  - modificato schemaname dbaas in 'mainschema'
+  - aggiornata versione
+  - Merge branch 'master' of https://gitlab.csi.it/nivola/sp/serviceportal-webres
+  - Bump version to 1.2.04.
+  - VPC rimozione colonna e Dbaas dash
+  - vpc
+  - Bump version to 1.3.0.
+  - Bump version to 1.2.04.
+  - issues dashboard + pvc
+
+## 1.3.0 (novembre 19, 2019)
+  - aggiunto caricamento Region e AZ di default se il servizio CMP va in errore (per VM e DBAAS
+  - Modificata lista volumi per visualizzare ipaddresses e protocols
+
+## 1.2.11 (novembre 19, 2019)
+  - chiave vm
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - import chiave
+  - keypairs-add
+
+## 1.2.10 (novembre 18, 2019)
+  - Ordinamento dashboard Notizie per priorità e data
+
+## 1.2.9 (novembre 18, 2019)
+  - Bump version to 1.2.8.
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - mount target
+  - Bump version to 1.2.7.
+  - Regole security groups
+  - list SSH
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - rimossa forzatura costi su account demo
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - staas delete
+  - creazione volume staas : utilizza lista AZ di default se il servizio relativo è in errore
+  - GRAFICO + DELETE STAAS
+  - adminer v1.0
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - eliminazione-staas(manca agganciare il servizio)
+  - Gestione priorità nelle notizie
+  - Correzione etichetta stato dbaas e corretta descrizione regola SG
+  - staas change
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - aggiunti costi fittizi a activeservice
+  - issue#460 grafico
+  - Bump version to 1.2.8.
+  - Inserimento news
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - forzatura costi account demo1
+  - staas
+  - sessione scaduta
+  - sessione utente local
+  - Aggiunti costi fittizi per account Acc1_demo1_nmsflike
+  - Bump version to 1.2.05.
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - Corretta gestione cookie chat
+  - Merge branch 'master' into develop
+
+## 1.2.8 (novembre 18, 2019)
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - mount target
+
+## 1.2.7 (novembre 12, 2019)
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - rimossa forzatura costi su account demo
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - staas delete
+  - creazione volume staas : utilizza lista AZ di default se il servizio relativo è in errore
+  - GRAFICO + DELETE STAAS
+  - adminer v1.0
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - eliminazione-staas(manca agganciare il servizio)
+  - Gestione priorità nelle notizie
+  - Correzione etichetta stato dbaas e corretta descrizione regola SG
+  - staas change
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - aggiunti costi fittizi a activeservice
+  - issue#460 grafico
+  - Inserimento news
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - forzatura costi account demo1
+  - staas
+  - sessione scaduta
+  - sessione utente local
+  - Merge branch 'develop' of https://gitlab.csi.it/nivola/sp/serviceportal-webres into develop
+  - Corretta gestione cookie chat
+  - Merge branch 'master' into develop
+  - list staas #version1
+  - modificato schemaname dbaas in 'mainschema'
+  - aggiornata versione
+  - Merge branch 'master' of https://gitlab.csi.it/nivola/sp/serviceportal-webres
+  - Bump version to 1.2.04.
+  - VPC rimozione colonna e Dbaas dash
+  - vpc
+  - Bump version to 1.2.04.
+  - issues dashboard + pvc
+
+## 1.2.04 (ottobre 15, 2019)
+
+

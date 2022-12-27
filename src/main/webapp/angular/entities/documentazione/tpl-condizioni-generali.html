@@ -1,0 +1,56 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+    <br />
+    <md-content class="md-no-momentum">
+        <md-card>
+            <md-card-title>
+                <md-card-actions layout="row" layout-align="start center" flex="20">
+                    <md-button class="md-default" ng-click="historyBack()">
+                        <md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate}}
+                    </md-button>
+                </md-card-actions>
+                <md-card-title-text layout-align="center center" flex>
+                    <div class="md-headline titolo-sezione">
+                        <md-icon class="icon-card-header-green">import_contacts</md-icon> {{ 'documentazione.titolo' | translate}}
+                    </div>
+                </md-card-title-text>
+                <md-card-actions layout="row" layout-align="end center" flex="20">
+                </md-card-actions>
+            </md-card-title>
+
+            <md-card-content>
+                <div flex="grow" layout="row" layout-padding>
+                    <md-list flex>
+                        <md-list-item ng-click="openPdfDocumentazione('condizioniPdf')">
+                            <md-icon>picture_as_pdf</md-icon>
+                            <div layout="column" flex>
+                                <p><b>{{ 'documentazione.condizioni' | translate}}</b></p>
+                                <p>
+                                    {{ 'documentazione.condizioni_testo' | translate}}
+                                </p>
+                            </div>
+                        </md-list-item>
+                        <md-list-item ng-click="openPdfDocumentazione('condizioniFornitoriPdf')">
+                            <md-icon>picture_as_pdf</md-icon>
+                            <div layout="column" flex>
+                                <p><b>{{ 'documentazione.condizioni_fornitori' | translate}}</b></p>
+                                <p>
+                                    {{ 'documentazione.condizioni_fornitori_testo' | translate}}
+                                </p>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </div>
+            </md-card-content>
+        </md-card>
+    </md-content>
+</div>

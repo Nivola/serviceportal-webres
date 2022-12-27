@@ -1,0 +1,69 @@
+{
+    "homepage": {
+        "costi_mese_in_corso": "Current month cost",
+        "costo_della_giornata": "Daily cost",
+        "dettaglio": "View",
+        "nessun_servizio_attivo": "No Active Service",
+        "servizio_attivo": "Active",
+        "titolo": "Home Page",
+        "appengine": {
+            "sigla": "AppEngine",
+            "titolo": "AppEngine"
+        },
+        "avvisi_notifiche": {
+            "segna_lette": "Check as read",
+            "titolo": "Notifications"
+        },
+        "compute": {
+            "numero_cpu": "vCPU",
+            "risorse": "Compute Service",
+            "titolo": "Compute",
+            "totale_ram": "RAM",
+            "vm": "Instances"
+        },
+        "costi": {
+            "titolo": "Cost Explorer"
+        },
+        "dbaas": {
+            "sigla": "DBAAS",
+            "spazio_disco": "Disk space",
+            "titolo": "Database",
+            "totale_ram": "RAM"
+        },
+        "notizie": {
+            "segna_lette": "Check as read",
+            "titolo": "News"
+        },
+        "portafoglio": {
+            "titolo": "Costs"
+        },
+        "risorse_divisione": {
+            "titolo": "Active Services - Division"
+        },
+        "risorse_organizzazione": {
+            "titolo": "Active Services - Organization"
+        },
+        "servizi_attivi": {
+            "titolo": "Active Services"
+        },
+        "staas": {
+            "gb_spazio_disco": "Disk space",
+            "sigla": "STAAS",
+            "spazio_disco": "Disk space",
+            "titolo": "Storage"
+        },
+        "stato_servizi": {
+            "aggiorna": "Refresh",
+            "titolo": "Services Status"
+        },
+        "stato_utilizzatori": {
+            "titolo": "Platform utilization"
+        },
+        "widget": {
+            "aggiungi_colonna": "Add a column",
+            "nascondi": "Hide tab",
+            "rimuovi_colonna": "Remove column",
+            "ripristina": "Restore tab"
+        }
+    }
+}

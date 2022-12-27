@@ -1,0 +1,37 @@
+[
+    {
+        "view": "TCP",
+        "value": "tcp",
+        "fromPort" : null,
+        "toPort" : null,
+        "isPorteditable" : true
+    },
+    {
+        "view": "UDP",
+        "value": "udp",
+        "fromPort" : null,
+        "toPort" : null,
+        "isPorteditable" : true
+    },
+    {
+        "view": "SSH",
+        "value": "ssh",
+        "fromPort" : 22,
+        "toPort" : 22,
+        "isPorteditable" : false
+    },
+    {
+        "view": "HTTP",
+        "value": "http",
+        "fromPort" : 80,
+        "toPort" : 80,
+        "isPorteditable" : false
+    },
+    {
+        "view": "HTTPS",
+        "value": "https",
+        "fromPort" : 443,
+        "toPort" : 443,
+        "isPorteditable" : false
+    }
+]

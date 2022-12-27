@@ -1,0 +1,112 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<br />
+	<md-content class="md-no-momentum">
+		<md-card>
+			<md-card-title>
+				<md-card-title-text layout-align="center center">
+					<span class="md-headline titolo-sezione">
+						<md-icon class="icon-card-header-green">people</md-icon> {{ 'utente.nuovo.titolo' | translate }}
+					</span> 
+					<div class="callout callout-info">
+					</div>
+				</md-card-title-text>
+			</md-card-title>
+		</md-card>
+		<md-card>
+			<md-card-title>
+			</md-card-title>
+			<md-card-content>
+				<form name="userForm">
+					<md-input-container class="md-icon-float md-block" flex>
+						<!-- Use floating placeholder instead of label -->
+						<label>{{ 'utente.codice_fiscale' | translate }}</label>
+						<md-icon ng-style="iconStyle">picture_in_picture</md-icon>
+						<input id="codiceFiscale" name="cf" style="text-transform: uppercase;" ng-model="utenteInserimento.codiceFiscale" type="text"
+						 ng-required="true" ng-blur="actions.controlla()" cf-check>
+						<div ng-messages="userForm.cf.$error">
+							<div ng-message="required">{{ 'utente.codice_fiscale_required' | translate }}</div>
+							<div ng-message="cfCheck">{{ 'utente.codice_fiscale_check' | translate }}</div>
+						</div>
+					</md-input-container>
+					<div layout="column">
+						<div layout="row" layout-xs="column">
+							<md-input-container class="md-icon-float md-block" flex>
+								<!-- Use floating label instead of placeholder -->
+								<label>{{ 'utente.nome' | translate }}</label>
+								<md-icon ng-style="iconStyle">person</md-icon>
+								<input id="nome" name="nome" ng-model="utenteInserimento.nome" type="text" ng-required="true">
+								<div ng-messages="userForm.nome.$error">
+									<div ng-message="required">{{ 'campo_necessario' | translate }}</div>
+								</div>
+							</md-input-container>
+							<md-input-container md-no-float class="md-block" flex>
+								<label>{{ 'utente.cognome' | translate }}</label>
+								<md-icon ng-style="iconStyle" hide>person</md-icon>
+								<input id="Cognome" name="cognome" ng-model="utenteInserimento.cognome" type="text" ng-required="true">
+								<div ng-messages="userForm.cognome.$error">
+									<div ng-message="required">{{ 'campo_necessario' | translate }}</div>
+								</div>
+							</md-input-container>
+						</div>
+						<div layout="row" layout-xs="column">
+							<md-input-container class="md-block" flex>
+								<!-- Use floating placeholder instead of label -->
+								<label>{{ 'utente.email_indirizzo' | translate }}</label>
+								<md-icon ng-style="iconStyle">email</md-icon>
+								<input id="email" name="email" ng-model="utenteInserimento.email" type="email" ng-required="true" ng-blur="checkRemedy()" ng-change="remedyDefault()"  uncapitalize>
+								<div ng-messages="userForm.email.$error">
+									<div ng-message="required">{{ 'utente.email_required' | translate }}</div>
+								</div>
+							</md-input-container>
+							<md-input-container ng-if="utenteInserimento.email.includes('@csi.it') || utenteInserimento.email.includes('@consulenti.csi.it')"
+							 class="md-block" flex>
+								<!-- Use floating label instead of placeholder -->
+								<label>{{ 'utente.matricola' | translate }}</label>
+								<md-icon ng-style="iconStyle">confirmation_number</md-icon>
+								<input id="matricolaCsi" ng-model="utenteInserimento.matricolaCsi" type="text" ng-required="false" >
+							</md-input-container>
+						</div>
+					</div>
+				</form>
+
+				<br />
+
+				<div layout="column" layout-align="space-around start" layout-align-xs="space-around center">
+					<md-checkbox ng-model="utenteInserimento.attivo" aria-label="Permesso Nivola Service Portal">
+						{{ 'utente.accesso_portal' | translate }}
+					</md-checkbox>
+
+					<md-checkbox ng-disabled="!cliCheckboxEnabled" ng-model="utenteInserimento.attivoCMP" aria-label="Permesso Nivola CLI">
+						{{ 'utente.accesso_cli' | translate }}
+					</md-checkbox>
+
+					<md-checkbox ng-model="utenteInserimento.usaRemedy" aria-label="Permesso remedy">
+						{{ 'utente.ticketing' | translate }}
+					</md-checkbox>
+				</div>
+
+				<br />
+
+				<md-card-actions layout="row" layout-align="space-between center">
+					<md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+						<md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate }}
+					</md-button>
+
+					<md-button type="submit" ng-click="actions.invia()" class="md-raised">
+						<md-icon ng-style="iconStyle" class="material-icons">send</md-icon> {{ 'utente.registra' | translate }}
+					</md-button>
+				</md-card-actions>
+			</md-card-content>
+		</md-card>
+	</md-content>
+</div>

@@ -1,0 +1,311 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+    <br />
+    <md-content class="md-no-momentum">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text layout-align="center center">
+                    <span class="md-headline titolo-sezione">
+                        <md-icon class="icon-card-header-green">hub</md-icon> Anomalia Connessione Di Rete <span ng-if="isObjectFixed">({{datiTabInf.ticketId}})</span>
+                    </span>
+                    <div class="callout callout-info">
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+        </md-card>
+        <md-card>
+
+
+            <div ng-cloak>
+               
+                    <md-tabs md-dynamic-height >
+                        <md-tab label="Richiesta">
+                            <form name="connReteForm">
+                                <md-card-content>
+                                    
+                                    <md-input-container class="md-block" flex>
+                                        <label>{{ 'assistenza.oggetto' | translate}}</label>
+                                        <input  type="text" ng-model="assistenza.oggetto" id="oggetto" class="form-control" name="oggetto"  ng-disabled="isObjectFixed" required >
+                                        <div ng-messages="connReteForm.oggetto.$error" role="alert" multiple>
+                                            <div ng-message="required" class="my-message">
+                                                {{ 'assistenza.form.error_required_oggetto' | translate}}
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+
+                                    
+                                    <md-input-container class="md-block">
+                                        <!-- <label>{{ 'assistenza.messaggio' | translate}}</label> -->
+                                        <label>{{ 'assistenza.form.descrizione' | translate}}</label>
+                                        <textarea id="descrizione" ng-model="assistenza.descrizione" md-maxlength="1500" rows="4" md-select-on-focus ng-readonly="isBodyFixed" ></textarea>
+                                    </md-input-container>
+
+                                
+                                
+                                
+                                
+                                    <div layout="row" layout-align="space-between">
+                                        <md-input-container class="md-block" flex="30">
+                                        </md-input-container>
+
+                                        <md-input-container class="md-block" flex="30">
+                                            <label>{{ 'assistenza.form.impatto' | translate}}</label>
+                                            <md-select ng-model="assistenza.impatto" md-selected-text="getSelectedTextImpatto()" id="impatto" name="impatto" ng-disabled="isObjectFixed" required  >
+                                                <md-optgroup label="{{ 'assistenza.form.impatto' | translate}}">
+                                                <md-option ng-repeat="impatto in topics_impatto" ng-value="impatto">{{impatto.valore}}</md-option>
+                                                </md-optgroup>
+                                            </md-select>
+                                            <div ng-messages="connReteForm.impatto.$error" role="alert" multiple>
+                                                <div ng-message="required" class="my-message">
+                                                    {{ 'assistenza.form.error_required_impatto' | translate}}
+                                                </div>
+                                            </div>
+                                        
+                                        </md-input-container>
+
+                                        <md-input-container class="md-block" flex="30">
+                                            <label>{{ 'assistenza.form.urgenza' | translate}}</label>
+                                            <md-select ng-model="assistenza.urgenza" md-selected-text="getSelectedTextUrgenza()" id="urgenza" name="urgenza" ng-disabled="isObjectFixed" required  >
+                                                <md-optgroup label="{{ 'assistenza.form.urgenza' | translate}}">
+                                                <md-option ng-repeat="urgenza in topics_urgenza" ng-value="urgenza">{{urgenza.valore}}</md-option>
+                                                </md-optgroup>
+                                            </md-select>
+                                            <div ng-messages="connReteForm.urgenza.$error" role="alert" multiple>
+                                                <div ng-message="required" class="my-message">
+                                                    {{ 'assistenza.form.error_required_urgenza' | translate}}
+                                                </div>
+                                            </div>
+                                        </md-input-container>
+                                    </div>
+
+
+                                    <div layout="row" layout-align="space-between">
+
+                                        <md-input-container class="md-block" flex="30">
+                                                <label>{{ 'assistenza.form.ipHostFrom' | translate}}</label>
+                                                <input  type="text" ng-model="assistenza.ipHostFrom"  id="ipHostFrom" name="ipHostFrom" ng-disabled="isObjectFixed"
+                                                class="form-control"    ng-pattern="/^([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})$/"  >
+                                                <div ng-messages="connReteForm.ipHostFrom.$error" role="alert" multiple>
+                                                    <div ng-message="pattern">{{ 'assistenza.form.error_ip' | translate}}</div>
+                                                </div>
+                                        </md-input-container>
+                                        <md-input-container class="md-block" flex="30">
+                                            <label>{{ 'assistenza.form.ipHostTo' | translate}}</label>
+                                            <input  type="text" ng-model="assistenza.ipHostTo" id="ipHostTo" name="ipHostTo" ng-disabled="isObjectFixed"
+                                                    class="form-control" ng-pattern="/^([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})$/"   >
+                                            <div ng-messages="connReteForm.ipHostTo.$error" role="alert" multiple>
+                                                <div ng-message="pattern">{{ 'assistenza.form.error_ip' | translate}}</div>
+                                            </div>
+                                        </md-input-container>
+
+                                        <md-input-container class="md-block" flex="30">
+                                            <label>{{ 'assistenza.form.portaDiComunicazione' | translate}}</label>
+                                            <input  type="number" ng-model="assistenza.portaDiComunicazione" id="portaDiComunicazione"  name="portaDiComunicazione" ng-disabled="isObjectFixed"
+                                                    class="form-control" ng-pattern="/^([0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$/" >
+                                            <div ng-messages="connReteForm.portaDiComunicazione.$error" role="alert" multiple>
+                                                <div ng-message="pattern">{{ 'assistenza.form.error_porta' | translate}}</div>
+                                            </div>
+                                        </md-input-container>
+                                    </div>
+                                
+                                
+
+                                    <!--Allegati-->
+                                
+                                        <div>
+
+                                            <md-tab-body  nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+                        
+                                                <div layout="row" class="riepilogo-utente-row"></div>
+                                                <div layout="row" >
+                                                    
+                                                        <div layout="column" flex  ng-if="uploader.queue.length==0">  
+                                                            <div >
+                                                                
+                                                                <div nv-file-drop="" uploader="uploader">
+                                                                    <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">
+                                                                        {{ 'assistenza.allegato' | translate }}
+                                                                    </div>
+                                                                </div>
+                                        
+                                                            </div>
+                                                            <md-input-container class="md-block">
+                                                                <div >
+                                                                
+                                                                    <input type="file" nv-file-select="" uploader="uploader"   /><br/> 
+                                                                    
+                                                                </div>
+                        
+                                                            </md-input-container>
+                        
+                                                            
+                                                            
+                                                        </div>
+                                                    
+                                                        <!-- <div layout="column" flex="5">  </div> -->
+                        
+                                                    
+                                                        <div layout="column" flex  ng-if="uploader.queue.length!=0">
+                                                            <div  style="margin-bottom: 40px">
+                                                                <!-- <p>{{ 'accounts.visualizza.allegati.coda' | translate }}: {{ uploader.queue.length }}</p> -->
+                                            
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr >
+                                                                            <th width="30%">{{ 'accounts.visualizza.allegati.nome' | translate }}</th>
+                                                                            <th ng-show="uploader.isHTML5">{{ 'accounts.visualizza.allegati.dimensione' | translate }}</th>
+                                                                            <!-- <th width="10%" ng-show="uploader.isHTML5">{{ 'accounts.visualizza.allegati.progress' | translate }}</th>  -->
+                                                                            <th>{{ 'accounts.visualizza.allegati.azioni' | translate }}</th>
+                                                                            
+                                                                        
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr ng-repeat="item in uploader.queue" >
+                                                                            <td><strong>{{ item.file.name }}</strong></td>
+                                                                            <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                                                            <!-- <td ng-show="uploader.isHTML5">
+                                                                                <div class="progress-allegati" style="margin-bottom: 0;">
+                                                                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                                                                </div>
+                                                                            </td> -->
+                        
+                                                                            <td nowrap>
+                                                                                <button type="button" class="btn btn-danger-allegati btn-xs" ng-click="item.remove()">
+                                                                                    <md-icon style="color: cornsilk;">delete</md-icon></span>{{ 'accounts.visualizza.allegati.remove' | translate }}
+                                                                                </button>
+                                                                            </td>
+                                                                            
+                                                                        
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                            
+                                                                <!-- <div>
+                                                                    <div>
+                                                                        {{ 'accounts.visualizza.allegati.qprogress' | translate }}:
+                                                                        <div class="progress-allegati" style="">
+                                                                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                                                                        </div>
+                                                                    </div>
+                                                    
+                                                                </div>
+                                            -->
+                                                            </div>
+                                                        </div>
+                                                    
+                                                    
+                                                    
+                                                
+                                                </div>
+                        
+                                            </md-tab-body>
+                        
+                                        </div>
+                                
+                                
+                            
+
+                                    
+                                    <md-button type="button" ng-click="uploader.uploadAll()" class="animation-target md-raised  md-primary pull-right" 
+                                        ng-disabled="!assistenza.impatto || !assistenza.urgenza || !assistenza.oggetto || isObjectFixed">
+                                        <md-icon>send</md-icon>{{ 'invia' | translate}}
+                                    </md-button>
+                                    <md-button type="button" ng-click="actions.invia()" class="animation-target md-raised  md-primary pull-right" ng-disabled="isObjectFixed">
+                                        <md-icon>post_add</md-icon>{{ 'assistenza.bozza' | translate}}
+                                    </md-button>
+
+                                    <md-button class="animation-target md-raised  md-primary md-hue-2"  ng-click="historyBack()">
+                                        <md-icon>keyboard_backspace</md-icon> {{ 'annulla' | translate}}
+                                    </md-button>
+
+                                </md-card-content>
+                            </form>
+                        </md-tab>
+                        <md-tab ng-disabled="!isObjectFixed" label="info">
+                            <md-card flex >
+                            <md-content  layout-align="center center" class="md-padding">
+                                <div layout="row"  flex>
+                                   
+                                        <md-list flex>
+                                            <md-list-item class="md-2-line">
+                                                <md-icon class="icon-details-green">confirmation_number</md-icon>
+                                                <div class="md-list-item-text">
+                                                <h3> <b>{{ 'assistenza.form.ticketId' | translate}}</b></h3>
+                                                <p>{{ datiTabInf.ticketId}}</p>
+                                                </div>
+                                            </md-list-item>
+                                            <md-divider ></md-divider>
+                                            <md-list-item class="md-2-line">
+                                                <md-icon class="icon-details-green">support_agent</md-icon>
+                                                <div class="md-list-item-text">
+                                                <h3> <b>{{ 'assistenza.form.assegnatario' | translate}}</b></h3>
+                                                <p>{{ datiTabInf.assegnatario}}</p>
+                                                </div>
+                                            </md-list-item>
+                                            <md-divider ></md-divider>
+                                            <md-list-item class="md-2-line">
+                                                <md-icon class="icon-details-green">sticky_note_2</md-icon>
+                                                <div class="md-list-item-text">
+                                                <h3><b>{{ 'assistenza.form.motivo' | translate}}</b></h3>
+                                                <p>{{ datiTabInf.motivo}}</p>
+                                                </div>
+                                            </md-list-item>
+                                        </md-list>
+
+                                        <md-list flex>
+                                            <md-list-item class="md-2-line">
+                                                <md-icon class="icon-details-green">date_range</md-icon>
+                                                <div class="md-list-item-text">
+                                                <h3> <b>{{ 'assistenza.form.dataInvio' | translate}}</b></h3>
+                                                <p>{{ datiTabInf.dataInvio | date:'dd/MM/yyyy @ h:mma'}}</p>
+                                                </div>
+                                            </md-list-item>
+                                            <md-divider ></md-divider>
+                                            <md-list-item class="md-2-line">
+                                                <md-icon class="icon-details-green">tips_and_updates</md-icon>
+                                                <div class="md-list-item-text">
+                                                <h3><b>{{ 'assistenza.form.risoluzione' | translate}}</b></h3>
+                                                <p>{{ datiTabInf.risoluzione}}</p>
+                                                </div>
+                                            </md-list-item>
+                                            <md-divider ></md-divider>
+                                            <md-list-item class="md-2-line">
+                                                <md-icon class="icon-details-green">settings_suggest</md-icon>
+                                                <div class="md-list-item-text">
+                                                <h3><b>{{ 'assistenza.form.stato' | translate}}</b></h3>
+                                                <p>{{ datiTabInf.stato}}</p>
+                                                </div>
+                                            </md-list-item>
+                                        </md-list>
+                                    
+                                    
+                                    
+                                </div>
+                            </md-content>
+
+                        </md-card>
+
+                            
+                            
+                        </md-tab>
+                    </md-tabs>
+               
+            </div>
+         
+        </md-card>
+   
+
+       
+    </md-content>
+</div>

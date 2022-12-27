@@ -1,0 +1,119 @@
+{
+    "volume": {
+        "aggiorna": "Refresh list",
+        "attachError": "The current state of the volume does not allow its connection to a VM",
+        "elenco": "Volumes List",
+        "ricarica": "reload volumes",
+        "selezionati": "Selected volumes",
+        "selezionato": "Volume selected",
+        "dettaglio": {
+            "bottone": "View volume details",
+            "titolo": "Volume control panel ",
+            "dettagli" : "details",
+            "dimensione" : "size",
+            "encrypted" : "encrypted",
+            "multiAttachEnabled": "multi Attach Enabled",
+            "nome" : "volume name", 
+            "proprieta" : "property",
+            "tipo" : "type",
+            "region" : "region",
+            "stato" : "status",
+            "valore" : "value",
+            "data_creazione" : "date "
+
+
+        },
+        "attachment":{
+            "label": "Actions",
+            "azioni" : "actions",
+            "instanceId" : "vm istanze",
+            "status" : "Status",
+            "attachTime" : "attachTime",
+            "btnDettach" : "Detach",
+            "btnAttach" : "Attach"
+        },
+        "dialog" : {
+            "attacca" : "attach",
+            "az_region" : "Region - A.Z.",
+            "confermaAttach" : "Attach volume to the VM ?" ,
+            "confermaDettach" : "Dettach volume from the VM?" ,
+            "conferma": "Confirm the Detach of the instance",
+            "cpu_ram" : "CPU and RAM",
+            "erroreA" : "an error occurred while processing your Attach request"  , 
+            "erroreD" : "an error occurred while processing your Detach request" ,     
+            "info" : "Warning: the VM will enter an error state if the volume is the root one!",
+            "info01": "The Detach operation implies that this volume will no longer be visible from the virtual machine",
+            "info02": "Make sure before proceeding that the volume is not the root volume ",
+            "prosegui": "Do you want to proceed with the Detach ?",
+            "msg_inserisci_nome": "Enter the Volume Name to confirm the operation",
+            "titolo" : "Attach Volume",
+            "nome" : "Name",
+            "placeholder" : "volume name",
+            "stato" : "state ",
+            "success" : "The volume Attach request has been submitted"  ,
+            "successD" : "The volume Detach request has been submitted" ,
+            "testoAttach": "the Volume {{nomevol}} will be attached to the  VM {{nomevm}}",
+            "testoDettach": "the Volume {{nomevol}} will be dettached from the VM {{nomevm}}",
+            "titoloDettach" : "Detach volume",
+            "template" : "template"
+            
+           
+              
+
+        },
+        "delete" : {
+            "testo" : "The volume will be permanently deleted",
+            "titolo" :  "Do you confirm the deletion of the selected volume?",
+            "error" : "An error occurred while trying to delete the volume" ,
+            "success" : "the Volume has been successfully deleted",
+            "errorInUse": "The volume is attached to a VM and can not be deleted !"
+        },
+        "elimina": {
+            "error": "An error occurred while deleting the volume",
+            "success": "the Volume was successfully deleted",
+            "testo": "the volumes will be permanently deleted.",
+            "titolo": "Confirm the deletion of selected volumes?",
+            "volume": "Delete Volume",
+            "volumi": "Delete Volumes"
+        },
+        "lista": {
+            "availabilityZone": "AvailabilityZone",
+            "tipo": "Volume Type",
+            "createTime": "Creation date",
+            "emptyLit": "No Volume present",
+            "hypervisor": "Hypervisor",
+            "name": "Volume Name",
+            "size": "Size",
+            "status": "Status"
+        },
+        "modifica": {
+            "bottone": "Change Volume",
+            "error": "An error occurred while creating the volume",
+            "success": "The volume was successfully created",
+            "titolo": "Change Volume"
+        },
+        "nuovo": {
+            "ciffratura" : "Encrypted",
+            "dimensione" : "Size to be reserved", 
+            "bottone": "Create new volume",
+            "error": "An error occurred while saving the volume",
+            "success": "The volume has been created",
+            "titolo": "Create Volume",
+            "err_Pattern_name" : "the name must start with a letter <br/> must be between [4-20] characters <br/> it can contain numbers and the '-' character <br/> cannot contain capital letters",
+            "nome": "Name to assign to the volume",
+            "placeholder" : "volume name",
+            "tipo":"Volume Type",
+            "multiAtach" : "Multi Attach Enabled",
+            "crea": "CREATE VOLUME"
+        },
+        "statoText": {
+            "pending": "pending",
+            "running": "running",
+            "stopped": "stopped",
+            "undefined": "undefined",
+            "error" : "error",
+            "inuse" :   "in use"
+        
+        }
+    }
+}

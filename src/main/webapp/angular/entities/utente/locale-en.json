@@ -1,0 +1,100 @@
+{
+    "utente": {
+        "accesso_cli": "Access to User CLI",
+        "accesso_portal": "Access to the Service Portal",
+        "aggiungi_ruolo": "Add a role",
+        "chi_stai_cercando": "Who are you looking for?",
+        "codice_fiscale": "Identification Code",
+        "codice_fiscale_check": "Invalid identification Code",
+        "codice_fiscale_duplicated": "Identification Code already associated with a registered user",
+        "codice_fiscale_required": "Identification code required",
+        "cognome": "Surname",
+        "cognome_required": "Surname required",
+        "data_creazione": "Creation date",
+        "di_portale": "Portal user",
+        "email": "Email",
+        "email_indirizzo": "Email address",
+        "email_required": "Invalid email",
+        "informazioni": "User Information",
+        "matricola": "CSI number",
+        "nome": "Name",
+        "nome_account": "Account Name",
+        "nome_required": "Name is required",
+        "non_trovato": "not found.",
+        "registra": "ADD USER",
+        "ruolo": "Role",
+        "ruolo_corrente_non_valido": "Current role not valid",
+        "ruolo_placeholder": "Select a role",
+        "seleziona_account": "Select account",
+        "seleziona_divisione": "Select division",
+        "seleziona_organizzazione": "Select Organization",
+        "seleziona_ruolo": "Select a role",
+        "tab_accreditamento": "Accreditation",
+        "tab_utente": "User",
+        "username": "Username",
+        "username_cmp": "CMP username",
+        "username_portale": "Portal username",
+        "vai_a_accreditamento": "NEXT",
+        "ticketing":"Access to the ticketing system",
+        "accredita": {
+            "accreditamenti": "Profiles",
+            "anagrafica": "User Detail",
+            "bottone": "Submit",
+            "bottone_nuovo_utente": "Add user",
+            "bottone_revoca": "Revoke profile",
+            "error": "An error occurred while trying to add profile to user",
+            "livello_non_valido": "Invalid level",
+            "operazione_non_permessa": "Operation not permitted!",
+            "operazione_non_permessa_per_ruolo": "Operation not allowed for current role",
+            "revoca_error": "An error occurred while trying to revoke the user's profile",
+            "revoca_success": "User profile has been successfully revoked",
+            "ruolo_selezionato_non_valido": "Invalid role selected",
+            "seziona_un_utente": "Select only one user",
+            "success": "The profile has been successfully added",
+            "titolo": "Edit user profile"
+        },
+        "dettagli": {
+            "anagrafica": "USER DETAIL",
+            "bottone": "View user details",
+            "ruoli_permessi": "ROLES & PROFILES",
+            "ruoli_permessi_nessuno": "There are no Profiles assigned to this user",
+            "titolo": "User Detail"
+        },
+        "elenco": {
+            "accredita": "Edit Profile",
+            "ricarica": "Refresh list",
+            "selezionati": "Selected users",
+            "selezionato": "Selected user",
+            "titolo": "User List"
+        },
+        "elenco_account": {
+            "ricarica": "Refreshr list",
+            "titolo": "User List"
+        },
+        "elenco_divisione": {
+            "titolo": "User List"
+        },
+        "elimina": {
+            "error": "An error occurred while deleting the user",
+            "success": "The user was successfully deleted",
+            "testo": "Users will be permanently deleted.",
+            "titolo": "Are you sure to delete the selected user?",
+            "utente": "Delete user",
+            "utenti": "Delete users"
+        },
+        "modifica": {
+            "bottone": "Edit user"
+        },
+        "nuovo": {
+            "bottone": "Add user",
+            "error": "An error occurred while trying to add the user",
+            "success": "The user has been successfully registered",
+            "titolo": "Add user"
+        },
+        "stato": {
+            "attivo": "Active",
+            "disattivo": "Inactive",
+            "label": "Status"
+        }
+    }
+}

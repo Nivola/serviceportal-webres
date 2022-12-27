@@ -1,0 +1,92 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="row" layout-fill layout-align="start start">
+
+    <md-card flex="grow">
+        <md-card-title>
+            <md-card-title-text layout-align="center center">
+	      	    <span class="md-headline"> Gestione Tutorial </span>
+                <span class="md-subhead"> Visualizza e gestisci i tutorial </span>
+            </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+            <loading-placeholder status="status" ></loading-placeholder>
+
+            <div ng-show="status.loaded">
+
+                <div flex="grow" layout="row" layout-padding>
+                    <div flex="grow">
+                        <md-list class="" flex>
+                            <div layout="row" layout-align="space-between center" class="well">
+                                <div flex="50">
+                                    {{vm.list.length}} tutorial registrati
+                                </div>
+                                <div flex="50" layout="row" layout-align="end center">
+                                    <md-input-container class="no-v-padding no-v-margin" style="margin-top:1em;">
+                                        <label for="vmListFilterInput">Cerca ...</label>
+                                        <input type="text" id="vmListFilterInput"
+                                               ng-model="status.vmListFilterInput" md-autofocus>
+                                    </md-input-container>
+                                </div>
+                            </div>
+
+                            <md-list-item class="md-3-line"
+                              ng-repeat="v in vm.list | filter:helpers.vmListFilter | orderBy:'instanceId'"
+                              ng-click="actions.clickOnVmInList(v)"
+                            >
+                                <span>
+                                	<md-icon ng-if="v.status == 'DRAFT'">mode_edit</md-icon>
+                                	<md-icon ng-if="v.status == 'PUBLISHED'">done</md-icon>
+                                	<md-icon ng-if="v.status == 'ARCHIVED'">archive</md-icon>
+                                </span>
+
+                                <div class="md-list-item-text" ng-class="{'md-offset': 1 }">
+                                    <h3>
+                                        {{ v.title }}
+                                    </h3>
+                                    <h4>
+                                        {{ v.description }}
+                                    </h4>
+                                    <p ng-if="v.mediaResourceLocation" style="margin-top:5px;">
+                                    	{{ v.mediaResourceLocation.trunc(50) }}
+                                   	</p>
+                                </div>
+
+								<div class="md-secondary">
+									<small>{{ v.status }}</small>
+								</div>
+
+                            </md-list-item>
+
+                        </md-list>
+                    </div>
+
+                </div>
+
+
+            </div>
+            
+            <md-button class="animation-target md-raised  md-primary md-hue-2"  ng-click="historyBack()">
+				<md-icon>keyboard_backspace</md-icon> indietro
+			</md-button>
+			
+        </md-card-content>
+    </md-card>
+
+    <md-button class="md-fab md-primary button-fab-primary-low"
+               aria-label="Aggiungi nuovo documento"
+               ng-click="actions.gotoNewVm()"
+    >
+        <md-icon>add</md-icon>
+    </md-button>
+
+</div>

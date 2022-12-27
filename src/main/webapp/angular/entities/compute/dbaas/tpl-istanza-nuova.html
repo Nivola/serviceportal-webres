@@ -1,0 +1,362 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="row" layout-fill layout-align="start start">
+
+    <md-card flex="grow">
+        <md-card-title>
+            <md-card-title-text layout-align="center center">
+	      	    <span class="md-headline"> Crea una nuova istanza di DBaaS </span>
+                <!--<span class="md-subhead"> Visualizza il dettaglio della Virtual Machine </span>-->
+            </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+            <loading-placeholder status="status" ></loading-placeholder>
+
+            <div ng-show="status.loaded">
+                <form name="userForm">
+
+                    <md-tabs md-dynamic-height md-border-bottom md-center-tabs class="tab-min-200"
+                         md-selected="status.tabIndex"
+                    >
+                        <md-tab label="1. Scegli il motore">
+                            <md-content class="md-padding">
+
+                                <p>
+                                    Scegli il motore del database.
+                                </p>
+
+                                <p class="md-caption">
+                                    <md-icon>warning</md-icon>
+                                    Ricordati che il motore non potr&agrave; essere cambiato successivamente
+                                    senza dover distruggere e ricreare la macchina da zero.
+                                </p>
+
+                                <md-list class="md-dense" flex>
+                                    <md-list-item ng-click="actions.gotoTab(1)" class="md-2-line"
+                                                  ng-repeat="availableTemplate in vm.availableTemplates | orderBy:'name'">
+
+                                        <md-icon>label_outline</md-icon>
+                                        <div class="md-list-item-text">
+                                            <h3>{{ availableTemplate.name }}</h3>
+                                            <!-- <p> {{ availableTemplate.softwareDescription }} </p> -->
+                                        </div>
+                                    </md-list-item>
+                                </md-list>
+
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="2. Spazio di archiviazione">
+                            <md-content class="md-padding">
+
+                                <p>
+                                    Scegli le opzioni relative allo spazio di archiviazione.
+                                </p>
+
+                                <p>
+                                    Puoi selezionare la dimensione del disco, il tipo e le opzioni relative alla crittografia dei dati.
+                                </p>
+
+                                <p class="md-caption">
+                                    <md-icon>warning</md-icon>
+                                    Ricordati che le opzioni relative alla crittografia non potranno essere modificate senza dover
+                                    distruggere la macchina per ricrearla da zero.
+                                </p>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th>Dimensione</th>
+                                            <th>Tipologia</th>
+                                            <th>Crittografia</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td>Archiviazione primaria</td>
+                                            <td>
+                                                <md-input-container class="md-block" flex-gt-sm>
+                                                    <label>Dimensione del disco</label>
+                                                    <md-select ng-model="vm.selectedDiskSize">
+                                                        <md-option ng-repeat="opt in vm.availableDiskSizings" value="{{opt}}">
+                                                            {{opt}} GB
+                                                        </md-option>
+                                                    </md-select>
+                                                </md-input-container>
+                                            </td>
+                                            <td>
+                                                <md-input-container class="md-block" flex-gt-sm>
+                                                    <label>Tipologia del disco</label>
+                                                    <md-select ng-model="vm.selectedDiskType">
+                                                        <md-option ng-repeat="opt in vm.availableDiskTypes" value="{{opt.id}}">
+                                                            {{opt.name}} - {{opt.description}}
+                                                        </md-option>
+                                                    </md-select>
+                                                </md-input-container>
+                                            </td>
+                                            <td>
+                                                <md-switch class="md-primary" ng-model="vm.enableCryptography" aria-label="Abilita la crittografia">
+                                                    Abilita
+                                                </md-switch>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div style="padding-top:2em;padding-bottom:2em;" class="pull-right">
+                                    <md-button class="md-raised" style="padding:1em 1em 1em 1em;min-width:100px;"
+                                               ng-click="actions.gotoTab(2)"
+                                    >
+                                        fatto
+                                        <md-icon>keyboard_arrow_right</md-icon>
+                                    </md-button>
+                                </div>
+
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="3. Dettagli DBaaS">
+                            <md-content class="md-padding">
+
+                                <p style="padding-bottom:2em;">
+                                    <span style="margin-right:1.0em;">
+                                        <md-icon>dns</md-icon>
+                                    </span>
+                                    Nome dello schema di default (per istanze PostgreSQL)
+                                </p>
+
+                                <md-input-container class="md-block">
+                                    <label>Schema principale</label>
+                                    <input id="schema" ng-model="vm.istanza.schema" name="schema" tabindex="1"
+                                           required md-maxlength="50"
+                                           placeholder="specificare il nome dello schema">
+
+                                    <div ng-messages="userForm.schema.$error" role="alert" multiple>
+                                        <div ng-message="required" class="my-message">
+                                            Devi specificare il nome dello schema
+                                        </div>
+                                        <div ng-message="md-maxlength" class="my-message">
+                                            Il nome specificato &egrave; troppo lungo
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                                <p style="padding-bottom:2em;">
+                                    <span style="margin-right:1.0em;">
+                                        <md-icon>lock_open</md-icon>
+                                    </span>
+                                    Password utente root
+                                </p>
+
+                                <md-input-container class="md-block">
+                                    <label>Password utente root</label>
+                                    <input id="rootPassword" ng-model="vm.istanza.rootPassword" name="rootPassword" tabindex="2"
+                                           required md-maxlength="50" type="password"
+                                           placeholder="specificare la password di root"
+                                    >
+
+                                    <div ng-messages="userForm.password.$error" role="alert" multiple>
+                                        <div ng-message="required" class="my-message">
+                                            Devi specificare la password
+                                        </div>
+                                        <div ng-message="md-maxlength" class="my-message">
+                                            La password specificata &egrave; troppo lunga
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                                <p style="padding-bottom:2em;">
+                                    <span style="margin-right:1.0em;">
+                                        <md-icon>hearing</md-icon>
+                                    </span>
+                                    Porta di ascolto di default
+                                </p>
+
+                                <md-input-container class="md-block">
+                                    <label>Porta di default</label>
+                                    <input id="defaultPort" ng-model="vm.istanza.defaultPort" name="defaultPort" tabindex="3"
+                                           required md-maxlength="50" type="number" step="1" min="1000" max="99999"
+                                           placeholder="specificare la porta"
+                                    >
+                                    <div ng-messages="userForm.defaultPort.$error" role="alert" multiple>
+                                        <div ng-message="required" class="my-message">
+                                            Devi specificare la porta
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                                <div style="padding-top:2em;padding-bottom:2em;" class="pull-right">
+                                    <md-button class="md-raised" style="padding:1em 1em 1em 1em;min-width:100px;"
+                                        ng-click="actions.gotoTab(3)"
+                                    >
+                                        fatto
+                                        <md-icon>keyboard_arrow_right</md-icon>
+                                    </md-button>
+                                </div>
+
+                            </md-content>
+
+                        </md-tab>
+                        <md-tab label="4. Informazioni">
+                            <md-content class="md-padding">
+
+                                <p style="padding-bottom:2em;">
+                                    <span style="margin-right:1.0em;">
+                                        <md-icon>insert_comment</md-icon>
+                                    </span>
+                                    Dai un nome alla tua istanza. Potrai comunque cambiarlo in seguito.
+                                </p>
+
+                                <md-input-container class="md-block">
+                                    <label>Nome della macchina</label>
+                                    <input id="vmname" ng-model="user.vmname" name="vmname" tabindex="1"
+                                           required md-maxlength="50"
+                                           placeholder="specificare il nome della macchina"
+                                    >
+
+                                    <div ng-messages="userForm.vmname.$error" role="alert" multiple>
+                                        <div ng-message="required" class="my-message">
+                                            Devi specificare il nome della macchina
+                                        </div>
+                                        <div ng-message="md-maxlength" class="my-message">
+                                            Il nome specificato &egrave; troppo lungo
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                                <p style="padding-bottom:1em;padding-top:2em;">
+                                    <span style="margin-right:1.0em;">
+                                        <md-icon>security</md-icon>
+                                    </span>
+                                    Scegli in che gruppo di sicurezza inserire la macchina.
+                                </p>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Gruppo di sicurezza</label>
+                                    <md-select ng-model="vm.selectedSecurityGroup">
+                                        <md-option ng-repeat="group in vm.availableSecurityGroups" value="{{group.id}}">
+                                            {{group.description}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+
+                                <p style="padding-bottom:1em;padding-top:2em;">
+                                    <span style="margin-right:1.0em;">
+                                        <md-icon>location_on</md-icon>
+                                    </span>
+                                    Scegli la availability zone.
+                                </p>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Availability zone</label>
+                                    <md-select ng-model="vm.selectedAvailabilityZone">
+                                        <md-option ng-repeat="opt in vm.availableAvailabilityZones" value="{{opt.id}}">
+                                            {{opt.description}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+
+                                <p style="padding-bottom:0.8em;padding-top:2em;">
+                                    <span style="margin-right:1.0em;">
+                                        <md-icon>note</md-icon>
+                                    </span>
+                                    Se vuoi puoi inserire delle note.
+                                </p>
+
+                                <md-input-container class="md-block">
+                                    <label>Note personalizzate</label>
+                                    <textarea id="biography" ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                                </md-input-container>
+
+                                <div style="padding-top:2em;padding-bottom:2em;" class="pull-right">
+                                    <md-button class="md-raised" style="padding:1em 1em 1em 1em;min-width:100px;"
+                                        ng-click="actions.gotoTab(4)"
+                                    >
+                                        fatto
+                                        <md-icon>keyboard_arrow_right</md-icon>
+                                    </md-button>
+                                </div>
+
+                            </md-content>
+
+                        </md-tab>
+                        <md-tab label="5. Tag">
+                            <md-content class="md-padding">
+
+                                <p>
+                                    Assegna dei tag all'istanza che stai creando.
+                                </p>
+
+                                <p>
+                                    I tag possono essere utili per raggruppare le tue risorse in
+                                    gruppi pi&ugrave; semplici da gestire insieme e per aiutarti
+                                    in caso ci siano molte risorse da monitorare.
+                                </p>
+
+                                <div style="padding-top:3em;padding-bottom:3em;">
+                                    <md-chips ng-model="vm.tags" name="tags" readonly="status.tagsReadOnly"
+                                              md-removable="status.tagsRemovable" md-max-chips="10" placeholder="Inserisci un tag ...">
+                                        <md-chip-template>
+                                            <strong>{{$chip}}</strong>
+                                            <!--<em>(codice prodotto)</em>-->
+                                            &nbsp;
+                                        </md-chip-template>
+                                    </md-chips>
+                                </div>
+
+                                <div style="padding-top:2em;padding-bottom:2em;" class="pull-right">
+                                    <md-button class="md-raised" style="padding:1em 1em 1em 1em;min-width:100px;"
+                                           ng-click="actions.gotoTab(5)"
+                                    >
+                                        fatto
+                                        <md-icon>keyboard_arrow_right</md-icon>
+                                    </md-button>
+                                </div>
+
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="6. Avvia la creazione">
+                            <md-content class="md-padding">
+
+                                <p>
+                                    Avvia la creazione dell'istanza
+                                </p>
+
+                                <p>
+                                    Assicurati di aver selezionato le opzioni corrette, dopodich&egrave;
+                                    avvia la creazione dell'istanza.
+                                </p>
+
+                                <p>
+                                    Il processo di creazione e configurazione dell'istanza potrebbe richiedere
+                                    del tempo.
+                                    <br/>
+                                    Verrai comunque avvisato al completamento dell'operazione.
+                                </p>
+
+                                <div style="padding-top:3em;padding-bottom:3em;">
+                                    <md-button class="md-raised md-primary" style="padding:1em 1em 1em 1em;">
+                                        Conferma e crea l'istanza
+                                    </md-button>
+                                </div>
+
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+
+                </form>
+            </div>
+        </md-card-content>
+    </md-card>
+
+</div>

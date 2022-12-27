@@ -1,0 +1,43 @@
+{
+    "listini": {
+        "crea" : "Crea listino",
+        "data_cancellazione": "Data cancellazione",
+        "data_creazione": "Data creazione",
+        "data_fine": "Data fine validita",
+        "data_inizio": "Data inizio validita",
+        "data_modifica": "Data modifica",
+        "descrizione": "Descrizione",
+        "nome": "Nome listino",
+        "pattern": "Il nome deve iniziare con un carattere non numerico<br>La lunghezza deve essere tra (8-40) caratteri. <br>caratteri speciali accettati : <b>'_','-' <\/b><br>Es: listino_1,listino-1",
+       
+        "tipo_listino" : "Tipo listino",
+        "tipiErrore" : "Si è verificato durante il carricamento dei tipi di listini",
+        "dettaglio": {
+            "bottone": "Visualizza dettagli listino",
+            "titolo": "Dettaglio Listino"
+        },
+        "elenco": {
+            "ricarica": "Ricarica elenco Listini",
+            "selezionati": "listini selezionati",
+            "selezionato": "listino selezionato",
+            "titolo": "Elenco Listini"
+        },
+
+        "nuovo": {
+            "ricarica": "Ricarica elenco Listini",
+            "selezionati": "listini selezionati",
+            "nome": "Inserire il nuome del listino",
+            "titolo": "Nuovo Listino"
+        },
+        "elimina": {
+            "bottone": "Elimina listino",
+            "bottones": "Elimina listini",
+            "error": "Si è verificato un errore durante l'eliminazione del listino",
+            "success": "il listino è stato eliminato correttamente",
+            "testo": "Gli utenti verranno cancellati definitivamente.",
+            "titolo": "Confermi la cancellazione dei listini selezionati?"
+        }
+
+        
+    }
+}

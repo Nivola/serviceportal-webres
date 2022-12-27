@@ -1,0 +1,123 @@
+{
+    "volume": {
+        "aggiorna": "Aggiorna lista VM",
+        "attachError": "Lo stato attuale del volume non permette il suo Attach ad una VM ", 
+        "elenco": "Elenco Volumi",
+        "ricarica": "ricarica volumi",
+        "selezionati": "Volumi selezionati",
+        "selezionato": "Volume selezionato",
+        "dettaglio": {
+            "bottone": "Visualizza dettagli volume",
+            "titolo": "Pannello di Gestione Volume",
+            "dettagli" : "dettagli",
+            "dimensione" : "dimensione",
+            "encrypted" : "cifrato",
+            "multiAttachEnabled": "Attach multiplo",
+            "nome" : "volume name", 
+            "proprieta" : "proprieta",
+            "tipo" : "tipo",
+            "region" : "regione",
+            "stato" : "stato",
+            "valore" : "valore",
+            "data_creazione" : "data creazione "
+        },
+        "elimina": {
+            "error": "Si è verificato un errore durante l'eliminazione del volume",
+            "success": "il Volume è stato eliminata correttamente",
+            "testo": "i volumi verranno cancellati definitivamente.",
+            "titolo": "Confermi la cancellazione di volumi selezionati?",
+            "volume": "Elimina Volume",
+            "volumi": "Elimina Volumi"
+        },
+        "lista": {
+            "availabilityZone": "AvailabilityZone",
+            "tipo": "Tipo Volume",
+            "createTime": "Data Creazione",
+            "emptyLit": "Nessun Volume presente",
+            "hypervisor": "Hypervisor",
+            "name": "Nome Volume",
+            "size": "Dimensione",
+            "status": "Stato",
+            "collegamenti" : "Collegamenti"
+        },
+        "modifica": {
+            "bottone": "Modifica Volume",
+            "error": "Si è verificato un errore durante la creazione del volume",
+            "success": "Il volume è stato creato con successo",
+            "titolo": "Modifica Volume"
+        },
+        "nuovo": {
+            "bottone": "Crea nuovo volume",
+            "ciffratura" : "cifrato",
+            "dimensione" : "Dimensione da riservare", 
+            "error": "Si è verificato un errore durante il salvataggio del volume",
+            "success": "Il volume  è stato creato",
+            "titolo": "Crea Volume",
+            "err_empty_name" : "Devi dare  un nome al volume",
+            "err_Pattern_name" : "il nome deve iniziare con una lettera <br/> deve essere lungo tra [4-20] caratteri <br/> puo contenere numeri e il carattere '-' <br/> non puo contenere maiuscole",
+            "err_maxLenght" : " il nome del volume e' troppo lungo. Non deve essere lungo piu di 30 caratteri",
+            "err_minLenght" : " il nome del volume e' troppo corto. deve essere lungo almeno 4 caratteri",
+            "nome": "Nome da assegnare al volume",
+            "placeholder" : "nome volume",
+            "tipo":"Tipo di volume",
+            "multiAtach" : "Collegamento multiplo",
+            "crea" : "CREA VOLUME"
+        },
+     
+        "attachment":{
+            "label": "attachments",
+            "azioni" : "azioni",
+            "instanceId" : "istanze",
+            "status" : "Stato",
+            "attachTime" : "attachTime",
+            "btnDettach" : "Detach",
+            "btnAttach" : "Attach"
+        },
+        "dialog" : {
+            "conferma": "Confermi il Detach del volume",
+            "titolo" : "Attach Volume",
+            "titoloDettach" : "Detach volume", 
+            "msg_inserisci_nome": "Inserire Nome del volume per confermare l'operazione",
+            "nome" : "Nome VM",
+            "errorNameNotMatching": "il nome inserito non è corretto",
+            "az_region" : "Region - A.Z.",
+            "cpu_ram" : "CPU e RAM",
+            "template" : "template",
+            "info" : "Attenzione: la VM entrera' in uno stato di errore se il volume e quello di root! ",
+            "info01": "Il Detach del volume implica che questo volume non sarà più visibile dalla machina",
+            "info02": "Assicurarsi prima di procedere che il volume non sia di root ",
+            "prosegui": "Si vuole procedere con il Detach ?",
+            "stato" : "stato VM",
+            "attacca" : "ATTACH",
+            "placeholder" : "nome volume",
+            "testoAttach": "Il Volume {{nomevol}} verrà collegato alla VM {{nomevm}}",
+            "testoDettach": "Il Volume {{nomevol}} verrà scollegato dalla VM {{nomevm}}",
+            "confermaAttach" : "Conferma l'Attach del volume?" ,
+            "confermaDettach" : "Conferma il Detach del volume?" ,
+            "confermaAgainDettach" : "Conferma di volere proseguire con l'operazione di Detach del volume?" ,
+            "success" : "La richiesta di Attach del volume è stata inoltrata"  ,
+            "successD" : "La richiesta  di Detach del volume  è stata inoltrata "  ,
+            "erroreA" : "E' successo un errore durante il tentativo di Attach del volume alla VM"  , 
+            "erroreD" : "E' successo un errore durante il tentativo di Detach del volume dalla VM" ,
+            "warningDettach" : "Attenzione : se il volume {{nomevol}} che si desidera scollegare dalla VM {{nomevm}} è quello principale ,la macchina  potrebbe andare in uno stato di errore e non essere più raggiungibile!"       
+
+        },
+        "delete" : {
+            "testo" : "Il volume verrà eliminato definitivamente ",
+            "titolo" :  "Confermi la cancellazione del volume  selezionato?",
+            "error" : "E' successo un errore durante il tentativo di eliminazione  del volume" ,
+            "success" : "il Volume è stato eliminato correttamente",
+            "errorInUse": "IL  volume e' collegato  ad una VM e non puo essere eliminato !"
+        },
+        "statoText":{
+            "pending": "temporaneo",
+            "running": "acceso",
+            "stopped": "spento",
+            "undefined": "indefinito",
+            "errore" : "errore ",
+            "unknow" : "sconosciuto",
+            "inuse" :   "in utilizzo"
+        }
+       
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "report": {
+        "aggiorna": "Refresh",
+        "error_selezione": "select validity start/end dates",
+        "scarica_file": "download file",
+        "selezionare": "Select start/end date ",
+        "selezionare_a": "Until",
+        "selezionare_da": "Starting from",
+        "titolo": "CSV detail report by period"
+    }
+}

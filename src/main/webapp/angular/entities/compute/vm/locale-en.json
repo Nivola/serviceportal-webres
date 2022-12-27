@@ -1,0 +1,269 @@
+{
+    "vm": {
+        "aggiorna": "Refresh list",
+        "aggiorna_dettaglio": "Refresh VM details",
+        "crea": "Create VM instance",
+        "elenco": "VM instances",
+        "gestione": "VM Control panel",
+        "selezionata": "VM selected",
+        "selezionate": "VM selected",
+        "arresto": {
+            "error": "An error occurred while trying to shut down the virtual machine",
+            "success": "The virtual machine is shutting down"
+        },
+        "avvia": {
+            "error": "An error occurred while trying to start the virtual machine",
+            "success": "The virtual machine is starting"
+        },
+        "connetti": {
+            "bottone": "Connect",
+            "esempio": "Example",
+            "msg01": "Open an SSH client (e.g., PuTTY).",
+            "msg02": "Locate your private key file (e.g., my-nivola-key.pem). The wizard automatically detects the key used to launch the instance.",
+            "msg03": "The key does not have to be publicly visible for SSH to work. Use this command if necessary",
+            "msg04": "Connect to your instance using its IP",
+            "msg05": "If you need help connecting to your instance, please see our connection documentation.",
+            "sottotitolo": "To log into your instance",
+            "titolo": "Connect"
+        },
+        "elimina": {
+            "bottone": "Delete VM instance",
+            "error": "An error occurred while deleting virtual machine",
+            "success": "VM delete operation was sent successfully",
+            "testo": "The virtual machine will be permanently deleted.",
+            "titolo": "Are you sure to delete the selected vm instance?"
+        },
+        "lista": {
+            "cpu": "Cpu, RAM",
+            "disco": "Disk",
+            "ip": "Assigned IP",
+            "name": "Name",
+            "os": "Template",
+            "region_az": "Region - Zone",
+            "security_group": "Security Group",
+            "stato": "Status",
+            "tags": "Tag(s)",
+            "vuoto": "No VM instance available"
+        },
+        "manage": {
+            "data_creazione": "Creation date",
+            "dettagli": "Details",
+            "dischi": "Volumes",
+            "dns_name": "FQDN",
+            "error": "An error occurred while loading information",
+            "error_update": "An error occurred while trying to update security groups",
+            "inserisci_un_tag": "Insert a tag ...",
+            "ip_address": "IP address",
+            "modifica_flavour": "edit Flavor",
+            "modifica_security_group": "Change Security Group",
+            "nome": "Name",
+            "nuovo_snapshot": "Create Snapshot",
+            "proprieta": " ",
+            "region": "Region - Zone",
+            "security_group": "Security Group",
+            "start": "START",
+            "start_stop": "Start/Stop/Reboot",
+            "stato": "Status",
+            "stop": "STOP",
+            "reboot": "REBOOT",
+            "subnet": "Subnet",
+            "success": "Security group update operation started successfully",
+            "tags": "Tags",
+            "tecnologia": "Technology",
+            "template": "Template",
+            "tipo": "Type",
+            "titolo": "VM Control Panel",
+            "valore": "Value"
+        },
+        "modifica_flavour": {
+            "conferma": "Do you confirm Type change?",
+            "errore": "An error occurred while trying to update vm type",
+            "errore_caricamento": "An error occurred while loading types",
+            "ram": "RAM",
+            "success": "Virtual Machine Type Update operation started successfully",
+            "testo": "You have selected the new VM type {{name}} with {{vcpus}} Cpu {{ram}} ... For this operation is required an automatic vm restart with outrage of active services. Any unsaved data may be lost.",
+            "tipo": "Type",
+            "titolo": "Edit Flavor",
+            "vcpus": "VCPUs"
+        },
+        "nuova": {
+            "error": "An error occurred while trying to create the virtual machine",
+            "success": "The virtual machine creation operation started successfully",
+            "titolo": "Create VM instance",
+            "disco": {
+                "aggiungi": "ADD ADDITIONAL DISK",
+                "dimensione": "Size",
+                "dimensione_estesa": "Disk size",
+                "rimuovi": "Remove additional disk",
+                "scegli": "Choose disk settings",
+                "tipologia": "Type",
+                "tipologia_estesa": "Disc type",
+                "tipologia_gold": "performance storage",
+                "tipologia_silver": "low range storage",
+                "titolo": "3. Disk",
+                "vai_a_network": "NEXT"
+            },
+            "network": {
+                "gruppo_sicurezza": "Security group",
+                "regione": "Region",
+                "scegli_gruppo_sicurezza": " ",
+                "scegli_region": "Choose the Network Settings for the VM instance",
+                "scegli_subnet": "  ",
+                "subnet": "Subnet",
+                "titolo": "4. Network",
+                "vai_a_sicurezza": "NEXT",
+                "zona_disponibilita": "Availability Zone"
+            },
+            "riepilogo": {
+                "FQDN": "FQDN",
+                "chiaveSSH": "SSH key",
+                "costi_stimati": "Estimated costs",
+                "costo_al_mese": "\u20ac / month",
+                "costo_incluso": "included",
+                "creazione_conferma": "CONFIRM AND CREATE THE VIRTUAL MACHINE",
+                "creazione_msg01": "Creating the virtual machine may take some time.",
+                "creazione_msg02": "You will be notified when the operation is complete.",
+                "descrizione": "Make sure you have selected the correct options, then start creating the virtual machine.",
+                "disco": "Disk",
+                "modifica": "Edit",
+                "password": "Password",
+                "proprieta": "Property",
+                "region": "Region - A.Z.",
+                "security_group": "Security Group",
+                "stima_mensile": "Monthly estimate of",
+                "subnet": "Subnet",
+                "tecnologia": "Technology",
+                "template": "Template",
+                "tipo": "VM type",
+                "titolo": "6. Summary",
+                "valore": "Value"
+            },
+            "sicurezza": {
+                "chiavi_creazione_01": "To create a VM instance you must enter an SSH key to use",
+                "chiavi_creazione_02": "It is possible to generate new keys or import existing ones for this Account by going to the section",
+                "chiavi_creazione_link_desc_01": "Networks and Security - SSH Keys",
+                "chiavi_creazione_link_desc_02": ", or create it immediately using the features on the right",
+                "chiavi_non_disponibili": "There are no SSH keys available for this Account.",
+                "crea_chiave": "Create SSH Key",
+                "importa_chiave": "Import SSH Key",
+                "mostra_password": "show password",
+                "nascondi_password": "hide password",
+                "password_conferma": "Confirm password",
+                "password_memo": "The password, once entered, will no longer be viewable from the Service Portal",
+                "password_necessaria": "A password must be set",
+                "password_pattern": "The password must be between 10 and 16 characters long, must contain at least one lowercase letter, one uppercase letter, <\/br> one number and one special character [# $ ^ + = ! * () @% &] \"",
+                "password_uguali": "passwords does not match",
+                "scegli_chiave": "Select an SHH Key to allow access to this instance",
+                "scegli_password": "Insert the administration password for your VM instance",
+                "selezionato": "Currently selected",
+                "titolo": "5. SECURITY",
+                "vai_a_riepilogo": "NEXT",
+                "chiave": {
+                    "impronta": "Fingerprint",
+                    "nome": "Key Name"
+                }
+            },
+            "template": {
+                "nome": "Instance name",
+                "nome_error": "Name must start with a lowercase letter followeb by up to 50 lowercase letters, numbers or hyphens",
+                "nome_placeholder": "Digit the name",
+                "nome_titolo": "Name your virtual machine.",
+                "scegli": "Select a VM Template",
+                "titolo": "1. Template",
+                "vai_a_tipo": "NEXT",
+                "vai_a_template": "BACK"
+            },
+            "tipo": {
+                "dimensione": "Select vCPU cores and Memory.",
+                "disco": "Disk",
+                "ram": "RAM",
+                "selezionato": "Currently selected",
+                "tipo": "Type",
+                "titolo": "2. TYPE",
+                "vai_a_disco": "NEXT",
+                "vcpus": "vCPU"
+            }
+        },
+        "reboot": {
+            "bottone": "reboot VM",
+            "error": "An error occurred while trying to restart the virtual machine",
+            "success": "The VM restart request has been successfully submitted.",
+            "testo": "The virtual machine will restart.",
+            "titolo": "Do you confirm the restart of the selected virtual machine?"
+        },
+        "snapshot": {
+            "azioni": "Actions",
+            "btnDelete": "Delete Snapshot",
+            "btnRevert": "Revert Snapshot",
+            "data_creazione": "Creation date",
+            "label": "Snapshot",
+            "no_data": "There are no snapshots for this VM",
+            "nome": "Name Snapshot",
+            "stato": "State",
+            "elimina": {
+                "error": "An error occurred while deleting the Snapshot",
+                "procedere": "Proceed with the cancellation?",
+                "success": "The request to delete the Snapshot was successful",
+                "testo": "The Removal of the Snapshot implies the definitive cancellation",
+                "titolo": "Snapshot deletion"
+            },
+            "nuova": {
+                "crea": "Create Snapshot",
+                "error": "An error occurred while trying to create the snapshot",
+                "error_presente": "Operation not allowed Name already present",
+                "nome": "Enter the Snapshot name",
+                "nome_completo": "Full name assigned to the snapshot",
+                "nome_pattern": "Name must start with a non-numeric character <br> Length must be between (8-40) characters. <br> special characters accepted: <b> '_', '-' <\/b> <br> Ex: snapshot_1, snapshot-1",
+                "nome_placeholder": "Snapshot name",
+                "nome_presente": "A Snapshot with the same name already exists",
+                "success": "The snapshot creation operation completed successfully",
+                "titolo": "New Snapshot"
+            },
+            "revert": {
+                "error": "An error occurred while restoring Snapshot",
+                "procedere": "Proceed with the recovery?",
+                "success": "The Snapshot restore request was successful",
+                "testo": "The current disk and memory states are cleared <br> and the virtual machine reverts to the disk and memory states of the primary snapshot",
+                "titolo": "Restore Snapshot"
+            }
+        },
+        "stato": {
+            "pending": "This instance is in temporary state",
+            "running": "This instance is running",
+            "stopped": "This instance is stopped",
+            "undefined": "This instance is in undefined state",
+            "value": "Instance status",
+            "error" : " the instance is in error state",
+            "building" :  "This instance is being created ",
+            "terminated" :  "This instance has been terminated ",
+            "unknown" :  "This instance is in unknown state "
+        },
+        "volumi" :{
+            "no_data": "There are no associated volumes for this VM",
+            "label": "Volumes",
+            "nome" : "Volume name",
+            "status" : "Status",
+            "attachTime" : "Attach Time",
+            "volumeSize" : "Size",
+            "azioni" : "Actions"
+        },
+        "statoText": {
+                "pending": "pending",
+                "running": "running",
+                "stopped": "stopped",
+                "undefined": "undefined",
+                "error" : "error",
+
+                "errore" : "error ",
+                "unknow" : "unknow"
+            
+        }
+    },
+    "errors":{
+        "restore_vm_ko":"Request for the virtual machine restore procedure failed",
+        "loading_restore_points":"An error occurred while trying to fetch the backup job's restore points",
+        "reloading_detail_job":"An error occurred while trying to fetch the backup job",
+        "loading_restore_points_detail":"An error occurred while trying to fetch detailed Restore points.",
+        "loading_associated_vms":"An error occurred while trying to fetch vm associated to the Restore point."
+    }
+}

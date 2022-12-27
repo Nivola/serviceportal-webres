@@ -1,0 +1,503 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div id="modificaAccount">
+    <div layout="row" layout-fill layout-align="start start">
+        <md-card flex="grow">
+            <md-progress-linear ng-show="!options.isDataLoaded" md-mode="indeterminate">
+            </md-progress-linear>
+            <md-card-title>
+                <md-card-title-text layout-align="center center">
+                    <span class="md-headline titolo-sezione">
+                        <md-icon hide-xs class="icon-card-header-green">account_circle</md-icon>{{
+                        'accounts.modifica.titolo' | translate }}
+                    </span>
+                    <div class="callout callout-info">
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <!-- INIZIO TUTTI TAB -->
+                <md-tabs md-dynamic-height md-border-bottom class="tab-min-200" md-selected="status.tabIndex">
+                    <!-- INIZIO TAB ANAGRAFICA -->
+                    <md-tab>
+                        <md-tab-label>
+                            <md-icon class="material-icons"> view_list</md-icon>
+                            {{ 'accounts.anagrafica' | translate }}
+                        </md-tab-label>
+                        <md-tab-body>
+                            <md-content class="md-padding">
+                                <general-informations account="account" people="persons"
+                                    on-save-account="action.invia()" on-check-acronimo="checkAcronimo()"
+                                    is-update="true" options="options">
+                                </general-informations>
+                            </md-content>
+
+
+                        </md-tab-body>
+                    </md-tab>
+                    <!-- FINE TAB ANAGRAFICA -->
+
+                    <!-- INIZIO TAB RENDICONTAZIONE -->
+                    <md-tab>
+                        <md-tab-label>
+                            <md-icon class="material-icons"> paid</md-icon>
+                            {{ 'accounts.rendicontazione' | translate }}
+                        </md-tab-label>
+                        <md-tab-body>
+                            <md-content class="md-padding">
+                                <billing-details account="account" prezzari="prezzari" listini="listini"
+                                    prices-history="pricesHistory" price-list-types="tipiListino"
+                                    do-save-billing="saveRendicontazione({data:data,isUpdate:isUpdate})"
+                                    do-cancel-billing="cancelRendicontazione({idListino:idListino})"
+                                    do-load-listini-disponibili="onLoadListiniDisponibili({firstLoad:firstLoad})"
+                                    do-test="onTest({data:data})">
+                                </billing-details>
+                            </md-content>
+
+                        </md-tab-body>
+                    </md-tab>
+                    <!-- FINE TAB RENDICONTAZIONE -->
+
+                    <!-- INIZIO TAB CAPABILITIES-->
+                    <md-tab>
+                        <md-tab-label>
+                            <md-icon class="material-icons"> lock_open</md-icon>
+                            {{ 'accounts.capabilities' | translate }}
+                        </md-tab-label>
+                        <md-tab-body>
+                            <md-content class="md-padding">
+                                <md-progress-linear id="chartProgressBar" ng-show="!options.isCapabilitiesLoaded"
+                                    md-mode="indeterminate"></md-progress-linear>
+                                <div class="body">
+                                    <md-content class="md-padding">
+                                        <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+                                            <h4 mstyle="text-align:center">
+                                                {{ 'accounts.abilitazione_capabilities' | translate }}
+                                            </h4>
+
+                                            <span flex></span>
+                                            <md-button class="animation-target md-fab md-mini md-primary"
+                                                ng-click="actions.refresh()">
+                                                <md-icon>autorenew</md-icon>
+                                                <md-tooltip>{{ 'accounts.modifica.aggiorna_elenco' | translate }}
+                                                </md-tooltip>
+                                            </md-button>
+                                        </section>
+
+                                        <md-list class="md-dense" flex>
+                                            <md-list-item class="md-2-line"
+                                                ng-repeat="cap in capabilities | orderBy:'name'">
+
+                                                <md-icon>label_outline</md-icon>
+                                                <div class="md-list-item-text" layout="row" layout-align="start center">
+                                                    <span flex="60">
+                                                        <h3 style="font-size:125%;">{{ cap.name }}</h3>
+                                                        <p> {{ cap.desc }} </p>
+                                                    </span>
+                                                    <span ng-if="cap.abilitataAccount" flex="40">
+                                                        <span class="mdl-color--green mdl-color-text--white mdl-button">
+                                                            {{ 'accounts.modifica.abilitata' | translate }}
+                                                        </span>
+                                                    </span>
+                                                    <span ng-if="!cap.abilitataAccount && cap.status == null" flex="40">
+
+                                                        <span
+                                                            class="mdl-color--blue-grey-100 mdl-color-text--white mdl-button">
+                                                            {{ 'accounts.modifica.non_abilitata' | translate }}
+                                                        </span>
+                                                        <button
+                                                            class="md-raised md-primary md-hue-2 md-button md-ink-ripple"
+                                                            type="submit" ng-click="actions.abilita(cap)">
+                                                            <md-icon ng-style="iconStyle"
+                                                                class="material-icons ng-scope">send</md-icon>
+                                                            <span class="ng-scope">{{ 'accounts.modifica.abilita' |
+                                                                translate }} </span><span
+                                                                class="md-ripple-container"></span>
+                                                        </button>
+                                                    </span>
+                                                    <span ng-if="cap.status.startsWith('BUILD')" flex="40">
+
+                                                        <span
+                                                            class="mdl-color--yellow-900 mdl-color-text--white mdl-button">
+                                                            {{ 'accounts.modifica.in_corso' | translate }}
+                                                        </span>
+                                                    </span>
+                                                    <span
+                                                        ng-if="!cap.abilitataAccount && cap.status.startsWith('ERROR')"
+                                                        flex="40">
+
+                                                        <span
+                                                            class="mdl-color--red-500 mdl-color-text--white mdl-button">
+                                                            {{ 'accounts.modifica.in_errore' | translate }}
+                                                        </span>
+                                                        <button
+                                                            class="md-raised md-primary md-hue-2 md-button md-ink-ripple"
+                                                            type="submit" ng-click="actions.abilita(cap)">
+                                                            <md-icon ng-style="iconStyle"
+                                                                class="material-icons ng-scope">send</md-icon>
+                                                            <span class="ng-scope">{{cap.pulsante}} </span><span
+                                                                class="md-ripple-container"></span>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </md-list-item>
+                                        </md-list>
+
+                                    </md-content>
+                                </div>
+                            </md-content>
+                        </md-tab-body>
+                    </md-tab>
+
+                    <!-- INIZIO TAB infoRendicontazioniAccount-->
+                    <md-tab>
+                        <md-tab-label>
+                            <md-icon class="material-icons"> date_range</md-icon>
+                            {{ 'accounts.modifica.servizi_gestione' | translate }}
+                        </md-tab-label>
+                        <md-tab-body>
+                            <div class="b-all m-t-20" id="newInfoRendicontazione">
+                                <div class="bg-warning m-0">
+                                    <h4 class="m-t-0 m-l-10 p-t-10 p-b-10 " style="color:white">
+                                        {{ 'accounts.modifica.elenco_servizi' | translate }}</h4>
+                                </div>
+                                <md-toolbar class="md-table-toolbar md-default" layout="row">
+                                    <div class="md-toolbar-tools" flex="60">
+                                        <form name="filter.form" flex ng-show="infoRendicontazioniAccount.length > 0">
+                                            <md-input-container class="md-icon-float md-block" flex>
+                                                <label>{{ 'ricerca' | translate }}</label>
+                                                <md-icon class="material-icons">search</md-icon>
+                                                <input id="search" class="layout-fill" type="text"
+                                                    ng-model="filter.search" ng-model-options="filter.options"
+                                                    esc-key="resetFilter()">
+                                            </md-input-container>
+                                        </form>
+                                        <p ng-show="infoRendicontazioniAccount.length === 0" style="color:red;">
+                                            {{ 'accounts.modifica.no_servizi_attivi' | translate }} </p>
+                                    </div>
+                                    <div flex="20">
+                                        <md-datepicker ng-hide="infoRendicontazioniAccount.length === 0"
+                                            ng-model="myDate" md-current-view="year" ng-change="onChangeFiltroPeriodo()"
+                                            md-placeholder="filtra per data"></md-datepicker>
+                                    </div>
+                                    <div flex="20">
+                                        <md-button class="animation-target md-fab md-mini md-primary md-hue-2"
+                                            ng-click="actions.nuovaInfoRendicontazione()"
+                                            require-uc="{{::actions.auth.newInfoRendicontazione}}">
+                                            <md-icon>add</md-icon>
+                                            <md-tooltip>{{ 'accounts.modifica.aggiungi_info' | translate }}</md-tooltip>
+                                        </md-button>
+                                        <md-button class="animation-target md-fab md-mini md-primary"
+                                            ng-click="actions.aggiornaInfoRendicontazioni()" layout-align="end center">
+                                            <md-icon>autorenew</md-icon>
+                                            <md-tooltip>{{ 'accounts.modifica.aggiorna_elenco' | translate }}
+                                            </md-tooltip>
+                                        </md-button>
+                                    </div>
+                                </md-toolbar>
+                                <div ng-show="infoRendicontazioniAccount.length > 0">
+                                    <md-table-container id="tableInfoRendicontazione">
+                                        <table md-table md-row-select="options.rowSelection"
+                                            multiple="{{options.multiSelect}}" ng-model="selected"
+                                            md-progress="promise">
+                                            <thead ng-if="!options.decapitate" md-head md-order="query.order">
+                                                <tr md-row style="background-color:#e3f2fd">
+                                                    <th md-column md-order-by="descrizioneMetrica" class="th-bold">
+                                                        <span>{{ 'accounts.info_rendicontazione.info' | translate
+                                                            }}</span></th>
+                                                    <th md-column md-order-by="dataDa" class="th-bold "
+                                                        style="padding-left: 10px;"><span>{{
+                                                            'accounts.info_rendicontazione.data_inizio' | translate
+                                                            }}</span></th>
+                                                    <th md-column md-order-by="dataA" class="th-bold"><span>{{
+                                                            'accounts.info_rendicontazione.data_fine' | translate
+                                                            }}</span></th>
+                                                    <th md-column class="th-bold"><span>{{
+                                                            'accounts.info_rendicontazione.valore' | translate }}</span>
+                                                    </th>
+                                                    <th md-column class="th-bold"><span>{{
+                                                            'accounts.info_rendicontazione.azioni' | translate }}</span>
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody md-body>
+
+                                                <tr md-row md-select="info" md-auto-select="options.autoSelect"
+                                                    ng-repeat="info in infoRendicontazioniAccount | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                                                    <td md-cell style="background-color:#e3f2fd;">
+                                                        <b>{{info.descrizioneMetrica | uppercase}}</b>
+                                                    </td>
+                                                    <td md-cell style="padding-left: 10px;">
+                                                        {{info.dataDa | date:'dd/MM/yyyy'}}</td>
+                                                    <td md-cell>{{info.dataA | date:'dd/MM/yyyy'}}</td>
+                                                    <td md-cell>
+                                                        <span ng-if="isInfoTenant(info)" class="badge badge-success">
+                                                            {{info.etichettaValore}}
+                                                        </span>
+                                                        <span ng-if="!isInfoTenant(info)">{{info.quantita}}</span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <md-button class="md-icon-button md-primary button-azioni"
+                                                            ng-click="actions.modificaInfoRendizontazione(info)">
+                                                            <md-icon md-svg-icon="img/svg/edit-24px.svg"></md-icon>
+                                                            <md-tooltip>{{
+                                                                'accounts.info_rendicontazione.modifica.bottone' |
+                                                                translate }}</md-tooltip>
+                                                        </md-button>
+                                                        <md-button class="md-icon-button md-warn button-azioni"
+                                                            ng-click="actions.deleteInfoRendicontazione(info)">
+                                                            <md-icon md-svg-icon="img/svg/delete-24px.svg"></md-icon>
+                                                            <md-tooltip>{{
+                                                                'accounts.info_rendicontazione.elimina.bottone' |
+                                                                translate }}</md-tooltip>
+                                                        </md-button>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </md-table-container>
+                                    <md-table-pagination style="background-color:#e3f2fd" md-limit="query.limit"
+                                        md-limit-options="limitOptions" md-page="query.page"
+                                        md-total="{{infoRendicontazioniAccount.length}}"
+                                        md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks">
+                                    </md-table-pagination>
+                                </div>
+                            </div>
+                            <md-divider></md-divider>
+                        </md-tab-body>
+                    </md-tab>
+
+                    <!-- INIZIO TAB WBS -->
+                    <md-tab>
+                        <md-tab-label>
+                            <md-icon class="material-icons"> account_tree</md-icon>
+                            {{ 'accounts.wbs.label' | translate }}
+                        </md-tab-label>
+                        <md-tab-body>
+                            <md-content class="md-padding">
+                                <div layout="row" layout-align="center center">
+                                    <md-button class="md-fab md-primary" ng-click="actions.associaWbs($event)">
+                                        <md-icon class="material-icons">
+                                            add
+                                        </md-icon>
+                                        <md-tooltip>{{'accounts.associazione_wbs' | translate}}</md-tooltip>
+                                    </md-button>
+                                </div>
+                                <div layout="row" layout-align="center center">
+                                    <div ng-include="'angular/entities/struttura-organizzativa/accounts/wbs.html'"></div>
+                                </div>
+                            </md-content>
+
+                        </md-tab-body>
+                    </md-tab>
+                    <!-- FINE TAB WBS -->
+
+                    <!-- Tab hidden with issue 1692, was obsolete  -->
+                    <!-- INIZIO TAB shares Netapp -->
+                    <!-- <md-tab>
+                        <md-tab-label>
+                            <md-icon class="material-icons"> view_stream</md-icon>
+                            {{ 'accounts.modifica.shares' | translate }}
+                        </md-tab-label>
+                        <md-tab-body>
+                            <div class="b-all m-t-20" id="newAssoShareAccount">
+                                <div class="th-bold">
+                                    <h4 class="m-t-0 m-l-10 p-t-10 p-b-10" > {{ 'accounts.modifica.elenco_shares' | translate }} </h4>
+                                </div>
+                                <md-toolbar class="md-table-toolbar md-default" layout="row">
+                                    <div class="md-toolbar-tools" flex="80">
+                                        <form name="filter.form" flex ng-show="sharesAssociati.length > 0">
+                                            <md-input-container class="md-icon-float md-block" flex>
+                                                <label>{{ 'ricerca' | translate }}</label>
+                                                <md-icon class="material-icons">search</md-icon>
+                                                <input id="search" class="layout-fill" type="text"
+                                                    ng-model="filter.search" ng-model-options="filter.options"
+                                                    esc-key="resetFilter()">
+                                            </md-input-container>
+                                        </form>
+                                        <p ng-show="sharesAssociati.length === 0" style="color:red;">{{ 'accounts.modifica.no_shares' | translate }} </p>
+                                    </div>
+                                    <div flex="20">
+                                        <md-button class="animation-target md-fab md-mini md-primary md-hue-2"
+                                            ng-click="actions.nuovaAssoShareAccount()"
+                                            require-uc="{{::actions.auth.newAssoShareAccount}}">
+                                            <md-icon>add</md-icon>
+                                            <md-tooltip>{{ 'accounts.modifica.associazione_account_share' | translate }}</md-tooltip>
+                                        </md-button>
+                                        <md-button class="animation-target md-fab md-mini md-primary"
+                                            ng-click="actions.aggiornaSharesAssociati()" layout-align="end center">
+                                            <md-icon>autorenew</md-icon>
+                                            <md-tooltip>{{ 'accounts.modifica.aggiorna_elenco' | translate }}</md-tooltip>
+                                        </md-button>
+                                    </div>
+                                </md-toolbar>
+                                <div ng-show="sharesAssociati.length > 0">
+                                    <md-table-container id="tableInfoRendicontazione">
+                                        <table md-table md-row-select="options.rowSelection"
+                                            multiple="{{options.multiSelect}}" ng-model="selected"
+                                            md-progress="promise">
+                                            <thead ng-if="!options.decapitate" md-head md-order="query.order">
+                                                <tr md-row style="background-color:#e3f2fd">
+                                                    <th md-column md-order-by="descrizioneMetrica" class="th-bold"><span>{{ 'accounts.shares.tipologia' | translate }} </span></th>
+                                                    <th md-column class="th-bold"><span>{{ 'accounts.shares.evs' | translate }} </span></th>
+                                                    <th md-column class="th-bold"><span>{{ 'accounts.shares.filesystem' | translate }} </span></th>
+                                                    <th md-column class="th-bold"><span>{{ 'accounts.shares.share' | translate }} </span></th>
+                                                    <th md-column md-order-by="dataDa" class="th-bold "
+                                                        style="padding-left: 10px;"><span>{{ 'accounts.shares.data_inizio' | translate }}</span></th>
+                                                    <th md-column md-order-by="dataA" class="th-bold"><span>{{ 'accounts.shares.data_fine' | translate }}</span></th>
+                                                    <th md-column md-order-by="dataA" class="th-bold"><span>{{ 'accounts.shares.azioni' | translate }} </span></th>
+                                                   
+
+                                                </tr>
+                                            </thead>
+                                            <tbody md-body>
+
+                                                <tr md-row md-select="info" md-auto-select="options.autoSelect"
+                                                    ng-repeat="info in sharesAssociati | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                                                    <td md-cell>  <b>{{info.tipologia }}</b></td> 
+                                                    <td md-cell>  <b>{{info.evs }}</b></td> 
+                                                    <td md-cell>  <b>{{info.filesystem }}</b></td> 
+                                                    <td md-cell>  <b>{{info.share }}</b></td> 
+                                                    <td md-cell style="padding-left: 10px;"> {{info.dataInizioAssociazione | date:'dd/MM/yyyy'}}</td>
+                                                    <td md-cell>{{info.dataFineAssociazione | date:'dd/MM/yyyy'}}</td>
+                                                   
+                                                   
+                                                    <td md-cell>
+                                                        <md-button class="md-icon-button md-primary button-azioni"
+                                                            ng-click="actions.modificaAssociazioneShareAccount(info)">
+                                                            <md-icon md-svg-icon="img/svg/edit-24px.svg"></md-icon>
+                                                            <md-tooltip>{{ 'accounts.shares.modifica.bottone' | translate }}</md-tooltip>
+                                                        </md-button>
+                                                      
+                                                        <md-button class="md-icon-button md-warn button-azioni"
+                                                            ng-click="actions.deleteAssociazioneShareAccount(info)">
+                                                            <md-icon md-svg-icon="img/svg/delete-24px.svg"></md-icon>
+                                                            <md-tooltip>{{ 'accounts.shares.elimina.bottone' | translate }}</md-tooltip>
+                                                        </md-button>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </md-table-container>
+                                    <md-table-pagination md-limit="query.limit"
+                                        md-limit-options="limitOptions" md-page="query.page"
+                                        md-total="{{infoRendicontazioniAccount.length}}"
+                                        md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks">
+                                    </md-table-pagination>
+                                </div>
+                            </div>
+                            <md-divider></md-divider>
+                        </md-tab-body>
+                    </md-tab> -->
+
+                    <!-- INIZIO TAB gestione costi -->
+                    <md-tab>
+                        <md-tab-label>
+                            <md-icon class="material-icons"> euro_symbol</md-icon>
+                            {{ 'accounts.modifica.costi' | translate }}
+                        </md-tab-label>
+
+                        <md-tab-body>
+                            <!--EK -->
+                            <!-- <md-progress-linear md-mode="query" ng-disabled="" ></md-progress-linear> -->
+                            <md-content class="md-padding">
+
+
+                                <form name="formGestioneCosti" id="formGestioneCosti">
+                                    <div class="body">
+                                        <div layout="row">
+                                            <img src="img/beta-testing.png" width="80" height="64" />
+                                        </div>
+                                        <div layout="row">
+                                            <section layout="row" layout-sm="column" layout-align="end center"
+                                                layout-wrap>
+                                                <h4 mstyle="text-align:center">
+                                                    {{ 'accounts.intestazione_costi' | translate }}
+                                                </h4>
+                                                <span flex></span>
+                                            </section>
+                                        </div>
+                                        <div layout="row" layout-sm="column" layout-align="space-around">
+
+                                        </div>
+                                        <div layout="row">
+                                            <div flex="50" layout-margin>
+                                                <md-input-container class="md-icon-float md-block md-column-2" flex>
+                                                    <label>{{ 'accounts.data_inizio_consumi' | translate }}</label>
+                                                    <md-datepicker ng-model="gestione.dataInizioConsumi"
+                                                        md-placeholder="{{ 'accounts.data_inizio_consumi_scegli' | translate }}">
+                                                    </md-datepicker>
+                                                </md-input-container>
+                                                <button class="md-raised md-primary md-hue-2 md-button md-ink-ripple"
+                                                    type="submit" ng-click="actions.ricalcoloCosti()">
+                                                    <md-icon ng-style="iconStyle" class="material-icons ng-scope">send
+                                                    </md-icon>
+                                                    <span class="ng-scope"> {{ 'accounts.ricalcolaCosti.bottone' |
+                                                        translate }} </span><span class="md-ripple-container"></span>
+                                                </button>
+                                            </div>
+                                            <section layout="row" layout-sm="column" layout-align="end center"
+                                                layout-wrap>
+                                                <h4 mstyle="text-align:center">
+
+                                                </h4>
+                                                <span flex></span>
+                                            </section>
+                                            <div flex="50">
+                                                <md-input-container
+                                                    class="md-icon-float md-block md-column-2 md-input-has-placeholder _md-datepicker-floating-label _md-datepicker-has-calendar-icon flex"
+                                                    flex>
+                                                    <span id="contenitoreSwitch">
+                                                        <label id="labelSwitch">{{'accounts.forza-nota' |
+                                                            translate}}</label>
+                                                        <md-switch style="position:relative; left:0px; top:-10px;"
+                                                            aria-label="Stato" ng-disabled="false"
+                                                            ng-model="gestione.forzaTuttiAccount"
+                                                            ng-change="onChangeTuttiAccount()" class="md-warn">
+                                                            {{'accounts.forza-label' | translate}}
+                                                        </md-switch>
+                                                    </span>
+                                                </md-input-container>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </md-content>
+                            <!-- <md-progress-linear md-mode="query" ></md-progress-linear> -->
+                        </md-tab-body>
+
+                    </md-tab>
+
+
+                </md-tabs>
+                <md-card-actions layout="row" layout-align="space-between center">
+                    <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+                        <md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate }}
+                    </md-button>
+                    <md-button type="submit" ng-show="status.tabIndex === 0" ng-click="actions.invia($event)"
+                        class="md-raised md-primary md-hue-2" layout-align="end center">
+                        <md-icon ng-style="iconStyle" class="material-icons">send</md-icon> {{ 'salva' | translate }}
+                    </md-button>
+                    <md-button class="md-raised md-primary md-hue-2" type="submit"
+                        ng-show="status.tabIndex === 2 && options.editInfoRendicontazione"
+                        ng-disabled="!actions.isSalvaModificaInfoAbilitata()"
+                        ng-click="actions.salvaModificaInfoRendicontazione($event)" layout-align="end center">
+                        <md-icon ng-style="iconStyle" class="material-icons">send</md-icon> {{ 'salva' | translate }}
+                    </md-button>
+                </md-card-actions>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>

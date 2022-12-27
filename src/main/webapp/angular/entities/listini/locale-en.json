@@ -1,0 +1,29 @@
+{
+    "listini": {
+        "data_cancellazione": "Deletion date",
+        "data_creazione": "Creation date",
+        "data_fine": "Validity end date",
+        "data_inizio": "Validity start date",
+        "data_modifica": "Edit date",
+        "descrizione": "Description",
+        "nome": "Name",
+        "dettaglio": {
+            "bottone": "View price list",
+            "titolo": "Price list detail"
+        },
+        "elenco": {
+            "ricarica": "Reload the price list",
+            "selezionati": "selected price lists",
+            "selezionato": "selected price list",
+            "titolo": "List Price Lists"
+        },
+        "elimina": {
+            "bottone": "Delete price list",
+            "bottones": "Delete price lists",
+            "error": "An error occurred while deleting the price list",
+            "success": "the price list was successfully deleted",
+            "testo": "Users will be permanently deleted.",
+            "titolo": "Are you sure to delete the selected price list?"
+        }
+    }
+}

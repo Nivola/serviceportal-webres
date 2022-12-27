@@ -1,0 +1,144 @@
+{
+    "keypair": {
+        "errore_chiave_stesso_nome": "Esite già una chiave con lo stesso nome",
+        "errore_nome_presente": "Operazione non consentita. Nome già presente",
+        "nome": "Nome della chiave",
+        "nome_completo": "Nome Completo assegnato alla chiave",
+        "pattern": "Il nome deve iniziare con un carattere non numerico<br>La lunghezza deve essere tra (8-40) caratteri. <br>caratteri speciali accettati : <b>'_','-' <\/b><br>Es: chiave_1,chiave-1",
+        "elenco": {
+            "aggiorna": "Aggiorna lista Chiavi",
+            "crea": "Crea una Nuova Chiave SSH",
+            "elimina": "Elimina Chiave",
+            "errore": "Si è verificato un errore durante il caricamento delle chiavi",
+            "importa": "Importa una Chiave SSH",
+            "impronta": "Impronta",
+            "nome": "Nome chiave",
+            "selezionata": "Chiave selezionata",
+            "selezionate": "Chiavi selezionate",
+            "titolo": "Elenco Chiavi SSH",
+            "vuoto": "Non ci sono Chiavi SSH presenti"
+        },
+        "elimina": {
+            "errore": "Si è verificato un errore durante l'eliminazione della chiave",
+            "info": "La chiave verrà cancellata definitivamente.",
+            "success": "La richiesta di eliminazione della Chiave è stata inoltrata correttamente.",
+            "titolo": "Confermi la cancellazione della chiave selezionata?"
+        },
+        "importa": {
+            "errore": "Si è verificato un errore durante il tentativo di importazione della chiave",
+            "errore_chiave_non_valida": "Chiave non valida.",
+            "importa": "IMPORTA",
+            "info": "Al termine dell'operazione verrà generato un file .pem contenente la chiave.",
+            "inserimento": "Inserire il nome della chiave",
+            "label": "Chiave RSA (solo la stringa chiave pubblica senza 'ssh-rsa' iniziale, e senza riferimenti email finali. )",
+            "msg_parte_pubblica": "Inserire la parte pubblica della chiave come stringa",
+            "success": "L'operazione di importazione della chiave è stata conclusa correttamente",
+            "titolo": "Importazione nuova Chiave SSH"
+        },
+        "nuova": {
+            "crea": "Crea Chiave",
+            "errore": "Si è verificato un errore durante il tentativo di creazione della chiave",
+            "info": "Al termine dell'operazione verrà generato un file .pem contenente la chiave.",
+            "inserimento": "Inserire il nome della nuova chiave",
+            "msg": "Al termine dell'operazione verrà generato un file .pem contenente la chiave.",
+            "success": "L'operazione di creazione della chiave è stata conclusa correttamente",
+            "titolo": "Creazione nuova Chiave SSH"
+        }
+    },
+    "security_group": {
+        "elenco": {
+            "aggiorna": "Aggiorna lista Security Group",
+            "nome": "Nome Security Group",
+            "nvlVpcName": "nvlVpcName",
+            "seleziona": "Selezionare solo un security group!",
+            "selezionati": "Security Group selezionati",
+            "selezionato": "Security Group selezionato",
+            "stato": "Stato",
+            "titolo": "Elenco Security Group",
+            "vuoto": "Nessuna security group presente"
+        },
+        "elimina": {
+            "bottone": "Elimina Security Group",
+            "conferma": "Confermi la cancellazione del securityGroup",
+            "error": "Si è verificato un errore durante l'eliminazione del SecurityGroup",
+            "success": "La SecurityGroup {{groupName}} è stata eliminata correttamente.",
+            "testo": "la securityGroup verrà cancellato definitivamente."
+        },
+        "modifica": {
+            "bottone": "Modifica Security Group"
+        },
+        "nuovo": {
+            "aggiorna": "Aggiorna",
+            "bottone": "Crea una Nuova Security Group",
+            "crea": "Crea Security Group",
+            "error": "Si è verificato un errore durante il tentativo di creazione del Security Group",
+            "error_campi": "Non Tutti i campi sono stati valorizzati",
+            "nome": "Nome",
+            "nome_maxlength": "Il nome del gruppo inserito &egrave; troppo lungo",
+            "nome_pattern": "Il nome non deve contenere spazi, numeri, caratteri speciali ('-' è ammesso)  e deve essere lungo almeno 4 caratteri",
+            "nome_required": "Devi specificare il nome",
+            "nome_scegli": "Dai un nome al tuo Security Group",
+            "success": "L'operazione di creazione della regola di sicurezza è stata avviata correttamente",
+            "template_scegli": "Scegli un Template di sicurrezza da cui partire",
+            "titolo": "Crea Nuovo Security Group",
+            "vpc_default": "Default",
+            "vpc_nome": "Nome VPC",
+            "vpc_scegli": "Scegli il VPC di riferimento",
+            "vpc_selezionare": "Selezionare una VPC"
+        },
+        "regole": {
+            "a_porta": "A Porta",
+            "aggiorna": "Aggiorna Lista",
+            "aggiungi": "Aggiungi Regola",
+            "bottone": "Visualizza Regole",
+            "cidr": "CIDR/SG",
+            "da_cidr": "Da CIDR",
+            "da_porta": "Da Porta",
+            "da_security_group": "Da Security Group",
+            "default": "Default",
+            "descrizione": "Descrizione",
+            "di_ingresso": "Regole di Ingresso",
+            "di_uscita": "Regole di Uscita",
+            "domain": "Classless Inter-Domain Routing",
+            "dominio": "Dominio",
+            "ip_range": "IP Range",
+            "ip_range_placeholder": "e.g 10.0.0.0/8",
+            "nome": "Nome",
+            "porta_pattern": "ammessi:<br> * <br> 0-65535",
+            "porta_tooltip": "Inserire * per tutte le porte o un valore tra 0-65535",
+            "protocollo": "Protocollo/Servizio",
+            "rimuovi": "Rimuovi regola",
+            "salva": "SALVA REGOLA",
+            "security_group": "Security Group",
+            "stato": "Stato",
+            "tipo": "Tipo",
+            "tipo_regola": "Tipo di regola",
+            "titolo": "Regole Security Group",
+            "verso_cidr": "Verso CIDR",
+            "verso_security_group": "Verso Security Group",
+            "crea": {
+                "error": "Si è verificato un errore durante il tentativo di creazione della regola di sicurezza",
+                "success": "L'operazione di creazione della regola di sicurezza è stata avviata correttamente"
+            },
+            "elimina": {
+                "error": "Si è verificato un errore durante il tentativo di cancellazione della regola di sicurezza",
+                "success": "L'operazione di cancellazione della regola di sicurezza è stata avviata correttamente"
+            }
+        }
+    },
+    "vpc": {
+        "elenco": {
+            "aggiorna": "Aggiorna lista VPC",
+            "cidrBlock": "Blocchi cidr",
+            "default": "Default",
+            "nvlName": "Nome VPC",
+            "selezionati": "VPC selezionati",
+            "selezionato": "VPC selezionato",
+            "titolo": "Elenco VPC",
+            "vuoto": "Nessun vpc presente"
+        },
+        "nuova": {
+            "bottone": "Crea una Nuova VPC"
+        }
+    }
+}

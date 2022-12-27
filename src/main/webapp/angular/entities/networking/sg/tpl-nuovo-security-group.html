@@ -1,0 +1,169 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<md-content class="md-no-momentum md-padding" layout="column">
+		<md-card>
+			<md-toolbar class="md-table-toolbar md-default">
+				<div class="md-toolbar-tools">
+					<div flex=20>
+						<md-card-actions layout="row" layout-align="start center" flex="20">
+							<md-button class="md-fab read-me "  ng-href="{{rtdSGnew}}" target="_blank">
+								<md-icon  class="material-icons">local_library</md-icon>
+								<md-tooltip>{{'guida' | translate}}</md-tooltip>
+							</md-button>
+						</md-card-actions> 
+					</div>
+					<div flex>
+						<md-card-title flex>
+							<md-card-title-text layout-align="center center">
+								<div class="md-headline titolo-sezione">
+									<md-icon class="icon-card-header-green">security</md-icon>
+									{{ 'security_group.nuovo.titolo' | translate }}
+								</div>
+							</md-card-title-text>
+						</md-card-title>
+					</div>
+					<div flex=20 layout="row" layout-align="end center">
+						<md-button class="animation-target md-fab md-mini md-primary" ng-click="actions.refresh()">
+							<md-icon>autorenew</md-icon>
+							<md-tooltip>{{ 'security_group.nuovo.aggiorna' | translate }}</md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+
+			<form name="nuovoSgForm">
+				<md-content class="md-padding">
+					<div layout="row" class="riepilogo-utente-row">
+						<div flex="30">
+							<b>{{ 'security_group.nuovo.nome_scegli' | translate }}</b>
+						</div>
+						<div flex="20">
+							<md-input-container class="md-block hide-validation-error">
+								<label>{{ 'security_group.nuovo.nome' | translate }}</label>
+								<input id="nome" ng-model="newSg.nome" name="nome" placeholder="SecutityGroupBE"
+									pattern="^[A-Za-z_-]{4,}$" md-maxlength="60" required>
+									<div ng-messages="nuovoSgForm.nome.$error" role="alert" multiple>
+										<div ng-message="pattern">
+											{{ 'security_group.nuovo.nome_pattern' | translate }}
+										</div>
+										<div ng-message="required" class="my-message">
+											{{ 'security_group.nuovo.nome_required' | translate }}
+										</div>
+										<div ng-message="md-maxlength" class="my-message">
+											{{ 'security_group.nuovo.nome_maxlength' | translate }}
+										</div>
+									</div>
+							</md-input-container>
+						</div>
+					</div>
+					
+					<div layout="row" class="riepilogo-utente-row md-padding" >
+						<div flex="50" >
+							<b>{{ 'security_group.nuovo.template_scegli' | translate }}:<span class="md-headline" ng-show="!isTemplateSelected" style="color:red; font-weight:bold;">*</span><span class="md-headline" ng-show="isTemplateSelected" >*</h3></b>
+							<!-- <span ng-show="!isTemplateSelected">
+								<p style="color:red;">non è stato selezionato il template</p>
+							</span> -->
+						</div>
+						<div flex="50" class="container">
+						</div>
+					</div>
+					<div class="container md-padding" ng-class="{'visible' : status.loading}" >
+						<md-progress-linear md-mode="query" ng-disabled="!status.loading">
+						</md-progress-linear>
+
+						<div layout="row" class="riepilogo-utente-row md-padding">
+							<div class="bottom-block" flex>
+								<md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
+									md-row-height-gt-md="2:1" md-row-height="4:2" md-gutter="10px"
+									md-gutter-gt-sm="7px">
+
+									<md-grid-tile ng-repeat="template in templates" md-rowspan="1" md-colspan="2"
+										md-colspan-sm="1" md-colspan-xs="1"
+										ng-class="{'md-list-item-selected': newSg.selectedIndex===$index}"
+										ng-click="onTemplateSelected(template, $index, $event)">
+										<md-card-title style="margin-top:5%;">
+											<md-card-title-media>
+												<div class="md-media-sm card-media">
+													<md-icon class="material-icons md-48"
+														md-svg-src='{{::getSGIcon(template,$index)}}'
+														aria-label="engine"></md-icon>
+												</div>
+											</md-card-title-media>
+											<md-card-title-text>
+												<span class="md-body"><b>{{ template.nome }}</b></span>
+												<span class="md-caption">{{ template.descrizione }}</span>
+											</md-card-title-text>
+										</md-card-title>
+
+									</md-grid-tile>
+								</md-grid-list>
+							</div>
+						</div>
+					</div>
+					<div layout="row" class="riepilogo-utente-row md-padding">
+							<div flex="35">
+								<b>{{ 'security_group.nuovo.vpc_scegli' | translate }} :<span class="md-headline" ng-show="!isVPCSelected" style="color:red; font-weight:bold;">*</span><span class="md-headline" ng-show="isVPCSelected" >*</h3> </b>
+								
+							</div>
+							<div flex="65">
+								<md-card>
+									<md-table-container>
+											<table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}"
+												ng-model="selectedVPC" md-progress="promise">
+												<thead ng-if="!options.decapitate" md-head md-order="query.order">
+													<tr md-row>
+														<th md-column md-order-by="nvl-name"><span>{{ 'security_group.nuovo.vpc_nome' | translate }}</span></th>
+														<!-- <th md-column md-order-by="region"><span>Region</span></th> -->
+														<th md-column md-order-by="state"><span>{{ 'security_group.nuovo.vpc_default' | translate }}</span></th>
+													</tr>
+												</thead>
+												<tbody md-body>
+													<tr md-row md-select="vpc" md-auto-select="options.autoSelect" md-on-select="onVpcSelected" md-on-deselect="onVpcDeselect"
+														ng-repeat="vpc in vpcs | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+														<td md-cell>{{vpc['nvl-name']}}</td>
+														<td md-cell >
+																<span class="badge badge-success" ng-show="vpc.isDefault==='true'">{{ 'si' | translate }}</span>
+																<span class="badge badge-danger" ng-show="vpc.isDefault!='true'">{{ 'no' | translate }}</span>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</md-table-container>
+							
+										<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+											md-total="{{vpcs.length}}" md-page-select="options.pageSelect"
+											md-boundary-links="options.boundaryLinks"></md-table-pagination>
+
+									</md-card>
+
+
+								
+							</div>
+						</div>
+
+				</md-content>
+
+			</form>
+			<md-divider></md-divider>
+			<md-card-actions layout="row" layout-align="space-between center">
+				<md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+					<md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'abbandona' | translate }}
+				</md-button>
+				<md-button class="md-raised  md-primary md-hue-2 pull-right" ng-disabled="!nuovoSgForm.$valid || nuovoSgForm.$pristine || !isTemplateSelected || !isVPCSelected"  ng-click="actions.creaSecurityGroup($event,nuovoSgForm)">
+					<md-icon ng-style="iconStyle" class="material-icons">send
+					</md-icon> {{ 'security_group.nuovo.crea' | translate }}
+				</md-button>
+			</md-card-actions>
+
+		</md-card>
+	</md-content>
+</div>

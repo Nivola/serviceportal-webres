@@ -1,0 +1,336 @@
+{
+    "assistenza": {
+        "ambito_cloud" : "Cloud scope",
+        "bozza" : "Save as draft",
+        "email": "E-mail",
+        "email_required": "Email required",
+        "error": "An error occurred while trying to request assistance",
+        "error_wi": "An error occurred while trying to add  the  work info",
+        "error_update_urgenza": "An error occurred while trying to update the severity",
+        "impatto_seleziona": "select  impact",
+        
+        "impatto_required": "impact is mandatory",
+       
+        "urgenza_seleziona": "select severity",
+        "urgenza_required": "severity is mandatory",
+        
+        "impatto_selezionato": "you have selected the object",
+        
+
+
+        "messaggio": "Message",
+        "messaggio_required": "Message required",
+        "nome": "Name",
+        "nome_required": "Name required.",
+        "oggetto": "Object",
+        "oggetto_required": "Subject is required",
+        "riepilogo_required": "summary is required",
+        "note_required": "summary is required",
+        "oggetto_seleziona": "select an object",
+        "oggetto_selezionato": "you have selected the object",
+        "richiesta_supporto": "Support Request",
+        "success": "The support request has been sent successfully",
+        "success_wi": "the work info has been add successfully",
+        "success_bozza": "The request for assistance successfully saved in draft",
+        "success_updatebozza": "Draft updated successfully",
+        "dettagli": {
+            "bottone": "View details"
+        },
+        "elenco": {
+            "tipo_segnalazione": "Request Type",
+            "inviata": "Request sent",
+            "data": "Request <\/br> date",
+            "data_aggiornamento": "Last Updated <\/br>",
+            "data_risoluzione": "Date of last <\/br>resolution",
+            "id": "ID",
+            "inviata_da": "Sent by",
+            "iserita_da": "User",
+            "in_data": "Send date",
+            "accountName" : "Account Name",
+            "impatto" : "Impact/Disservice",
+            "urgenza" : "Severity",
+            "numero_Remedy" : "Request ID",
+            "data_inserimento" : "Date ",
+
+            "nuova": "Open new request",
+            "oggetto": "Object",
+            "ricarica": "Reload list",
+            "ricerca_avanzata": "Advanced Search",
+            "riferimento": "Remedy <\/br> Reference",
+            "selezionata": "Selected request",
+            "selezionate": "Selected requests",
+            "stato": "Request Status",
+            "testo": "Description",
+            "tipo": "Type",
+            "titolo": "Requests",
+            "vuoto": "There are no Requests",
+            "bozze_vuote" : "There are no saved drafts"
+        },
+        "elimina": {
+            "notizia": "Delete new",
+            "notizie": "Delete news"
+        },
+        "form": {
+            "allegato" : "attached file name",
+            "ambito_cloud" : "Cloud scope",
+            "assegnatario" : "Assignee",
+            "descrizione" : "Description (Indicate the steps necessary to reproduce the anomaly)",
+            "dataInvio" : "Send date",
+            "error_ip" : "the format of the ip address is not valid. ex: 192.168.0.1",
+            "error_porta" : "invalid port number",
+            "error_required_impatto" : "Indicate the impact",
+            "error_required_urgenza" : "Indicate the severity",
+            "error_required_oggetto" : "Indicate subject",
+            "impatto" : "anomaly impact",
+            "ipHostFrom" : "Ip Host from",
+            "ipHostTo" : "Ip Host to",
+            "logId" : "Log Id",
+            "dataInserimento" : "Date of insertion",
+            "utenteInserimento" : "User",
+            "riepilogo" :"Summary",
+            "motivo" : "Reason",
+            "oggetto": "object",
+            "portaDiComunicazione" : "Communication Port",
+            "proprieta" : "Property", 
+            "risoluzione" : "Resolution",
+            "richiesta" : "request",
+            "ticketId" : "Ticket Id",
+            "title_annSerCloud" : "Cloud Services Anomaly",
+            "stato" : "State",
+            "urgenza" : "anomaly severity",
+            "accountName" : " Account Name",
+            "divisioneName" : "Division Name",
+            "organizzazioneName"  : "Organization Name",
+            "utenteInvio" : "Applicant",
+            "MotivoStato" : "State Reason",
+            "Commento" : "Comment",
+            "updateDate" : "Update Date",
+            "closeDate" : "Close Date", 
+            "valore" : "Value" 
+
+            
+
+        },
+        "oggetti": {
+            "altro": "Other Object",
+            "baas": "Backup as a Service",
+            "dbaas": "Data Base as a Service",
+            "gestione": "Gestione e monitoraggio",
+            "label": "Objects",
+            "risorse": "Risorse Elaborative",
+            "saas": "Storage as a Service"
+        },
+        "oggetti_impatto": {
+            "minimo":  "Minimum / Localized",
+            "moderato":  "Moderate / Limited",
+            "significativo": "Significant / Great",
+            "vasto": "Vast / Diffused"
+     
+        },
+        "oggetti_urgenza": {
+            "critica":  "Critical",
+            "alta":  "High",
+            "media": "Average",
+            "bassa": "Low"
+     
+        },
+        "oggetti_ambitoCloud": {
+            "none" : "None",
+            "appEngine":  "AppEngine",
+            "compute":  "Compute",
+            "dataBase": "DataBase",
+            "monitoraggio": "Monitoraggio",
+            "reti_sic" : "Reti e Sicurezza",
+            "storage" : "Storage"
+     
+        },
+        "btn":{
+        	"next" : "Next"
+        },
+        "forms" : {
+            "tipo": {
+                "one" :"Does the malfunction prevent the provision of all (or most) of the services on my Nivola account, compromising counter activities and / or web services?" ,
+                "problem_subhead" :"This type of request must be activated in case of anomalies, errors or malfunctions with respect to the services offered by the platform, including this Service Portal. Or if you want to report an anomaly with respect to the lack of communication between 2 or more servers.",
+
+                "change_headline" :"I want to request an adjustment / update to an existing service",
+                "change_subhead" :"If you want to request an update / adaptation of your services: request a change in the characteristics of an existing VM, request / revoke a network authorization, indicate / modify rules for VM backup, adapt the resources and configuration of a DBAAS, indicate the size and operating system of a VM, prepare the configuration for a network disk, ... ",
+            
+                "altro_headline" :"Other" ,
+                "altro_subhead" :"In case the previous options are not the ones you need. Here you can request the provisioning of a new account, request the registration of an internal DNS, submit suggestions or suggestions for improvement,….",
+                "two" : "You want to request new services, disable existing ones, information or how to use with respect to the Service Portal",
+                "three" : "Do you want to request a VM or DB restore?",
+                "four" : "Do you want to submit a VPN related inquiry?",
+                "five" : "Do you want to submit a PaaS request?",
+                "six" : "Do you want to request the provisioning of a new account, request the registration of an internal DNS, submit suggestions, proposals for improvement or other topics not present in the previous options?"
+
+               
+
+            
+            },
+            "headers" :{
+                "MALFUNZIONAMENTO" : "MALFUNCTION",
+                "SERV_INFO" : "NEW SERVICES AND INFORMATION",
+                "BACKUPRIPRISTINI" : "BACKUP AND RESTORES",
+                "ALTRERICHIESTE" : "OTHER REQUESTS",
+                "NUOVOUTENTE" : "NEW USER",
+                "RIPRISTINORECUPERODATI" : "RESTORE FOR DATA RECOVERY",
+                "RESTOREPERRIPRISTINO" : "RESTORE PER RIPRISTINO SERVIZIO",
+                "INFORMAZIONI" : "INFORMATION",
+                "POLICYDIRETE" : "NETWORK POLICY",
+                "DISATTIVAZIONE" : "ACTIVATION - DEACTIVATION",
+                "NUOVISERVIZI" : "NEW SERVICES",
+                "RALLENTAMENTIDISSERVIZI" : "SLOW DOWN OR PARTIAL DISSERVICES",
+                "MALFUNZIONAMENTOIMPATTANTE" : "IMPACTING AND URGENT MALFUNCTIONING",
+                "MODIFICADELPROFILO" : "EDIT OF THE PROFILE"
+            },
+            "incident": {
+                "impatto_title" : "What is the impact of the malfunction you want to report?",
+                "impatto_left_headline" : "The malfunction affects all or a large part of my Cloud infrastructure",
+                "impatto_left_subhead"  : "The anomaly affects the entire Cloud infrastructure. For example, the VMs are not reachable",
+                "impatto_center_headline" :"The malfunction affects a single service",
+                "impatto_center_subhead" :"The anomaly does not involve the entire cloud infrastructure, but affects a single service, such as the Compute, or a single service instance, a VM, a share.",
+                "impatto_right_headline" :"The malfunction affects a specific functionality of a service",
+                "impatto_right_subhead" :"The anomaly is related to a single feature / functionality of a service or service instance. For example, the mounting of a volume on a VM",
+               
+                "diservizio_title" : "What is the possible disservice?",
+                "diservizio_left_headline" : "Are counter services or web services compromised?",
+                "diservizio_left_subhead"  : "The anomaly results in the failure to provide an application service provided to citizens, companies, PA.",
+                "diservizio_center_headline" :"Internal services are compromised and administrative deadlines must be met within 48 hours",
+                "diservizio_center_subhead" :"The anomaly results in inefficiencies in the use of application services provided to Users: performance degradation, reduced functionality, ....",
+                "diservizio_right_headline" :"Internal services are compromised and administrative deadlines beyond 48 hours must be respected",
+                "diservizio_right_subhead" :"The anomaly does not impact on critical / essential services provided to Users."
+
+
+              
+               
+            },
+            "change": {
+                "impatto_title" : "What is the impact of the update you want to request?",
+                "impatto_left_headline" : "Adjustment necessary for the provision of an essential / critical service",
+                "impatto_left_subhead"  : "It is about adapting the infrastructure or one of its components to improve / allow the provision of a service for citizens, companies, PA.",
+                "impatto_center_headline" :"Necessary but not critical adjustment",
+                "impatto_center_subhead" :"It is about adapting the infrastructure or one of its components to improve / allow the provision of a service for citizens, companies, PA. The update is necessary but essential / critical services are significantly affected.",
+                "impatto_right_headline" :"Critical / essential services are not affected",
+                "impatto_right_subhead" :"The adjustment is necessary but at the moment it does not affect the provision of services for citizens, companies, PA.",
+
+                "two-step1_a" : "Do you want to activate a new service?",
+                "two-step1_b" : "Do you want to modify / deactivate an already active service?",
+                "two-step1_c" : "Network release?",
+                "two-step1_d" : "Information on the Nivola platform or the service",
+                "two-step1_e" : "How to use - Service Portal",
+
+
+                "two-step1_a-step2_a" : "Backup-as-a-service? Please indicate the VM or VMs on which to intervene, specifying the retention period (7.14 or 30 days)",
+                "two-step1_a-step2_b" : "Monitoring? Please indicate the VM or VMs on which to intervene",
+                "two-step1_a-step2_c" : "Logging?",
+                "two-step1_a-step2_d" : "New Windows VM? Indicate OS and flavor to apply",
+                "two-step1_a-step2_e" : "New Linux VM? Indicate OS and flavor to apply",
+                "two-step1_a-step2_f" : "New DB? Indicate the technology and flavor to be applied",
+                "two-step1_a-step2_g" : "New STaaS? Specify the required sizing and which VMs of the account should be able to access it",
+
+
+                "two-step1_b-step2_a" : "Backup-as-a-service? ",
+                "two-step1_b-step2_b" : "Do you want to disable monitoring? Please specify which VM (s)",
+                "two-step1_b-step2_c" : "Do you want to disable Logging? Please specify which VM or VM (s)",
+                "two-step1_b-step2_d" : "Backup-as-a-service: Do you want to deactivate? Specify which VM (s)",
+                "two-step1_b-step2_e" : "Backup-as-a-service: Do you want to change the retention period? Choose from the available options 7, 14 or 30 days",
+
+
+                "two-step1_c-step2_a" : "Is a new authorization required?",
+                "two-step1_c-step2_b" : "Do you require the dismissal of a license that is currently active?",
+                "two-step1_c-step2_c" : "Is it enabled only between VMs within the Nivola account? Specify source IP, destination IP and ports",
+                "two-step1_c-step2_d" : "Does the enabling also affect IPs external to your Nivola account? Specify source IP, destination IP and ports",
+                "two-step1_c-step2_e" : "Is it enabled only between VMs within the Nivola account? Specify source IP, destination IP and ports",
+                "two-step1_c-step2_f" : "Does the enabling also affect IPs external to your Nivola account? Specify source IP, destination IP and ports",
+               
+
+                "three-step1_a" : "Does the request allow for the restoration of a service that is currently unavailable?",
+                "three-step1_b" : "Does the request allow for the recovery of data that are currently corrupt or unavailable, but  the service is available?",
+                "three-step1_c" : "VM restore? Indicate the name or ip of the VM",
+                "three-step1_d" : "DB restore indicate the name or ip of the DB",
+
+                
+
+
+                "four-step1_a" : "Do you want to credit a new user on your profile allowing access to Nivola environments?",
+                "four-step1_b" : "Do you want to change your profile?",
+
+                "five-step1_a" : "Please indicate which service is not available for",
+                "five-step1_b" : "Does the request allow you to restore a service that is currently unavailable?",
+                "five-step1_c" : "Does the request ask you to change the current configuration?",
+
+                
+                "six-step1_a" : "Request a new account?",
+                "six-step1_b" : "DNS registration?",
+                "six-step1_c" : "Suggestions for improvement?",
+                "six-step1_d" : "Other, topic not present in the previous items",
+
+             
+
+
+                "mysql" : "la tecnologia del dbaas è MYSQL",
+                "postgres" : "la tecnologia del dbaas è POSTGRES",
+                "ms_sql" : "la tecnologia del dbaas è MS-SQL",
+                "oracle" : "la tecnologia del dbaas è ORACLE",
+               
+                "intervento_title" : "What is the level of intervention?",
+                "intervento_left_headline" : "The intervention concerns the entire infrastructure",
+                "intervento_left_subhead"  : "The update affects a single service or a single instance of a service.",
+                "intervento_center_headline" :"The update affects a single service",
+                "intervento_center_subhead" :"The update affects a single service or a single instance of a service.",
+                "intervento_right_headline" :"You want to adapt a functionality / feature of a single service",
+                "intervento_right_subhead" :"You want to update / adapt a single functionality, parameter or feature of a specific or service. For example, you want to request a new DB user, or request the opening of an incoming port on a single VM."
+               
+            },
+            "other" :{
+                "title": "What is it about ?",
+                "left_headline" : "I would like to request provisioning for a new Account",
+                "left_subhead" : "In order to request a new account on Nivola, it is necessary to fill in the latest version of the provisioning form available on Teknos in the Nivola section and submit it through this form. It is recommended to fill in separate forms between Production and Pre-Production. If there are any difficulties in completing the document, it is requested to submit a  “Generic Request” in the  “Request” section, in the case of complex situations an invitation will follow to deepen the request.",
+                "center_headline": "I would like to register a new internal DNS",
+                "center_subhead": "to request the registration of a specific name / alias to a Nivola IP address.",
+                "right_headline": "Your request is of another type",
+                "right_subhead": ""
+            },
+            "output" :{
+                "riepilogo" : "Summary of the choices made",
+                "tipo_problem" : "Anomaly / Error / Malfunction",
+                "tipo_change" : "Adjustment / Update",
+                "tipo_altro" : "Other"
+            },
+
+            "servizio_title" : "What is it about ?",
+            "servizio_vmms_headline":"Is your request concerns a Microsoft infrastructure resource ?",
+            "servizio_dbaas_headline":"Is your request concerns a Database ?",
+            "servizio_cpaas_headline":"Does your request concern one or more VMs in particular?",
+            "servizio_other_headline":"Is your request is of another type ?",
+
+
+            "tecnologia_title" :"What is the database technology?",
+            "db_tecnology_is":"dbaas technology is",
+
+            "workInfo" : {
+                "title" : "Add a workinfo",
+                "riepilogo" : "Summary" ,
+                "note" : "Note"
+            }
+           
+
+
+        
+        },
+        
+        "popup":{
+            "urgent":{
+                "msg_1":"Dear Customer,<\/br>Send a request does'nt guaranteed la presa in carico immediata della segnalazione. Il servizio di Supporto normalmente opera in orario 8-16 da lunedì al venerdì. I tempi di risposta dipendono dal livello di servizio assegnato all'Account e dalla criticità della segnalazione.<\/br>Per avere maggiori informazioni su come contattare il supporto consulta la guida utente al seguente <a href=\"https://nivola-userguide.readthedocs.io/it/latest/docs/Come_fare_per/90.0_Attivare_il_supporto.html\" target=\"_blank\">LINK</a>.",
+                "msg_2":"In the event that the report is of an extremely urgent nature, it is possible to contact the assistance at the telephone number of the Single Contact Center: <b> +39 011 0824221. </b>"
+            },
+            "configuration_account":{
+                "req_button":"Confirm configuration's account request",
+                "msg_1":"Dear Customer,<\/br>This Account doesn't have the configurations needed for opening tickets yet.<\/br>You can confirm the ticket request applying for the correct configuration pressing the button below: ",
+                "msg_2":"In the event that the report is of an extremely urgent nature, it is possible to contact the assistance at the telephone number of the Single Contact Center: <b> +39 011 0824221. </b>",
+                "msg_3":"Thank you,<\/br> your request has been sent to the Administrators"
+            }
+        }        
+        
+    }
+}

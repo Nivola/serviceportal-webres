@@ -1,0 +1,159 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+
+
+<md-dialog aria-label="Associa wbs a questo account"  >
+    <div ng-show="selected.length==0">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{"accounts.wbs.list"|translate}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="hide()">
+                    <md-icon class="md-icon-button" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>	
+        <md-dialog-content>
+            <md-card>
+                <md-toolbar class="md-table-toolbar alternate" ng-show="selected.length && options.rowSelection">
+                    <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                        <md-button class="md-icon-button" ng-click="unselectAll()" aria-label="Unselect items">
+                            <md-icon class="material-icons">close</md-icon>
+                        </md-button>
+                        <div flex>
+                            <span>
+                                {{ selected.length }} : {{selected.length > 1 ? ('accounts.wbs.selezionate' | translate) : ('accounts.wbs.selezionata' | translate)}}
+                            </span>
+                        </div>
+                        
+                    </div>
+                </md-toolbar>
+
+                <md-toolbar class="md-table-toolbar md-default">
+                    <div class="md-toolbar-tools">
+                        <form name="filter.form" flex>
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <label>{{'ricerca' | translate}}</label>
+                                <md-icon class="material-icons">search</md-icon>
+                                <input id="filterSearch" class="layout-fill" type="text" ng-model="filter.search"
+                                    ng-model-options="filter.options" esc-key="resetFilter()">
+                            </md-input-container>
+                        </form>
+                    </div>
+                </md-toolbar>
+
+                <md-table-container>
+                    <table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}"
+                        ng-model="selected" md-progress="promise">
+                        <thead ng-if="!options.decapitate" md-head md-order="query.order">
+                            <tr md-row>
+                                <th md-column md-order-by="ewbs"><span>{{"accounts.wbs.association.ewbs"|translate}}</span></th>
+                                <th md-column md-order-by="committente"><span>{{"accounts.wbs.association.committee"|translate}}</span></th>
+                                <th md-column md-order-by="descrCatTipologia"><span>{{"accounts.wbs.association.type"|translate}}</span></th>
+                                <th md-column md-order-by="descrCatSottotipologia"><span>{{"accounts.wbs.association.sub_type"|translate}}</span></th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody md-body>
+                                <tr md-row md-select="item" md-auto-select="options.autoSelect" 
+                                        ng-repeat="item in elencoWbsSistema  | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                                        <td md-cell>{{item.ewbs}}</td>
+                                        <td md-cell md-numeric>
+                                            {{item.committente}}
+                                        </td>
+                                        <td md-cell>
+                                            {{item.descrCatTipologia}} ({{item.idCatTipologia}})
+                                        </td>
+                                        <td md-cell>
+                                            {{item.descrCatSottotipologia}} ({{item.idCatSottotipologia}})
+                                        </td>
+                                        
+                                    </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+
+                <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+                    md-total="{{elencoWbsSistema.length}}" md-page-select="options.pageSelect"
+                    md-boundary-links="options.boundaryLinks">
+                </md-table-pagination>
+            </md-card>
+        </md-dialog-content>
+    </div>
+
+    <div ng-hide="selected.length==0">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{"accounts.wbs.association.start_end_association"|translate}}</h2><b>&nbsp; {{selected[0].ewbs}}</b>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="hide()">
+                    <md-icon class="md-icon-button" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <md-card>
+                <div layout="column">
+                    <div layout="row" layout-xs="column">
+                        <md-input-container class="md-icon-float md-block md-column-2" flex>
+                        <label>{{ 'accounts.wbs.dataI' | translate}}:</label>
+                        <md-datepicker ng-model="wbs.dataInizio" 
+                                     ng-change='checkErr(wbs.dataInizio,wbs.dataFine)'></md-datepicker>
+                        </md-input-container>
+                        
+                        <md-input-container class="md-icon-float md-block md-column-2" flex>
+                        <label>{{ 'accounts.wbs.dataF' | translate}}:</label>
+                        <md-datepicker ng-model="wbs.dataFine" 
+                                     ng-change='checkErr(wbs.dataInizio,wbs.dataFine)' 
+                                     ng-disabled="!wbs.dataInizio"></md-datepicker>
+                        </md-input-container>
+
+                        <md-input-container class="md-icon-float md-block md-column-2" flex>
+                        <label>{{"accounts.wbs.association.percentage"|translate}}</label>
+                        <input required type="number" step="any" name="rate" ng-model="wbs.percentuale" min="1"
+                               max="100" ng-pattern="/^[1-9][0-9]?$|^100$/" />
+                              
+                        </md-input-container>
+
+<!-- 
+                        <div ng-messages="projectForm.rate.$error" multiple md-auto-hide="true">
+                            <div ng-message="pattern">
+                                percentuale non valida 
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </md-card>
+        </md-dialog-content>
+        <span style="color:red ;">&nbsp;{{errMessage}}</span>
+    </div>
+
+    <md-dialog-actions layout="row">
+
+        <md-card-actions layout="row" layout-align="start center" flex="20">
+            <md-button class="md-raised pull-right md-primary md-hue-2" ng-click="unselectAll()">
+                <md-icon class="material-icons">keyboard_backspace</md-icon> {{"buttons.back"|translate}}
+            </md-button>
+        </md-card-actions>
+            
+        <span flex>
+            <div layout="row" layout-align="end end">
+                <md-button class="md-raised pull-right md-primary md-hue-2" type="button" ng-click="submit()"   flex="40" 
+                            ng-disabled="selected.length==0  ||  errMessage.length!=0 || !wbs.dataInizio || !wbs.dataFine  || !wbs.percentuale" >
+                    <md-icon>play_arrow</md-icon> {{"buttons.confirm"|translate}}
+                </md-button>
+            
+            </div>
+         </span>
+    </md-dialog-actions>
+</md-dialog>
+
+

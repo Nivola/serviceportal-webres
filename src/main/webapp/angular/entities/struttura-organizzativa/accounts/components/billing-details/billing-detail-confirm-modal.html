@@ -1,0 +1,41 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div>
+    <md-toolbar class="badge-danger">
+      <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <h2 class="mx-auto">
+            <span>{{ 'accounts.modifica.modal.title' | translate }}</span>
+            <span>{{ $ctrl.isRemove?'accounts.modifica.modal.subtitle_delete':'accounts.modifica.modal.subtitle_update' | translate }}</span>
+        </h2>
+        <md-button class="md-icon-button" ng-click="$ctrl.closeDialog()">
+          <md-icon>clear</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+  <md-dialog-content>
+    <div class="md-dialog-content ng-binding">
+      {{$ctrl.isRemove?'accounts.modifica.modal.text_delete':'accounts.modifica.modal.text_update' | translate}}
+    </br>
+    <b>{{'accounts.modifica.modal.text_recalculate' | translate}}</b>
+  </br>
+</div>
+</md-dialog-content>
+  
+    <md-dialog-actions layout="row" layout-align="space-between center">
+      <md-button class="md-raised" ng-click="$ctrl.closeDialog()">
+        {{'accounts.modifica.modal.button-cancel' | translate}}
+      </md-button>
+      <md-button class="md-primary md-raised" ng-click="$ctrl.complete()">
+        {{'accounts.modifica.modal.button-continue' | translate}}
+      </md-button>
+    </md-dialog-actions>
+  </div>

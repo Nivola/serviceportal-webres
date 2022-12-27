@@ -1,0 +1,295 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<form name="formBilling" id="formBilling">
+    <md-content class="m-t-15">
+        <div class="step">
+            <div>
+                <div class="circle">{{ 'accounts.steps.label_1' | translate }}</div>
+                <div class="line"></div>
+            </div>
+            <div>
+                <div class="title-step  text-dark">{{ 'accounts.anagrafica' | translate }}</div>
+                <div class="body">
+                    <div layout="row">
+                        <div flex="30">
+                            <md-input-container>
+                                <label> {{ 'organizzazione' | translate }}</label>
+                                <input ng-disabled="true" ng-model="$ctrl.organizzazione"></input>
+                            </md-input-container>
+                        </div>
+                        <div flex="30">
+                            <md-input-container>
+                                <label> {{ 'divisione' | translate }}</label>
+                                <input ng-disabled="true" ng-model="$ctrl.divisione"></input>
+                            </md-input-container>
+                        </div>
+                        <div flex="30">
+                            <md-input-container>
+                                <label> {{ 'accounts.categoria' | translate }}</label>
+                                <input ng-disabled="true" ng-model="$ctrl.account.categoria.nome"></input>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div layout="row">
+                        <div flex="50">
+                            <md-input-container>
+                                <label> {{ 'accounts.denominazione' | translate }}</label>
+                                <input ng-disabled="true" ng-model="$ctrl.account.name"></input>
+                            </md-input-container>
+                        </div>
+                        <div flex="50">
+                            <md-input-container>
+                                <label> {{ 'accounts.descrizione' | translate }}</label>
+                                <input ng-disabled="true" ng-model="$ctrl.account.desc"></input>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="step">
+            <div>
+                <div class="circle">{{ 'accounts.steps.label_2' | translate }}</div>
+                <div class="line"></div>
+            </div>
+            <div>
+                <div class="title-step  text-dark">{{ 'accounts.prices_application' | translate }}</div>
+                <div class="body">
+                    <div layout="row">
+                            <md-input-container flex="50">
+                                {{ 'accounts.applica_costi' | translate }}
+                                <md-switch name="aggiornaCosti" class="md-invert md-inline md-primary" aria-label="Stato" ng-disabled="$ctrl.disableAggiornaCosti&&$ctrl.account.aggiornaCostiGiorno"
+                                    ng-model="$ctrl.account.aggiornaCostiGiorno"
+                                    ng-change="$ctrl.onAggiornaCostiGiornoChanged($event)">
+                                    {{$ctrl.account.aggiornaCostiGiorno ? ('si' | translate):('no' | translate) }}
+                                </md-switch>
+                            </md-input-container>
+
+
+                        <md-input-container class="md-icon-float md-block md-column-4" flex="50">
+
+                            <label> {{ 'accounts.data_fine_consumi' | translate }}</label>
+
+                            <md-datepicker name="endDate" ng-model="$ctrl.account.dataFineConsumi"
+                                md-min-date="$ctrl.account.creation"
+                                ng-disabled="!$ctrl.account.aggiornaCostiGiorno"
+                                md-placeholder="{{ 'accounts.data_fine_consumi_scegli' | translate }} ">
+                            </md-datepicker>
+                        </md-input-container>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+       <div class="step" ng-if="$ctrl.account.aggiornaCostiGiorno">
+            <div>
+                <div class="circle">{{ 'accounts.steps.label_3' | translate }}</div>
+                <div class="line"></div>
+            </div>
+            <div>
+                <div class="title-step  text-dark">{{ 'accounts.listini_prezzi' | translate }}</div>
+
+
+                <div layout="row" layout-align="center center">
+                    <div class="floating-button-container">
+
+                        <table class="mx-auto table-fixed-header"
+                            ng-if="$ctrl.pricesHistory&&$ctrl.pricesHistory.length>0" md-table>
+                            <thead md-head class="fixed-header">
+                                <tr md-row>
+                                    <th md-column>
+                                        <span class="white-header">
+                                            {{ 'accounts.billing.listino' | translate}}
+                                        </span>
+                                    </th>
+                                    <th md-column>
+                                        <span class="white-header">
+                                            {{ 'accounts.billing.prices' | translate}}
+                                        </span>
+                                    </th>
+                                    <th md-column>
+                                        <span class="white-header">
+                                            {{ 'accounts.billing.association_start' | translate}}
+                                        </span>
+                                    </th>
+                                    <th md-column>
+                                        <span class="white-header">
+                                            {{ 'accounts.billing.association_end' | translate}}
+                                        </span>
+                                    </th>
+                                    <th md-column>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+
+                                <tr md-row
+                                    ng-repeat="listino in $ctrl.pricesHistory | orderBy: 'dataInizioAssociazione':true">
+                                    <td md-cell>
+                                        <span ng-if="listino.usaListinoSpecifico==='S'">
+                                            {{listino.listino.descrizione}}
+                                        </span>
+                                        <span
+                                            ng-if="listino.usaListinoSpecifico==='N'||!listino.usaListinoSpecifico"
+                                            class="badge badge-secondary">
+                                            {{'accounts.billing.default'|translate}}
+                                        </span>
+                                    </td>
+                                    <td md-cell>
+                                        {{listino.tipoPrezzoDescrizione}}
+                                    </td>
+                                    <td md-cell>
+                                        {{listino.dataInizioAssociazione|reverse}}
+                                    </td>
+                                    <td md-cell>
+                                        <span ng-if="listino.dataFineAssociazione">
+                                            {{listino.dataFineAssociazione|reverse}}
+                                        </span>
+                                        <span ng-if="!listino.dataFineAssociazione" class="badge badge-success">
+                                            {{'accounts.billing.actual'|translate}}
+                                        </span>
+                                    </td>
+                                    <td md-cell>
+                                        <div layout="row" ng-if="$index===0" layout-align="space-between start">
+                                            <md-button class="md-icon-button md-primary"
+                                                ng-disabled="$ctrl.addListino||$ctrl.editListino"
+                                                ng-click="$ctrl.editPriceListRecord(listino);">
+
+                                                <md-icon class="md-icon-button widget-icon-notactive">
+                                                    edit</md-icon>
+                                            </md-button>
+                                            <md-button ng-if="$ctrl.pricesHistory.length>1" class="md-icon-button md-warn"
+                                                ng-disabled="$ctrl.addListino||$ctrl.editListino"
+                                                ng-click="$ctrl.removePriceListRecord(listino)">
+
+
+                                                <md-icon class="material-icons">
+                                                    delete</md-icon>
+                                            </md-button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <md-button ng-disabled="$ctrl.addListino||$ctrl.editListino" class="md-fab md-primary floating-button" ng-click="$ctrl.doAddListino()">
+                            <md-icon class="material-icons">
+                                add
+                            </md-icon>
+                        </md-button>
+
+                    </div>
+                </div>
+                <div class="body" ng-if="$ctrl.addListino||$ctrl.editListino" id="priceListInput">
+
+                    <div ng-if="($ctrl.addListino||$ctrl.editListino)" layout="row" layout-align="end center">
+                        <md-button class="md-icon-button md-warn">
+                            <md-icon class="material-icons clickable" ng-click="$ctrl.resetForm()">
+                                close</md-icon>
+                        </md-button>
+                    </div>
+                    <div layout="row">
+                        <md-input-container class="md-icon-float md-block md-column-2" flex>
+                            <md-radio-group name="listinoDefault" layout="row" ng-model="$ctrl.listinoAccountData.usaListinoSpecifico">
+                                <md-radio-button ng-value="'N'" ng-click="$ctrl.changePriceListType(false)"
+                                    class="md-primary">
+                                    {{ 'accounts.listino_default' | translate }}
+                                </md-radio-button>
+                                <md-radio-button ng-click="$ctrl.changePriceListType(true)" ng-value="'S'"
+                                    class="md-primary">
+                                    {{ 'accounts.listino_listino_spec' | translate }}
+                                </md-radio-button>
+                            </md-radio-group>
+                        </md-input-container>
+
+                    </div>
+
+                    <div layout="row">
+                        <md-input-container class="md-icon-float md-block md-column-2" flex>
+                            <label> {{ 'accounts.data_inizio_associazione' | translate }}</label>
+                            <md-datepicker name="startAssignDate" ng-required="$ctrl.account.aggiornaCostiGiorno"
+                                ng-model="$ctrl.listinoAccountData.dataInizioAssociazione"
+                                md-min-date="$ctrl.minDateAssociazioneStart" ng-change="onAssociationDateChanged()"
+                                ng-disabled="!$ctrl.account.aggiornaCostiGiorno||($ctrl.editListino&&$ctrl.pricesHistory.length>1)"
+                                md-placeholder="{{ 'accounts.data_inizio_associazione_scegli' | translate }} ">
+                            </md-datepicker>
+                            <div ng-messages="formBilling.startAssignDate.$error">
+
+                                <div ng-message="required">{{ 'accounts.data_inizio_associazione_scegliere' | translate
+                                    }}</div>
+                            </div>
+
+                        </md-input-container>
+                        
+                        <md-input-container class="md-icon-float md-block md-column-4" flex>
+
+                            <label> {{ 'accounts.data_fine_associazione' | translate }}</label>
+
+                            <md-datepicker name="endAssignDate" ng-model="$ctrl.listinoAccountData.dataFineAssociazione"
+                            md-min-date="$ctrl.minDateAssociazioneEnd"
+                                ng-disabled="!$ctrl.account.aggiornaCostiGiorno||formBilling.$error.required[0].$name==='startAssignDate'||formBilling.$error.valid[0].$name==='startAssignDate'"
+                                md-placeholder="{{ 'accounts.data_fine_associazione_scegli' | translate }} ">
+                            </md-datepicker>
+                        </md-input-container>
+
+                    </div>
+                    <div layout="row">
+                        <div flex="50" ng-if="$ctrl.listinoAccountData.usaListinoSpecifico==='S'">
+
+                            <md-input-container class="md-icon-float md-icon-left md-block">
+                                <md-icon ng-style="iconStyle">monetization_on</md-icon>
+                                <label>{{ 'accounts.listino' | translate }}</label>
+                                <md-select name="listino" ng-model="$ctrl.listinoAccountData.idListino"
+                                    ng-required="$ctrl.listinoAccountData.usaListinoSpecifico==='S'"
+                                    ng-change="$ctrl.loadPrezzi()">
+                                    <md-option layout-align="start start" ng-value="list.id"
+                                        ng-repeat="list in $ctrl.listini">
+                                        {{ list.descrizione }}
+                                    </md-option>
+                                </md-select>
+                                <div ng-if="$ctrl.listinoAccountData.aggiornaCostiGiorno && !$ctrl.listinoAccountData.idListino"
+                                    style="color:red;">
+                                    {{ 'accounts.prezzario_seleziona' | translate }}
+                                </div>
+                            </md-input-container>
+
+                        </div>
+                        <div flex="50">
+                            <md-input-container class="md-icon-float md-icon-left md-block">
+                                <md-icon ng-style="iconStyle">monetization_on</md-icon>
+                                <label>{{ 'accounts.prezzario' | translate }}</label>
+                                <md-select name="prices" ng-model="$ctrl.listinoAccountData.tipoPrezzoCodice" ng-required="true"
+                                    ng-disabled="$ctrl.listinoAccountData.usaListinoSpecifico==='S'&&(!$ctrl.listinoAccountData.idListino||$ctrl.listinoAccountData.idListino==0)">
+                                    <md-option layout-align="start start" ng-value="pre.codice"
+                                        ng-repeat="pre in $ctrl.prezzari" ng-selected="pre.codice">
+                                        {{ pre.etichetta?pre.etichetta:pre.descrizione }}
+                                    </md-option>
+                                </md-select>
+                                <div ng-if="$ctrl.listinoAccountData.aggiornaCostiGiorno && !$ctrl.listinoAccountData.tipoPrezzoCodice"
+                                    style="color:red;">
+                                    {{ 'accounts.prezzario_seleziona' | translate }}
+                                </div>
+                            </md-input-container>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <md-card-actions layout="row" layout-align="end center" ng-if="$ctrl.account.aggiornaCostiGiorno">
+            <md-button type="submit" ng-click="$ctrl.callSaveBilling()" class="md-raised md-primary md-hue-2"
+                ng-disabled="(formBilling.$pristine&&formBilling.aggiornaCosti.$untouched)||(!formBilling.$pristine&&($ctrl.addListino||$ctrl.editListino) &&(formBilling.startAssignDate.$invalid||formBilling.prices.$invalid))">
+                <md-icon ng-style="iconStyle" class="material-icons">send</md-icon> {{ 'accounts.billing.confirm' |
+                translate }}
+            </md-button>
+        </md-card-actions>
+    </md-content>

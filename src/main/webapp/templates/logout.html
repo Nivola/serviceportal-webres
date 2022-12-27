@@ -1,0 +1,51 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<style>
+.card-auth-provider:hover {
+    background-color: rgb(240,240,240);
+}
+
+.login-provider-image {
+	max-width: 200px;
+	height: 125px;
+}
+</style>
+
+<div layout="row" layout-fill layout-margin layout-padding layout-align="start start">
+	<div flex="15">
+	</div>
+	<md-card flex="70">
+		<md-card-title>
+	    	<md-card-title-text layout-align="center center">
+	      		<span class="md-headline">  	
+		      		{{ 'logout_msg' | translate }}
+	      		</span>
+	    	</md-card-title-text>
+	  	</md-card-title>
+	  
+	  	<md-card-content>
+	  		<ng-form name="logoutForm" layout="column">
+				<div layout="row" flex>
+					<div flex="100" layout="row" layout-align="center center">	
+						<img src='./img/login/logo-nivola.png' style="max-height:150px;" />
+					</div>
+				</div>
+			</ng-form>
+		</md-card-content>
+		<md-button type="button" ng-click="actions.logout()" class="md-raised pull-right">
+                <md-icon>cloud_off</md-icon>{{ 'logout' | translate }}
+            </md-button>
+
+            <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+                <md-icon>keyboard_backspace</md-icon> {{ 'indietro' | translate }}
+            </md-button>
+	</md-card>
+</div>

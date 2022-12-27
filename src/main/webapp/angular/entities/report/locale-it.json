@@ -1,0 +1,11 @@
+{
+    "report": {
+        "aggiorna": "Aggiorna",
+        "error_selezione": "selezionare le date di inizio e fine validita",
+        "scarica_file": "scarica file",
+        "selezionare": "Selezionare la data di inizio e la data di fine estrazione",
+        "selezionare_a": "Fino a",
+        "selezionare_da": "A partire da",
+        "titolo": "Estrazione report CSV somma costi per periodo"
+    }
+}

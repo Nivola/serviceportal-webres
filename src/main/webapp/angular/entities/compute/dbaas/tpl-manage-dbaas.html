@@ -1,0 +1,307 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+
+    <div layout="column" ng-cloak>
+        <br />
+        <md-content class="md-no-momentum">
+            <md-card>
+                <md-card-title>
+                    <div flex=20 >
+                        <md-card-actions layout="row" layout-align="start center" flex="20" ng-show="status.tabIndex">
+                            <md-button class="md-fab read-me " ng-href="{{rtdDbaasManage}}" target="_blank">
+                                <md-icon  class="material-icons">local_library</md-icon>
+                                <md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+                            </md-button>
+                        </md-card-actions>
+                    </div>
+                    <md-card-title-text layout-align="center center" flex="60">
+                        <span class="md-headline titolo-sezione">
+                            <md-icon class="icon-card-header-green">storage</md-icon>{{ 'dbaas.manage.titolo' | translate}}
+                                    <span  ng-if="dbaas.dbaasDetails && dbaas.dbaasDetails.nome">({{dbaas.dbaasDetails.nome.toLowerCase()}})</span>
+                        </span>
+                        <div class="callout callout-info">
+                        </div>
+                    </md-card-title-text>
+                    <md-card-actions layout="row" layout-align="end center" flex="20">
+                    </md-card-actions>
+                </md-card-title>
+    
+                <md-card-content>
+                    <md-tabs md-dynamic-height md-border-bottom md-center-tabs class="tab-min-200"
+                        md-selected="status.tabIndex">
+                        <md-tab label="{{ 'dbaas.manage.dettagli.titolo' | translate}}">
+                            <md-content class="md-padding">
+                                <div layout="row" layout-align="center start">
+                                    <md-card flex="70">
+                                        <md-table-container>
+                                            <table md-table md-progress="promise">
+                                                <thead ng-if="!options.decapitate" md-head md-order="query.order">
+                                                    <tr md-row>
+                                                        <th md-column>
+                                                            <span>
+                                                                {{ 'dbaas.manage.dettagli.proprieta' | translate}}
+                                                            </span>
+                                                        </th>
+                                                        <th md-column>
+                                                            <span>
+                                                                {{ 'dbaas.manage.dettagli.valore' | translate}}
+                                                            </span>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody md-body>
+                                                    <!-- FQDN (Nome DB) -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>computer</md-icon>
+                                                                    <b>{{ 'dbaas.manage.dettagli.nome' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <span
+                                                                ng-if="dbaas.dbaasDetails && dbaas.dbaasDetails.nome">{{dbaas.dbaasDetails.nome.toLowerCase()}}</span>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- FQDN (Nome DB) -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>computer</md-icon>
+                                                                    <b>{{ 'dbaas.manage.dettagli.dns_name' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell *ngIf="dbaas.dbaasDNS">
+                                                           <span >{{ dbaas.dbaasDNS }}</span>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Engine -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>album</md-icon>
+                                                                    <b>{{ 'dbaas.manage.dettagli.engine' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{ dbaas.dbaasDetails.Engine }}
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Version-->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>tune</md-icon>
+                                                                    <b>{{ 'dbaas.manage.dettagli.version' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{dbaas.dbaasDetails.EngineVersion}}
+    
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Port -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>hearing</md-icon>
+                                                                    <b>{{ 'dbaas.manage.dettagli.port' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <span > {{dbaas.Endpoint.Port}}</span>
+                                                        </td>
+                                                    </tr>
+
+
+
+                                                     <!-- Tipo VM -->
+                                                     <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>memory</md-icon>
+                                                                    <b>{{ 'dbaas.manage.dettagli.tipo' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell ng-if="dbaas.dbaasDetails">
+                                                            <span >{{dbaas.dbaasDetails.cpu}} CPU ,  {{dbaas.dbaasDetails.ram}} RAM</span>
+                                                        </td>
+                                                    </tr>
+
+
+
+                                                     <!-- Disco -->
+                                                     <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>storage</md-icon>
+                                                                    <b>{{ 'dbaas.manage.dettagli.disco' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell ng-if="dbaas.dbaasDetails.storage">
+                                                            {{dbaas.dbaasDetails.storage}} GB
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <!-- Region - A.Z. -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>public</md-icon>
+                                                                    <b>{{ 'dbaas.manage.dettagli.region' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{dbaas.dbaasDetails.region}} - {{dbaas.dbaasDetails.az}}
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Subnet -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>router</md-icon>
+                                                                    <b>{{ 'dbaas.manage.dettagli.subnet' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                           {{dbaas.dbaasDetails.subnet}} 
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Security Group -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>security</md-icon>
+                                                                    <b>{{ 'dbaas.manage.dettagli.security_group' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{dbaas.dbaasDetails.securityGroup}} 
+                                                           
+                                                        </td>
+                                                    </tr>
+                                                    <!-- IP address -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>router</md-icon>
+                                                                    <b>{{ 'dbaas.manage.dettagli.ip_address' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                               {{dbaas.dbaasDetails.Address}} 
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Status -->
+                                                    <tr md-row>
+                                                        <td md-cell flex="50">
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>power_settings_new</md-icon>
+                                                                    <b>{{ 'dbaas.manage.dettagli.stato' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell flex="50">
+
+                                                            <span ng-class="dbaas.dbaasDetails.stato.badge">
+                                                                {{dbaas.dbaasDetails.stato.stato}}
+                                                            </span>
+
+                                                           
+                                                            
+                                                        </td>
+                                                    </tr>
+
+
+
+
+
+                                                     <!--Data Creazione -->
+                                                     <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>date_range</md-icon>
+                                                                    <b>{{ 'dbaas.manage.dettagli.data_creazione' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                             {{dbaas.dbaasDetails.InstanceCreateTime |  date :  "dd-MM-y" }}
+                                                        </td>
+                                                    </tr>
+
+
+
+                                                    <!-- Tags -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>label</md-icon>
+                                                                    <b>{{ 'dbaas.manage.dettagli.tags' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-chips ng-model="dbaas.dbaasDetails.elencoTag"  readonly="status.tagsReadOnly" md-add-on-blur="true" 
+                                                                md-removable="status.tagsRemovable" md-max-chips="10" md-enable-chip-edit="true" 
+                                                                md-on-add="updateTags()" md-on-remove="updateTags()"  
+                                                                placeholder="{{ 'dbaas.manage.dettagli.inserisci_tag' | translate}}">
+                                                                    <md-chip-template>
+                                                                    <strong>{{$chip}}</strong>
+                                                                    </md-chip-template>
+                                                            </md-chips>
+                                                            <!-- {{ dbaasDetails.elencoTag.toString() }} -->
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </md-table-container>
+                                    </md-card>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        
+                    </md-tabs>
+                    <md-divider></md-divider>
+                    <md-card-actions layout="row" layout-align="space-between center">
+                        <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+                            <md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate}}
+                        </md-button>
+                    </md-card-actions>
+                </md-card-content>
+            </md-card>
+        </md-content>
+    </div>

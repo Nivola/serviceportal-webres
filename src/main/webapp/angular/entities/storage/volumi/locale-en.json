@@ -1,0 +1,157 @@
+{
+    "shares": {
+        "aggiorna": "Refresh List",
+        "crea": "Add Share",
+        "elenco": "Shares",
+        "gestione": "Control Panel",
+        "selezionati": "Selected Shares",
+        "selezionato": "Selected Share",
+        "autorizzazioni": {
+            "aggiorna": "Refresh List",
+            "aggiungi": "Add authorization",
+            "bottone": "Authorizations",
+            "grant" :"This operation is not allowed on the selected Share",
+            "selezionata": "Selected Share",
+            "selezionate": "Selected Shares",
+            "elimina": {
+                "bottone": "Delete Item",
+                "error": "An error occurred while trying to revoke the authorization",
+                "success": "Authorization successfully revoked"
+            },
+            "lista": {
+                "access_level": "Access Level",
+                "access_to": "Authorized",
+                "access_type": "Type of Access",
+                "state": "Status",
+                "titolo": "Share Permissions",
+                "vuota": "There are no permissions for this share"
+            },
+            "livelli": {
+                "lettura_scrittura": "Read and Write",
+                "sola_lettura": "Read only"
+            },
+            "nuova": {
+                "access_to": "Access from",
+                "access_to_placeholder": "e.g 10.0.0.0/8",
+                "access_to_required": "You must specify who can access the share",
+                "crea": "Add Authorization",
+                "error": "An error occurred while trying to create authorization",
+                "indirizzo_ip": "IP address",
+                "livello": "Access level",
+                "livello_required": "You must specify access level",
+                "success": "The creation operation has started successfully",
+                "tipo_accesso": "Access type",
+                "tipo_accesso_required": "You must specify type of access",
+                "titolo": "Add Share Authorization"
+            },
+            "stati": {
+                "cert": "Cert",
+                "indirizzo_ip": "IP address",
+                "utente": "User"
+            }
+        },
+        "elimina": {
+            "bottone": "Delete Share",
+            "conferma": "Are you sure to delete the selected share?",
+            "error": "An error occurred while deleting share",
+            "errorNameNotMatching": "Name entered is incorrect",
+            "info": "Share will be permanently deleted.",
+            "info01": "Share will be permanently deleted",
+            "info02": "We recommend you to make a Backup before proceeding",
+            "msg_inserisci_nome": "Enter the Share Name to confirm the operation",
+            "placeholder": "Share Name",
+            "prosegui": "Do you want to proceed with the cancellation?",
+            "selezione": "Select only one Share",
+            "success": "Request {{name}} was sent successfully.",
+            "titolo": "Confirm  to delete "
+        },
+        "lista": {
+            "data_creazione": "Creation date",
+            "dimensione": "Share",
+            "ip_address": "Ip Address",
+            "mount_targets": "Mount Targets",
+            "nome": "Name",
+            "protocol": "Protocol",
+            "stato": "File System Status",
+            "vuota": "No share present"
+        },
+        "manage": {
+            "error": "An error occurred while trying to resize share",
+            "success": "Share size update in progress",
+            "titolo": "Share Control Panel",
+            "dettagli": {
+                "data_creazione": "Creation date",
+                "dimensione": "Size",
+                "dimensione_modifica": "Update Size",
+                "dimensione_share": "Share size",
+                "indirizzo_ip": "IP address",
+                "nome": "Name",
+                "protocollo": "Protocol",
+                "stato": "Status",
+                "tags": "Tags",
+                "tags_placeholder": "Insert tag ...",
+                "target_id": "Target ID",
+                "titolo": "Details"
+            }
+        },
+        "nuova": {
+            "error": "An error occurred while trying to create the share",
+            "success": "Share creation in progress",
+            "titolo": "Create Share",
+            "generali": {
+                "titolo": "1. General",
+                "vai_a_spazio": "NEXT",
+                "nome": {
+                    "label": "Share name",
+                    "maxlength": "Entered Name is too long",
+                    "placeholder": "DIGIT the share Name",
+                    "required": "You must specify a Name",
+                    "titolo": "Name your share."
+                },
+                "protocollo": {
+                    "nfs": "NFS",
+                    "titolo": "Choose Protocol."
+                }
+            },
+            "network": {
+                "region": "Region - Zone",
+                "scegli_region_zone": "Select Network settings",
+                "scegli_subnet": "Select Subnet",
+                "subnet": "Subnet",
+                "titolo": "3. Network",
+                "vai_a_riepilogo": "NEXT",
+                "zone": "Availability Zone"
+            },
+            "riepilogo": {
+                "conferma": "CONFIRM AND CREATE SHARE",
+                "creazione_msg01": "The operation may take some time.",
+                "creazione_msg02": "Refresh list to control the share status.",
+                "dimensione": "Share size",
+                "dimensione_modifica": "Resize",
+                "nome": "Share name",
+                "nome_modifica": "Change Name",
+                "protocollo": "Protocol",
+                "protocollo_modifica": "Change Protocol",
+                "region": "Region - Zone",
+                "region_modifica": "Change Region-Zone",
+                "sottotitolo": "Make sure you have selected the correct options, then start creating the share.",
+                "subnet": "Subnet",
+                "subnet_modifica": "Change Subnet",
+                "titolo": "4. Confirm"
+            },
+            "spazio": {
+                "dimensione": "Size",
+                "dimensione_disco": "Share size",
+                "dimensione_share": "Share size",
+                "opzioni": "Choose share options.",
+                "rimuovi_disco": "Remove additional disk",
+                "tipologia": "Type",
+                "tipologia_disco": "Disc type",
+                "tipologia_share": "Type of share",
+                "titolo": "2. Storage space",
+                "vai_a_generali": "GO TO GENERAL",
+                "vai_a_network": "NEXT"
+            }
+        }
+    }
+}

@@ -1,0 +1,134 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<md-content class ="md-no-momentum" layout="column">
+		
+		<md-card>
+			<md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+				<div class="md-toolbar-tools">
+					
+					<div flex=20></div>
+					<div flex>
+						<md-card-title flex>
+							<md-card-title-text layout-align="center center">
+								<div class="md-headline titolo-sezione">
+									<md-icon class="icon-card-header-green">notifications</md-icon>
+									{{ 'notizie.titolo' | translate}}
+								</div>
+							</md-card-title-text>
+						</md-card-title>
+					</div>
+					<div flex=20 layout="row" layout-align="end center">
+					 <md-button class="md-fab md-mini md-warn" ng-click="actions.advancedSearch($event)"
+							aria-label="advancedSearch" ng-if="filter.form.$dirty && filter.search.length !== 0"
+							require-uc="{{::actions.auth.advancedSearch}}">
+							<md-icon class="material-icons">location_searching</md-icon>
+							<md-tooltip>{{ 'notizie.ricerca_avanzata' | translate}}</md-tooltip>
+						</md-button> 
+						<md-button class="md-fab md-mini md-primary" ng-click="actions.add()" aria-label="register"
+							ng-if="isBOAdmin">
+							<md-icon class="material-icons">add</md-icon>
+							<md-tooltip>{{ 'notizie.nuova.bottone' | translate}}</md-tooltip>
+						</md-button>
+						<md-button class="md-fab md-mini md-primary md-hue-2" ng-click="actions.refresh()">
+							<md-icon>refresh</md-icon>
+							<md-tooltip>{{ 'notizie.ricarica' | translate}}</md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+
+			<md-toolbar class="md-table-toolbar alternate" ng-show="options.rowSelection && selected.length">
+				<div class="md-toolbar-tools">
+					<md-button class="md-icon-button" ng-click="unselectAll()" aria-label="Unselect items">
+						<md-icon class="material-icons">close</md-icon>
+					</md-button>
+					<div flex>
+						<span>
+							{{selected.length}} {{selected.length > 1 ? ('notizie.selezionate' | translate) : ('notizie.selezionata' | translate)}}
+						</span>
+					</div>
+
+					
+					<div layout="row" layout-align="end center">
+						<md-button class=" animation-target md-fab md-mini md-primary md-hue-2" ng-click="actions.change()"  	ng-if="isBOAdmin && selected.length === 1" >
+							<md-icon>edit</md-icon>
+							<md-tooltip>{{ 'notizie.modifica.bottone' | translate}}</md-tooltip>
+						</md-button>
+						<md-button ng-if="selected.length === 1" class="md-fab md-mini md-primary"
+						 	ng-click="actions.view($event)" aria-label="details">
+							<md-icon class="material-icons">visibility</md-icon>
+						<md-tooltip>{{ 'notizie.dettaglio.bottone' | translate}}</md-tooltip>
+					</md-button>
+						
+						<md-button class="md-fab md-mini md-warn" ng-click="actions.delete($event)" aria-label="delete"
+							ng-if="isBOAdmin">
+							<md-icon class="material-icons">delete</md-icon>
+							<md-tooltip> {{selected.length > 1 ? ('notizie.elimina.notizie' | translate) : ('notizie.elimina.notizia' | translate)}}</md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+
+			<md-toolbar class="md-table-toolbar md-default">
+				<div class="md-toolbar-tools">
+					<form name="filter.form" flex>
+						<md-input-container class="md-icon-float md-block" flex>
+							
+							<label>{{ 'ricerca' | translate}}</label>
+							<md-icon class="material-icons">search</md-icon>
+							<input id="search" class="layout-fill" type="text" ng-model="filter.search"
+								ng-model-options="filter.options" esc-key="resetFilter()">
+						</md-input-container>
+					</form>
+				</div>
+			</md-toolbar>
+
+			<md-table-container>
+				<table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}"
+					ng-model="selected" md-progress="promise">
+					<thead ng-if="!options.decapitate" md-head md-order="query.order" md-on-reorder="logOrder">
+						<tr md-row>
+							<th md-column ><span>{{ 'notizie.elenco.data_pubblicazione' | translate}}</span></th>
+							<th md-column ><span>{{ 'notizie.elenco.priorita' | translate}}</span></th>
+							<th md-column ><span>{{ 'notizie.elenco.titolo' | translate}}</span></th>
+							<th md-column ><span>{{ 'notizie.elenco.contenuto' | translate}}</span></th>
+						</tr>
+					</thead>
+
+
+					<tbody md-body>
+						 <tr md-row md-select="notizia" md-auto-select="options.autoSelect"  
+							ng-repeat="notizia in notizie | filter: filter.search | orderBy: 'dataPubblicazioneInizio' : 'desc' | limitTo: query.limit : (query.page -1) * query.limit">
+							<td md-cell>{{notizia.dataPubblicazioneInizio | date:'dd/MM/yyyy'}}</td>
+							<td md-cell ng-switch="notizia.priorita">
+								<span ng-switch-when="10">{{ 'notizie.priorita.alta' | translate}}</span>
+								<span ng-switch-when="20">{{ 'notizie.priorita.media' | translate}}</span>
+								<span ng-switch-when="30">{{ 'notizie.priorita.bassa' | translate}}</span>
+							</td>
+							<td md-cell  >{{notizia.titolo}}</td>
+							<td md-cell   ><span ng-bind-html="notizia.contenuto | trustHtml"></span></td>
+							<!-- <td md-cell  ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()"><span  ng-show="hoverExpand">{{notizia.contenuto }} </span> <span ng-show="!hoverExpand">{{notizia.contenuto | limitTo: 200 }}{{notizia.contenuto.length > 200 ? '...' : ''}}</span></td> -->
+							
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>
+
+			
+			<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+				md-total="{{notizie.length}}" md-page-select="options.pageSelect"
+				md-boundary-links="options.boundaryLinks">
+			</md-table-pagination>
+		</md-card>
+	</md-content>
+</div> 
+

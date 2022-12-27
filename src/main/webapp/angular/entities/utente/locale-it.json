@@ -1,0 +1,100 @@
+{
+    "utente": {
+        "accesso_cli": "Accesso alla CLI Utente",
+        "accesso_portal": "Accesso al Service Portal",
+        "aggiungi_ruolo": "Aggiungi un ruolo",
+        "chi_stai_cercando": "Chi stai cercando?",
+        "codice_fiscale": "Codice Fiscale",
+        "codice_fiscale_check": "Codice Fiscale non valido",
+        "codice_fiscale_duplicated": "Codice Fiscale già associato ad un utente registrato",
+        "codice_fiscale_required": "Codice Fiscale obbligatorio",
+        "cognome": "Cognome",
+        "cognome_required": "Il cognome è obbligatorio",
+        "data_creazione": "Data creazione",
+        "di_portale": "Utente di portale",
+        "email": "Email",
+        "email_indirizzo": "Indirizzo email",
+        "email_required": "Email non valida",
+        "informazioni": "Informazioni Utente",
+        "matricola": "Matricola CSI",
+        "nome": "Nome",
+        "nome_account": "Nome Account",
+        "nome_required": "Il nome è obbligatorio",
+        "non_trovato": "non trovato.",
+        "registra": "REGISTRA UTENTE",
+        "ruolo": "Ruolo",
+        "ruolo_corrente_non_valido": "Ruolo corrente non valido",
+        "ruolo_placeholder": "Seleziona un ruolo",
+        "seleziona_account": "Seleziona account",
+        "seleziona_divisione": "Seleziona divisione",
+        "seleziona_organizzazione": "Seleziona Organizzazione",
+        "seleziona_ruolo": "Seleziona un ruolo",
+        "tab_accreditamento": "Accreditamento",
+        "tab_utente": "Utente",
+        "username": "Username",
+        "username_cmp": "Username CMP",
+        "username_portale": "Username portale",
+        "vai_a_accreditamento": "VAI A ACCREDITAMENTO",
+        "ticketing":"Accesso a sistema di ticketing",
+        "accredita": {
+            "accreditamenti": "Accreditamenti",
+            "anagrafica": "Anagrafica",
+            "bottone": "Accredita",
+            "bottone_nuovo_utente": "Nuovo utente",
+            "bottone_revoca": "Revoca accreditamento",
+            "error": "Si è verificato un errore durante il tentativo di accreditare l'utente",
+            "livello_non_valido": "Livello non valido",
+            "operazione_non_permessa": "Operazione non permessa!",
+            "operazione_non_permessa_per_ruolo": "Operazione non permessa per ruolo corrente",
+            "revoca_error": "Si è verificato un errore durante il tentativo di revocare l'accreditamento dell'utente",
+            "revoca_success": "L'accreditamento dell'utente è stato revocato correttamente",
+            "ruolo_selezionato_non_valido": "Ruolo selezionato non valido",
+            "seziona_un_utente": "Selezionare solo un utente",
+            "success": "L'utente è stato accreditato correttamente",
+            "titolo": "Accredita Utente"
+        },
+        "dettagli": {
+            "anagrafica": "ANAGRAFICA",
+            "bottone": "Visualizza dettagli utente",
+            "ruoli_permessi": "RUOLI & PERMESSI",
+            "ruoli_permessi_nessuno": "Non Ci sono Ruoli o Permessi assegnati a questo utente",
+            "titolo": "Dettaglio Utente"
+        },
+        "elenco": {
+            "accredita": "Accredita utente",
+            "ricarica": "Ricarica lista utenti",
+            "selezionati": "Utenti selezionati",
+            "selezionato": "Utente selezionato",
+            "titolo": "Elenco Utenti"
+        },
+        "elenco_account": {
+            "ricarica": "Ricarica lista utenti",
+            "titolo": "Elenco Utenti Account"
+        },
+        "elenco_divisione": {
+            "titolo": "Elenco Utenti Divisione"
+        },
+        "elimina": {
+            "error": "Si è verificato un errore durante l'eliminazione dell'utente",
+            "success": "L'utente è stato eliminato correttamente",
+            "testo": "Gli utenti verranno cancellati definitivamente.",
+            "titolo": "Confermi la cancellazione degli utenti selezionati?",
+            "utente": "Elimina utente",
+            "utenti": "Elimina utenti"
+        },
+        "modifica": {
+            "bottone": "Modifica utente"
+        },
+        "nuovo": {
+            "bottone": "Registra nuovo utente",
+            "error": "Si è verificato un errore durante il tentativo di registrare l'utente",
+            "success": "L'utente è stato registrato correttamente",
+            "titolo": "Registrazione nuovo utente"
+        },
+        "stato": {
+            "attivo": "Attivo",
+            "disattivo": "Disattivo",
+            "label": "Stato"
+        }
+    }
+}

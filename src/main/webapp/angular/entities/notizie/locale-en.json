@@ -1,0 +1,59 @@
+{
+    "notizie": {
+        "ricarica": "Refresh list",
+        "ricerca_avanzata": "Advanced Search",
+        "selezionata": "selected news",
+        "selezionate": "selected news",
+        "titolo": "News",
+        "dettaglio": {
+            "bottone": "View details",
+            "titolo": "News Detail"
+        },
+        "elenco": {
+            "contenuto": "Content",
+            "data_pubblicazione": "Publication date",
+            "priorita": "Priority",
+            "titolo": "Title"
+        },
+        "elimina": {
+            "error": "An error occurred while deleting the news",
+            "notizia": "Delete news",
+            "notizie": "Delete news",
+            "success": "The news was successfully deleted",
+            "testo": "the news will be permanently deleted.",
+            "titolo": "Are you sure you want to delete the selected news?"
+        },
+        "modifica": {
+            "bottone": "Edit News",
+            "content": "Content",
+            "error": "An error occurred while updating news",
+            "success": "News saved",
+            "titolo": "Edit News"
+        },
+        "nuova": {
+            "bottone": "Add News",
+            "content_maxlength": "Content is too long",
+            "content_required": "Content required",
+            "error": "An error occurred while saving the news",
+            "priorita": "Priority",
+            "pubblica_a": "Until the",
+            "pubblica_da": "Publish on",
+            "stato": "Status",
+            "success": "The news was created",
+            "titolo": "Add News",
+            "titolo_notizia": "Title",
+            "titolo_notizia_maxlength": "The specified title is too long",
+            "titolo_notizia_required": "You must specify the title of the News"
+        },
+        "priorita": {
+            "alta": "High",
+            "bassa": "Low",
+            "media": "Medium"
+        },
+        "stato": {
+            "bozza": "Draft",
+            "obsoleta": "Obsolete",
+            "pubblicata": "Published"
+        }
+    }
+}

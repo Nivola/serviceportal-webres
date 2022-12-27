@@ -1,0 +1,109 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<md-content class="md-no-momentum" layout="column">
+
+		<md-card>
+			<md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length || filter.show">
+				<div class="md-toolbar-tools">
+					<div flex=20>
+						<md-card-actions layout="row" layout-align="start center" >
+							<md-button class="md-fab read-me " ng-href="{{rtdStaasGrant }}" target="_blank">
+								<md-icon  class="material-icons">local_library</md-icon>
+								<md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+							</md-button>
+						</md-card-actions>
+					</div>
+					<div flex>
+						<md-card-title flex>
+							<md-card-title-text layout-align="center center">
+								<div class="md-headline titolo-sezione">
+									<md-icon class="icon-card-header-green">sd_storage</md-icon>
+									{{ 'shares.autorizzazioni.lista.titolo' | translate}}
+								</div>
+							</md-card-title-text>
+						</md-card-title>
+					</div>
+					<div flex=20 layout="row" layout-align="end center">
+						<md-button class="animation-target md-fab md-mini md-primary md-hue-2" ng-click="add()" 
+									 require-uc="{{::actions.auth.newAuth}}">
+							<md-icon>add</md-icon>
+							<md-tooltip>{{ 'shares.autorizzazioni.aggiungi' | translate}}</md-tooltip>
+						</md-button>
+						<md-button class="animation-target md-fab md-mini md-primary" ng-click="refresh()">
+							<md-icon>autorenew</md-icon>
+							<md-tooltip>{{ 'shares.autorizzazioni.aggiorna' | translate}}</md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+
+			<md-toolbar class="md-table-toolbar alternate" ng-show="selected.length && options.rowSelection">
+				<div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+					<md-button class="md-icon-button" ng-click="unselectAll()" aria-label="Unselect items">
+						<md-icon class="material-icons">close</md-icon>
+					</md-button>
+					<div flex>
+						<span>
+							{{ selected.length }}
+							{{selected.length > 1 ? ('shares.autorizzazioni.selezionate' | translate) : ('shares.autorizzazioni.selezionata' | translate)}}
+						</span>
+					</div>
+					<div layout="row" layout-align="end center">
+						<md-button class="animation-target md-fab md-mini md-warn" ng-click="eliminaGrant($event)" require-uc="{{::actions.auth.delete}}">
+							<md-icon>delete</md-icon>
+							<md-tooltip>{{ 'shares.autorizzazioni.elimina.bottone' | translate}} </md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+
+			
+			<md-table-container >
+				<table  ng-if="!options.elencoVuoto" md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}"
+					ng-model="selected" md-progress="promise">
+					<thead ng-if="!options.decapitate" md-head md-order="query.order">
+						
+						<tr md-row>
+							<th md-column md-order-by="access_level"><span>{{ 'shares.autorizzazioni.lista.access_level' | translate}}</span></th>
+							<th md-column md-order-by="access_type"><span>{{ 'shares.autorizzazioni.lista.access_type' | translate}}</span></th>
+							<th md-column md-order-by="access_to"><span>{{ 'shares.autorizzazioni.lista.access_to' | translate}}</span></th>
+							<th md-column md-order-by="state"><span>{{ 'shares.autorizzazioni.lista.state' | translate}}</span></th>
+						</tr>
+					</thead>
+					<tbody md-body>
+						<tr md-row md-select="grant" md-auto-select="options.autoSelect"
+							ng-repeat="grant in grants | filter: filterArray | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+							<td md-cell>{{grant.access_level}}</td>
+							<td md-cell>{{grant.access_type}}</td>
+							<td md-cell>{{grant.access_to}}</td>
+							<td md-cell><ng-bind-html ng-bind-html="decodificaStato(grant.state)"></ng-bind-html></td>
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>
+			<div  ng-if="options.elencoVuoto" layout-align="center center">
+				<br/><br/>
+				<p style="color:orange;">{{ 'shares.autorizzazioni.lista.vuota' | translate}}</p>
+			</div>
+			<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+				md-total="{{volumes.length}}" md-page-select="options.pageSelect"
+				md-boundary-links="options.boundaryLinks"></md-table-pagination>
+				<md-divider></md-divider>
+				<md-card-actions layout="row" layout-align="space-between center">
+					<md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+						<md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate}}
+					</md-button>
+				</md-card-actions>
+		</md-card>
+
+	</md-content>
+</div>

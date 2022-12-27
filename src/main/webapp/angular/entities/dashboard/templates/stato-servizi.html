@@ -1,0 +1,58 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+
+<div style="height:1em;"></div>
+
+<md-list class="md-dense" flex>
+	<md-list-item class="md-2-line" ng-repeat="item in widget.data.vm| orderBy:'-priority'"
+		ng-click="widget.callbacks.onServiceClick(item)" style="margin-bottom:20px;" ng-if=" !widget.data.failed">
+		<div style="min-width:60px;">
+			<md-icon ng-style="{ 'color': item.status ? 'green' : 'red' }">{{item.status ? 'cloud_done' : 'cloud_off'}}
+			</md-icon>
+		</div>
+		<div class="md-list-item-text" layout="column" style="padding-left:10px;">
+			<h3 ng-if="item.displayName">{{ item.displayName.trunc(40) }}</h3>
+			<!-- 				<h4 ng-if="item.code" style="margin-top:10px;">{{ item.code.trunc(100) }}</h4> -->
+			<p ng-if="item.message" ng-style="{ 'margin-top':'10px', 'color':  item.status ? '' : 'red' }">
+				{{item.message}}
+			</p>
+		</div>
+	</md-list-item>
+	<md-list-item class="md-2-line" ng-click="null" ng-if="widget.data.loading">
+		<div style="min-width:60px;">
+			<md-icon>autorenew</md-icon>
+		</div>
+		<div class="md-list-item-text" layout="column">
+			<h3>{{ 'caricamento.in_corso' | translate }}</h3>
+			<p style="margin-top:10px;">
+				<md-progress-linear md-mode="indeterminate"></md-progress-linear>
+			</p>
+		</div>
+	</md-list-item>
+	<md-list-item class="md-2-line" ng-click="null" ng-if="widget.data.failed">
+		<div style="min-width:60px;">
+			<md-icon style="color:red;">error</md-icon>
+		</div>
+		<div class="md-list-item-text" layout="column">
+			<p style="color:red;">
+				caricamento fallito
+				<br />
+				controlla la connessione ad internet
+			</p>
+		</div>
+	</md-list-item>
+</md-list>
+
+<md-card-actions layout="row" layout-align="end center" require-uc="BOADMIN">
+	<md-button class="md-icon-button" aria-label="visualizza tutto">
+		<md-icon>more_horiz</md-icon>
+	</md-button>
+</md-card-actions>

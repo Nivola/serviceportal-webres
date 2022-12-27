@@ -1,0 +1,74 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-dialog aria-label="Volumi VM">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Volumi VM</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon class="md-icon-button" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-card>
+                    <md-card-content>
+                        <div layout="column">
+                            <md-table-container ng-if="!readOnly">
+                                <table md-table ng-model="selectedVolumes" md-row-select="true" multiple="true">
+                                    <thead md-head>
+                                        <tr md-row>
+                                            <th md-column><span>Volume</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody md-body>
+                                        <tr md-row md-select="volume" md-auto-select="true"
+                                            ng-repeat="volume in volumes">
+                                            <td md-cell>
+                                                {{volume.description}}: {{volume.size}} GB
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </md-table-container>
+                            <md-table-container ng-if="readOnly">
+                                <table md-table>
+                                    <thead md-head>
+                                        <tr md-row>
+                                            <th md-column><span>Volume</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody md-body>
+                                        <tr md-row ng-repeat="volume in selectedVolumes">
+                                            <td md-cell>
+                                                {{volume.description}}: {{volume.size}} GB
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </md-table-container>
+                        </div>
+
+                        <md-card-actions layout="row" layout-align="space-between center" ng-if="!readOnly">
+                            <md-button class="md-raised md-primary md-hue-2" type="button"
+                                ng-click="salvaConfigurazione()" flex>
+                                <md-icon>done</md-icon>Salva
+                            </md-button>
+                        </md-card-actions>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

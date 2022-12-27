@@ -1,0 +1,699 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+    <br />
+    <md-content class="md-no-momentum">
+        <md-card>
+            
+            <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+                <div class="md-toolbar-tools">
+                    
+                    <div flex=20>
+                        <md-button class="md-fab read-me " ng-if="isBOAdminRole"  ng-href="{{rtddettaglioTicketsBOAdmin}}" target="_blank">
+                            <md-icon  class="material-icons">local_library</md-icon>
+                            <md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+                        </md-button>
+                        <md-button class="md-fab read-me " ng-if="!isBOAdminRole"  ng-href="{{rtddettaglioTickets}}" target="_blank">
+                            <md-icon  class="material-icons">local_library</md-icon>
+                            <md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+                        </md-button>
+                    </div>
+                    <div flex>
+                        <md-card-title flex>
+                            <md-card-title-text layout-align="center center">
+                                <span class="md-headline titolo-sezione">
+                                    <md-icon class="icon-card-header-green">miscellaneous_services</md-icon> {{ 'assistenza.form.title_annSerCloud' | translate}}<span ng-if="datiTabInf.ticketId">({{datiTabInf.ticketId}})</span>
+                                </span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </div>
+                    <div flex=20 layout="row" layout-align="end center">
+
+                <!-- 
+                        <md-button class=" animation-target md-fab md-mini md-primary md-hue-2" ng-click="actions.change()" ng-if="!isObjectInviato" >
+                            <md-icon>edit</md-icon>
+                            <md-tooltip>{{ 'modifica' | translate}}</md-tooltip>
+                        </md-button> 
+                -->
+                        
+                    </div>
+                </div>
+            </md-toolbar>
+
+        </md-card>
+
+
+      <md-card>
+        <div ng-cloak>
+            <md-tabs md-dynamic-height >
+                <md-tab  label="{{ 'assistenza.form.richiesta' | translate}}">
+
+                    <br/>
+                    <div ng-hide="!isObjectFixed">
+                        <md-icon>confirmation_number</md-icon>
+                        <b>
+                           dettagli ticket  <div ng-if="isBOAdminRole && isObjectFixed">( {{datiTabInf.struttOrganizativa}} )</div>
+                        </b>
+
+                        <md-card>
+                            <md-table-container id="rcorners1">
+                                <div layout="row">
+                                 <div flex="45" >
+                                     <table md-table md-progress="promise">
+                                    
+                                            <thead  md-head md-order="query.order">
+                                                <tr md-row>
+                                                    <th md-column>
+                                                        <span>
+                                                            {{ 'vm.manage.proprieta' | translate}}
+                                                        </span>
+                                                    </th>
+                                                    <th md-column>
+                                                        <span>
+                                                            {{ 'vm.manage.valore' | translate}}
+                                                        </span>
+                                                    </th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody md-body>
+                                                <!-- ticketId -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>confirmation_number</md-icon>
+                                                                <b>{{ 'assistenza.form.ticketId' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <span>{{ datiTabInf.ticketId}}</span>
+                                                    </td>
+                                                </tr>
+                                              
+
+                                                 <!-- utente richiedente -->
+                                                 <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>person</md-icon>
+                                                                <b>{{ 'assistenza.form.utenteInvio' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{ datiTabInf.utenteInvio}}
+                                                    </td>
+                                                </tr>
+
+
+                                                 <!-- stato -->
+                                                 <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>hourglass_top</md-icon>
+                                                                <b>{{ 'assistenza.form.stato' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{ datiTabInf.stato}}
+                                                    </td>
+                                                </tr>
+                                               
+                                               
+                                               
+                                                <!-- dataInvio -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>date_range</md-icon>
+                                                                <b>{{ 'assistenza.form.dataInvio' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{ datiTabInf.dataInvio | date:'dd/MM/yyyy @ h:mma'}}
+                                                    </td>
+                                                </tr>
+
+
+                                                
+                                                <!-- assegnatario -->
+                                             <tr md-row>
+                                                <td md-cell>
+                                                    <span>
+                                                        <nobr>
+                                                            <md-icon>engineering</md-icon>
+                                                            <b>{{ 'assistenza.form.assegnatario' | translate}}</b>
+                                                        </nobr>
+                                                    </span>
+                                                </td>
+                                                <td md-cell>
+                                                    {{ datiTabInf.assegnatario}}
+                                                    &nbsp
+                                                    <span ng-show="!showIt">
+                                                        <md-button class="md-icon-button md-primary"  ng-if="isBOAdminRole" ng-click="actions.manageAssegnatario()" >
+                                                            <md-icon  class="material-icons">edit</md-icon>
+                                                            <md-tooltip ng-show="datiTabInf.assegnatario!='N-D'">edit assegnatario</md-tooltip>
+                                                        </md-button>
+                                                    </span>
+
+                                                    <span ng-show="showIt">
+                                                        <md-button class="md-icon-button md-primary"  ng-if="isBOAdminRole" ng-click="actions.manageAssegnatario()" >
+                                                            <md-icon  class="material-icons">close</md-icon>
+                                                            <md-tooltip ng-show="datiTabInf.assegnatario!='N-D'">chiudere</md-tooltip>
+                                                        </md-button>
+                                                    </span>
+                                                    
+                                                </td>
+                                                
+                                            </tr>
+
+                                            <tr ng-show="showIt">
+                                               
+                                                    <!-- <input ng-change="getUtenti()" ng-model="filtro.inviata_da"> -->
+                                                <td md-cell>
+                                                        <md-autocomplete flex required
+                                                        md-input-name="autocompleteField"
+                                                        md-input-minlength="3"
+                                                        md-input-maxlength="50"
+                                                        md-no-cache="noCache"
+                                                        md-selected-item="selectedItem"
+                                                        md-search-text="searchText"
+                                                        md-items="item in querySearch(searchText)"
+                                                        md-item-text="item.display"
+                                                        md-escape-options="clear"
+                                                        md-require-match=""
+                                                        md-floating-label="Assegnatario...(cerca per cognome)"
+                                                        input-aria-describedby="favoriteStateDescription">
+                                                        <md-item-template>
+                                                            <span md-highlight-text="searchText">{{item.cognome}} {{item.nome}}</span>
+                                                        </md-item-template>
+                                                        <div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
+                                                            <div ng-message="required">You <b>must</b> enter a name .</div>
+                                                            <div ng-message="md-require-match">Please select an existing user.</div>
+                                                            <div ng-message="minlength">Your entry is not long enough.</div>
+                                                            <div ng-message="maxlength">Your entry is too long.</div>
+                                                        </div>
+                                                    </md-autocomplete>
+
+<!-- 
+                                                    <div layout="row" layout-xs="column">
+                                                        <md-input-container class="md-icon-float md-block md-column-2" flex>
+                                                        <label>{{ 'accounts.wbs.dataI' | translate}}:</label>
+                                                        <md-datepicker ng-model="data.dataInizio" 
+                                                                     ng-change='checkErr(data.dataInizio,data.dataFine)'></md-datepicker>
+                                                        </md-input-container>
+                                                        
+                                                        <md-input-container class="md-icon-float md-block md-column-2" flex>
+                                                        <label>{{ 'accounts.wbs.dataF' | translate}}:</label>
+                                                        <md-datepicker ng-model="data.dataFine" 
+                                                                     ng-change='checkErr(data.dataInizio,data.dataFine)' 
+                                                                     ng-disabled="!data.dataInizio"></md-datepicker>
+                                                        </md-input-container>
+
+                                                       
+                                                    </div> -->
+                                                </td>
+
+                                                <td md-cell>
+                                                    <md-button class="md-raised md-primary md-hue-2" type="button"  ng-disabled="!selectedItem"
+                                                        ng-click="actions.submitAssegnatario()" flex>
+                                                        <md-icon>done</md-icon>Salva
+                                                    </md-button>
+                                                </td>
+
+                                                  
+                                                   
+
+                                                  
+                                                
+
+                                              
+                                            </tr>
+
+                                              
+
+                                               
+                                               
+
+                                                
+                                                    
+                                                      
+                                                   
+                                            </tbody> 
+                                             
+                                    </table>
+
+                                </div>
+                                <div flex="10"></div>
+                                <div flex="45" >
+                                    <table md-table md-progress="promise">
+                                   
+                                           <thead  md-head md-order="query.order">
+                                               <tr md-row>
+                                                   <th md-column>
+                                                       <span>
+                                                           {{ 'vm.manage.proprieta' | translate}}
+                                                       </span>
+                                                   </th>
+                                                   <th md-column>
+                                                       <span>
+                                                           {{ 'vm.manage.valore' | translate}}
+                                                       </span>
+                                                   </th>
+                                               </tr>
+                                           </thead>
+                                           <tbody md-body>
+
+                                        <!-- updateDate -->
+                                        <tr md-row>
+                                            <td md-cell>
+                                                <span>
+                                                    <nobr>
+                                                        <md-icon>date_range</md-icon>
+                                                        <b>{{ 'assistenza.form.updateDate' | translate}}</b>
+                                                    </nobr>
+                                                </span>
+                                            </td>
+                                            <td md-cell>
+                                                {{ datiTabInf.dataUltimaModifica | date:'dd/MM/yyyy @ h:mma'}}
+                                            </td>
+                                        </tr>
+
+                                            
+
+
+                                              <!-- risoluzione -->
+                                              <tr md-row>
+                                                <td md-cell>
+                                                    <span>
+                                                        <nobr>
+                                                            <md-icon>confirmation_number</md-icon>
+                                                            <b>{{ 'assistenza.form.risoluzione' | translate}}</b>
+                                                        </nobr>
+                                                    </span>
+                                                </td>
+                                                <td md-cell>
+                                                    {{ datiTabInf.risoluzione}}
+                                                </td>
+                                            </tr>
+
+
+
+                                             <!-- motivo Stato-->
+                                             <tr md-row>
+                                                <td md-cell>
+                                                    <span>
+                                                        <nobr>
+                                                            <md-icon>history_edu</md-icon>
+                                                            <b>{{ 'assistenza.form.MotivoStato' | translate}}</b>
+                                                        </nobr>
+                                                    </span>
+                                                </td>
+                                                <td md-cell>
+                                                    {{ datiTabInf.motivo}}
+                                                </td>
+                                            </tr>
+                                           
+
+
+                                             <!-- closeDate -->
+                                             <tr md-row>
+                                                <td md-cell>
+                                                    <span>
+                                                        <nobr>
+                                                            <md-icon>date_range</md-icon>
+                                                            <b>{{ 'assistenza.form.closeDate' | translate}}</b>
+                                                        </nobr>
+                                                    </span>
+                                                </td>
+                                                <td md-cell>
+                                                    -
+                                                </td>
+                                            </tr>
+                                           
+
+                                              <!-- Commento -->
+                                              <tr md-row>
+                                                <td md-cell>
+                                                    <span>
+                                                        <nobr>
+                                                            <md-icon>insert_comment</md-icon>
+                                                            <b>{{ 'assistenza.form.Commento' | translate}}</b>
+                                                        </nobr>
+                                                    </span>
+                                                </td>
+                                                <td md-cell>
+                                                    -
+                                                </td>
+                                            </tr>
+
+                                            
+
+                                            
+                                               
+                                             
+                                              
+                                              
+                                              
+                                              
+                                                   
+                                                     
+                                                  
+                                           </tbody> 
+                                            
+                                   </table>
+
+                               </div>
+                                       
+                            </div>
+                               
+                            </md-table-container>
+                        </md-card>
+                    </div>
+
+                    
+                    <form name="servCloudForm">
+                        <md-card ng-if="assistenza.riepilogoScelte">
+                            <div style="color:orange; font-size: 13px;" ng-bind-html="assistenza.riepilogoScelte"></div>
+                           
+                        </md-card>
+
+                        <md-card-content>
+
+                            <md-input-container class="md-block" flex>
+                                <label>{{ 'assistenza.oggetto' | translate}}</label>
+                                <input  type="text" ng-model="assistenza.oggetto" id="oggetto" class="form-control" name="oggetto" ng-disabled="isObjectFixed" required >
+                                <div ng-messages="servCloudForm.oggetto.$error" role="alert" multiple>
+                                    <div ng-message="required" class="my-message">
+                                        {{ 'assistenza.form.error_required_oggetto' | translate}}
+                                    </div>
+                                </div>
+                            </md-input-container>
+                            <div>
+                                <span style="color: goldenrod;" ng-if=" datiTabInf.stato=='CHIUSO'">IN STATO CHIUSO</span>
+                            </div>
+                            <span layout="row" ng-if="isBOAdminRole && isObjectFixed" flex> 
+                                
+                                <md-input-container  >
+                                    <label>{{'assistenza.elenco.urgenza' | translate}}</label>
+                                    <md-select ng-model="assistenza.urgenza.codice"  ng-change="actions.onUrgenzaChange()">; 
+                                        
+                                        <md-option ng-repeat="urgenza in topics_urgenza" value="{{urgenza.codice}}" >
+                                        {{urgenza.valore}}
+                                        </md-option>
+                                    </md-select>
+                                   
+                                </md-input-container>
+                               
+
+                                <md-button ng-disabled="!canUpdateSev || datiTabInf.stato=='CHIUSO'"  ng-click="actions.updateUrgenza()" class="md-fab md-mini md-primary" >
+                                    <md-icon class="material-icons">double_arrow</md-icon>
+									<md-tooltip>aggiorna urgenza</md-tooltip>
+                                    
+                                </md-button>
+                                
+                               
+                            </span>
+                            
+                            
+                            
+
+                            <md-input-container class="md-block" ng-if="isBOAdminRole && isObjectFixed">
+                                <label>Impatto</label>
+                                <input  type="text" ng-model="assistenza.impatto.valore" id="impatto" class="form-control" name="impatto" ng-disabled="isObjectFixed"  >
+                                
+                            </md-input-container>
+        
+        
+                            <md-input-container class="md-block">
+                                <!-- <label>{{ 'assistenza.messaggio' | translate}}</label> -->
+                                <label>{{ 'assistenza.form.descrizione' | translate}}</label>
+                                <textarea id="descrizione" ng-model="assistenza.descrizione" md-maxlength="1500" rows="4" md-select-on-focus ng-disabled="isObjectFixed" ></textarea>
+                            </md-input-container>
+        
+                        
+        
+                            <div layout="row">
+                                <!-- <md-input-container class="md-block" ng-show="!isObjectFixed">
+                                    <input type="file" fileread="uploadme" />
+                                </md-input-container>
+                            -->
+
+                                <!-- <md-button type="button" ng-click="actions.rimuovi()" ng-if="uploadme" 
+                                     class="md-icon-button md-accent">
+                                    <md-icon style="color: rgb(231, 19, 19);">delete</md-icon>
+                                    
+                                </md-button> -->
+                           
+                            </div>
+                            <md-card>
+                                <div layout="column" flex ng-if=" datiTabInf.allegati.length!=0">
+                                    <div  style="margin-bottom: 40px">
+                                    
+                                        <table class="table">
+                                            <thead>
+                                                <tr >
+                                                    <th width="30%"><strong>{{ 'assistenza.form.allegato' | translate}}</strong></th>
+                                                    <th ><strong>logId</strong></th>
+                                                    <th ><strong>{{ 'assistenza.form.dataInserimento' | translate}}</strong></th>
+                                                    <th><strong>{{ 'accounts.visualizza.allegati.azioni' | translate }}</strong></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="item in datiTabInf.allegati" >
+                                                    <td>{{ item.nomeFile }}</td>
+                                                    <td>{{ item.logId }}</td>
+                                                    <td >{{ item.dataInserimento | date:'dd/MM/yyyy @ h:mma'}}</td>
+                                                    <td nowrap>
+                                                        <!-- <button type="button" class="btn btn-danger-allegati btn-xs" ng-click="item.remove()">
+                                                            <md-icon style="color: cornsilk;">delete</md-icon></span>{{ 'accounts.visualizza.allegati.remove' | translate }}
+                                                        </button> -->
+
+                                                      
+                                                               
+                                                            <md-button  ng-click="downloadAllegato($event, item)"
+                                                                        title="scarica allegato"
+                                                                        target="_self"
+                                                                        
+                                                                        class="md-icon-button md-primary" >
+                                                            <md-icon >file_download</md-icon>
+                                                            </md-button>
+
+                                                            <md-button  ng-click="deleteAllegato($event, item)"
+                                                                        title="elimina allegato"
+                                                                        target="_self"
+                                                                        disabled
+                                                                        class="md-icon-button md-warn">
+                                                            <md-icon >delete</md-icon>
+                                                            </md-button>
+                                  
+                                                            
+                                                        
+                                                    
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                    
+                                    </div>
+                                </div>
+                            </md-card>
+                            <!--Allegati-->
+                           
+                            <div ng-if="!isAgenteBOAdmin">
+
+                                <md-button type="button" ng-click="actions.invia('true')" class="animation-target md-raised  md-primary pull-right" 
+                                        ng-disabled="!assistenza.oggetto || datiTabInf.inviato">
+                                        <md-icon>send</md-icon>{{ 'invia' | translate}}
+                                </md-button>
+                                <md-button type="button" ng-click="actions.invia('false')" class="animation-target md-raised  md-primary pull-right"
+                                         ng-disabled="!assistenza.oggetto || datiTabInf.inviato">
+                                        <md-icon>edit_note</md-icon>{{ 'assistenza.bozza' | translate}}
+                                </md-button>
+
+                            </div>
+                            
+                            
+        
+                            <!-- <md-button class="animation-target md-raised  md-primary md-hue-2"  ng-click="historyBack()">
+                                <md-icon>keyboard_backspace</md-icon> {{ 'annulla' | translate}}
+                            </md-button> -->
+        
+                        </md-card-content>
+                    </form>
+                </md-tab>
+
+                <md-tab ng-disabled="!isObjectFixed" label="note aggiuntive">
+       
+                <form name="wiForm">
+
+                    <md-card-content>
+                        <md-content class="md-padding">
+                            <md-card-title-text layout="row" layout-align="center center" ng-if="readOnly">
+                                <span class="md-headline">{{groupName}}</span>
+                            </md-card-title-text>
+        
+    <!--  elemco work info inserite -->
+                            <br />
+                            <div >
+                                <md-icon>format_list_numbered</md-icon>
+                                <b>
+                                    Note Aggiuntive
+                                </b>
+        
+                                <md-card>
+                                    <md-table-container id="rcorners2">
+                                        <table md-table md-progress="promise">
+                                            <thead md-head>
+                                                <tr md-row>
+                                                    <th md-column><span><b>{{ 'assistenza.form.logId' | translate}}</b> </span></th>
+                                                    <th md-column><span> <b>{{ 'assistenza.form.utenteInserimento' | translate}}</b> </span></th>
+                                                    <th md-column><span><b>{{ 'assistenza.form.dataInserimento' | translate}}</b></span></th>
+                                                    <th md-column><span><b>{{ 'assistenza.form.oggetto' | translate}}</b></span></th>
+                                                    <th md-column><span><b>{{ 'assistenza.form.testo' | translate}}</b></span></th>
+                                                    <th md-column><span><b>Allegato</b></span></th>
+                                                
+                                                </tr>
+                                            </thead>
+                                            <tbody md-body>
+                                                <tr md-row ng-repeat="item in datiTabInf.wis" >
+                                                    <td md-cell>{{ item.logId}}</td>
+                                                    <td md-cell>{{ item.richiedente}}</td>
+                                                    <td md-cell>{{ item.dataInserimento | date:'dd/MM/yyyy @ h:mma'}}</td>
+                                                    <td md-cell>{{ item.riepilogo}}</td>
+                                                    <td md-cell>{{ item.note}}</td>
+                                                    <td  md-cell>
+                                                        <md-button  
+                                                        ng-if="item.nomeFile"
+                                                        ng-click="downloadAllegato($event, item)"
+                                                            title="scarica"
+                                                            target="_self"
+                                                            
+                                                            class="md-icon-button md-primary" >
+                                                            <md-icon >file_download</md-icon>
+                                                        </md-button>    
+                                                    </td>
+                                                    
+                                                    
+                                                
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </md-table-container>
+                                </md-card>
+                            </div>
+        
+                            <br />
+
+                        
+                                <div ng-show="(canWIbeAdded && !isAgenteBOAdmin) || isAgenteBOAdmin">
+                                    <md-icon>post_add</md-icon>
+                                    <b ng-if="isAgenteBOAdmin">
+                                        {{ 'assistenza.forms.workInfo.title' | translate }}
+                                    </b>
+
+                                    <b ng-if="!isAgenteBOAdmin">
+                                        {{ 'assistenza.forms.workInfo.title_info' | translate }}
+                                    </b>
+                                   
+                                    <md-card>
+                                    
+
+                                        <md-card-content>
+                    
+
+                                                <md-input-container class="md-block">
+                                                    <label> {{ 'assistenza.form.oggetto' | translate }}</label>
+                                                    <textarea ng-model="workinfo.riepilogo" md-maxlength="100" rows="1"  id="riepilogo" class="form-control" name="riepilogo" md-select-on-focus required  ng-disabled="(canWIbeAdded && !isAgenteBOAdmin)"></textarea>
+                                                    <div ng-messages="wiForm.riepilogo.$error" role="alert" multiple>
+                                                        <div ng-message="required" class="my-message">
+                                                            {{ 'assistenza.riepilogo_required' | translate}}
+                                                        </div>
+                                                    </div>
+                                                
+                                                </md-input-container>
+                    
+                                                <md-input-container class="md-block" >
+                                                    <label  ng-if="isAgenteBOAdmin">{{ 'assistenza.forms.workInfo.note' | translate }}</label>
+                                                    <label  ng-if="!isAgenteBOAdmin">{{ 'assistenza.forms.workInfo.testo' | translate }}</label>
+                                                    <textarea  type="text" ng-model="workinfo.note" md-maxlength="500" rows="3"  id="note" class="form-control" name="note" required ></textarea>
+                                                    <div ng-messages="workinfo.note.$error" role="alert" multiple>
+                                                        <div ng-message="required" class="my-message">
+                                                            {{ 'assistenza.note_required' | translate}}
+                                                        </div>
+                                                    </div>
+                                                </md-input-container>
+                    
+                    
+                                                <div layout="row">
+                                                    <md-input-container class="md-block" >
+                                                        <input type="file" fileread="allegatoWI" />
+                                                    </md-input-container>
+                                                
+                                                </div>
+                                            
+
+                                                <md-card-actions layout="row" layout-align="end center" flex>
+                                                    <md-button type="button" ng-click="actions.inviaworkinfo()" class="animation-target md-raised  md-primary pull-right"
+                                                    ng-disabled="!workinfo.riepilogo" >
+                                                        <md-icon>send</md-icon>{{ 'invia' | translate}}
+                                                    </md-button>
+
+                                                </md-card-actions>
+
+                                        </md-card-content>
+                                    </md-card>
+                                
+                                </div>
+                        
+                        
+                            
+                            
+        
+                        </md-content>
+        
+                        <!-- <md-card-actions layout="row" layout-align="space-between center">
+                            <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+                                <md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate}} EK1
+                            </md-button>
+                        </md-card-actions> -->
+        
+        
+        
+                    </md-card-content>
+                </form>
+
+                </md-tab>
+
+
+            </md-tabs>
+            <md-card-actions layout="row" layout-align="space-between center">
+                <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+                    <md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate}}
+                </md-button>
+            </md-card-actions>
+        </div>
+
+      </md-card>
+                            
+
+      
+
+       
+    </md-content>
+</div>

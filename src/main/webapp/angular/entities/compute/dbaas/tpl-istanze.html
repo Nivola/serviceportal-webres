@@ -1,0 +1,95 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="row" layout-fill layout-align="start start">
+
+    <md-card flex="grow">
+        <md-card-title>
+            <md-card-title-text layout-align="center center">
+	      	    <span class="md-headline"> Istanze DBaaS </span>
+                <span class="md-subhead"> Visualizza le istanze di Virtual Machine configurate </span>
+            </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+            <loading-placeholder status="status" ></loading-placeholder>
+
+            <div ng-show="status.loaded">
+
+                <div flex="grow" layout="row" layout-padding>
+                    <div flex="grow">
+                        <md-list class="" flex>
+                            <div layout="row" layout-align="space-between center" class="well">
+                                <div flex="50">
+                                    {{vm.list.length}} istanze DBaaS configurate
+                                </div>
+                                <div flex="50" layout="row" layout-align="end center">
+                                    <md-input-container class="no-v-padding no-v-margin" style="margin-top:1em;">
+                                        <label for="vmListFilterInput">Cerca ...</label>
+                                        <input type="text" id="vmListFilterInput"
+                                               ng-model="status.vmListFilterInput" md-autofocus>
+                                    </md-input-container>
+                                    <!--
+                                    <md-button ng-show="status.vmListFilterInput" ng-click="actions.clearVmListFilterInput()">
+                                        <md-icon>clear</md-icon>
+                                    </md-button>
+                                    -->
+                                </div>
+                            </div>
+
+                            <md-list-item class="md-3-line"
+                              ng-repeat="v in vm.list | filter:helpers.vmListFilter | orderBy:'instanceId'"
+                              ng-click="actions.clickOnDBaaSInList(v)"
+                              ng-class="{'menu-item-selected':v == vm.istanzaDetail}"
+                            >
+
+                                <span ng-if="v.state.code == 16" title="{{v.state.name}}">
+                                    <md-icon>layers</md-icon>
+                                </span>
+
+                                <span ng-if="v.state.code != 16" title="{{v.state.name}}">
+                                    <md-icon>error_outline</md-icon>
+                                </span>
+
+                                <div class="md-list-item-text" ng-class="{'md-offset': 1 }">
+                                    <h3>
+                                        {{ v.dbName }}
+                                    </h3>
+                                    <h4>
+                                        DBaaS instance -
+                                        <span> ( {{v.dbInstanceIdentifier}} - {{v.engine}} engine ) </span>
+                                    </h4>
+                                </div>
+
+                                <md-button class="md-secondary md-icon-button" title="fai cose" aria-label="fai cose"
+                                           ng-if="v.authorizations.canUse"
+                                           ng-disabled="v.pendingOperations"
+                                           ng-click="actions.gotoDBaaSDetail(v)"
+                                >
+                                    <md-icon>build</md-icon>
+                                </md-button>
+
+                            </md-list-item>
+
+                        </md-list>
+                    </div>
+                </div>
+            </div>
+        </md-card-content>
+    </md-card>
+
+    <md-button class="md-fab md-primary button-fab-primary-low"
+               aria-label="Crea nuova istanza"
+               ng-click="actions.gotoNewDBaaS()"
+    >
+        <md-icon>add</md-icon>
+    </md-button>
+
+</div>

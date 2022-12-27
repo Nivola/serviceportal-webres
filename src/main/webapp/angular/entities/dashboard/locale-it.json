@@ -1,0 +1,69 @@
+{
+    "homepage": {
+        "costi_mese_in_corso": "Costi mese in corso",
+        "costo_della_giornata": "Costo della giornata",
+        "dettaglio": "Dettaglio",
+        "nessun_servizio_attivo": "Nessun Servizio Attivo",
+        "servizio_attivo": "Attivo",
+        "titolo": "Home Page",
+        "appengine": {
+            "sigla": "AppEngine",
+            "titolo": "AppEngine"
+        },
+        "avvisi_notifiche": {
+            "segna_lette": "Segna come lette",
+            "titolo": "Avvisi e Notifiche"
+        },
+        "compute": {
+            "numero_cpu": "Numero CPU",
+            "risorse": "Compute Service",
+            "titolo": "Compute",
+            "totale_ram": "Totale RAM",
+            "vm": "istanze VM"
+        },
+        "costi": {
+            "titolo": "Costi"
+        },
+        "dbaas": {
+            "sigla": "DBAAS",
+            "spazio_disco": "Spazio disco",
+            "titolo": "DataBase",
+            "totale_ram": "Totale RAM"
+        },
+        "notizie": {
+            "segna_lette": "Segna come lette",
+            "titolo": "Notizie"
+        },
+        "portafoglio": {
+            "titolo": "Costi"
+        },
+        "risorse_divisione": {
+            "titolo": "Utilizzo piattaforma Divisione"
+        },
+        "risorse_organizzazione": {
+            "titolo": "Utilizzo piattaforma Organizzazione"
+        },
+        "servizi_attivi": {
+            "titolo": "Servizi Attivi Account"
+        },
+        "staas": {
+            "gb_spazio_disco": "Spazio disco",
+            "sigla": "STAAS",
+            "spazio_disco": "Spazio disco",
+            "titolo": "Storage"
+        },
+        "stato_servizi": {
+            "aggiorna": "Aggiorna ora",
+            "titolo": "Stato dei servizi"
+        },
+        "stato_utilizzatori": {
+            "titolo": "Utilizzo piattaforma"
+        },
+        "widget": {
+            "aggiungi_colonna": "Aggiungi una colonna",
+            "nascondi": "Nascondi questa scheda",
+            "rimuovi_colonna": "Rimuovi questa colonna",
+            "ripristina": "Ripristina questa scheda"
+        }
+    }
+}

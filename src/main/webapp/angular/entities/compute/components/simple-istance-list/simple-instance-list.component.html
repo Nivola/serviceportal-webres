@@ -1,0 +1,75 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+
+    <table class="mx-auto" sm-table>
+        <caption ><b>{{ 'job.restore_point.istanceSet' | translate }}</b></caption>
+        <thead sm-head>
+            <tr sm-row>
+                <th sm-column>
+                    <span>
+                        {{ 'job.restore_point.name_vm' | translate}}
+                    </span>
+                </th>
+                <th sm-column>
+                    <span>
+                        {{ 'job.restore_point.region_vm' | translate}}
+                    </span>
+                </th>
+                <th sm-column>
+                    <span>
+                        {{ 'job.restore_point.cpu_ram_vm' | translate}}
+                    </span>
+                </th>
+                <th sm-column>
+                    <span>
+                        {{ 'job.restore_point.template_vm' | translate}}
+                    </span>
+                </th>
+                <th sm-column>
+                    <span>
+                        {{ 'job.restore_point.ip_vm' | translate}}
+                    </span>
+                </th>
+                <th sm-column>
+                    <span>
+                        {{ 'job.restore_point.status_vm' | translate}}
+                    </span>
+                </th>
+                <th sm-column >
+                </th>
+            </tr>
+        </thead>
+        <tbody sm-body>
+
+            <tr sm-row ng-repeat="vm in $ctrl.vmList | orderBy: launchTime">
+                <td sm-cell>
+                    {{vm.name}}
+                </td>
+                <td sm-cell>
+                    {{vm.region}}
+                </td>
+                <td sm-cell>
+                    {{vm.cpu}} <b>CPU</b> | {{vm.ram}} <b>GB</b> 
+                </td>
+                <td sm-cell>
+                    {{vm.os}}
+                </td>
+                <td sm-cell>
+                    {{vm.ip?vm.ip:vm.privateIpAddress}}
+                </td>
+                <td sm-cell>
+                    <span class="badge" ng-class="vm.status==='running'?'badge-success':'badge-warning'">
+                            {{(vm.status==='running'?'active':'inactive')|translate}}
+                        </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>

@@ -1,0 +1,234 @@
+{
+    "dbaas": {
+        "aggiorna": "Refresh",
+        "crea": "Create Dbaas instance",
+        "elenco": "Dbaas instances",
+        "gestione": "Dbaas control panel",
+        "selezionati": "Selected dbaas",
+        "selezionato": "Selected dbaas",
+        "connetti": {
+            "bottone": "Connect",
+            "msg01": "Use the following link to access phpMyAdmin control panel",
+            "msg02": "Use the following link to access phpPgAdmin control panel",
+            "msg03": "Log in by entering Username and Password of the database you want to connect to.",
+            "msg04": "If you need help connecting to your instance, please see our help documentation.",
+            "sottotitolo": "To log into your instance",
+            "titolo": "Connect"
+        },
+        "elimina": {
+            "bottone": "Delete",
+            "conferma": "Are you sure you want to delete the instance",
+            "error": "An error occurred while deleting the instance",
+            "errorNameNotMatching": "the name entered is incorrect",
+            "info": "The instance will be permanently deleted.",
+            "info01": "Removing the instance implies the physical deletion of the DB",
+            "info02": "we reccomend you to make a Backup before proceeding with the deletion",
+            "msg_inserisci_nome": "Enter Database Name to confirm the operation",
+            "placeholder": "Database name",
+            "prosegui": "Do you want to proceed with the delete operation?",
+            "selezione": "Select only one DBAAS instance",
+            "success": "Request to delete instance {{name}} was sent successfully.",
+            "titolo": "Delete instance"
+        },
+        "lista": {
+            "active_flag": "Status",
+            "cpu_ram": "Instance class",
+            "engine": "DB Engine",
+            "errore": "An error occurred while loading the instance information",
+            "nome": "Name",
+            "region_az": "Region - Zone",
+            "storage": "Storage",
+            "tags": "Tags",
+            "vuoto": "No instances present"
+        },
+        "manage": {
+            "titolo": "DB Control Panel",
+            "dettagli": {
+                "data_creazione": "Creation date",
+                "disco": "Disk",
+                "dns_name": "FQDN",
+                "engine": "Engine",
+                "inserisci_tag": "Insert tag ...",
+                "ip_address": "IP address",
+                "nome": "Name",
+                "port": "Port",
+                "proprieta": "Property",
+                "region": "Region - Zone",
+                "security_group": "Security Group",
+                "stato": "Status",
+                "subnet": "Subnet",
+                "tags": "Tags",
+                "tipo": "Type",
+                "titolo": "Details",
+                "valore": "Value",
+                "version": "Version"
+            },
+            "utenti": {
+                "crea_utente": "Create User",
+                "dismetti_utente": "Cancel User",
+                "note_placeholder": "enter notes",
+                "titolo": "USERS",
+                "creazione": {
+                    "error": "An error occurred while trying to create user",
+                    "success": "The user creation operation was successfully started"
+                },
+                "elimina": {
+                    "error": "An error occurred while deleting the user",
+                    "success": "the user's cancellation request has been sent successfully",
+                    "testo": "the user will be permanently deleted.",
+                    "titolo": "Are you sure to delete the user?"
+                },
+                "nome": {
+                    "label": "Name",
+                    "pattern": "Name must begin with a lowercase character <br> Must contain only (lowercase) letters and numbers or the \"_\" character <br> Must be between 5 and 64 characters in length",
+                    "placeholder": "ex: instance_name"
+                },
+                "tipologia": {
+                    "amministrativa": "Administrative",
+                    "lettura_scrittura": "Read/Write",
+                    "sola_lettura": "Read Only",
+                    "titolo": "Choose a Type"
+                }
+            }
+        },
+        "nuova": {
+            "error": "An error occurred while trying to create the instance",
+            "error_disksize": "The specified disk size is not applicable!",
+            "success": "The instance creation operation started successfully",
+            "titolo": "Create DBaaS instance",
+            "assistenza": {
+                "error": "An error occurred while trying to notify action to support",
+                "success": "Support was successfully notified of the instance creation"
+            },
+            "database": {
+                "scegli": "Choose database engine.",
+                "titolo": "1. Choose the database",
+                "vai_a_tipo_istanza": "NEXT",
+                "codice_progressivo": {
+                    "inserisci": "Enter a three-digit using 001,002 format. It will allow you to uniquely identify your DBAAS.",
+                    "maxlength": "Code is too long",
+                    "pattern": "Code is invalid",
+                    "required": "Enter a 3-digit code",
+                    "titolo": "progressive"
+                },
+                "istanza": {
+                    "label": "Database name",
+                    "maxlength": "Specified name is too long",
+                    "placeholder": "Specify the name of the database",
+                    "required": "You must specify database name",
+                    "titolo": "Based on your choices your instance will be named "
+                },
+                "opzione": {
+                    "col": "Testing",
+                    "dev": "Development",
+                    "prd": "Production",
+                    "seleziona": "Select an option to identify your environments",
+                    "tst": "Test"
+                }
+            },
+            "dettagli": {
+                "titolo": "4. DBaaS details",
+                "vai_a_info": "NEXT",
+                "porta": {
+                    "default": "Default port",
+                    "placeholder": "specify port",
+                    "required": "You must specify port",
+                    "titolo": "Default port"
+                },
+                "schema": {
+                    "nome": "Name of the default schema",
+                    "placeholder": "specify schema name",
+                    "principale": "Main schema",
+                    "required": "You must specify a schema name"
+                }
+            },
+            "info": {
+                "aggiungi_zone": "ADD AN AVAILABILITY ZONE",
+                "region": "Region",
+                "rimuovi_disco": "Remove additional disk",
+                "scegli_region": "Selecr Region and Availability Zone.",
+                "scegli_security_group": "Select a security group for your instance.",
+                "scegli_subnet": "Select subnet.",
+                "security_group": "Security group",
+                "subnet": "Subnet",
+                "titolo": "5. Network",
+                "vai_a_riepilogo": "NEXT",
+                "zone": "Availability Zone"
+            },
+            "riepilogo": {
+                "costi_stimati": "Estimated costs",
+                "costo_al_mese": "\u20ac/month",
+                "costo_incluso": "included",
+                "creazione_conferma": "CONFIRM",
+                "creazione_msg01": "Creating the instance may take some time.",
+                "creazione_msg02": "You will be notified when the operation is complete.",
+                "disco": "Disk",
+                "disco_aggiuntivo": "Additional disk",
+                "fqdn": "FQDN",
+                "modifica": "Edit",
+                "modifica_disco": "Edit Disc",
+                "modifica_disco_aggiuntivo": "Edit additional disk",
+                "modifica_nome": "Change VM Name",
+                "modifica_region": "Change Region - Zone.",
+                "modifica_security_group": "Change Security group",
+                "modifica_subnet": "Change Subnet",
+                "modifica_template": "Edit Template",
+                "modifica_tipo_istanza": "Change Instance Type",
+                "porta": "Port",
+                "proprieta": " ",
+                "rdbms": "RDBMS",
+                "region": "Region-Zone",
+                "security_group": "Security group",
+                "sottotitolo": "Make sure you have selected the correct options, then start the instance creation.",
+                "stime_mensile_di": "Monthly estimate ",
+                "subnet": "Subnet",
+                "tipo_istanza": "Instance Type",
+                "titolo": "6. Confirm",
+                "valore": "Value"
+            },
+            "spazio": {
+                "aggiungi_disco": "ADD ADDITIONAL DISK",
+                "dimensione": "Size",
+                "dimensione_disco": "Disc size",
+                "rimuovi_disco": "Remove additional disk",
+                "scegli": "Choose your storage options.",
+                "tipologia": "Type",
+                "tipologia_disco": "Disc type",
+                "titolo": "3. DISK SIZE",
+                "vai_a_dettagli": "NEXT"
+            },
+            "tipo_istanza": {
+                "disco": "Disk",
+                "ram": "RAM",
+                "selezionato": "Currently selected",
+                "sottotitolo": "Size the resources for your database instance.",
+                "tipo": "Type",
+                "titolo": "2. Instance Type",
+                
+                "vai_a_template" : "GO TO TEMPLATE",
+                "vcpus": "VCPUs",
+                "vai_a_spazio": "NEXT"
+               
+            }
+        },
+        "stato": {
+            "available": "Instance is active",
+            "error": "Instance is in error",
+            "inactive": "Instance is not active",
+            "pending": "Instance is in a temporary state",
+            "stopped": "Instance is stopped",
+            "undefined": "Information on the instance status is not available.",
+            "value": "Instance is in the state"
+        },
+        "statoText": {
+            "pending": "pending",
+            "running": "running",
+            "stopped": "stopped",
+            "undefined": "undefined",
+            "error" : "error",
+            "inuse" :   "in use",
+            "available" : "active"
+        
+        }
+    }
+}

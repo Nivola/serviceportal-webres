@@ -1,0 +1,156 @@
+{
+    "shares": {
+        "aggiorna": "Aggiorna Elenco",
+        "crea": "Crea un Nuovo Share",
+        "elenco": "Elenco Shares",
+        "gestione": "Pannello gestione Share",
+        "selezionati": "Shares selezionati",
+        "selezionato": "Share selezionato",
+        "autorizzazioni": {
+            "aggiorna": "Aggiorna Elenco",
+            "aggiungi": "Aggiungi autorizzazione",
+            "bottone": "Autorizzazioni",
+            "grant" :"Questa operazione non è permessa  sulla Share selezionata ",
+            "selezionata": "Share selezionato",
+            "selezionate": "Shares selezionati",
+            "elimina": {
+                "bottone": "Elimina Elemento",
+                "error": "Si è verificato un errore durante il tentativo di revoca dell'autorizzazione",
+                "success": "Autorizzazione revocata correttamente"
+            },
+            "lista": {
+                "access_level": "Livello Accesso",
+                "access_to": "Autorizzato",
+                "access_type": "Tipo di Accesso",
+                "state": "Stato",
+                "titolo": "Elenco Autorizzazioni Share",
+                "vuota": "Non ci sono autorizzazione per questa share"
+            },
+            "livelli": {
+                "lettura_scrittura": "Lettura e scrittura",
+                "sola_lettura": "Sola lettura"
+            },
+            "nuova": {
+                "access_to": "Accesso verso",
+                "access_to_placeholder": "e.g 10.0.0.0/8",
+                "access_to_required": "Devi specificare chi può accedere allo share",
+                "crea": "Crea autorizzazione",
+                "error": "Si è verificato un errore durante il tentativo di creazione del grant",
+                "indirizzo_ip": "Indirizzo IP",
+                "livello": "Livello di accesso",
+                "livello_required": "Devi specificare livello di accesso",
+                "success": "L'operazione di creazione del Grant è stata avviata correttamente",
+                "tipo_accesso": "Tipo di accesso",
+                "tipo_accesso_required": "Devi specificare tipo di accesso",
+                "titolo": "Crea nuova autorizzazione sulla Share"
+            },
+            "stati": {
+                "cert": "Cert",
+                "indirizzo_ip": "Indirizzo IP",
+                "utente": "Utente"
+            }
+        },
+        "elimina": {
+            "bottone": "Elimina Share",
+            "conferma": "Confermi la cancellazione dell'istanza",
+            "error": "Si è verificato un errore durante l'eliminazione dell'istanza",
+            "errorNameNotMatching": "il nome inserito non è corretto",
+            "info": "L'istanza verrà cancellata definitivamente.",
+            "info01": "La Rimozione dell'istanza implica la cancellazione fisica della Share",
+            "info02": "Eseguire un Backup prima di procedere con la cancellazione",
+            "msg_inserisci_nome": "Inserire Nome della Share per confermare l'operazione",
+            "placeholder": "Nome della Share",
+            "prosegui": "Si vuole procedere con la cancellazione ?",
+            "selezione": "Selezionare solo una istanza STASS",
+            "success": "La richiesta di rimozione dell'istanza {{nome}} è stata inviata correttamente.",
+            "titolo": "Cancellazione Istanza"
+        },
+        "lista": {
+            "data_creazione": "Data Creazione",
+            "dimensione": "Dimensione",
+            "ip_address": "Ip Address",
+            "mount_targets": "Mount Targets",
+            "nome": "Nome",
+            "protocol": "Protocol",
+            "stato": "Stato File System",
+            "vuota": "Nessuno share presente"
+        },
+        "manage": {
+            "error": "Si è verificato un errore durante il tentativo di Aggiornamento dimensione share",
+            "success": "Aggiornamento dimensione share in corso",
+            "titolo": "Pannello di Gestione Share",
+            "dettagli": {
+                "data_creazione": "Data creazione",
+                "dimensione": "Dimensione",
+                "dimensione_modifica": "Modifica Dimensione",
+                "dimensione_share": "Dimensione dello share",
+                "indirizzo_ip": "Indirizzo IP",
+                "nome": "Nome",
+                "protocollo": "Protocollo",
+                "stato": "Stato",
+                "tags": "Tags",
+                "tags_placeholder": "Inserisci un tag ...",
+                "target_id": "Target ID",
+                "titolo": "Dettagli"
+            }
+        },
+        "nuova": {
+            "error": "Si è verificato un errore durante il tentativo di creazione dello Share",
+            "success": "Creazione share in corso",
+            "titolo": "Crea una Nuova Share",
+            "generali": {
+                "titolo": "1. Generali",
+                "vai_a_spazio": "AVANTI",
+                "nome": {
+                    "label": "Nome dello Share",
+                    "maxlength": "Il nome specificato è troppo lungo",
+                    "placeholder": "Inserire il nome dello share",
+                    "required": "Devi specificare il nome dello Share",
+                    "titolo": "Dai un nome al tuo share."
+                },
+                "protocollo": {
+                    "nfs": "NFS",
+                    "titolo": "Scegli il tipo di Protocollo."
+                }
+            },
+            "network": {
+                "region": "Region - A.Z.",
+                "scegli_region_zone": "Scegli la Region e Availability Zone.",
+                "scegli_subnet": "Scegli la subnet",
+                "subnet": "Subnet",
+                "titolo": "3. Network",
+                "vai_a_riepilogo": "AVANTI",
+                "zone": "Availability Zone"
+            },
+            "riepilogo": {
+                "conferma": "CONFERMA E CREA SHARE",
+                "creazione_msg01": "La creazione dello share potrebbe richiedere del tempo.",
+                "creazione_msg02": "Aggiorna la lista per consultare lo stato del nuovo share.",
+                "dimensione": "Dimensione dello share",
+                "dimensione_modifica": "Modifica Dimensione dello share",
+                "nome": "Nome dello share",
+                "nome_modifica": "Modifica Nome dello share",
+                "protocollo": "Protocollo",
+                "protocollo_modifica": "Modifica Protocollo",
+                "region": "Region - A.Z.",
+                "region_modifica": "Modifica Region - A.Z.",
+                "sottotitolo": "Assicurati di aver selezionato le opzioni corrette, dopodichè avvia la creazione dello share.",
+                "subnet": "Subnet",
+                "subnet_modifica": "Modifica Subnet",
+                "titolo": "4. Riepilogo"
+            },
+            "spazio": {
+                "dimensione": "Dimensione",
+                "dimensione_disco": "Dimensione del disco",
+                "dimensione_share": "Dimensione dello share",
+                "opzioni": "Scegli le opzioni relative allo spazio di archiviazione.",
+                "rimuovi_disco": "Rimuovi disco aggiuntivo",
+                "tipologia": "Tipologia",
+                "tipologia_disco": "Tipologia del disco",
+                "tipologia_share": "Tipologia dello share",
+                "titolo": "2. Spazio di archiviazione",
+                "vai_a_network": "AVANTI"
+            }
+        }
+    }
+}

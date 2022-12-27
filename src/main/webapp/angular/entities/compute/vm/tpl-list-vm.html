@@ -1,0 +1,70 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<md-content class="md-no-momentum" layout="column">
+		
+		<md-card>
+			<md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length || filter.show">
+				<div class="md-toolbar-tools">
+					<div flex=20>
+						<md-card-actions layout="row" layout-align="start center" flex="20">
+							<md-button class="md-fab read-me "  ng-href="{{rtdVMList}}" target="_blank">
+								<md-icon  class="material-icons">local_library</md-icon>
+								<md-tooltip>{{'guida' | translate}}</md-tooltip>
+							</md-button>
+						</md-card-actions> 
+					</div>
+					<div  flex="60">
+						<md-card-title>
+							<md-card-title-text layout-align="center center">
+								<div class="md-headline titolo-sezione">
+									<md-icon class="icon-card-header-green">laptop</md-icon>{{'vm.elenco' | translate}}
+								</div>
+							</md-card-title-text>
+						</md-card-title>
+					</div>
+					<div flex=20 layout="row" layout-align="end center">
+						<md-button class="animation-target md-fab md-mini md-primary md-hue-2" ui-sref="app.vm.new"
+							require-uc="{{::actions.auth.new}}">
+							<md-icon>add</md-icon>
+							<md-tooltip>{{'vm.crea' | translate}}</md-tooltip>
+						</md-button>
+
+						<md-button class="animation-target md-fab md-mini md-primary md-hue-2"
+							require-uc="{{::actions.auth.new}}" ng-click="actions.downloadCSV($event)">
+							<md-icon>get_app</md-icon>
+							<md-tooltip>{{ 'scarica_csv' | translate}}</md-tooltip>
+						</md-button>
+						
+						<md-button class="animation-target md-fab md-mini md-primary" ng-click="actions.refresh()">
+							<md-icon>autorenew</md-icon>
+							<md-tooltip>{{'vm.aggiorna' | translate}}</md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+
+			<vm-list
+			selected-vms="selected"
+			unselect-all="unselectAll()"
+			actions="actions"
+			filter="filter"
+			query="query"
+			vm-list="istanze"
+			reset-filter="resetFilter()"
+			rtd-vm-connect="rtdVMConnect"
+			call-recovery-point="actions.recoveryPoint()"
+			call-delete="actions.delete(event)"
+			></vm-list>
+		</md-card>
+
+	</md-content>
+</div>

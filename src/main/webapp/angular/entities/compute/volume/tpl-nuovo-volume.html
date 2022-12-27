@@ -1,0 +1,171 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak >
+
+    <md-content class="md-no-momentum" layout="column">
+        <md-card>
+          <md-card-title>
+              <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+          <div class="md-toolbar-tools">
+            
+            <div flex=20>
+              <md-card-actions layout="row" layout-align="start center" flex="20">
+                <md-button class="md-fab read-me "  ng-href="{{rtdnewVolume}}" target="_blank">
+                  <md-icon  class="material-icons">local_library</md-icon>
+                  <md-tooltip>{{'guida' | translate}}</md-tooltip>
+                </md-button>
+              </md-card-actions> 
+            </div>
+            <div flex>
+              <md-card-title flex>
+                <md-card-title-text layout-align="center center">
+                  <div class="md-headline titolo-sezione">
+                    <md-icon class="icon-card-header-green">save</md-icon>
+                    {{ 'volume.nuovo.titolo' | translate}}
+                  </div>
+                </md-card-title-text>
+              </md-card-title>
+            </div>
+            <div flex=20 layout="row" layout-align="end center">
+            
+            </div>
+          </div>
+              </md-toolbar>
+          </md-card-title>
+
+          
+          <md-card-content>
+            <div>
+                <form name="volumeForm">
+          
+                 
+                  <div layout-gt-sm="row">
+                    
+
+                        <md-input-container class="md-block" flex="50">
+                          <md-icon>local_offer</md-icon>
+                          <label>{{ 'volume.nuovo.nome' | translate}}</label>
+                          <input name="nomeVolume" ng-model="newVol.name"  placeholder="{{ 'volume.nuovo.placeholder' | translate}}"
+                                required ng-pattern="/^[a-z][a-z0-9-]{4,20}$/" md-maxlength="20" md-minlength="4">
+              
+                          <div ng-messages="volumeForm.nomeVolume.$error" role="alert" multiple>
+                            <div ng-message="required" class="my-message">{{ 'volume.nuovo.err_empty_name' | translate}}</div>
+                            <div ng-message="pattern" class="my-message"><span ng-bind-html="'volume.nuovo.err_Pattern_name' | translate"></span></div>
+                            <div ng-message="md-maxlength" class="my-message">
+                              i{{ 'volume.nuovo.err_maxLenght' | translate}
+                            </div>
+                            <div ng-message="md-minlength" class="my-message">
+                              {{ 'volume.nuovo.err_minLenght' | translate}}
+                            </div>
+                          </div>
+                        </md-input-container>
+
+                  
+            
+                  </div>
+                  <div layout-gt-sm="row">
+                    
+                          <md-input-container class="md-block" flex-gt-sm>
+                            <md-icon>public</md-icon>
+                            <label>{{ 'vm.nuova.network.regione' | translate}}</label>
+                            <md-select ng-model="newVol.selectedRegion" ng-change="onInfoVmChanged('region')"  required>
+                                <md-option ng-repeat="opt in volume.availableRegions" value="{{opt.id}}">
+                                    {{opt.description}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <md-icon>location_on</md-icon>
+                            <label>{{ 'vm.nuova.network.zona_disponibilita' | translate}}</label>
+                            <md-select ng-model="newVol.availabilityZone"
+                                ng-change="onInfoVmChanged('az')"  required>
+                                <md-option
+                                    ng-repeat="opt in volume.availableAvailabilityZones | filter: {regionName: volume.selectedRegion}"
+                                    value="{{opt.description}}">
+                                    {{opt.description}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+            
+                  </div>
+                  
+                
+                  <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <md-icon>view_agenda</md-icon>
+                      <label> {{ 'volume.nuovo.dimensione' | translate}}</label>
+                      <md-select ng-model="newVol.size"  required>
+                        <md-option ng-repeat="opt in volume.availableDiskSizings "
+                            value="{{opt}}">
+                            {{opt}} GB
+                        </md-option>
+                    </md-select>
+                    </md-input-container>
+
+                    
+          
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <label>{{ 'volume.nuovo.tipo' | translate}}</label>
+                      <md-select ng-model="newVol.volumeType"  required>
+                        <md-option ng-repeat="type in volumTypes" value="{{type.uuid}}">
+                          {{type.description}}
+                        </md-option>
+                      </md-select>
+                    </md-input-container>
+          
+                  
+                  </div>
+                  <div layout-gt-sm="row" ng-cloak>
+                    <div flex-gt-sm>
+                      <p>
+                        <md-icon>lock</md-icon>
+                        <label id="Encrypted">{{ 'volume.nuovo.ciffratura' | translate}}:</label>
+                      </p>
+                      <md-radio-group ng-model="newVol.encrypted" aria-labelledby="Encrypted" required>
+                        <md-radio-button value="true" class="md-primary"  ng-disabled="true">{{ 'si' | translate}}</md-radio-button>
+                        <md-radio-button value="false">{{ 'no' | translate}}</md-radio-button>
+                      </md-radio-group>
+                      <hr />
+                    </div>
+                    
+                    <div flex-gt-sm>
+                      <p>
+                        <md-icon>mediation</md-icon>
+                        <label id="MultiAttachEnabled">{{ 'volume.nuovo.multiAtach' | translate}}:</label>
+                      </p>
+                      <md-radio-group ng-model="newVol.multiAttachEnabled" aria-labelledby="MultiAttachEnabled" required>
+                        <md-radio-button value="true" class="md-primary"  ng-disabled="true">{{ 'si' | translate}}</md-radio-button>
+                        <md-radio-button value="false">{{ 'no' | translate}}</md-radio-button>
+                      </md-radio-group>
+                      <hr />
+                    </div>
+
+                  </div>
+                 
+          
+                </form>
+              </div>
+          </md-card-content>
+          <md-card-actions layout="row" layout-align="space-between center" >
+            <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+              <md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'abbandona' | translate }}
+            </md-button>
+            <md-button type="submit" ng-click="actions.invia()" class="md-raised  md-primary md-hue-2 pull-right"
+            ng-disabled="!volumeForm.$valid || volumeForm.$pristine" >
+                <md-icon ng-style="iconStyle" class="material-icons">send</md-icon> {{ 'volume.nuovo.crea' | translate}}
+            </md-button>
+        </md-card-actions>
+        </md-card>
+      
+    </md-content>
+  
+  </div>

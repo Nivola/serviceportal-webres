@@ -1,0 +1,106 @@
+{
+    "job":{
+        "bottoni":{
+            "elimina":"Elimina Job",
+            "dettaglio":"Vai a dettaglio Job",
+            "back":"INDIETRO",
+            "creation_step_0":"VAI A LISTA VM",
+            "creation_step_1":"VAI ALLA CONFIGURAZIONE",
+            "creation_step_2":"VAI AL RIEPILOGO",
+            "creation_step_3":"CONFERMA E CREA IL JOB DI BACKUP"
+        },
+        "tabs":{
+            "dettaglio_label":"Dettaglio",
+            "points_label":"Punti di ripristino"
+        },
+        "dettaglio":{
+            "zone":"Zona",
+            "number_istances":"Numero di istanze",
+            "istances":"Istanze",
+            "dataCreazione":"Creata il",
+            "status":"Stato",
+            "hypervisor":"Hypervisor",
+            "enable_status_tooltip":{
+                "active":"",
+                "stopped":""
+            },
+            "access":"Accessibilità",
+            "name":"Nome",
+            "policy_label":"Policy",
+            "policy":{
+                "interval_full":"Intervallo backup completo",
+                "start":"Ora inizio",
+                "interval":"Intervallo",
+                "retention_policy":"Politica di conservazione"
+                },
+            "dataModifica":"Ultima modifica",
+            "reason":"Ragione",
+            "active":"ATTIVO",
+            "inactive":"INATTIVO",
+            "labels":{
+                "title":"Pannello di Gestione Job di Backup"
+            }
+        },
+        "new":{
+            "steps":{
+                "init":"1. INIZIALIZZA JOB",
+                "tecnology":"2. A.Z. & TECNOLOGIA",
+                "vms":"3. LISTA VM",
+                "configurations":"4. CONFIGURAZIONE",
+                "recap":"5. RIEPILOGO"
+            },
+            "placeholders":{
+                "name": "Specificare il nome del job di backup"
+            },
+            "labels":{
+                "title":"Crea un Nuovo Job di Backup",
+                "name":"Nome job",
+                "name_section":"Scegli il nome del Job.",
+                "region_zone_section":"Scegli la Region e Availability Zone.",
+                "region":"Region",
+                "availability_zone":"Availability Zone",
+                "tech_section":"Scegli la tecnologia di virtualizzazione.",
+                "tech":"Tecnologia di Virtualizzazione",
+                "success":"L'operazione di creazione del job di backup è stata avviata correttamente",
+                "error":"Si è verificato un errore durante il tentativo di creazione del job di backup"
+            }
+        },
+        "restore_point":{
+            "no_data":"Non sono stati trovati dati",
+            "name":"Nome",
+            "date":"Data di creazione",
+            "status":"Stato",
+            "time_taken":"Tempo impiegato",
+            "updated":"Ultima esecuzione",
+            "finished":"Ultimato: ",
+            "size":"Dimensioni caricate: ",
+            "hypervisor":"Hypervisor: ",
+            "type":"Tipo: ",
+            "progress":"In corso: ",
+            "resource_type":"Tipo di risorsa: ",
+            "site":"Zona: ",
+            "istanceNum":"Numero di istanze: ",
+            "istanceSet":"Elenco VM"  ,
+            "name_vm":"Nome",
+            "region_vm":"Regione",
+            "cpu_ram_vm":"CPU | RAM",
+            "template_vm":"Template",
+            "ip_vm":"IP",
+            "status_vm":"Stato"
+
+        },
+        "modifica":{
+            "tabs":{
+                "vm":"Gestisi le VM associate",
+                "restore_points":"Gestisci i restore points associati"
+            }
+        },
+    "errors":{
+        "restore_vm_ko":"La richiesta di ripristino della macchina virtuale non è andato a buon fine",
+        "loading_restore_points":"Si è verificato un errore durante il caricamento dei Restore points del job di backup",
+        "loading_restore_points_detail":"Si è verificato un errore durante il caricamento dei Restore point dettagliati.",
+        "loading_associated_vms":"Si è verificato un errore durante il caricamento delle vm associate al Restore point.",
+        "reloading_detail_job":"Si è verificato un errore durante il caricamento del job di backup"
+    }
+    }
+}

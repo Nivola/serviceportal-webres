@@ -1,0 +1,6 @@
+{
+    "directory": "bower_components",
+	"no-proxy":"http://proxy.csi.it:3128",
+	"no-https-proxy":"http://proxy.csi.it:3128"
+}
+

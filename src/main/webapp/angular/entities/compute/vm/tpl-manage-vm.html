@@ -1,0 +1,695 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+    <br />
+    <md-content class="md-no-momentum">
+        <md-card>
+            <md-card-title>
+                <div flex=20 >
+                    <md-card-actions layout="row" layout-align="start center" flex="20" >
+                        <md-button class="md-fab read-me "  ng-href="{{rtdVMmanage}}" target="_blank">
+                            <md-icon  class="material-icons">local_library</md-icon>
+                            <md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+                        </md-button>
+                    </md-card-actions>
+                </div>
+                <md-card-title-text layout-align="center center" flex>
+                    <span class="md-headline titolo-sezione">
+                        <md-icon class="icon-card-header-green">dns</md-icon> {{ 'vm.manage.titolo' | translate}} <span ng-if="vmDetails.name"> ( {{vmDetails.name.toLowerCase()}} )</span>
+                    </span>
+                    <div class="callout callout-info">
+                    </div>
+                </md-card-title-text>
+                <md-card-actions layout="row" layout-align="end center" flex="20" >
+                    <div ng-if="showAddButton">
+                        <md-button class="animation-target md-fab md-mini md-primary md-hue-2" ng-click="actions.creaSnapshot()"
+                            require-uc="{{::actions.auth.new}}" >
+							<md-icon>add</md-icon>
+							<md-tooltip>{{ 'vm.manage.nuovo_snapshot' | translate}}</md-tooltip>
+						</md-button> 
+                        <md-button class="animation-target md-fab md-mini md-primary" ng-click="actions.refresh()">
+							<md-icon>autorenew</md-icon>
+							<md-tooltip>Aggiorna elenco Snapshots</md-tooltip>
+						</md-button>
+                    </div>
+                    <div ng-if="!showAddButton">
+                        <md-button class="animation-target md-fab md-mini md-primary" ng-click="actions.refreshDettaglioVM()">
+                            <md-icon>autorenew</md-icon>
+                            <md-tooltip>{{'vm.aggiorna_dettaglio' | translate}}</md-tooltip>
+                        </md-button>
+                    </div>
+                </md-card-actions>
+            </md-card-title>
+
+            <md-card-content>
+                <md-tabs md-dynamic-height md-border-bottom md-center-tabs class="tab-min-200"
+                    md-selected="status.tabIndex">
+                    <md-tab label="{{ 'vm.manage.dettagli' | translate}}">
+                        <md-content class="md-padding">
+                            <div layout="row" layout-align="center start">
+                                <md-card flex="80">
+                                    <md-table-container>
+                                        <table md-table md-progress="promise">
+                                            <thead  md-head md-order="query.order">
+                                                <tr md-row>
+                                                    <th md-column>
+                                                        <span>
+                                                            {{ 'vm.manage.proprieta' | translate}}
+                                                        </span>
+                                                    </th>
+                                                    <th md-column>
+                                                        <span>
+                                                            {{ 'vm.manage.valore' | translate}}
+                                                        </span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody md-body>
+                                                <!-- FQDN (Nome VM) -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>computer</md-icon>
+                                                                <b>{{ 'vm.manage.nome' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <span
+                                                            ng-if="vmDetails && vmDetails.name">{{vmDetails.name.toLowerCase()}}</span>
+                                                    </td>
+                                                </tr>
+                                                <!-- FQDN (Nome VM) -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>computer</md-icon>
+                                                                <b>{{ 'vm.manage.dns_name' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <!-- span
+                                                            ng-if="vmDetails && vmDetails.site">{{vmDetails.name.toLowerCase()}}{{vmDetails.acronimoAccount}}.{{vmDetails.site.toLowerCase()}}.nivolapiemonte.it</span -->
+                                                        <span
+                                                            ng-if="vmDetails && vmDetails.site">{{vmDetails.privateDnsName}}</span>
+                                                    </td>
+                                                </tr>
+                                                <!-- Template -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>album</md-icon>
+                                                                <b>{{ 'vm.manage.template' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{ vmDetails.os }}
+                                                    </td>
+                                                </tr>
+                                                <!-- Tipo VM -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>tune</md-icon>
+                                                                <b>{{ 'vm.manage.tipo' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{vmDetails.cpu_ram}}
+
+                                                    <span>
+                                                        <md-button class="md-icon-button md-primary" ng-click="manageFlavour($event)" ng-if="editFlavour" 
+                                                        require-uc="{{::actions.auth.editShare}}">
+                                                            <md-icon>edit</md-icon>
+                                                            <md-tooltip>{{ 'vm.manage.modifica_flavour' | translate}}</md-tooltip>
+                                                        </md-button>
+                                                    </span>
+                                                    </td>
+                                                </tr>
+                                                <!-- Dischi -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>storage</md-icon>
+                                                                <b>{{ 'vm.manage.dischi' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+
+                                                    <td md-cell>
+                                                    <md-card>
+                                                        <table md-table >
+                                                            <tr ng-repeat="n in vmDetails.additionalStorages">
+                                                                <td>Disco {{ $index + 1 }}</td>
+                                                                <td >
+                                                                {{n.ebs.volumeSize}} GB
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </md-card>
+                                                    </td>
+                                                    
+                                                </tr>
+                                               
+                                                <!-- IP address -->
+                                                <tr md-row ng-if="vmDetails && vmDetails.ip">
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>router</md-icon>
+                                                                <b>{{ 'vm.manage.ip_address' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                           {{vmDetails.ip}} 
+                                                    </td>
+                                                </tr>
+                                                <!-- Region - A.Z. -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>public</md-icon>
+                                                                <b>{{ 'vm.manage.region' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{vmDetails.region_az}}
+                                                    </td>
+                                                </tr>
+                                                <!-- Subnet -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>router</md-icon>
+                                                                <b>{{ 'vm.manage.subnet' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{vmDetails.subnet.nvlName}}
+                                                    </td>
+                                                </tr>
+                                                <!-- Security Group -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>security</md-icon>
+                                                                <b>{{ 'vm.manage.security_group' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                        <span>
+                                                            <md-button class="md-icon-button md-primary"  ng-click="actions.newSecG($event)" aria-label="delete"
+                                                            require-uc="{{::actions.auth.delete}}">
+                                                            <md-icon >add_circle</md-icon>
+                                                            <md-tooltip>{{'vm.manage.associa_sg' | translate}}</md-tooltip>
+                                                        </md-button>
+                                                   
+                                                        </span>
+                                                    </td>
+                                                    
+                                                      
+                                                    <td md-cell>
+                                                       
+                                                        <md-card >
+                                                            <table md-table >
+                                                                <!-- <thead md-head >
+                                                                    <tr>
+                                                                        <th >
+                                                                            <md-button class="md-mini md-primary"
+                                                                                require-uc="{{::actions.auth.delete}}">
+                                                                                <md-icon>add</md-icon>
+                                                                                <md-tooltip>{{'vm.crea' | translate}}</md-tooltip>
+                                                                            </md-button>
+                                                                        </th>
+                                                                        <th>Nome SG</th>
+                                                                        <th> Azione</th>
+                                                                    </tr>
+                                                                </thead> -->
+                                                                
+                                                                <tr ng-repeat="sg in vmDetails.securityGroup" ng-if="vmDetails.securityGroup.length!=0">
+                                                                    <td>N°{{ $index + 1 }}</td>
+                                                                    <td >
+                                                                        {{sg.groupName}}
+                                                                       
+                                                                    </td>
+                                                                    <td>
+                                                                        <md-button class="md-icon-button md-warn"  ng-click="actions.removeSecgroup(sg)" aria-label="delete"
+                                                                            require-uc="{{::actions.auth.delete}}">
+                                                                            <md-icon >disabled_by_default</md-icon>
+                                                                            <md-tooltip>{{'vm.manage.elimina_sg' | translate}}</md-tooltip>
+                                                                        </md-button>
+                                                                    </td>
+                                                                    <!-- <td ng-if="$index==0">
+                                                                        <md-button class="md-icon-button md-primary"  ng-click="actions.newSecG($event)" aria-label="delete"
+                                                                            require-uc="{{::actions.auth.delete}}">
+                                                                            <md-icon >add_circle</md-icon>
+                                                                            <md-tooltip>{{'vm.manage.associa_sg' | translate}}</md-tooltip>
+                                                                        </md-button>
+                                                                    </td> -->
+                                                                    
+                                                                </tr>
+                                                             
+                                                                <!-- <tr ng-if="vmDetails.securityGroup.length==0">
+                                                                    <td>
+                                                                        <md-button class="md-icon-button md-primary"  ng-click="actions.newSecG($event)" aria-label="delete"
+                                                                            require-uc="{{::actions.auth.delete}}">
+                                                                            <md-icon >add_circle</md-icon>
+                                                                            <md-tooltip>{{'vm.manage.associa_sg' | translate}}</md-tooltip>
+                                                                        </md-button>
+                                                                    </td>
+                                                                </tr> -->
+                                                            </table>
+                                                        </md-card>
+                                                        <md-card ng-if="shownewsgCard">
+                                                            <div  layout="row" layout-align="start center">
+                                                                <md-input-container>
+                                                                    <md-select placeholder="{{ 'vm.manage.nuova_sg' | translate}}"  ng-model="vm.selectedSg" md-on-open="loadSecurityGroups()" style="min-width: 200px;">
+                                                                         <md-optgroup label="security groups">
+                                                                        <md-option  ng-repeat="sg in Secgroups | filter :{isDisabled : false }" ng-value="sg">{{sg.groupName}}-
+                                                                            <span class="badge badge-success" ng-show="sg.nvlState==='AVAILABLE'">{{sg.nvlState}}</span>
+                                                                              <span class="badge badge-danger" ng-show="sg.nvlState!='AVAILABLE'">{{sg.nvlState}}</span>
+                                                                        </md-option>
+                                                                      </md-select>
+                                                                </md-input-container>
+                                                                <md-button class="md-raised md-primary" ng-click="actions.saveNewSecG()" ng-disabled="!vm.selectedSg">{{ 'conferma' | translate}}</md-button>
+                                                            </div>
+                                                        </md-card>
+                                                        </td>
+                                                    <!-- <td md-cell>
+                                                        <div layout="row" layout-align="start center">
+                                                            <div   layout="row" >
+                                                                {{vmDetails.securityGroup[0].groupName}}
+                                                            </div>
+                                                            <div flex="10"></div>
+                                                             FIX ME : LG 14.04.2021 Nascondo la funzionalit� di modifica del SG per la release 2.3.0 -->
+                                                            <!-- 
+                                                            <div  layout="row" layout-align="start center" ng-if="vmDetails.securityGroup[0] && groups">
+                                                                <md-input-container>
+                                                                    <md-select placeholder="{{ 'vm.manage.modifica_security_group' | translate}}"  ng-model="vm.selectedSg" md-on-open="loadSecurityGroups()" style="min-width: 200px;">
+                                                                         <md-optgroup label="security groups">
+                                                                        <md-option  ng-repeat="sg in Secgroups | filter :{isDisabled : false }" ng-value="sg">{{sg.groupName}}-
+                                                                            <span class="badge badge-success" ng-show="sg.nvlState==='AVAILABLE'">{{sg.nvlState}}</span>
+                                                                              <span class="badge badge-danger" ng-show="sg.nvlState!='AVAILABLE'">{{sg.nvlState}}</span>
+                                                                        </md-option>
+                                                                      </md-select>
+                                                                </md-input-container>
+                                                                <md-button class="md-raised md-primary" ng-click="invia()" ng-disabled="!vm.selectedSg">{{ 'conferma' | translate}}</md-button>
+                                                            </div>
+                                                            -->
+                                                            <!--  END FIX ME : LG 14.04.2021 Nascondo la funzionalit� di modifica del SG per la release 2.3.0 -->
+                                                           
+                                                           
+    
+                                                        </div>
+                                                       
+                                                    </td>
+                                                </tr>
+                                                <!-- Tecnologia -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>memory</md-icon>
+                                                                <b>{{ 'vm.manage.tecnologia' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{vmDetails.hypervisor}}
+                                                    </td>
+                                                </tr>
+                                                <!-- Status -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>power_settings_new</md-icon>
+                                                                <b>{{ 'vm.manage.stato' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    
+                                                    <td md-cell >
+                                                        <span ng-class="vmDetails.stato.badge">
+                                                            {{vmDetails.stato.stato}}
+                                                        </span>
+                                                        <md-tooltip>{{vmDetails.stato.tooltip}}</md-tooltip>
+                                                    </td> 
+                                                </tr>
+
+
+
+                                                 <!--Data Creazione -->
+                                                 <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>date_range</md-icon>
+                                                                <b>{{ 'vm.manage.data_creazione' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{vmDetails.launchTime |  date :  "dd-MM-y" }}
+                                                    </td>
+                                                </tr>
+                                                <!-- Tags -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>label</md-icon>
+                                                                <b>{{ 'vm.manage.tags' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <md-chips ng-model="vmDetails.elencoTag"  readonly="status.tagsReadOnly" md-add-on-blur="true" 
+                                                        md-removable="status.tagsRemovable" md-max-chips="10" md-enable-chip-edit="true"
+                                                        md-on-add="updateTags()" md-on-remove="updateTags()"
+                                                        placeholder="{{ 'vm.manage.inserisci_un_tag' | translate}}">
+                                                            <md-chip-template>
+                                                            <strong>{{$chip}}</strong>
+                                                            </md-chip-template>
+                                                        </md-chips>
+
+                                                        <!-- <md-chips ng-model="ctrl.ngChangeFruitNames" md-add-on-blur="true" readonly="ctrl.readonly"
+                                                        ng-change="ctrl.onModelChange(ctrl.ngChangeFruitNames)" input-aria-label="Fruit names"
+                                                        md-removable="ctrl.removable">
+                                                    </md-chips> -->
+                                                    </td>
+                                                    <!-- <div>
+                                                        <md-chips ng-model="vm.tags" name="tags" readonly="status.tagsReadOnly"
+                                                            md-removable="status.tagsRemovable" md-max-chips="10"
+                                                            placeholder="Inserisci un tag ...">
+                                                            <md-chip-template>
+                                                                <strong>{{$chip}}</strong>
+                                                               
+                                                                &nbsp;
+                                                            </md-chip-template>
+                                                        </md-chips>
+                                                    </div>
+                                                    <td md-cell>
+                                                        {{ vmDetails.elencoTag.toString() }}
+                                                    </td> -->
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </md-table-container>
+                                </md-card>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="{{ 'vm.manage.start_stop' | translate}}" ng-disabled="!vmDetails || vmDetails.status === 'unknown'" ng-if="!isViewer">
+                        <md-content class="md-padding">
+                            <div layout="row" layout-sm="column" layout-align="space-around">
+                                <md-progress-circular md-mode="indeterminate" ng-if="status.pending">
+                                </md-progress-circular>
+                            </div>
+                            <div layout="row" layout-xs="column" layout-align="space-around center" ng-if="isRunning">
+                                	<md-button class="md-raised pull-right md-warn md-hue-2" type="button" ng-click="stop()"
+                                    	ng-disabled="status.pending" flex="50" require-uc="{{::actions.auth.startStopVm}}">
+                                    	<md-icon>stop</md-icon>{{ 'vm.manage.stop' | translate}}
+                                	</md-button>
+                            </div>                                	
+							<div layout="row" layout-xs="column" layout-align="space-around center" ng-if="isRunning">                                	
+                                	<md-button class="md-raised pull-right md-accent md-hue-2" type="button"     
+                                    	ng-click="restart()" flex="50">
+                                    	<md-icon>replay</md-icon>{{ 'vm.manage.reboot' | translate}}
+                                	</md-button>
+                            </div>
+                            <div layout="row" layout-xs="column" layout-align="space-around center" ng-if="!isRunning">
+                                <md-button class="md-raised pull-right md-primary md-hue-2" type="button"
+                                    ng-click="start()" ng-disabled="status.pending" flex="50" require-uc="{{::actions.auth.startStopVm}}">
+                                    <md-icon>play_arrow</md-icon>{{ 'vm.manage.start' | translate}}
+                                </md-button>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="{{ 'vm.snapshot.label' | translate }}" md-on-select="onTabSelected()" 
+                                md-on-deselect="onTabDeselected()" ng-if="isTabSnapshotActive">
+                        <md-content class="md-padding">
+                            <div layout="row" layout-align="center start">
+                                <md-card flex="70">
+                                    <div layout="row" layout-align="center start" style="color: #FF8C00;" ng-if="options.elencoVuoto" >
+                                        {{ 'vm.snapshot.no_data' | translate }}
+                                    </div>
+                                    <div ng-if="!options.elencoVuoto">
+                                        <md-table-container>
+                                            <table md-table md-progress="promise">
+                                                <thead  md-head md-order="query.order">
+                                                    <tr md-row>
+                                                        <th md-column>
+                                                            <span>
+                                                                {{ 'vm.snapshot.nome' | translate }}
+                                                            </span>
+                                                        </th>
+                                                        <th md-column>
+                                                            <span>
+                                                                {{ 'vm.snapshot.data_creazione' | translate }}
+                                                            </span>
+                                                        </th>
+                                                        <th md-column>
+                                                            <span>
+                                                                {{ 'vm.snapshot.stato' | translate }}
+                                                            </span>
+                                                        </th>
+
+                                                        <th md-column>
+                                                            <span>
+                                                                {{ 'vm.snapshot.azioni' | translate }}
+                                                            </span>
+                                                        </th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody md-body >
+                                                   
+                                                        <tr md-row md-select="snapshot" md-auto-select="options.autoSelect"
+                                                            ng-repeat="snapshot in snapshots | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                                                            <td md-cell>{{snapshot.snapshotName}}</td>
+                                                            <td md-cell>{{snapshot.dataCreazione |  date :  'M-d-yy @ h:mma' }}</td>
+                                                            <td md-cell>
+                                                                <span class="badge {{snapshot.badge_class}}">
+                                                                    {{snapshot.snapshotStatus}}
+                                                                </span>
+                                                            </td>
+                                                            <td md-cell>
+                                                                <md-button class="md-icon-button md-primary button-azioni" ng-disabled="!isRunning" 
+                                                                    ng-click="actions.revertSnapshot(snapshot)">
+                                                                    <md-icon >undo</md-icon>
+                                                                    <md-tooltip>{{ 'vm.snapshot.btnRevert' | translate }}</md-tooltip>
+                                                                </md-button>
+                                                           
+                                                                <md-button class="md-icon-button md-warn button-azioni"
+                                                                    ng-click="actions.deleteSnapshot(snapshot)">
+                                                                    <md-icon md-svg-icon="img/svg/delete-24px.svg"></md-icon>
+                                                                    <md-tooltip>{{ 'vm.snapshot.btnDelete' | translate }}</md-tooltip>
+                                                                </md-button>
+                                                            </td>
+                                                        </tr>
+                                                    
+                                              
+                                                </tbody>
+                                               
+                                            </table>
+                                        </md-table-container>
+                                    </div>
+
+
+
+                                    <!--     
+
+
+ <div ng-show="infoRendicontazioniAccount.length > 0">
+                                    <md-table-container id="tableInfoRendicontazione">
+                                        <table md-table md-row-select="options.rowSelection"
+                                            multiple="{{options.multiSelect}}" ng-model="selected"
+                                            md-progress="promise">
+                                            <thead ng-if="!options.decapitate" md-head md-order="query.order">
+                                                <tr md-row style="background-color:#e3f2fd">
+                                                    <th md-column md-order-by="descrizioneMetrica" class="th-bold"><span>{{ 'accounts.info_rendicontazione.info' | translate }}</span></th>
+                                                    <th md-column md-order-by="dataDa" class="th-bold "
+                                                        style="padding-left: 10px;"><span>{{ 'accounts.info_rendicontazione.data_inizio' | translate }}</span></th>
+                                                    <th md-column md-order-by="dataA" class="th-bold"><span>{{ 'accounts.info_rendicontazione.data_fine' | translate }}</span></th>
+                                                    <th md-column class="th-bold"><span>{{ 'accounts.info_rendicontazione.valore' | translate }}</span></th>
+                                                    <th md-column class="th-bold"><span>{{ 'accounts.info_rendicontazione.azioni' | translate }}</span></th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody md-body>
+
+                                                <tr md-row md-select="info" md-auto-select="options.autoSelect"
+                                                    ng-repeat="info in infoRendicontazioniAccount | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                                                    <td md-cell style="background-color:#e3f2fd;">
+                                                        <b>{{info.descrizioneMetrica | uppercase}}</b></td>
+                                                    <td md-cell style="padding-left: 10px;">
+                                                        {{info.dataDa | date:'dd/MM/yyyy'}}</td>
+                                                    <td md-cell>{{info.dataA | date:'dd/MM/yyyy'}}</td>
+                                                    <td md-cell>
+                                                        <span ng-if="isInfoTenant(info)" class="badge badge-success">
+                                                            {{info.etichettaValore}}
+                                                        </span>
+                                                        <span ng-if="!isInfoTenant(info)">{{info.quantita}}</span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <md-button class="md-icon-button md-primary button-azioni"
+                                                            ng-click="actions.modificaInfoRendizontazione(info)">
+                                                            <md-icon md-svg-icon="img/svg/edit-24px.svg"></md-icon>
+                                                            <md-tooltip>{{ 'accounts.info_rendicontazione.modifica.bottone' | translate }}</md-tooltip>
+                                                        </md-button>
+                                                   
+                                                    <md-button class="md-icon-button md-warn button-azioni"
+                                                    ng-click="actions.deleteInfoRendicontazione(info)">
+                                                    <md-icon md-svg-icon="img/svg/delete-24px.svg"></md-icon>
+                                                    <md-tooltip>{{ 'accounts.info_rendicontazione.elimina.bottone' | translate }}</md-tooltip>
+                                                </md-button>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </md-table-container>
+                            <md-table-pagination style="background-color:#e3f2fd" md-limit="query.limit"
+                                md-limit-options="limitOptions" md-page="query.page"
+                                md-total="{{infoRendicontazioniAccount.length}}"
+                                md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks">
+                            </md-table-pagination>
+                        </div>
+
+
+
+
+                                    -->
+                                   
+                                </md-card>
+                            </div>
+                        </md-content>
+                    </md-tab>
+
+
+                    <md-tab label="{{ 'vm.volumi.label' | translate }}">
+                        <md-content class="md-padding">
+                            <div layout="row" layout-align="center start">
+                                <md-card flex="90">
+                                    <div layout="row" layout-align="center start" style="color: #FF8C00;" ng-if="vmDetails.blockDeviceMapping.length==0" >
+                                        {{ 'vm.volumi.no_data' | translate }}
+                                    </div>
+                                    <div ng-if="vmDetails.blockDeviceMapping.length!=0">
+                                        <md-table-container>
+                                            <table md-table md-progress="promise">
+                                                <thead  md-head md-order="query.order">
+                                                    <tr md-row>
+                                                        <th md-column>
+                                                            <span>
+                                                                {{ 'volume.lista.name' | translate}}
+                                                            </span>
+                                                        </th>
+                                                        <th md-column>
+                                                            <span>
+                                                                {{ 'volume.lista.size' | translate}}
+                                                            </span>
+                                                        </th>
+                                                        <th md-column>
+                                                            <span>
+                                                                {{ 'volume.lista.availabilityZone' | translate}}
+                                                            </span>
+                                                        </th>
+                                                        <th md-column>
+                                                            <span>
+                                                                {{ 'volume.lista.createTime' | translate}}
+                                                            </span>
+                                                        </th>
+                                                        <th md-column>
+                                                            <span>
+                                                                {{ 'volume.lista.hypervisor' | translate}}
+                                                            </span>
+                                                        </th>
+                                                        <th md-column>
+                                                            <span>
+                                                                {{ 'volume.lista.status' | translate}}
+                                                            </span>
+                                                        </th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody md-body >
+                                                   
+                                                    <tr md-row md-select="vol" md-auto-select="options.autoSelect"  
+                                                    ng-repeat="vol in vmDetails.elencoVolumi | filter: filter.search | orderBy: 'createTime' : 'desc' | limitTo: query.limit : (query.page -1) * query.limit">
+                                                    <td md-cell  >{{vol['nvl-name']}}</td>
+                                                    <td md-cell  >{{vol.size }} GB</td>
+                                                    <td md-cell  >{{vol.availabilityZone }}</td>
+                                                    <td md-cell>{{vol.createTime | date:'dd/MM/yyyy'}}</td>
+                                                    <td md-cell  >{{vol['nvl-hypervisor'] }}</td>
+                                                    <td md-cell hide-gt-xs hide-xs show-gt-sm>
+                                                        <span ng-class="vol.stato.badge">
+                                                            {{vol.stato.stato}}
+                                                        </span>
+                                                    </td> 
+                                                    <!-- <td md-cell  >{{vol.status }}</td> -->
+                                                    <!-- <td md-cell >
+                                                        
+                                                        <button type="button" class="btn btn-primary" ng-disabled="vol.collegamenti==0"
+                                                         ui-sref="app.volume.manage({volume: vol , idVolume: vol.volumeId , tabIndex : 1})">
+                                                            <span class="badge badge-info"><b > {{vol.collegamenti }} </b></span>
+                                                            
+                                                        </button>
+                                                    </td> -->
+                                                </tr>
+                                                    
+                                              
+                                                </tbody>
+                                               
+                                            </table>
+                                        </md-table-container>
+                                    </div>
+
+                                   
+                                </md-card>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    
+                    
+                    <!-- RESTORE POINTS -->
+                    <md-tab label="{{ 'vm.restorePoints.label' | translate }}">
+                        <md-content class="md-padding">
+                            <restore-points-detail data="vmRestorePoints" query="queryRP"
+                            on-load-vm-list="loadVms(vms,id)"
+                            on-load-restore-point="resetToRestorePoint(idRp,idVm,nameVm)"></restore-points-detail>
+                        </md-content>
+                    </md-tab>
+
+                </md-tabs>
+            </md-card-content>
+            <md-divider></md-divider>
+            <md-card-actions layout="row" layout-align="space-between center">
+                <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+                    <md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate}}
+                </md-button>
+            </md-card-actions>
+        </md-card>
+    </md-content>
+</div>

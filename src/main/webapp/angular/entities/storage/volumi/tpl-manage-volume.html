@@ -1,0 +1,276 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+    <br />
+    <md-content class="md-no-momentum">
+        <md-card>
+
+            
+			<div class="md-toolbar-tools">
+				<div flex=20>
+					<md-card-actions layout="row" layout-align="start center" >
+						<md-button class="md-fab read-me " ng-href="{{rtdStaasManage }}" target="_blank">
+							<md-icon  class="material-icons">local_library</md-icon>
+							<md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+						</md-button>
+					</md-card-actions>
+				</div>
+				<div flex>
+                    <md-card-title>
+                        <md-card-title-text layout-align="center center" flex>
+                            <span class="md-headline titolo-sezione">
+                                <md-icon class="icon-card-header-green">dns</md-icon> {{ 'shares.manage.titolo' | translate}}
+                            </span>
+                            <div class="callout callout-info">
+                            </div>
+                        </md-card-title-text>
+                        <md-card-actions layout="row" layout-align="end center" flex="20">
+                           
+                        </md-card-actions>
+                    </md-card-title>
+				</div>
+				<div flex=20 layout="row" layout-align="end center">
+					
+				</div>
+            </div>
+            
+         
+
+            <md-card-content>
+                <md-tabs md-dynamic-height md-border-bottom md-center-tabs class="tab-min-300"
+                    md-selected="status.tabIndex">
+                    <md-tab label="{{ 'shares.manage.dettagli.titolo' | translate}}">
+                        <md-content class="md-padding">
+                            <div layout="row" layout-align="center start">
+                                <md-card flex= '70'>
+                                    <md-table-container>
+                                        <table md-table md-progress="promise">
+                                            <thead  md-head md-order="query.order">
+                                                <tr md-row>
+                                                    <th md-column>
+                                                        <span>
+                                                            {{ 'proprieta' | translate}}
+                                                        </span>
+                                                    </th>
+                                                    <th md-column>
+                                                        <span>
+                                                            {{ 'valore' | translate}}
+                                                        </span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody md-body>
+                                                <!--Nome-->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>storage</md-icon>
+                                                                <b>{{ 'shares.manage.dettagli.nome' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <span  >{{volume.nome.toLowerCase()}}</span>
+                                                    </td>
+                                                </tr>
+                                                <!--DIMENSIONE  -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>storage</md-icon>
+                                                                <b>{{ 'shares.manage.dettagli.dimensione' | translate}} </b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <!-- span
+                                                            ng-if="vmDetails && vmDetails.site">{{vmDetails.name.toLowerCase()}}{{vmDetails.acronimoAccount}}.{{vmDetails.site.toLowerCase()}}.nivolapiemonte.it</span -->
+                                                        <span >{{volume.dimensione}} </span>
+                                                       
+                                                            <md-button class="md-icon-button md-primary" ng-click="change()"  
+                                                                 require-uc="{{::actions.auth.editDim}}"  ng-disabled="!volume.dimensione || !canResize">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>{{ 'shares.manage.dettagli.dimensione_modifica' | translate}}</md-tooltip>
+                                                            </md-button>
+                                                       
+                                                    </td>
+                                                </tr>
+
+                                                <!-- resize -->
+                                                <tr md-row ng-show="resize">
+                                                  
+                                                   
+                                                        <td md-cell>
+                                                            <div layout="row" layout-align="start center">
+                                                                <md-input-container class="md-block" flex-gt-sm>
+                                                                    <label>{{ 'shares.manage.dettagli.dimensione_share' | translate}}</label>
+                                                                    <md-select ng-model="volumeResized.dimensione">
+                                                                        <md-option ng-repeat="opt in staas.availableStaasSizings  "
+                                                                            value="{{opt}}">
+                                                                            {{opt}} GB
+                                                                        </md-option>
+                                                                    </md-select>
+                                                                </md-input-container>
+
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <md-button class="md-icon-button md-primary" ng-click="annula()" >
+                                                                <md-icon>clear</md-icon>
+                                                                <md-tooltip>{{ 'annulla_modifica' | translate}}</md-tooltip>
+                                                            </md-button></td>
+                                                    
+                                                </tr>
+
+
+                                                <!-- DATA CREAZIONE -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>today</md-icon>
+                                                                <b>{{ 'shares.manage.dettagli.data_creazione' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{ volume.dataCreazione | date:'MM-dd-yyyy' }}
+                                                    </td>
+                                                </tr>
+
+
+                                                <!-- Stato -->
+                                                <tr md-row   >
+                                                   
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>power_settings_new</md-icon>
+                                                                <b>{{ 'shares.manage.dettagli.stato' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                       
+                                                        <ng-bind-html ng-bind-html="volume.stato"></ng-bind-html>
+                                                    </td>
+
+
+                                                </tr>
+
+                                                
+                                                <!-- Tags -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>label</md-icon>
+                                                                <b>{{ 'shares.manage.dettagli.tags' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <md-chips ng-model="volume.elencoTag"  readonly="status.tagsReadOnly" md-add-on-blur="true" 
+                                                            md-removable="status.tagsRemovable" md-max-chips="10" md-enable-chip-edit="true" 
+                                                            md-on-add="updateTags()" md-on-remove="updateTags()"  
+                                                            placeholder="{{ 'shares.manage.dettagli.tags_placeholder' | translate}}">
+                                                                <md-chip-template>
+                                                                <strong>{{$chip}}</strong>
+                                                                </md-chip-template>
+                                                        </md-chips>
+                                                      
+                                                    </td>
+                                                </tr>
+
+
+                                                <tr md-row   ng-show="resize">
+                                                    <td  md-cell></td>
+                                                    <td md-cell>
+                                                        <div layout="row" layout-align="end end">
+                                                            <md-button class="md-raised pull-right md-primary md-hue-2" type="button"
+                                                                ng-click="submit()" ng-disabled="status.pending || volumeResized.dimensione===0" flex="20">
+                                                                <md-icon>play_arrow</md-icon>{{ 'resize' | translate}}
+                                                            </md-button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+
+                                              
+                                            </tbody>
+                                        </table>
+                                    </md-table-container>
+                                </md-card>
+
+                            </div>
+
+
+
+
+                            
+
+                        <div layout="row" layout-align="center start">
+                            <md-card flex>
+                                <md-table-container>
+                                    <table md-table md-progress="promise">
+                                        <thead md-head>
+                                            <tr md-row>
+                                                <th md-column><span>{{ 'shares.manage.dettagli.protocollo' | translate}}</span></th>
+                                                <th md-column><span>{{ 'shares.manage.dettagli.target_id' | translate}}</span></th>
+                                                <th md-column><span> {{ 'shares.manage.dettagli.indirizzo_ip' | translate}}</span></th>
+                                               
+                                            </tr>
+                                        </thead>
+                                        <tbody md-body>
+
+                                            <tr  md-row  ng-repeat-end ng-repeat-start="n in volume.mountTargets " >
+                                              
+                                                    <td md-cell>
+                                                        <span class="md-caption" >{{n.protocol}}</span>
+                                                    </td>
+                                                
+                                                <!-- TARGET ID -->
+                                                    <td md-cell>
+                                                        <span class="md-caption">{{n.MountTargetId}}</span>
+                                                    </td>
+                                                <!-- INDIRIZZO IP -->
+                                                    
+                                                    <td md-cell>
+                                                        <span class="md-caption" >
+                                                             {{n.IpAddress}}
+                                                        </span>
+                                                    </td>
+                                                
+                                            </tr  ng-repeat-end>
+                                        </tbody>
+                                    </table>
+                                </md-table-container>
+                            </md-card>
+
+                        </div>
+
+                        </md-content>
+                    </md-tab>                   
+                
+                </md-tabs>
+            </md-card-content>
+            <md-divider></md-divider> 
+			<md-card-actions layout="row" layout-align="space-between center"> 
+				<md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+					<md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate}} 
+				</md-button>
+            </md-card-actions> 
+            
+        </md-card>
+    </md-content>
+</div>

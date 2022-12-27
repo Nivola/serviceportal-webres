@@ -1,0 +1,108 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="row" layout-fill layout-align="start start">
+
+    <md-card flex="grow">
+        <md-card-title>
+            <md-card-title-text layout-align="center center">
+	      	    <span class="md-headline"> Crea una nuova istanza di VM </span>
+                <!--<span class="md-subhead"> Visualizza il dettaglio della Virtual Machine </span>-->
+            </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+            <loading-placeholder status="status" ></loading-placeholder>
+
+            <div ng-show="status.loaded">
+                <form name="userForm">
+
+                    <p>
+                        <span class="span-phase-index">1.</span>
+                        Dai un nome alla macchina
+                    </p>
+
+                    <md-input-container class="md-block">
+                        <label>Nome della macchina</label>
+                        <input id="vmname" ng-model="user.vmname" name="vmname" tabindex="1"
+                               required md-maxlength="50"
+                        >
+
+                        <div ng-messages="userForm.vmname.$error" role="alert" multiple>
+                            <div ng-message="required" class="my-message">
+                                Devi specificare il nome della macchina
+                            </div>
+                            <div ng-message="md-maxlength" class="my-message">
+                                Il nome specificato &egrave; troppo lungo
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <p>
+                        <span class="span-phase-index">2.</span>
+                        Scegli una immagine di partenza
+                    </p>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Immagine disco</label>
+                        <md-select ng-model="vm.selectedAMI">
+                            <md-option ng-repeat="opt in vm.availableAMIs | orderBy:'name'" value="{{opt.id}}">
+                                {{opt.name}} - {{opt.description}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <p style="padding-top:1em;"></p>
+
+                    <p>
+                        <span class="span-phase-index">3.</span>
+                        Scegli il tuo piano
+                    </p>
+
+                    <md-list class="md-dense" flex>
+                        <md-list-item ng-click="todo(availablePlan, $event)" class="md-2-line"
+                                      ng-repeat="availablePlan in vm.availablePlans | orderBy:'-id'">
+
+                            <md-icon>{{availablePlan.icon}}</md-icon>
+                            <div class="md-list-item-text">
+                                <h3>{{ availablePlan.name }}</h3>
+                                <p> {{ availablePlan.description }} </p>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+
+                    <md-divider style="padding-top:1em;padding-bottom:1em;"></md-divider>
+
+                    <p>
+                        <span class="span-phase-index">4.</span>
+                        Assegna dei tag
+                    </p>
+
+                    <div style="padding-top:1em;padding-bottom:1em;">
+                        <md-chips ng-model="vm.tags" name="tags" readonly="status.tagsReadOnly"
+                                  md-removable="status.tagsRemovable" md-max-chips="10" placeholder="Inserisci un tag ...">
+                            <md-chip-template>
+                                <strong>{{$chip}}</strong>
+                                &nbsp;
+                            </md-chip-template>
+                        </md-chips>
+                    </div>
+
+                    <div style="padding-top:2em;padding-bottom:2em;">
+                        <md-button class="md-raised md-primary" style="padding:1em 1em 1em 1em;">
+                            Conferma e crea la macchina
+                        </md-button>
+                    </div>
+                </form>
+            </div>
+        </md-card-content>
+    </md-card>
+
+</div>

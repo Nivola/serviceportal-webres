@@ -1,0 +1,104 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<br />
+	<md-content class="md-no-momentum"> 
+		<md-card> 
+
+			<div class="md-toolbar-tools">
+				<div flex=20>
+					<md-card-actions layout="row" layout-align="start center" >
+						<md-button class="md-fab read-me " ng-href="{{rtdStaasGrant }}" target="_blank">
+							<md-icon  class="material-icons">local_library</md-icon>
+							<md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+						</md-button>
+					</md-card-actions>
+				</div>
+				<div flex>
+					<md-card-title> 
+						<md-card-title-text	layout-align="center center" flex> 
+							<span class="md-headline titolo-sezione">
+								<md-icon class="icon-card-header-green">sd_storage</md-icon>
+								{{ 'shares.autorizzazioni.nuova.titolo' | translate}}
+							</span>
+							<div class="callout callout-info"></div>
+						</md-card-title-text>
+						<md-card-actions layout="row" layout-align="end center" flex="20"></md-card-actions> 
+					</md-card-title> 
+				</div>
+				<div flex=20 layout="row" layout-align="end center">
+					
+				</div>
+			</div>
+
+			
+			<md-card-content>
+				<form name="grantForm">
+					<md-content class="md-padding"> <br>
+						<div layout="row">
+							<md-input-container class="md-block" flex="50"> <md-icon>insert_comment</md-icon> <label>{{ 'shares.autorizzazioni.nuova.livello' | translate}}:</label> 
+								<md-select ng-model="grant.accessLevel" name="livelloAccesso" required>
+	                           		<md-option ng-repeat="opt in elencoLivelliAccesso | orderBy:'code'" value="{{opt.code}}">
+	                               	{{opt.description}}
+	                           		</md-option>
+	                       		</md-select>
+								<div ng-messages="grant.accessLevel.$error" role="alert" multiple>
+									<div ng-message="required" class="my-message">{{ 'shares.autorizzazioni.nuova.livello_required' | translate}}</div>
+								</div>
+							</md-input-container>
+						</div>
+						<div layout="row">
+							<md-input-container class="md-block" flex="50"> <md-icon>insert_comment</md-icon> <label>{{ 'shares.autorizzazioni.nuova.tipo_accesso' | translate}}:</label> 
+								<md-select ng-model="grant.accessType"  name="tipoAccesso" required>
+	                           		<md-option ng-repeat="opt in elencoTipiAccesso | orderBy:'code'" value="{{opt.code}}">
+	                               	{{opt.description}}
+	                           		</md-option>
+	                       		</md-select>
+								<div ng-messages="grant.accessType.$error" role="alert" multiple>
+									<div ng-message="required" class="my-message">{{ 'shares.autorizzazioni.nuova.tipo_accesso_required' | translate}}</div>
+								</div>
+							</md-input-container>
+						</div>
+						<div layout="row">
+							<md-input-container class="md-block" flex="50"> <md-icon>insert_comment</md-icon> <label>{{ 'shares.autorizzazioni.nuova.access_to' | translate}}:</label> 
+								<!-- <input id="accessoA" ng-model="grant.accessTo" name="accessTo" tabindex="1" required md-maxlength="255"> -->
+								<input id="accessoA" ng-model="grant.accessTo" name="accessTo" tabindex="1" required md-maxlength="255"
+										placeholder="{{ 'shares.autorizzazioni.nuova.access_to_placeholder' | translate}}"
+										pattern="^([1-9]|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])(\.(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])){3}\/(([89]|[12][0-9]|3[0-2]))$" >
+								<div ng-messages="grant.accessTo.$error" role="alert" multiple>
+									<div ng-message="required" class="my-message">{{ 'shares.autorizzazioni.nuova.access_to_required' | translate}}</div>
+								</div>
+
+
+							
+							</md-input-container>
+						</div>
+						
+					</md-content>
+				</form>
+			</md-card-content>
+			<md-divider></md-divider> 
+			<md-card-actions layout="row" layout-align="space-between center"> 
+				<md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+					<md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate}} 
+				</md-button>
+				<div layout="row" layout-align="end end">
+					<md-button class="md-raised md-primary" ng-click="submit()"
+					ng-disabled="!grantForm.$valid || grantForm.$pristine || grantForm.tipoAccesso.$error.required  || grantForm.livelloAccesso.$error.required" >
+	                    <md-icon ng-style="iconStyle" class="material-icons">
+	                        keyboard_arrow_right
+	                    </md-icon>{{ 'shares.autorizzazioni.nuova.crea' | translate}}
+	                </md-button>
+	           </div>
+			</md-card-actions> 
+		</md-card>
+	</md-content>
+</div>

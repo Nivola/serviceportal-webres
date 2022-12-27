@@ -1,0 +1,137 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<br />
+	<md-content class="md-no-momentum">
+		<md-card>
+			<md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length || filter.show">
+				<div class="md-toolbar-tools">
+		
+					<div flex="20">
+						<md-card-actions layout="row" layout-align="start center" flex="20">
+								<md-button class="md-fab read-me "  ng-href="{{rtdSelfRegistrazione}}" target="_blank">
+								<md-icon  class="material-icons">local_library</md-icon>
+								<md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+							</md-button>
+						</md-card-actions> 
+					</div>
+					<div flex="80">
+						<md-card-title>
+							<md-card-title-text layout-align="center center">
+								<span class="md-headline titolo-sezione">
+									<md-icon class="icon-card-header-green">people</md-icon> Registrazione nuovo utente
+								</span>
+								<div class="callout callout-info">
+								</div>
+							</md-card-title-text>
+						</md-card-title>
+					</div>
+				</div>
+			</md-toolbar>
+			<md-card-content>
+				<form name="userForm">
+					<md-input-container class="md-icon-float md-block" flex>
+						<!-- Use floating placeholder instead of label -->
+						<label>Codice fiscale</label>
+						<md-icon ng-style="iconStyle">picture_in_picture</md-icon>
+						<input id="codiceFiscale" name="cf" style="text-transform: uppercase;" ng-model="utenteInserimento.codiceFiscale" type="text"
+						 ng-required="true"  cf-check readonly>
+						<div ng-messages="userForm.cf.$error">
+							<div ng-message="required">Codice Fiscale necessario!</div>
+							<div ng-message="cfCheck">Codice Fiscale non valido!</div>
+						</div>
+					</md-input-container>
+					<div layout="column">
+						<div layout="row" layout-xs="column">
+							<md-input-container class="md-icon-float md-block" flex>
+								<!-- Use floating label instead of placeholder -->
+								<label>Nome</label>
+								<md-icon ng-style="iconStyle">person</md-icon>
+								<input id="nome" name="nome" ng-model="utenteInserimento.nome" type="text" ng-required="true" readonly>
+								<div ng-messages="userForm.nome.$error">
+									<div ng-message="required">{{ 'campo_necessario' | translate }}</div>
+								</div>
+							</md-input-container>
+							<md-input-container md-no-float class="md-block" flex>
+								<label>Cognome</label>
+								<md-icon ng-style="iconStyle" hide>person</md-icon>
+								<input id="Cognome" name="cognome" ng-model="utenteInserimento.cognome" type="text" ng-required="true" readonly>
+								<div ng-messages="userForm.cognome.$error">
+									<div ng-message="required">{{ 'campo_necessario' | translate }}</div>
+								</div>
+							</md-input-container>
+						</div>
+						<div layout="row" layout-xs="column">
+							<md-input-container class="md-block" flex>
+								<!-- Use floating placeholder instead of label -->
+								<label>Indirizzo email</label>
+								<md-icon ng-style="iconStyle">email</md-icon>
+								<input id="email" name="email" ng-model="utenteInserimento.email" type="email" ng-required="true"  uncapitalize>
+								
+								<div ng-if="utenteInserimento.email!==null">
+									<div style="color:red;" ng-if="!(utenteInserimento.email.includes('@csi.it') || utenteInserimento.email.includes('@consulenti.csi.it'))">Email deve essere valida e del CSI</div>
+								</div>
+								
+							</md-input-container>
+							<md-input-container  class="md-block" flex>
+								<!-- Use floating label instead of placeholder -->
+								<label>Matricola CSI</label>
+								<md-icon ng-style="iconStyle">confirmation_number</md-icon>
+								<input id="matricolaCsi" ng-model="utenteInserimento.matricolaCsi" type="text" ng-required="true" >
+							</md-input-container>
+						</div>
+						<div layout="row" layout-xs="column">
+							<md-input-container class="md-block" flex>
+								<label>Motiva la richiesta di registrazione</label>
+								<md-icon ng-style="iconStyle">insert_comment</md-icon>
+								<textarea id="note" ng-model="utenteInserimento.note" md-maxlength="500" rows="3" md-select-on-focus ng-readonly="isBodyFixed" ng-required="false"></textarea>
+							</md-input-container>
+						</div>
+						
+		
+					</div>
+				</form>
+
+				<br />
+
+				<div layout="column" layout-align="space-around start" layout-align-xs="space-around center">
+					<md-checkbox ng-model="utenteInserimento.attivo" aria-label="Permesso Nivola Service Portal">
+						{{ 'utente.accesso_portal' | translate }}
+					</md-checkbox>
+
+					<md-checkbox ng-disabled="!cliCheckboxEnabled" ng-model="utenteInserimento.attivoCMP" aria-label="Permesso Nivola CLI">
+						{{ 'utente.accesso_cli' | translate }}
+					</md-checkbox>
+
+					<md-checkbox ng-disabled="true" ng-model="utenteInserimento.usaRemedy" aria-label="Permesso remedy">
+						{{ 'utente.ticketing' | translate }}
+					</md-checkbox>
+
+					<md-checkbox ng-model="utenteInserimento.policy" aria-label="Permesso Nivola Service Portal">
+						Ho letto e compreso le <a target="_blank" rel="noopener noreferrer" href="https://www.nivolapiemonte.it/wp-content/uploads/2020/06/informativa_dati_clienti.pdf" style="color:rgb(49, 103, 204);" >informazioni sul trattamento dei dati personali</a>  rese dal CSI Piemonte ai sensi dell'art. 13 del GDPR
+					</md-checkbox>
+				</div>
+
+				<br />
+
+				<md-card-actions layout="row" layout-align="space-between center">
+					<md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+						<md-icon class="material-icons">keyboard_backspace</md-icon> INDIETRO
+					</md-button>
+
+					<md-button type="submit" ng-click="actions.invia()" class="md-raised">
+						<md-icon ng-style="iconStyle" class="material-icons">send</md-icon> REGISTRA UTENTE
+					</md-button>
+				</md-card-actions>
+			</md-card-content>
+		</md-card>
+	</md-content>
+</div>

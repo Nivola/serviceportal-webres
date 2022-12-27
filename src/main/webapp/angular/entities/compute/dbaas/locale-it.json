@@ -1,0 +1,231 @@
+{
+    "dbaas": {
+        "aggiorna": "Aggiorna Elenco",
+        "crea": "Crea un Nuovo Dbaas",
+        "elenco": "Elenco Dbaas",
+        "gestione": "Pannello gestione Dbaas",
+        "selezionati": "Dbaas selezionati",
+        "selezionato": "Dbaas selezionato",
+        "connetti": {
+            "bottone": "Connetti",
+            "msg01": "Utilizza il seguente link per raggiungere al pannello di controllo phpMyAdmin",
+            "msg02": "Utilizza il seguente link per raggiungere al pannello di controllo phpPgAdmin",
+            "msg03": "Accedi inserendo Username e Password del database a cui ci si vuole connettere.",
+            "msg04": "Se hai bisogno di assistenza per la connessione alla tua istanza, consulta la nostra documentazione di connessione.",
+            "sottotitolo": "Per accedere alla tua istanza",
+            "titolo": "Connetti"
+        },
+        "elimina": {
+            "bottone": "Elimina Elemento",
+            "conferma": "Confermi la cancellazione dell'istanza",
+            "error": "Si è verificato un errore durante l'eliminazione dell'istanza",
+            "errorNameNotMatching": "il nome inserito non è corretto",
+            "info": "L'istanza verrà cancellata definitivamente.",
+            "info01": "La Rimozione dell'istanza implica la cancellazione fisica del DB",
+            "info02": "Eseguire un Backup prima di procedere con la cancellazione",
+            "msg_inserisci_nome": "Inserire Nome del Database per confermare l'operazione",
+            "placeholder": "Nome del Database",
+            "prosegui": "Si vuole procedere con la cancellazione ?",
+            "selezione": "Selezionare solo una istanza DBAAS",
+            "success": "La richiesta di rimozione dell'istanza {{nome}} è stata inviata correttamente.",
+            "titolo": "Cancellazione Istanza"
+        },
+        "lista": {
+            "active_flag": "Stato",
+            "cpu_ram": "Classe istanza",
+            "engine": "DB Engine",
+            "errore": "Si è verificato un errore durante il caricamento delle informazioni sul DB",
+            "nome": "Nome",
+            "region_az": "Region - A.Z.",
+            "storage": "Storage",
+            "tags": "Tags",
+            "vuoto": "Nessun Data Base presente"
+        },
+        "manage": {
+            "titolo": "Pannello di Gestione DB",
+            "dettagli": {
+                "data_creazione": "Data Creazione",
+                "disco": "Disco",
+                "dns_name": "FQDN",
+                "engine": "Engine",
+                "inserisci_tag": "Inserisci un tag ...",
+                "ip_address": "IP address",
+                "nome": "Nome",
+                "port": "Port",
+                "proprieta": "Proprieta",
+                "region": "Region - A.Z.",
+                "security_group": "Security Group",
+                "stato": "Stato VM",
+                "subnet": "Subnet",
+                "tags": "Tags",
+                "tipo": "Tipo VM",
+                "titolo": "Dettagli",
+                "valore": "Valore",
+                "version": "Version"
+            },
+            "utenti": {
+                "crea_utente": "Crea Utente",
+                "dismetti_utente": "Dismetti Utente",
+                "note_placeholder": "inserire eventuali note",
+                "titolo": "UTENTI",
+                "creazione": {
+                    "error": "Si è verificato un errore durante il tentativo di creazione dell'utente",
+                    "success": "L'operazione di creazione dell'utente è stata inviata correttamente"
+                },
+                "elimina": {
+                    "error": "Si è verificato un errore durante l'eliminazione dell'utente",
+                    "success": "la richiesta di cancellazione dell'utente è stata inviata correttamente",
+                    "testo": "l'utente verrà cancellato definitivamente.",
+                    "titolo": "Confermi la cancellazione dell'utente?"
+                },
+                "nome": {
+                    "label": "Nome",
+                    "pattern": "Il nome deve iniziare con un carattere minuscolo <br> Deve contenere solo lettere (minuscole) e numeri o il carattere \"_\"<br>Deve avere lunghezza compresa  tra  5 e 64 caratteri",
+                    "placeholder": "es: nome_istanza"
+                },
+                "tipologia": {
+                    "amministrativa": "Amministrativa",
+                    "lettura_scrittura": "Lettura e scrittura",
+                    "sola_lettura": "Solo Lettura",
+                    "titolo": "Scegliere una Tipologia"
+                }
+            }
+        },
+        "nuova": {
+            "error": "Si è verificato un errore durante il tentativo di creazione dell'istanza",
+            "error_disksize": "La dimensione del disco specificata non è applicabile!",
+            "success": "L'operazione di creazione dell'istanza è stata avviata correttamente",
+            "titolo": "Crea una Nuova istanza di DBaaS",
+            "assistenza": {
+                "error": "Si è verificato un errore durante il tentativo di informare l'assistenza della creazione del DBAAS",
+                "success": "L'assistenza è stata informata  correttamente della creazione del DBAAS"
+            },
+            "database": {
+                "scegli": "Scegli il database.",
+                "titolo": "1. Scegli il database",
+                "vai_a_tipo_istanza": "VAI A TIPO ISTANZA",
+                "codice_progressivo": {
+                    "inserisci": "Inserire un codice progressivo di tre cifre nel formato 001,002 che ti permetterà di identificare il tuo DBAAS.",
+                    "maxlength": "il codice è troppo lungo ",
+                    "pattern": "Il codice non è valido",
+                    "required": "Inserire un codice di 3 cifre",
+                    "titolo": "progressivo"
+                },
+                "istanza": {
+                    "label": "Nome del Database",
+                    "maxlength": "Il nome specificato è troppo lungo",
+                    "placeholder": "Specificare il nome del Database",
+                    "required": "Devi specificare il nome del Database",
+                    "titolo": "In base alle scelte che hai effettuato la tua istanza si chiamera'"
+                },
+                "opzione": {
+                    "col": "Collaudo",
+                    "dev": "Sviluppo",
+                    "prd": "Produzione",
+                    "seleziona": "Selezionare un'opzione per differenziare i tuoi ambienti",
+                    "tst": "Test"
+                }
+            },
+            "dettagli": {
+                "titolo": "4. Dettagli DBaaS",
+                "vai_a_info": "VAI A INFORMAZIONI",
+                "porta": {
+                    "default": "Porta di default",
+                    "placeholder": "specificare la porta",
+                    "required": "Devi specificare la porta",
+                    "titolo": "Porta di ascolto di default"
+                },
+                "schema": {
+                    "nome": "Nome dello schema di default",
+                    "placeholder": "specificare il nome dello schema",
+                    "principale": "Schema principale",
+                    "required": "Devi specificare il nome dello schema"
+                }
+            },
+            "info": {
+                "aggiungi_zone": "AGGIUNGI UNA AVAILABILITY ZONE",
+                "region": "Region",
+                "rimuovi_disco": "Rimuovi disco aggiuntivo",
+                "scegli_region": "Scegli la Region e Availability Zone.",
+                "scegli_security_group": "Scegli in che gruppo di sicurezza inserire il database.",
+                "scegli_subnet": "Scegli la subnet nella quale collocare la virtual machine che stai creando.",
+                "security_group": "Gruppo di sicurezza",
+                "subnet": "Subnet",
+                "titolo": "5. Network",
+                "vai_a_riepilogo": "VAI A RIEPILOGO",
+                "zone": "Availability Zone"
+            },
+            "riepilogo": {
+                "costi_stimati": "Costi stimati",
+                "costo_al_mese": "\u20ac/mese",
+                "costo_incluso": "incluso",
+                "creazione_conferma": "CONFERMA E CREA L'ISTANZA",
+                "creazione_msg01": "La crezione dell'istanza potrebbe richiedere del tempo.",
+                "creazione_msg02": "Verrai avvisato al completamento dell'operazione.",
+                "disco": "Disco",
+                "disco_aggiuntivo": "Disco aggiuntivo",
+                "fqdn": "FQDN",
+                "modifica": "Modifica",
+                "modifica_disco": "Modifica Disco",
+                "modifica_disco_aggiuntivo": "Modifica disco aggiuntivo",
+                "modifica_nome": "Modifica Nome VM",
+                "modifica_region": "Modifica Region - A.Z.",
+                "modifica_security_group": "Modifica Security group",
+                "modifica_subnet": "Modifica Subnet",
+                "modifica_template": "Modifica Template",
+                "modifica_tipo_istanza": "Modifica Tipo Istanza",
+                "porta": "Porta",
+                "proprieta": "Proprieta",
+                "rdbms": "RDBMS",
+                "region": "Region - A.Z.",
+                "security_group": "Security group",
+                "sottotitolo": "Assicurati di aver selezionato le opzioni corrette, dopodichè avvia la creazione dell'istanza.",
+                "stime_mensile_di": "Stima mensile di ",
+                "subnet": "Subnet",
+                "tipo_istanza": "Tipo Istanza",
+                "titolo": "6. Riepilogo",
+                "valore": "Valore"
+            },
+            "spazio": {
+                "aggiungi_disco": "AGGIUNGI DISCO AGGIUNTIVO",
+                "dimensione": "Dimensione",
+                "dimensione_disco": "Dimensione del disco",
+                "rimuovi_disco": "Rimuovi disco aggiuntivo",
+                "scegli": "Scegli le opzioni relative allo spazio di archiviazione.",
+                "tipologia": "Tipologia",
+                "tipologia_disco": "Tipologia del disco",
+                "titolo": "3. Spazio di archiviazione",
+                "vai_a_dettagli": "VAI A DETTAGLI DBAAS"
+            },
+            "tipo_istanza": {
+                "disco": "Disco",
+                "ram": "RAM",
+                "selezionato": "Attualmente selezionato",
+                "sottotitolo": "Dimensiona le risorse da assegnare all'istanza di database.",
+                "tipo": "Type",
+                "titolo": "2. Tipo Istanza",
+                "vai_a_spazio": "VAI A SPAZIO DI ARCHIVIAZIONE",
+                "vcpus": "vCPU"
+            }
+        },
+        "stato": {
+            "available": "Il DBAAS è attivo",
+            "error": "Il DBAAS è in errore",
+            "inactive": "Il DBAAS non è attivo",
+            "pending": "Il DBAAS è in uno stato temporaneo",
+            "stopped": "Il DBAAS è stopped",
+            "undefined": "L'informazione sullo stato del DBAAS non è disponibile.",
+            "value": "Il DBAAS è nello stato "
+        },
+        "statoText":{
+            "pending": "temporaneo",
+            "running": "accesa",
+            "stopped": "spenta",
+            "undefined": "indefinito",
+            "errore" : "errore ",
+            "unknow" : "sconosciuto",
+            "inuse" :   "in utilizzo",
+            "available" : "attivo"
+        }
+    }
+}

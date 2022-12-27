@@ -1,0 +1,384 @@
+{
+    "assistenza": {
+        "ambito_cloud" : "ambito Cloud",
+        "allegato" : "Allega file (optional)",
+        "annulla" : "Annulla", 
+        "bozza" : "Salva in bozza",
+        "email": "E-mail",
+        "email_required": "L'e-mail è obbligatoria",
+        "error": "Si è verificato un errore durante il tentativo di richiedere assistenza",
+        "error_wi": "Si è verificato un errore durante il tentativo di aggiungere la work info",
+        "error_update_urgenza": "Si è verificato un errore durante il tentativo di aggiornamento dell urgenza",
+        "messaggio": "Messaggio",
+        "messaggio_required": "Il messaggio è obbligatorio",
+        "nome": "Nome",
+        "nome_required": "Il nome è obbligatorio.",
+        "oggetto": "Oggetto",
+        "oggetto_required": "L'oggetto è obbligatorio",
+        "riepilogo_required": "il campo riepilogo è obbligatorio",
+        "note_required": "il campo note è obbligatorio",
+        "oggetto_seleziona": "seleziona  un oggetto",
+        "impatto_seleziona": "seleziona impatto",
+        "impatto_required": "L'impatto è obbligatorio",
+        "urgenza_seleziona": "seleziona urgenza",
+        "urgenza_required": "l'urgenza è obbligatoria",
+        "oggetto_selezionato": "hai selezionato l'oggetto",
+        "impatto_selezionato": "hai selezionato l'oggetto",
+        "richiesta_supporto": "Richiesta Supporto",
+        "richiesta" : "richiesta",
+        "success": "La richiesta d'assistenza è stata inviata correttamente",
+        "success_wi": "La work info è stata correttamente aggiunta",
+        "success_bozza": "La richiesta d'assistenza  salvata correttamente in bozza",
+        "success_updatebozza": "Bozza aggiornata con successo",
+        "dettagli": {
+            "bottone": "Visualizza dettagli Ticket"
+        },
+        "elenco": {
+            "tipo_segnalazione": "Tipo Segnalazione",
+            "oggetto": "Oggetto",
+            "inviata": "Inviata",
+            "inviata_da": "Inviata da",
+            "iserita_da": "Utente",
+            "in_data": " In data",
+            "data_inserimento" : "Data ",
+            "accountName" : "Nome Account",
+            "impatto" : "Impatto/Disservizio",
+            "urgenza" : "Urgenza",
+            "numero_Remedy" : "numero Ticket",
+
+
+            "data": "Data della <\/br>richiesta",
+            "data_aggiornamento": "Data ultimo <\/br>aggiornamento",
+            "data_risoluzione": "Data ultima <\/br>risoluzione",
+            "id": "ID",
+            "nuova": "Apri nuovo Ticket",
+            
+            "ricarica": "Ricarica lista",
+            "ricerca_avanzata": "Ricerca avanzata",
+            "riferimento": "Riferimento<\/br>Remedy",
+            "selezionata": "Ticket selezionato",
+            "selezionate": "Tickets selezionate",
+            "stato": "Stato Ticket",
+            "testo": "Testo",
+            "tipo": "Tipo richiesta",
+            "titolo": "Elenco Richieste",
+            "vuoto": "Non ci sono Richieste presenti",
+            "bozze_vuote" : "Non ci sono bozze salvate "
+        },
+        "elimina": {
+            "notizia": "Elimina notizia",
+            "notizie": "Elimina notizie"
+        },
+        "form": {
+            "allegato" : "nome allegato",
+            "ambito_cloud" : "ambito Cloud",
+            "assegnatario" : "Assegnatario",
+            "descrizione" : "Descrizione (Indicare i passi necessari a riprodurre l'anomalia)",
+            "dataInvio" : "Data Invio",
+            "error_ip" : "il formato dell 'indirizzo ip non e' valido. es:192.168.0.1",
+            "error_porta" : "numero della porta non valido",
+            "error_required_impatto" : "Indicare l'impatto",
+            "error_required_urgenza" : "Indicare l'urgenza",
+            "error_required_oggetto" : "Indicare l'oggetto",
+            "impatto" : "impatto anomalia",
+            "ipHostFrom" : "Ip Host Da",
+            "ipHostTo" : "Ip Host A",
+            "logId" : "Log Id",
+            "dataInserimento" : "Data Inserimento",
+            "utenteInserimento" : "Utente Inserimento",
+            "riepilogo" :"riepilogo",
+            "motivo" : "Motivo",
+            "oggetto": "oggetto",
+            "testo" : "Testo",
+            "portaDiComunicazione" : "Porta di Comunicazione",
+            "proprieta" : "Proprieta", 
+            "risoluzione" : "Risoluzione",
+            "richiesta" : "richiesta",
+            "ticketId" : "Ticket Id",
+            "title_annSerCloud" : "Anomalia Servizi Cloud",
+            "stato" : "Stato",
+            "urgenza" : "urgenza anomalia",
+            "accountName" : "Nome Account",
+            "divisioneName" : "Nome Divisione",
+            "organizzazioneName"  : "Nome Organizzazione",
+            "utenteInvio" : "Richiedente",
+            "MotivoStato" : "Motivo Stato",
+            "Commento" : "Commento",
+            "updateDate" : "Ultimo Aggiornamento",
+            "closeDate" : "Data Chiusura", 
+            "valore" : "Valore" 
+
+            
+
+        }
+        ,
+        "oggetti": {
+            "altro": "Altro Oggetto",
+            "baas": "Backup as a Service",
+            "dbaas": "Data Base as a Service",
+            "gestione": "Gestione e monitoraggio",
+            "label": "Oggetti",
+            "risorse": "Risorse Elaborative",
+            "saas": "Storage as a Service"
+        },
+        "oggetti_impatto": {
+            "minimo":  "Minimo/Localizzato",
+            "moderato":  "Moderato/Limitato",
+            "significativo": "Significativo/Grande",
+            "vasto": "Vasto/Diffuso"
+     
+        },
+        "oggetti_urgenza": {
+            "critica":  "1-Critica",
+            "alta":  "2-Alta",
+            "media": "3-Media",
+            "bassa": "4-Bassa"
+     
+        },
+
+        "oggetti_ambitoCloud": {
+            "none" : "None",
+            "appEngine":  "AppEngine",
+            "compute":  "Compute",
+            "dataBase": "DataBase",
+            "monitoraggio": "Monitoraggio",
+            "reti_sic" : "Reti e Sicurezza",
+            "storage" : "Storage"
+     
+        },
+        "btn":{
+        	"next" : "Prosegui"
+        },
+        "forms" : {
+            "tipo": {
+                "one" :"Si vuole segnalare un malfunzionamento o un errore che sta compromettendo uno o più servizi ospitati su Nivola?" ,
+                "problem_subhead" :"Questo tipo di richiesta deve essere attivata nel caso si riscontrino anomalie, errori o malfunzionamenti rispetto ai servizi offerti dalla piattaforma, compreso questo Service Portal. Oppure se si vuole segnalare una anomalia rispetto alla mancata comunicazione tra 2 o più server.",
+
+                "change_headline" :"Voglio chiedere un adeguamento/aggiornamento ad un servizio già esistente" ,
+                "change_subhead" :"Nel caso si voglia richiedere una aggiornamento/adeguamento dei propri servizi: richiedere la variazione delle caratteristiche di una VM già esistente, chiedere/revocare una abilitazione di rete, indicare/modificare regole per il backup delle VM, adeguare le risorse e la configurazione di un DBAAS, indicare dimensionamento e Sistema operativo di una VM, predisporre la configurazione per un disco di rete, …",
+            
+                "altro_headline" :"Altro" ,
+                "altro_subhead" :"Nel caso in cui le precedenti opzioni non siano quelle a te utili. Qui potrai richiedere il provisioning di un nuovo account, chiedere la registrazione di un DNS interno, inoltrare suggerimenti o proposte di miglioramento, ….",
+
+                "two" : "Si vuole richiedere nuovi servizi, disabilitarne di esistenti,  informazioni o how to use rispetto al Service Portal",
+                "three" : "Si vuole richiedere il ripristino di una VM o DB?",
+                "four" : "Si vuole inoltrare una richiesta relativa alle VPN?",
+                "five" : "Si vuole inoltrare una richiesta relativa alle PaaS?",
+                "six" : "Si vuole richiedere il provisioning di un nuovo account, chiedere la registrazione di un DNS interno, inoltrare suggerimenti, proposte di miglioramento o altri temi non presenti nelle precedenti opzioni?"
+
+            
+            },
+            "incident": {
+                "impatto_title" : "Quale è l’impatto del malfunzionamento che vuoi segnalare?",
+                "impatto_left_headline" : "Il malfunzionamento impedisce l'erogazione di tutti (o la maggior parte) dei servizi presenti sul mio account Nivola, compromettendo attività di sportello e/o servizi web?",
+                "impatto_left_subhead"  : "", 
+                "impatto_center_headline" :"Voglio segnalare un malfunzionamento che impedisce l'erogazione di uno solo dei servizi presenti sul mio account Nivola",
+                "impatto_center_subhead" :"",
+                "impatto_right_headline" :"I servizi sono disponibili ma si segnalano forti rallentamenti o perdita di alcune funzionalità? Per cortesia indicare le VM impattate",
+                "impatto_right_subhead" :"",
+               
+                "diservizio_title" : "Quale è l’eventuale disservizio ?",
+                "diservizio_left_headline" : "Sono compromessi servizi di sportello o servizi web?",
+                "diservizio_left_subhead"  : "", 
+                "diservizio_center_headline" :"Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative entro 48 ore",
+                "diservizio_center_subhead" :"",
+                "diservizio_right_headline" :"Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative oltre le 48 ore",
+                "diservizio_right_subhead" :"",
+
+                "diserviziobis_left_headline" : "Il servizio in questione non è accessibile e fruibile, inoltre è rivolto ai cittadini, a supporto di operatori di sportello oppure è essenziale per ottemperare a scadenze amministrative imminenti [meno di 48 ore]",
+                "diserviziobis_left_subhead"  : "", 
+                "diserviziobis_center_headline" :"Il servizio è accessibile ma parte delle sue funzionalità non sono disponibili e/o ci sono forti rallentamenti.",
+                "diserviziobis_center_subhead" :"",
+                "diserviziobis_right_headline" :"Il Servizio non è fruibile in modo adeguato ma non è tra quelli ad alta priorità e non  sussistono criticità",
+                "diserviziobis_right_subhead" :""
+
+               
+
+              
+               
+            },
+            "change": {
+                "impatto_title" : "Quale è l’impatto dell’aggiornamento che vuoi richiedere?",
+                "impatto_left_headline" : "Adeguamento necessario per l’erogazione di un servizio essenziale/critico",
+                "impatto_left_subhead"  : "Si tratta di adeguare l’infrastruttura o una delle sue componenti per la migliorare/consentire l’erogazione di un servizio destinato a cittadini, Aziende, PA.", 
+                "impatto_center_headline" :"Adeguamento necessario ma non critico",
+                "impatto_center_subhead" :"Si tratta di adeguare l’infrastruttura o una delle sue componenti per la migliorare/consentire l’erogazione di un servizio destinato a cittadini, Aziende, PA. L’aggiornamento è necessario ma sono pregiudicati significativamente servizi essenziali/critici .",
+                "impatto_right_headline" :"Non vengono pregiudicati servizi critici/essenziali",
+                "impatto_right_subhead" :"L’adeguamento è necessario ma al momento non pregiudica l’erogazione di servizi destinati a cittadini, Aziende, PA.",
+               
+                "intervento_title" : "Quale è il livello di intervento ?",
+                "intervento_left_headline" : "L’adeguamento riguarda l’intera infrastruttura",
+                "intervento_left_subhead"  : "L’aggiornamento interessa un singolo servizio o la singola istanza di un servizio.", 
+                "intervento_center_headline" :"L’aggiornamento interessa un singolo servizio ",
+                "intervento_center_subhead" :"L’aggiornamento interessa un singolo servizio o la singola istanza di un servizio.",
+                "intervento_right_headline" :"Si vuole adeguare una funzionalità/caratteristica di un singolo servizio",
+                "intervento_right_subhead" :"Si vuole aggiornare/adeguare un singola funzionalità , parametro o caratteristica di un o specifico servizio. Ad esempio si vuole richiedere un nuovo utente DB, o richieder l’apertura di una porta in ingresso su una singola VM.",
+               
+
+                "descrizione_title" : "Puoi descrivere meglio il tipo di adeguamento ?",
+                "descrizione_left_headline" : "Voglio modificare le risorse a più virtual machine già presenti, richiedere nuove virtual machine sul corrente account o/e attivare altri servizi (Backup, DB, Monitoraggio...) ",
+                "descrizione_center_headline" :"Vorrei avere informazioni e/o approfondimenti riguardo ad alcune funzionalità del Service Portal, alle modalità di assistenza o dei servizi offerti ",
+                "descrizione_right_headline" :"Altro tipo di adeguamento",
+
+                "two-step1_a" : "Si vuole attivare un nuovo servizio?",
+                "two-step1_b" : "Si vuole modificare/disattivare un servizio già attivo?",
+                "two-step1_c" : "Abilitazione di rete?",
+                "two-step1_d" : "Informazioni sulla Piattaforma Nivola o sul servizio",
+                "two-step1_e" : "How to use - Service Portal",
+
+                "two-step1_a-step2_a" : "Backup-as-a-service? Per cortesia indicare la VM o le VM su cui intervenire, specificando il periodo di ritenzione (7,14 o 30 giorni)",
+                "two-step1_a-step2_b" : "Monitoraggio?  Per cortesia indicare la VM o le VM su cui intervenire",
+                "two-step1_a-step2_c" : "Logging?",
+                "two-step1_a-step2_d" : "Nuova VM Windows? Indicare SO e il flavor da applicare",
+                "two-step1_a-step2_e" : "Nuova VM Linux? Indicare SO e il flavor da applicare",
+                "two-step1_a-step2_f" : "Nuovo DB? Indicare la tecnologia ed il flavor da applicare",
+                "two-step1_a-step2_g" : "Nuovo STaaS? Specificare il dimensionamento richiesta e quali VM dell'account devono poter accedervi",
+
+
+                
+                "two-step1_b-step2_a" : "Backup-as-a-service? ",
+                "two-step1_b-step2_b" : "Si vuole disattivare il monitoraggio? Per cortesia specificare a quale o quali VM ",
+                "two-step1_b-step2_c" : "Si vuole disattivare il Logging? Per cortesia specificare a quale o quali VM ",
+                "two-step1_b-step2_d" : "Backup-as-a-service: Si vuole disattivare? Specificare a quale o quali VM",
+                "two-step1_b-step2_e" : "Backup-as-a-service: Si vuole modificare il periodo di ritenzione? Scegliere tra le opzioni disponibili 7, 14 o 30 giorni",
+               
+
+                
+                "two-step1_c-step2_a" : "Si richiede una nuova abilitazione?",
+                "two-step1_c-step2_b" : "Si richiede la dismissione di una abilitazione attualmente attiva?",
+                "two-step1_c-step2_c" : "L'abilitazione è solo tra VM all'interno dell'account Nivola? Specificare IP sorgente, IP destinazione e porte ",
+                "two-step1_c-step2_d" : "L'abilitazione riguarda anche IP esterni al proprio account Nivola? Specificare IP sorgente, IP destinazione e porte",
+                "two-step1_c-step2_e" : "L'abilitazione è solo tra VM all'interno dell'account Nivola? Specificare IP sorgente, IP destinazione e porte",
+                "two-step1_c-step2_f" : "L'abilitazione riguarda anche IP esterni al proprio account Nivola? Specificare IP sorgente, IP destinazione e porte",
+
+                "three-step1_a" : "La richieste consente il ripristino di un servizio che attualmente non è disponibile?",
+                "three-step1_b" : "La richiesta consente il recupero di dati che attualmente sono corrotti o non disponibili, ma il servizio è disponibile?",
+                "three-step1_c" : "Ripristino VM? Indicare il nome o ip della VM",
+                "three-step1_d" : "Ripristino DB indicare il nome o ip del DB",
+
+
+                "four-step1_a" : "Si vuole accreditare un nuovo utente sul proprio profilo consentendo l'accesso agli ambienti Nivola?",
+                "four-step1_b" : "Si vuole modificare il proprio profilo?",
+
+                "five-step1_a" : "Si prega di indicare per quale servizio non risulta disponibile ",
+                "five-step1_b" : "La richieste consente il ripristino di un servizio che attualmente non è disponibile?",
+                "five-step1_c" : "La richiesta richiede di modificare la configurazione attuale?",
+
+                
+                "six-step1_a" : "Richiesta di un nuovo account? ",
+                "six-step1_b" : "Registrazione DNS?",
+                "six-step1_c" : "Proposte di miglioramento?",
+                "six-step1_d" : "Altro, argomento non presente nelle precedenti voci",
+
+
+                "mysql" : "la tecnologia del dbaas è MYSQL",
+                "postgres" : "la tecnologia del dbaas è POSTGRES",
+                "ms_sql" : "la tecnologia del dbaas è MS-SQL",
+                "oracle" : "la tecnologia del dbaas è ORACLE"
+               
+               
+               
+               
+            },
+            "headers" :{
+                "MALFUNZIONAMENTO" : "MALFUNZIONAMENTO",
+                "SERV_INFO" : "NUOVI SERVIZI E INFORMAZIONI",
+                "BACKUPRIPRISTINI" : "BACKUP E RIPRISTINI",
+                "ALTRERICHIESTE" : "ALTRE RICHIESTE",
+                "NUOVOUTENTE" : "NUOVO UTENTE",
+                "RIPRISTINORECUPERODATI" : "RIPRISTINO PER RECUPERO DATI",
+                "RESTOREPERRIPRISTINO" : "RESTORE PER RIPRISTINO SERVIZIO",
+                "INFORMAZIONI" : "INFORMAZIONI",
+                "POLICYDIRETE" : "POLICY DI RETE",
+                "DISATTIVAZIONE" : "ATTIVAZIONE - DISATTIVAZIONE",
+                "NUOVISERVIZI" : "NUOVI SERVIZI",
+                "RALLENTAMENTIDISSERVIZI" : "RALLENTAMENTI O DISSERVIZI PARZIALI",
+                "MALFUNZIONAMENTOIMPATTANTE" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                "MODIFICADELPROFILO" : "MODIFICA DEL PROFILO"
+            },
+            "adeguamento": {
+                "impatto_title" : "Qual è l’impatto dell’adeguamento richiesto ?",
+                "impatto_left_headline" : "Significativo/Grande",
+                "impatto_left_subhead"   : "L'adeguamento consentirà di risolvere delle criticità sui servizi attualmente ospitati sull'account ",
+                "impatto_center_headline" : "Moderato/Limitato", 
+                "impatto_center_subhead" :"L’aggiornamento consentirà di introdurre nuovi servizi di business all'interno dell'account esistente",
+                "impatto_right_headline" : "Minimo/Localizzato",
+                "impatto_right_subhead" :"La richiesta riguarda l'attivazione del servizio di Monitoraggio, Logging e/o Backup",
+               
+                "tipoinfo_title" : "Che tipo di informazione ti serve ?",
+                "tipoinfo_left_headline" : "Vorrei avere chiarimenti rispetto ad alcune funzionalità del Service Portal ",
+                "tipoinfo_left_subhead"  : "", 
+                "tipoinfo_center_headline" :"Vorrei avere delle informazioni relative al servizio di Assistenza ",
+                "tipoinfo_center_subhead" :"",
+                "tipoinfo_right_headline" :"Vorrei avere delle informazioni riguardo ad alcuni dei servizi offerti a catalogo (Backup, Storage, DB, Monitoraggio..) ",
+                "tipoinfo_right_subhead" :"",
+               
+
+                
+                "impattobis_left_headline" : "L’adeguamento riguarda l’intera infrastruttura ",
+                "impattobis_center_headline" : "L’aggiornamento interessa un singolo servizio ", 
+                "impattobis_right_headline" : "Si vuole adeguare una funzionalità/caratteristica di un singolo servizio ",
+                
+
+                "descrizione_title" : "Puoi descrivere meglio il tipo di adeguamento ?",
+                "descrizione_left_headline" : "Voglio modificare le risorse a più virtual machine già presenti, richiedere nuove virtual machine sul corrente account o/e attivare altri servizi (Backup, DB, Monitoraggio...) ",
+                "descrizione_center_headline" :"Vorrei avere informazioni e/o approfondimenti riguardo ad alcune funzionalità del Service Portal, alle modalità di assistenza o dei servizi offerti ",
+                "descrizione_right_headline" :"Altro tipo di adeguamento"
+               
+               
+            },
+            "other" :{
+                "title": "Di che cosa si tratta ?",
+                "left_headline" : "Vorrei richiedere il provisioning per un nuovo Account",
+                "left_subhead" : "Per poter richiedere un nuovo account su Nivola è necessario compilare l’ultima versione di scheda di provisioning disponibile su Teknos nella sezione Nivola ed inoltrarlo attraverso questo form. Si raccomanda di compilare schede distinte tra Produzione e Pre-Produzione. Nel caso ci siano delle difficoltà nella compilazione del documento, si richiede di inoltrare una “Richiesta Generica” nella sezione “Request”, nel caso di situazioni complesse seguirà un invito per approfondire la richiesta.",
+                "center_headline": "Vorrei registrare un nuovo DNS interno",
+                "center_subhead": "per richiedere la registrazione di uno specifico nome / alias ad un indirizzo IP di Nivola.",
+                "right_headline": "La tua richiesta è di altro tipo",
+                "right_subhead": ""
+            },
+            "output" :{
+                "riepilogo" : "Riepilogo delle scelte effettuate ",
+                "tipo_problem" : "Anomalia/Errore/Malfunzionamento",
+                "tipo_change" : "Adeguamento/Aggiornamento",
+                "tipo_altro" : "Altro"
+
+            },
+
+            "servizio_title" : "Di che cosa si tratta ?",
+            "servizio_vmms_headline":"La tua richiesta riguarda una risorsa infrastrutturali in ambito Microsoft ?",
+            "servizio_dbaas_headline":"La tua richiesta riguarda un Database ?",
+            "servizio_cpaas_headline":"La tua richiesta riguarda una o più VM in particolare ?",
+            "servizio_other_headline":"La tua richiesta è di altro tipo ?",
+
+
+            "tecnologia_title" : "Quale è la tecnologia del database ?",
+            "db_tecnology_is":"la tecnologia del dbaas è",
+
+            "workInfo" : {
+                "title" : "Aggiungere una workinfo",
+                "title_info" : "Rispondi  a richiesta integrazione informazioni",
+                "riepilogo" : "Riepilogo" ,
+                "note" : "Note",
+                "testo" : "Testo risposta"
+            }
+           
+
+
+        
+        },
+        "popup":{
+            "urgent":{
+                "msg_1":"Gentile Utente,<\/br>L'invio di una richiesta attraverso il Service Portal non garantisce la presa in carico immediata della segnalazione. Il servizio di Supporto normalmente opera in orario 8-16 da lunedì al venerdì. I tempi di risposta dipendono dal livello di servizio assegnato all'Account e dalla criticità della segnalazione.<\/br>Per avere maggiori informazioni su come contattare il supporto consulta la guida utente al seguente <a href=\"https://nivola-userguide.readthedocs.io/it/latest/docs/Come_fare_per/90.0_Attivare_il_supporto.html\" target=\"_blank\">LINK</a>.",
+                "msg_2":"Nel caso in cui la segnalazione abbia carattere di estrema urgenza è possibile contattare l'assistenza al numero di telefono del Centro Unico di Contatto: <b>+39 011 0824221.<\/b>"
+            },
+            "configuration_account":{
+                "req_button":"Conferma richiesta configurazione account",
+                "msg_1":"Gentile Utente,<\/br>Questo Account non è ancora configurato per consentire l'apertuta di ticket.<\/br>Puoi confermare la richiesta di aprire un ticket su questo account richiedendo la corretta configurazione dello stesso qui sotto: ",
+                "msg_2":"Nel caso in cui la segnalazione abbia carattere di estrema urgenza è possibile contattare l'assistenza al numero di telefono del Centro Unico di Contatto: <b>+39 011 0824221.<\/b>",
+                "msg_3":"Grazie,<\/br>la tua richiesta è stata inviata agli Amministratori"
+            }
+
+        }
+    }
+    
+}

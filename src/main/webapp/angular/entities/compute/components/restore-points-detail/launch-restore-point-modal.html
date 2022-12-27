@@ -1,0 +1,56 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{'restore_point.modal_title'|translate}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon class="md-icon-button" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content class="md-dialog-content ng-scope">
+            <div ng-show="!$ctrl.confirm">
+                <b class="ng-binding ">{{ 'restore_point.text01' | translate}}</b><br>
+                <br><br>
+                <b class="ng-binding">{{ 'restore_point.text02' | translate}}</b>
+            </div>
+            <div ng-show="$ctrl.confirm">
+           
+                <md-input-container  class="md-block">
+                    <label>{{ 'restore_point.vm' | translate }}</label>
+                    <md-select ng-model="$ctrl.rpToLoad.idVm" ng-model-options="{trackBy: '$value.id'}" ng-disabled="true" placeholder="{{ 'restore_point.vm_placeholder' | translate}}">
+                        <md-option layout-align="start start" ng-value="list.id" 
+                        ng-repeat="vm in $ctrl.lists">
+                        {{ vm.name }}
+                    </md-option>
+                </md-select> 
+            </md-input-container>
+            <md-input-container class="md-block hide-validation-error">
+                    <label>{{ 'restore_point.name' | translate }}</label>
+                    <input id="accountAcronimo" ng-model="$ctrl.rpToLoad.nameVm" name="vm"  required placeholder="{{ 'restore_point.name_placeholder' | translate}}">
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row" >
+            
+                <button class="md-primary md-button ng-scope md-default-theme md-ink-ripple" ng-class="{'mr-auto':!$ctrl.confirm}" type="button"
+                    ng-click="closeDialog()"><span class="ng-binding ng-scope">{{ 'annulla' | translate}}</span>
+                </button>
+                <button class="md-primary md-button md-default-theme md-ink-ripple" type="button"
+                    ng-click="$ctrl.confirm=!$ctrl.confirm"><span class="ng-binding ng-scope">{{ !$ctrl.confirm?'procedi':'indietro' |
+                        translate}}</span>
+                </button>
+            <button ng-show="$ctrl.confirm"  ng-disabled="!$ctrl.rpToLoad.nameVm"
+                class="md-primary md-button md-default-theme md-ink-ripple ml-auto" type="button" ng-click="complete()"><span
+                    class="ng-binding ng-scope">{{ 'conferma' | translate}}</span>
+            </button>
+        </md-dialog-actions> 

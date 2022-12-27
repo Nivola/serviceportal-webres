@@ -1,0 +1,70 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-card>
+    <md-toolbar class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools">
+            <form name="filter.form" flex>
+                <md-input-container class="md-icon-float md-block" flex>
+                    <label>{{ 'ricerca' | translate }}</label>
+                    <md-icon class="material-icons">search</md-icon>
+                    <input id="filterSearch" class="layout-fill" type="text" ng-model="filter.search"
+                        ng-model-options="filter.options" esc-key="resetFilter()">
+                </md-input-container>
+            </form>
+        </div>
+    </md-toolbar>
+    <div  ng-if="istanze && istanze.length==0" layout-align="center center">
+        <p style="color:red;">{{ 'vm.lista.vuoto' | translate }}</p>
+    </div>
+    <md-table-container>
+        <table md-table ng-model="selectedVM" md-progress="promise" md-row-select="true" multiple="false">
+            <thead ng-if="!options.decapitate" md-head md-order="query.order">
+                <tr md-row>
+                    <th md-column md-order-by="name"><span>{{ 'vm.lista.name' | translate }}</span></th>
+                    <th md-column md-order-by="region_az"><span>{{ 'vm.lista.region_az' | translate }}</span></th>
+                    <th md-column md-order-by="cpu_ram"><span>{{ 'vm.lista.cpu' | translate }}</span></th>
+                    <th md-column md-order-by="disco"><span>{{ 'vm.lista.disco' | translate }}</span></th>
+                    <th md-column md-order-by="os"><span>{{ 'vm.lista.os' | translate }}</span></th>
+                    <th md-column md-order-by="secGroup"><span>{{ 'vm.lista.security_group' | translate }}</span></th>
+                    <th md-column md-order-by="ip"><span>{{ 'vm.lista.ip' | translate }}</span></th>
+                    <th md-column md-order-by="status"><span>{{ 'vm.lista.stato' | translate }}</span></th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row md-select="istanza" md-auto-select="options.autoSelect"
+                    ng-repeat="istanza in istanze | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                    <td md-cell>{{istanza.name}}
+                        <md-tooltip md-direction="top">
+                            {{istanza.privateDnsName}}
+                        </md-tooltip>
+                    </td>
+                    <td md-cell>{{istanza.region_az}}</td>
+                    <td md-cell>{{istanza.cpu_ram}}</td>
+                    <td md-cell>{{istanza.disco}}</td>
+                    <td md-cell>{{istanza.os}}</td>
+                    <td md-cell>{{istanza.secGroup}}</td>
+                    <td md-cell>{{istanza.ip}}</td>
+                    <td md-cell hide-gt-xs hide-xs show-gt-sm>
+                        <span ng-class="istanza.stato.badge">
+                            {{istanza.stato.stato}}
+                        </span>
+                        <md-tooltip>{{istanza.stato.tooltip}}</md-tooltip>
+                    </td> 
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+        md-total="{{istanze.length}}" md-page-select="options.pageSelect"
+        md-boundary-links="options.boundaryLinks">
+    </md-table-pagination>
+</md-card>

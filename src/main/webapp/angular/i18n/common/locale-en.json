@@ -1,0 +1,302 @@
+{ 
+    "al" : "to",
+    "abbandona": "Cancel",
+    "account": "Account",
+    "aggiorna": "Refresh",
+    "annulla": "Cancel",
+    "annulla_modifica": "Undo change",
+    "campi_non_validi": "Invalid fields",
+    "campo_necessario": "Field required",
+    "cerca...": "Search for ...",
+    "chiudi" : "close", 
+    "conferma": "Confirm",
+    "costi_stimati": "Estimated costs",
+    "costo_al_mese": "\u20ac/month",
+    "costo_incluso": "included",
+    "di": "of",
+    "da"  : "from",
+    "dal"  : "from", 
+    "dalla" : "from",
+    "divisione": "Division",
+    "elimina": "Delete",
+    "errore": "Error",
+    "finito": "Finished",
+    "guida": "User guide",
+    "indietro": "Back",
+    "invia": "Send",
+    "istanza": "Instance",
+    "istanze": "Instances",
+    "logout": "Logout",
+    "logout_msg": "Are you sure you want to end the session?",
+    "modifica": "Edit",
+    "no": "no",
+    "organizzazione": "Organization",
+    "procedi": "GO ahead",
+    "proprieta": "Property",
+    "resize": "Resize",
+    "ricerca": "Search",
+    "ricerca_avanzata": "Advanced Search",
+    "ruoli": "Roles",
+    "ruolo": "Role",
+    "salva": "Save",
+    "salva_modifiche": "Save Changes",
+    "scarica_csv" : "Download CSV report",
+    "selezionata": "selected",
+    "si": "yes",
+    "stima_mensile_di": "Monthly estimate of",
+    "utente": "User",
+    "utenti": "Users",
+    "valore": "Value",
+    "avanti" : "Next",
+    "ambienti": {
+        "col": "Preproduction",
+        "dev": "Development",
+        "prd": "Production",
+        "tst": "Test"
+    },
+    "caricamento": {
+        "controlla": "Check your internet connection",
+        "dati_non_disponibili": "Data not available",
+        "fallito": "Loading failed",
+        "in_corso": "loading ..."
+    },
+    "error": {
+        "campo_obbligatorio": "Required field",
+        "download_file": "An error occurred while downloading file",
+        "errore_download": "An error occurred while downloading file",
+        "loading_account": "An error occurred while loading account detail",
+        "loading_account_anagrafica": "An error occurred while loading account master detail",
+        "loading_accounts": "An error occurred while loading accounts",
+        "loading_andamento_costi": "An error occurred while loading cost trend data",
+        "loading_attivita": "An error occurred while loading tasks",
+        "loading_autorizzazioni": "An error occurred while loading permissions",
+        "loading_capabilities": "An error occurred while loading capabilities",
+        "loading_chiavi": "An error occurred while loading ssh-Keys",
+        "loading_consumi_non_rendicontati": "An error occurred while loading costs information",
+        "loading_allegato": "An error occurred while loading attached file",
+        "loading_consumi_rendicontati": "An error occurred while loading the list of reported costs",
+        "loading_costi": "An error occurred while loading costs",
+        "loading_divisione": "An error occurred while loading the division detail",
+        "loading_divisioni": "An error occurred while loading list (divisions / organizations)",
+        "loading_engines": "An error occurred while loading engines",
+        "loading_entita": "An error occurred while loading entities",
+        "loading_flavour": "An error occurred while loading flavors",
+        "loading_grafico_dettaglio": "An error occurred while loading data for the detail chart",
+        "loading_istanze": "An error occurred while loading instances",
+        "loading_listini": "An error occurred while loading price lists",
+        "loading_notizia": "An error occurred while loading news",
+        "loading_notizie": "An error occurred while loading news",
+        "loading_organizzazioni": "An error occurred while loading organizations",
+        "loading_prezzari": "An error occurred while loading price list",
+        "loading_regioni": "An error occurred while loading regions",
+        "loading_remedy": "An error occurred while loading support ticket",
+        "loading_rendicontazioni_account": "An error occurred while loading account cost information",
+        "loading_security_group": "An error occurred while loading Security Groups",
+        "loading_security_group_info": "An error occurred while loading security group information",
+        "loading_servizi_account": "An error occurred while loading active account services",
+        "loading_shares": "An error occurred while loading Shares",
+        "loading_shares_associati": "An error occurred while loading associated Shares",
+        "loading_snapshot": "An error occurred while loading snapshots",
+        "loading_staas": "An error occurred while loading STAAS types",
+        "loading_storage": "An error occurred while loading Storage services",
+        "loading_subnet": "An error occurred while loading subnets",
+        "loading_template": "An error occurred while loading  templates",
+        "loading_templates": "An error occurred while loading templates",
+        "loading_utente": "An error occurred while loading user information",
+        "loading_utenti": "An error occurred while loading users",
+        "loading_vm": "An error occurred while loading virtual machines",
+        "loading_voci_di_costo": "An error occurred while loading cost items",
+        "loading_volumi": "An error occurred while loading the volumes",
+        "loading_vpc": "An error occurred while loading tVpc",
+        "loading_zone": "An error occurred while loading availability zones",
+        "non_autorizzato": "you are not authorized to access the requested content.",
+        "operazione_non_consentita": "Operation not allowed"
+    },
+    "success":{
+        "default_price_list":"Default price settings are succesfully associated to the account!",
+        "price_list_update":"Price settings are succesfully updated!"
+    },
+    "header": {
+        "cambia_profilo": "Change profile",
+        "contatta_assistenza": "Contact support",
+        "csi_piemonte": "CSI Piemonte",
+        "documentazione_nivola": "Documentation",
+        "esci": "Logout",
+        "selezione_account": "My Profile",
+        "visualizza_info_utente": "User information"
+    },
+    "menu": {
+        "amministrazione": {
+            "titolo": "Administration",
+            "catalogo": {
+                "cataloghi": "Catalogs",
+                "titolo": "Catalog"
+            },
+            "listini": {
+                "elenco": "Price lists",
+                "registra": "Add price list",
+                "titolo": "Price lists"
+            },
+            "portafoglio": {
+                "titolo": "Wallet",
+                "wallets": "Wallets Org-Divisions"
+            },
+            "report": {
+                "report": "Report",
+                "titolo": "Report"
+            },
+            "struttura_organizzativa": {
+                "accounts": "Accounts",
+                "divisioni": "Divisions",
+                "organizzazioni": "Organizations",
+                "titolo": "Structure"
+            },
+            "utenti": {
+                "accreditamento": "Credits",
+                "lista_registrati": "Users list",
+                "registra": "Add user",
+                "titolo": "Users"
+            }
+        },
+        "assistenza": {
+            "area_condivisione": "File share",
+            "chat": "Chat",
+            "inviate": "Sent requests", 
+            "bozze" : "Drafts", 
+            "nuova_remedy" : "New request",
+            "richiesta_supporto": "Request",
+            "titolo": "Support"
+        },
+        "avvisi_notifiche": {
+            "titolo": "Notifications"
+        },
+        "documentazione": {
+            "compliance": "Compliance",
+            "condizioni_generali": "General Conditions",
+            "sla": "SLA",
+            "titolo": "Documentation",
+            "guida_utente": {
+                "titolo": "User Guide",
+                "url": "https://nivola-userguide.readthedocs.io/it/latest/index.html",
+                "url_test": "https://www.csipiemonte.it/web/it"
+            }
+        },
+        "gestione_account": {
+            "allegati" : "Attachments",
+            "attivita": "Activity history",
+            "costi_consumi": "Cost Explorer",
+            "listino" : "PriceList",
+            "quote_servizi": "Quotas",
+            "servizi_gestione": "Additional Services",
+            "titolo": "Account Administration",
+            "utenti": {
+                "lista_accreditati": "Users list",
+                "titolo": "Users"
+            }
+        },
+        "gestione_divisione": {
+            "costi_consumi": "Cost Explorer",
+            "titolo": "Administration",
+            "struttura_organizzativa": {
+                "accounts": "Accounts",
+                "titolo": "Structure"
+            },
+            "utenti": {
+                "lista_accreditati": "User list",
+                "titolo": "Users"
+            }
+        },
+        "gestione_organizzazione": {
+            "costi_consumi": "Cost Explorer",
+            "titolo": "Administration"
+        },
+        "homepage": {
+            "titolo": "Home Page"
+        },
+        "notizie": {
+            "titolo": "News"
+        },
+        "servizi": {
+            "titolo": "Services",
+            "appengine": {
+                "istanze": "AppEngine instances",
+                "titolo": "AppEngine"
+            },
+            "compute": {
+                "chiavi_ssh": "SSH keys",
+                "titolo": "Compute",
+                "vm": "VM instance",
+                "volumi": "Volumes"
+            },
+            "database": {
+                "dbaas": "DBAAS instance",
+                "titolo": "Database"
+            },
+            "networking": {
+                "security_group": "Security Group",
+                "titolo": "Networks and Security",
+                "vpc": "VPC"
+            },
+            "storage": {
+                "shares": "Shares",
+                "titolo": "Storage"
+            }
+        },
+        "strumenti": {
+            "log_management": "Logging",
+            "monitoraggio": "Monitoring",
+            "titolo": "Tools"
+        },
+        "task_richieste": {
+            "titolo": "Tasks and requests"
+        }
+    },
+    "paginazione": {
+        "elementi_di": "of",
+        "pagina": "Page",
+        "righe": "Lines in page"
+    },
+    "ruoli_elenco": {
+        "AccountAdminRole": "Account's Master",
+        "AccountOperatorRole": "Account's Operator",
+        "AccountViewerRole": "Account's Viewer",
+        "BOADMIN": "Back office Administrator",
+        "BOMONITORING": "Back office Monitoring",
+        "CatalogAdminRole": "Service Catalog Administrator",
+        "DivAdminRole": "Division Master",
+        "DivOperatorRole": "Division Operator",
+        "DivViewerRole": "Division Viewer",
+        "OrgAdminRole": "Organization Master",
+        "OrgOperatorRole": "Organization Operator",
+        "OrgViewerRole": "Organization Viewer",
+        "Ospite" : "Guest"
+    },
+    "tags": {
+        "elimina_error": "An error occurred while removing Tag",
+        "elimina_success": "Tag successfully removed!",
+        "save_error": "An error occurred while adding Tag",
+        "save_error_pattern": "Tag Not Saved! It can contain only numbers and letters (lowercase, uppercase, no accent) and special characters: \"-\", \"_\"",
+        "save_success": "Tag successfully added"
+    },
+    "available":"AVAILABLE",
+    "unavailable":"UNAVAILABLE",
+    "failure":"ERROR",
+    "completed":"COMPLETED",
+    "active":"ACTIVE",
+    "inactive":"INACTIVE",
+    "buttons":{
+        "back":"BACK",
+        "cancel":"CANCEL",
+        "confirm":"CONFIRM"
+
+    },
+    "restore_point":{
+        "modal_title":"Restore VM to specific point",
+        "text01":"This operation will restore selected VM",
+        "text02":"Proceed with the process?",
+        "vm":"Virtual Machine",
+        "name":"Name",
+        "name_placeholder":"Choose the name for the new instance"
+    },
+    "attention":"Warning"
+}

@@ -1,0 +1,478 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div>
+    <div layout="row" ng-if="isDataError" layout-fill layout-align="center center">
+        <md-card flex="grow">
+          <md-card-content>
+           <b>{{ 'organizzazioni.error' | translate }}</b>
+            <md-button type="submit" ng-click="actions.caricaOrganizzazione()" class="animation-target md-raised pull-right md-primary md-hue-2">
+              <md-icon>autorenew </md-icon> {{ 'organizzazioni.ricarica_pagina' | translate }}
+            </md-button>
+          </md-card-content>
+        </md-card>
+    </div>
+   
+    <div ng-if="isDataLoaded" layout="row" layout-fill layout-align="start start">
+
+        <md-card flex="grow">
+            <md-card-title>
+                <md-card-title-text layout-align="start start" flex="80">
+                    <span class="md-headline titolo-sezione-account">
+                        <md-icon hide-xs class="icon-card-header-account-green">account_balance</md-icon>
+                        {{ 'organizzazione' | translate }}  {{organizzazione.name}}
+                    </span>
+                    <div class="callout callout-info">
+                    </div>
+                </md-card-title-text>
+                <md-card-actions layout="row" layout-align="end center" flex="20">
+                    <md-button type="button" ng-click="actions.mostraDivisioni()" class="animation-target md-raised pull-right md-warn" >
+                        <b>{{ 'divisioni.label' | translate }}</b>
+                    </md-button>
+                </md-card-actions>
+            </md-card-title>
+
+            <md-divider md-inset></md-divider>
+            <md-card-content>
+                <form name="formVisualizzaOrganizzazione" id="formVisualizzaOrganizzazione">
+
+                    <md-tabs md-dynamic-height md-border-bottom="true" class="tab-min-200"
+                        md-selected="status.tabIndex">
+                        <!-- Anagrafica Organizzazione -->
+                        <md-tab>
+                            <md-tab-label>
+                                <md-icon class="material-icons"> view_module</md-icon>
+                                {{ 'organizzazioni.visualizza.dettaglio' | translate }}
+                            </md-tab-label>
+                            <md-tab-body ng-if="options.isDettaglioLoaded">
+                                <md-content class="md-no-momentum" layout="column" ng-if="consumiNonRendicontati">
+                                    <md-card>
+                                        <!-- ANAGRAFICA -->
+                                        <div class="step">
+                                            <div>
+                                                <div class="circle">1</div>
+                                                <div class="line"></div>
+                                            </div>
+                                            <div>
+                                                <div class="title-step  text-dark">{{ 'organizzazioni.visualizza.anagrafica' | translate }}</div>
+                                                <div class="body">
+                                                    <div layout="row">
+                                                        <div flex="30">
+                                                            <md-input-container class="md-icon-float md-icon-left md-block">
+                                                                <label>{{ 'organizzazioni.denominazione' | translate }}</label>
+                                                                <md-icon ng-style="iconStyle">picture_in_picture</md-icon>
+                                                                <input id="organizzazioneName" disabled ng-model="organizzazione.name" type="text" ng-required="true"
+                                                                    name="name">
+                                                                <div ng-messages="formVisualizzaOrganizzazione.name.$error">
+                                                                    <div ng-message="required">{{ 'organizzazioni.denominazione_required' | translate }}</div>
+                                                                    <div ng-message="md-maxlength">{{ 'organizzazioni.denominazione_maxlength' | translate }}</div>
+                                                                </div>
+                    
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div flex="60">
+                                                            <md-input-container class="md-icon-float md-icon-left md-block">
+                                                                <label>{{ 'organizzazioni.descrizione' | translate }}</label>
+                                                                <input id="organizzazioneDesc" disabled ng-model="organizzazione.desc" type="text" ng-required="true"
+                                                                    name="desc">
+                                                                <div ng-messages="formVisualizzaOrganizzazione.desc.$error">
+                                                                    <div ng-message="required">{{ 'organizzazioni.descrizione_required' | translate }}</div>
+                                                                    <div ng-message="md-maxlength">{{ 'organizzazioni.descrizione' | translate }}</div>
+                                                                </div>
+                    
+                                                            </md-input-container>
+                                                        </div>
+                                                    </div>
+                    
+                                                    <div layout="row">
+                                                        <md-input-container class="md-icon-float md-icon-left md-block" flex="30">
+                                                            <md-icon ng-style="iconStyle">toc</md-icon>
+                                                            <label>{{ 'organizzazioni.categoria.label' | translate }}</label>
+                                                            <md-select disabled ng-model="categoriaSelezionata" ng-required="true" flex>
+                                                                <md-option layout-align="start start"  ng-value="categoria" ng-repeat="categoria in categorie">
+                                                                    {{categoria.id}}-{{ categoria.nome }}</md-option>
+                                                            </md-select>
+                                                            <div ng-messages="formNuovaOrganizzazione.categoriaSelezionata.$error">
+                                                                <div ng-message="required">{{ 'organizzazioni.categoria_required' | translate }}</div>
+                                                            </div>
+                    
+                                                        </md-input-container>
+                                                    </div>
+                                                    <div layout="row">
+                                                        <md-input-container>
+                                                            {{ 'organizzazioni.stato.label' | translate }}
+                                                            <md-switch disabled class="md-invert md-inline md-primary" aria-label="Stato" ng-model="organizzazione.active">
+                                                                {{organizzazione.active ? ('organizzazioni.stato.attiva' | translate):('organizzazioni.stato.non_attiva' | translate)}}</md-switch>
+                                                        </md-input-container>
+                                                    </div>
+                                                    <div layout="row">
+                                                        <md-input-container>
+                                                            {{ 'organizzazioni.esenzione_iva' | translate }}
+                                                            <md-switch disabled class="md-invert md-inline md-primary" aria-label="Regime Esenzione Iva"
+                                                                ng-model="organizzazione.hasvat">{{organizzazione.hasvat ? ('si' | translate):('no' | translate))}}</md-switch>
+                                                        </md-input-container>
+                                                    </div>
+                                                </div>
+                                            </div>
+                    
+                                        </div>
+                    
+                                        <!-- Indirizzo -->
+                                        <div class="step">
+                                            <div>
+                                                <div class="circle">2</div>
+                                                <div class="line"></div>
+                                            </div>
+                                            <div>
+                                                <div class="title-step  text-dark">{{ 'organizzazioni.indirizzo_organizzazione' | translate }}</div>
+                                                <div class="body">
+                                                    <div layout="row">
+                                                        <div flex="50">
+                                                            <md-input-container class="md-icon-float md-icon-left md-block">
+                                                                <label>{{ 'organizzazioni.indirizzo' | translate }}</label>
+                                                                <md-icon ng-style="iconStyle">place</md-icon>
+                                                                <input id="organizzazionePostalAddress" disabled ng-model="organizzazione.postaladdress" type="text" ng-required="true"
+                                                                    name="postaladdress">
+                                                                <div ng-messages="formVisualizzaOrganizzazione.postaladdress.$error">
+                                                                    <div ng-message="required">{{ 'organizzazioni.indirizzo_required' | translate }}</div>
+                                                                </div>
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div flex="50">
+                                                        </div>
+                                                    </div>
+                    
+                                                </div>
+                                            </div>
+                    
+                                        </div>
+                                        <!-- Recapiti Mail -->
+                                        <div class="step">
+                                            <div>
+                                                <div class="circle">3</div>
+                                                <div class="line"></div>
+                                            </div>
+                                            <div>
+                                                <div class="title-step  text-dark">{{ 'organizzazioni.recapiti_email' | translate }}</div>
+                                                <div class="body">
+                                                    <div layout="row">
+                                                        <div flex="50">
+                                                            <md-input-container class="md-icon-float md-icon-left md-block">
+                                                                <label>{{ 'organizzazioni.email' | translate }}</label>
+                                                                <md-icon ng-style="iconStyle">email</md-icon>
+                                                                <input id="organizzazioneEmail" disabled ng-model="organizzazione.email" type="email" ng-required="true"
+                                                                    name="email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+                                                                <div ng-messages="formVisualizzaOrganizzazione.email.$error">
+                                                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                                        {{ 'organizzazioni.email_required' | translate }}
+                                                                    </div>
+                                                                </div>
+                                                            </md-input-container>
+                    
+                                                        </div>
+                                                        <div flex="50">
+                                                        </div>
+                                                    </div>
+                                                    <div layout="row">
+                                                        <div flex="50">
+                                                            <md-input-container class="md-icon-float md-icon-left md-block">
+                                                                <label>{{ 'organizzazioni.indirizzo_pec' | translate }}</label>
+                                                                <md-icon ng-style="iconStyle">email</md-icon>
+                                                                <input id="organizzazioneLegalEmail" disabled ng-model="organizzazione.legalemail" type="legalemail"
+                                                                    ng-required="true" name="email" minlength="10" maxlength="100"
+                                                                    ng-pattern="/^.+@.+\..+$/">
+                                                                <div ng-messages="formVisualizzaOrganizzazione.legalemail.$error">
+                                                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                                        {{ 'organizzazioni.indirizzo_pec_required' | translate }}
+                                                                    </div>
+                                                                </div>
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div flex="50">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                                        <!-- Referente -->
+                                        <div class="step">
+                                            <div>
+                                                <div class="circle">4</div>
+                                                <div class="line"></div>
+                                            </div>
+                                            <div>
+                                                <div class="title-step  text-dark">{{ 'organizzazioni.referente' | translate }}</div>
+                                                <div class="body">
+                                                    <div layout="row">
+                                                        <div flex="30">
+                                                            <md-input-container class="md-icon-float md-icon-left md-block">
+                                                                <label>{{ 'organizzazioni.referente' | translate }}</label>
+                                                                <md-icon ng-style="iconStyle">supervisor_account</md-icon>
+                                                                <input id="organizzazioneReferent" disabled ng-model="organizzazione.referent" type="text" ng-required="true" name="referent">
+                                                                <div ng-messages="formVisualizzaOrganizzazione.referent.$error">
+                                                                    <div ng-message="required">{{ 'organizzazioni.referente_required' | translate }}</div>
+                    
+                                                                </div>
+                                                            </md-input-container>
+                    
+                                                        </div>
+                                                        <div flex="50">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                    
+                                        </div>
+                    
+                                        <!-- Attributi -->
+                                        <div class="step">
+                                            <div>
+                                                <div class="circle">5</div>
+                                                <div class="line"></div>
+                                            </div>
+                                            <div>
+                                                <div class="title-step  text-dark">{{ 'organizzazioni.visualizza.attributi' | translate }}</div>
+                                                <md-input-container class="md-icon-float md-icon-left md-block">
+                                                <div flex="100" class="body">
+                                                    <div ng-repeat="attr in organizzazione.elencoAttributi" layout="row">
+                                                        <div flex="30" class="flex-30" style="text-align: left;">
+                                                            <b>{{attr.descrizioneTipo}}</b>
+                                                        </div>
+                                                        <div flex="40" class="flex-40">{{attr.valore}} </div>
+                                                    </div>
+                                                        <div flex="50">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </md-input-container>
+                                            </div>
+                                    </md-card>
+                                </md-content>
+                            </md-tab-body>
+                        </md-tab>
+
+
+                          <!-- consumi mese / grafico / ecc  -->
+                        <md-tab>
+                            <md-tab-label>
+                                <md-icon class="material-icons">shopping_cart</md-icon>
+                                {{ 'organizzazioni.visualizza.consumi' | translate }}
+                            </md-tab-label>
+                            <md-tab-body>
+                                <div ng-controller="ListCostiConsumiOrganizzazioneController" ng-init="init(idOrganizzazione)">
+                                    <md-content class="md-no-momentum" layout="column" ng-if="consumiNonRendicontati">
+                                        <md-card>
+                                            <md-toolbar class="md-table-toolbar md-default ">
+                                                <div class="md-toolbar-tools toolbar-costi-consumi">
+                                                    <div flex layout-align="start center">
+                                                        <md-card-title flex>
+                                                            <md-card-title-text layout-align="left center">
+                                                                <div class="titolo-sezione">
+                                                                    {{ 'organizzazioni.visualizza.costi_da' | translate }}
+                                                                    {{consumiNonRendicontati.periodoDA}} {{ 'organizzazioni.visualizza.costi_a' | translate }}
+                                                                    {{consumiNonRendicontati.periodoA}}
+                                                                </div>
+                                                            </md-card-title-text>
+                                                        </md-card-title>
+                                                    </div>
+                                                    <div flex=20 layout="row" layout-align="end end">
+                                                        <md-button class="animation-target md-fab md-mini md-primary">
+                                                            <md-icon>euro_symbol</md-icon>
+                                                        </md-button>
+
+                                                    </div>
+                                                </div>
+                                            </md-toolbar>
+
+                                            <md-table-container>
+                                                <table md-table md-row-select="options.rowSelection"
+                                                    multiple="{{options.multiSelect}}" ng-model="selected"
+                                                    md-progress="promise">
+                                                    <thead ng-if="!options.decapitate" md-head md-order="query.order">
+                                                        <tr md-row>
+                                                            <th class="th-bold" md-column><span>{{ 'organizzazioni.visualizza.servizio' | translate }}</span></th>
+                                                            <th class="th-bold" md-column><span>{{ 'organizzazioni.visualizza.parametro' | translate }}</span></th>
+                                                            <th class="th-bold" md-column><span>{{ 'organizzazioni.visualizza.costo' | translate }}</span></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody md-body>
+                                                        <tr md-row md-select="servizio"
+                                                            ng-repeat="servizio in consumiNonRendicontati.elencoServizi | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                                                            <td md-cell>{{servizio.nome}}</td>
+                                                            <td md-cell>{{servizio.parametro}}</td>
+                                                            <td md-cell> {{servizio.costo}}</td>
+                                                        </tr>
+                                                        <tr md-row>
+                                                            <td md-cell></td>
+                                                            <td md-cell id="md-cell-totale">
+                                                                <div layout="row" layout-align="end center">
+                                                                    <div><b>{{ 'organizzazioni.visualizza.totale' | translate }} :</b></div>
+                                                                </div>
+
+                                                            </td>
+                                                            <td md-cell>
+                                                                <b>{{valuta.code}}{{consumiNonRendicontati.totaleConsumiNonRendicontati}}</b>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </md-table-container>
+                                        </md-card>
+
+                                    </md-content>
+                                    <md-content class="md-no-momentum" layout="column"  >
+                                        <md-card ng-if="options.isShowGrafico">
+                                                <md-toolbar class="md-table-toolbar md-default ">
+                                                    <div class="md-toolbar-tools toolbar-costi-consumi">
+                                                        <div flex layout-align="start center">
+                                                            <md-card-title flex>
+                                                                <md-card-title-text layout-align="left center">
+                                                                    <div class="md-headline titolo-sezione">
+                                                                        {{ 'organizzazioni.visualizza.andamento_costi' | translate }}
+                                                                    </div>
+                                                                </md-card-title-text>
+                                                            </md-card-title>
+                                                        </div>
+                                                        <div flex=20 layout="row" layout-align="end end">
+                                                            <md-button  class="animation-target md-fab md-mini md-primary" >
+                                                                <md-icon>timeline</md-icon>
+                                                            </md-button>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </md-toolbar>
+                                                <md-progress-linear id="chartProgressBar" ng-show="chartLoading" md-mode="indeterminate"></md-progress-linear>
+                        
+                                                <md-card-title >
+                                                        <md-card-title-text>
+                                                                <span class="md-headline">{{ 'organizzazioni.visualizza.costi_del_periodo' | translate }} <b>{{intestazioneGrafico}}</b> {{ 'organizzazioni.visualizza.suddivisi_per_mese' | translate }}</span>
+                                                                <span class="md-subhead"><SUB id="1"></SUB></span>
+                                                            <md-card-content layout="row" layout-align="space-between">
+                                                                    <canvas id="chartconsumiCosti" class="chart-bar"
+                                                                        chart-data="data" chart-labels="labelsMesi" chart-colors="colors"
+                                                                        chart-dataset-override="datasetOverride" 
+                                                                        chart-options="chartOptions">
+                                                                    </canvas> 
+                                                            </md-card-content>
+                                                        </md-card-title-text>	
+                                                        <md-card-actions layout="column">
+                                                                <md-button class="md-icon-button" aria-label="Aggiorna" ng-click="aggiornaGrafico()">
+                                                                    <md-icon class="icon-card-options-green material-icons badge-warning">autorenew</md-icon>
+                                                                    <md-tooltip>{{ 'organizzazioni.visualizza.aggiorna_grafico' | translate }}</md-tooltip>
+                                                                </md-button>
+                                                        </md-card-actions>
+                                                    </md-card-title>
+                        
+                                            </md-card>
+                            
+                                    </md-content>
+                                    <md-content class="md-no-momentum" layout="column">
+                                        <md-card ng-if="grafico2.data.length>0"> 
+                                                <md-toolbar class="md-table-toolbar md-default ">
+                                                        <div class="md-toolbar-tools toolbar-costi-consumi">
+                                                            <div flex layout-align="start center">
+                                                                <md-card-title flex>
+                                                                    <md-card-title-text layout-align="left center">
+                                                                        <div class="titolo-sezione">
+                                                                                {{grafico2.intestazione}}
+                                                                        </div>
+                                                                    </md-card-title-text>
+                                                                </md-card-title>
+                                                            </div>
+                                                            <div flex=20 layout="row" layout-align="end end">
+                                                                <md-button class="animation-target md-fab md-mini md-primary">
+                                                                    <md-icon>timeline</md-icon>
+                                                                </md-button>
+            
+                                                            </div>
+                                                        </div>
+                                                    </md-toolbar>
+                                                    <md-progress-linear id="chartProgressBar" ng-show="grafico1.chartLoading"
+                                                        md-mode="indeterminate"></md-progress-linear>
+                                                <md-card-title>
+                                                    <md-card-title-text>
+                                                        <md-card-content flex="80" layout-align="space-between">
+                                                            <canvas id="pie" class="chart chart-pie"
+                                                                chart-data="grafico2.data"
+                                                                chart-labels="grafico2.labels"
+                                                                chart-colors="grafico2.backgroundColor"
+                                                                chart-options="grafico2.chartOptions">
+                                                            </canvas>
+                                                        </md-card-content>
+                                                    </md-card-title-text>
+                                                </md-card-title>
+                                        </md-card>
+                                    </md-content>
+                                </div>
+                            </md-tab-body>
+                            <!-- fine corpo tab costi consumi -->
+                        </md-tab>
+                    </md-tabs>  
+                    
+                    
+                  
+                   
+                    <md-divider md-inset></md-divider>
+
+                    <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+                        <md-icon>keyboard_backspace</md-icon> {{ 'indietro' | translate }}
+                    </md-button>
+                </form>
+          
+                <md-card  ng-if="options.isShowGrafico">
+                        <md-toolbar class="md-table-toolbar md-default ">
+                            <div class="md-toolbar-tools toolbar-costi-consumi">
+                                <div flex layout-align="start center">
+                                    <md-card-title flex>
+                                        <md-card-title-text layout-align="left center">
+                                            <div class="titolo-sezione">
+                                                {{ 'organizzazioni.visualizza.andamento_costi' | translate }}
+                                            </div>
+                                        </md-card-title-text>
+                                    </md-card-title>
+                                </div>
+                                <div flex=20 layout="row" layout-align="end end">
+                                    <md-button  class="animation-target md-fab md-mini md-primary" >
+                                        <md-icon>timeline</md-icon>
+                                    </md-button>
+                                    
+                                </div>
+                            </div>
+                        </md-toolbar>
+                        <md-progress-linear id="chartProgressBar" ng-show="chartLoading" md-mode="indeterminate"></md-progress-linear>
+
+                        <md-card-title ng-if="data.length > 0">
+                                <md-card-title-text>
+                                        <span class="">{{intestazioneGrafico}}</span>
+                                        <span class="md-subhead"><SUB id="1"></SUB></span>
+                                    <md-card-content layout="row" layout-align="space-between">
+                                            <canvas id="chartconsumiCosti" class="chart-bar"
+                                                chart-data="data" chart-labels="labelsMesi" chart-colors="colors"
+                                                chart-dataset-override="datasetOverride" 
+                                                chart-options="chartOptions">
+                                            </canvas> 
+                                    </md-card-content>
+                                </md-card-title-text>	
+                                <md-card-actions layout="column">
+                                        <md-button class="md-icon-button" aria-label="Aggiorna" ng-click="aggiornaGrafico()">
+                                            <md-icon class="icon-card-options-green material-icons badge-warning">autorenew</md-icon>
+                                            <md-tooltip>{{ 'organizzazioni.visualizza.aggiorna_grafico' | translate }}</md-tooltip>
+                                        </md-button>
+                                </md-card-actions>
+                            </md-card-title>
+
+                    </md-card>
+    
+        </md-content>
+
+        </md-card>
+    </div>
+</div>

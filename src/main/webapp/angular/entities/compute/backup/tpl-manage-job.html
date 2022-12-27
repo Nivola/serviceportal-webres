@@ -1,0 +1,283 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+    <br />
+    <md-content class="md-no-momentum">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text layout-align="center center" flex>
+                    <span class="md-headline titolo-sezione">
+                        <md-icon class="icon-card-header-green">dns</md-icon> {{ 'job.dettaglio.labels.title' | translate}}
+                    </span>
+                    <div class="callout callout-info">
+                    </div>
+                </md-card-title-text>
+                <md-card-actions layout="row" layout-align="end center" flex="20">
+                    <!-- <md-button type="submit" ng-click="actions.invia()" class="md-raised">
+                            <md-icon ng-style="iconStyle" class="material-icons">send</md-icon> SALVA MODIFICHE
+                        </md-button> -->
+                </md-card-actions>
+            </md-card-title>
+
+            <md-card-content>
+                <md-tabs md-dynamic-height md-border-bottom md-center-tabs class="tab-min-200"
+                    md-selected="status.tabIndex">
+                    <!-- tab dettaglio job -->
+                    <md-tab label="{{ 'job.tabs.dettaglio_label' | translate}}">
+                        <md-content class="md-padding">
+                            <div layout="row" layout-align="center start">
+                                <md-card flex="80">
+                                    <md-table-container ng-if="jobDetails&&jobDetails!=={}">
+
+                                        <table md-table md-progress="promise">
+                                            <caption ng-hide="true">{{ 'job.tabs.dettaglio_label' | translate}}</caption>
+                                            <thead md-head ng-hide="true">
+                                                <tr md-row>
+                                                    <th md-column>
+                                                        <span>
+                                                            {{ '' | translate}}
+                                                        </span>
+                                                    </th>
+                                                    <th md-column>
+                                                        <span>
+                                                            {{ '' | translate}}
+                                                        </span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody md-body>
+                                                <!-- zona -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>public</md-icon>
+                                                                <b>{{ 'job.dettaglio.zone' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <span
+                                                            ng-if="jobDetails.availabilityZone">{{jobDetails.availabilityZone}}</span>
+                                                    </td>
+                                                </tr>
+                                                <!-- istanze -->
+                                                <!-- numero -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>filter_1</md-icon>
+                                                                <b>{{ 'job.dettaglio.number_istances' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <span>{{jobDetails.instanceNum}}</span>
+                                                    </td>
+                                                </tr>
+                                                <!-- elenco -->
+                                                <tr md-row
+                                                    ng-if="jobDetails.elencoIstanze&&jobDetails.elencoIstanze.length>0">
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>dns</md-icon>
+                                                                <b>{{ 'job.dettaglio.istances' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <md-card>
+                                                            <table md-table>
+                                                                <!-- temporary display due to incomplete service -->
+                                                                <tr ng-repeat="n in jobDetails.elencoIstanze">
+                                                                    <td md-cell>
+                                                                        {{n}}
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </md-card>
+                                                    </td>
+                                                </tr>
+                                                <!-- data creazione -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>event</md-icon>
+                                                                <b>{{ 'job.dettaglio.dataCreazione' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <span
+                                                            ng-if="jobDetails.created">{{jobDetails.created| date:'dd/MM/yyyy'}} <b>H:</b>{{jobDetails.created| date:'HH:mm'}}</span>
+                                                    </td>
+                                                </tr>
+                                                <!-- attività job -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>power_settings_new</md-icon>
+                                                                <b>{{ 'job.dettaglio.status' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <span ng-if="jobDetails.enabled!==null" class="badge"
+                                                            ng-class="jobDetails.enabled?'badge-success':'badge-warning'">
+                                                            {{(jobDetails.enabled?'job.dettaglio.active':'job.dettaglio.inactive')|translate}}
+                                                        </span>
+                                                        <md-tooltip ng-if="jobDetails.enabledTooltip">
+                                                            {{jobDetails.enabledTooltip}}</md-tooltip>
+                                                    </td>
+                                                </tr>
+                                                <!-- hypervisor -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>memory</md-icon>
+                                                                <b>{{ 'job.dettaglio.hypervisor' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <span ng-if="jobDetails.hypervisor">
+                                                            {{jobDetails.hypervisor}}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <!-- status job -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>sensor_occupied</md-icon>
+                                                                <b>{{ 'job.dettaglio.access' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <span ng-if="jobDetails.jobState!==null" class="badge"
+                                                        ng-class="jobDetails.jobState==='available'?'badge-success':'badge-warning'">
+                                                        {{jobDetails.jobState==="available"?"available":"unavailable"|translate}}
+                                                    </span>
+                                                    </td>
+                                                </tr>
+                                                <!-- nome -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>computer</md-icon>
+                                                                <b>{{ 'job.dettaglio.name' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell ng-if="jobDetails.name">
+                                                        {{jobDetails.name}}
+                                                    </td>
+                                                </tr>
+                                                <!-- policy -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>tune</md-icon>
+                                                                <b>{{ 'job.dettaglio.policy_label' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <md-card>
+                                                            <table md-table>
+                                                                <tr md-row>
+                                                                    <td>{{ 'job.dettaglio.policy.interval_full' | translate}}
+                                                                    </td>
+                                                                    <td>{{jobDetails.policy.fullbackup_interval}}</td>
+                                                                </tr>
+                                                                <tr md-row>
+                                                                    <td>{{ 'job.dettaglio.policy.start' | translate}}</td>
+                                                                    <td>{{jobDetails.policy.start_time}}</td>
+                                                                </tr>
+                                                                <tr md-row>
+                                                                    <td>{{ 'job.dettaglio.policy.interval' | translate}}</td>
+                                                                    <td>{{jobDetails.policy.interval}}</td>
+                                                                </tr>
+                                                                <tr md-row>
+                                                                    <td>{{ 'job.dettaglio.policy.retention_policy' |
+                                                                        translate}}</td>
+                                                                    <td>{{jobDetails.policy.retention_policy}}</td>
+                                                                </tr>
+                                                            </table>
+                                                        </md-card>
+                                                    </td>
+                                                </tr>
+                                                <!-- reason -->
+                                                <tr md-row ng-if="jobDetails.reason">
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>analytics</md-icon>
+                                                                <b>{{ 'job.dettaglio.reason' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{jobDetails.reason}}
+                                                    </td>
+                                                </tr>
+                                                <!-- ultima modifica -->
+                                                <tr md-row>
+                                                    <td md-cell>
+                                                        <span>
+                                                            <nobr>
+                                                                <md-icon>today</md-icon>
+                                                                <b>{{ 'job.dettaglio.dataModifica' | translate}}</b>
+                                                            </nobr>
+                                                        </span>
+                                                    </td>
+                                                    <td md-cell>
+                                                        <span ng-if="jobDetails.updated">{{jobDetails.updated| date:'dd/MM/yyyy'}} <b>H:</b>{{jobDetails.created| date:'HH:mm'}}</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </md-table-container>
+                                </md-card>
+                            </div>
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab label="{{ 'job.tabs.points_label' | translate }}">
+                        <md-content class="md-padding">
+                            <restore-points-detail 
+                                data="jobRestorePoints"
+                                query="query"
+                                on-load-vm-list="loadVms(vms,id)"
+                                on-load-restore-point="resetToRestorePoint(idRp,idVm,nameVm)"></restore-points-detail>
+                        </md-content>
+                    </md-tab>
+
+                </md-tabs>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="start center" flex="20">
+                <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+                    <md-icon class="material-icons">keyboard_backspace</md-icon> {{"job.bottoni.back"|translate}}
+                </md-button>
+            </md-card-actions>
+            
+        </md-card>
+    </md-content>
+</div>

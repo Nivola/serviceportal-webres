@@ -1,0 +1,61 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div id="nuovoAccount">
+    <div layout="row" layout-fill layout-align="start start">
+        <md-card flex="grow">
+            <md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length || filter.show">
+				<div class="md-toolbar-tools">
+					<div flex=20>
+                        <md-card-actions layout="row" layout-align="start center" flex="20">
+                            <md-button class="md-fab read-me "  ng-href="{{rtdAccountNew}}" target="_blank">
+                                <md-icon  class="material-icons">local_library</md-icon>
+                                <md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+                            </md-button>
+                        </md-card-actions> 
+                    </div>
+                    <div flex>
+                        <md-card-title>
+                            <md-card-title-text layout-align="center center">
+                                <span class="md-headline titolo-sezione">
+                                    <md-icon hide-xs class="icon-card-header-green">account_circle</md-icon>{{ 'accounts.nuovo.titolo' | translate }}
+                                </span>
+                                <div class="callout callout-info">
+                                </div>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </div>
+					<div flex=20 layout="row" layout-align="end center">
+						
+					</div>
+				</div>
+			</md-toolbar>
+            <md-progress-linear id="chartProgressBar" ng-show="!options.isDataLoaded" md-mode="indeterminate"></md-progress-linear>
+            <md-divider></md-divider>
+            <md-card-content>
+                <div layout="row" layout-align="center center">
+                    <h4 class="">{{'accounts.general-info-title'|translate}}</h4>
+                </div>
+                <general-informations 
+                    organizzazioni="organizzazioni"
+                    on-organizzazione-change="onOrganizzazioneChange()" 
+                    on-divisione-change="onDivisioneChange()"
+                    on-save-account="actions.invia()"
+                    divisioni="divisioni" 
+                    categorie="categorieAcc"
+                    account="nuovoAccount" 
+                    is-update="false" 
+                    on-check-acronimo="checkAcronimo()" 
+                    options="options">
+                </general-informations> 
+            </md-card-content>
+        </md-card>
+    </div>
+</div>

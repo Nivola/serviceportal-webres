@@ -1,0 +1,18 @@
+name,version,license,copyrights,language,URL repository
+quilljs,1.3.6,BSD 3-CLAUSE,,Javascript,https://cdn.quilljs.com/1.3.6/quill.js
+
+angularjs,1.6.5,MIT,,Javascript,
+angular-file-upload,2.6.1,MIT,,Javascript,
+angular-translate,2.18.3,MIT,,Javascript,
+angular-translate-loader-partial,2.18.3,MIT,,Javascript,
+angular-translate-loader-static-files,2.18.3,MIT,,Javascript,
+angular-trix,1.0.2,MIT,,Javascript,
+angular-ui,2.2.0,MIT,,Javascript,
+angular-ui-router,0.4.2,MIT,,Javascript,
+angular-chart.js,1.0.3,MIT,,Javascript,
+ang-accordion,1.0.0,MIT,,Javascript,
+autoNumeric.js,MIT,,Javascript,
+chart.min.js,2.3.0,MIT,,Javascript,
+danialf:ng-file-upload,12.2.13,MIT,,Javascript,
+daniel-nagy/md-data-table,0.10.9,MIT,,Javascript,
+jqueryui.com,1.11.4,MIT,,Javascript,

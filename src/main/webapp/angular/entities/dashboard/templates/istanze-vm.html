@@ -1,0 +1,44 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+
+<md-list class="md-dense" flex ui-sref="app.vm.istanze">
+    
+	<md-list-item class="md-2-line" ng-click="null">
+		<div style="min-width:60px;">
+			<md-icon>layers</md-icon>
+		</div>
+		<div class="md-list-item-text" layout="column">
+			<h3>3 VM attive</h3>
+			<h4>su 32 massime</h4>
+			<p style="margin-top:10px;">
+				<md-progress-linear md-mode="determinate" value="{{100 * 3 / 32 | number:0}}"></md-progress-linear>
+			</p>
+		</div>
+	</md-list-item>
+	<md-list-item class="md-2-line" ng-click="null">
+		<div style="min-width:60px;">
+			<md-icon>show_chart</md-icon>
+		</div>
+		<div class="md-list-item-text" layout="column">
+			<h3>3 istanze VM</h3>
+			<h4>&nbsp;&nbsp;&nbsp;&nbsp;6 vCPU (quota 64 vCPU)</h4>
+			<h4>&nbsp;&nbsp;&nbsp;&nbsp;12 GB RAM (quota 128 GB))</h4>
+			<h4>&nbsp;&nbsp;&nbsp;&nbsp;120 GB Spazio disco (quota 1024 GB)</h4>
+		</div>
+	</md-list-item>
+	
+	
+</md-list>
+<md-card-actions layout="row" layout-align="end center">
+	<md-button class="md-icon-button" aria-label="visualizza tutto" ui-sref="app.vm.istanze">
+		<md-icon>more_horiz</md-icon>
+	</md-button>
+</md-card-actions>

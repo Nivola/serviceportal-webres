@@ -1,0 +1,262 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div id="organizzazione">
+    <div layout="row" ng-if="isDataError" layout-fill layout-align="center center">
+    
+        <md-card flex="grow">
+          <md-card-content>
+           <b>{{ 'organizzazioni.error' | translate }}</b>
+            <md-button type="submit" ng-click="caricaOrganizzazione()" class="animation-target md-raised pull-right md-primary md-hue-2">
+              <md-icon>autorenew </md-icon> {{ 'organizzazioni.ricarica_pagina' | translate }}
+            </md-button>
+          </md-card-content>
+        </md-card>
+    </div>
+    <div layout="row"  layout-fill layout-align="start start">
+
+        <md-card flex="grow">
+            <md-card-title>
+                <md-card-title-text layout-align="start start">
+                    <div class="callout callout-info">
+                    </div>
+                </md-card-title-text>
+                <md-button type="button" ng-click="actions.mostraDivisioni()" class="animation-target md-raised pull-right md-warn">
+                        <b>{{ 'divisioni.label' | translate }}</b>
+                    </md-button>
+            </md-card-title>
+            <md-divider md-inset></md-divider>
+            <md-card-content>
+                <form name="formModificaOrganizzazione" id="formModificaOrganizzazione">
+                    <div class="step">
+                        <div>
+                            <div class="circle">1</div>
+                            <div class="line"></div>
+                        </div>
+                        <div>
+                            <div class="title-step  text-dark">{{ 'organizzazioni.modifica.anagrafica' | translate }}</div>
+                            <div class="body">
+                                <div layout="row">
+                                    <div flex="30">
+                                        <md-input-container class="md-icon-float md-icon-left md-block">
+                                            <label>{{ 'organizzazioni.denominazione' | translate }}</label>
+                                            <md-icon ng-style="iconStyle">picture_in_picture</md-icon>
+                                            <input id="organizzazioneName" ng-model="organizzazione.name" type="text" ng-required="true"
+                                                name="name" ng-disabled="true">
+                                            <div ng-messages="formModificaOrganizzazione.name.$error">
+                                                <div ng-message="required">{{ 'organizzazioni.denominazione_required' | translate }}</div>
+                                                <div ng-message="md-maxlength">{{ 'organizzazioni.denominazione_maxlength' | translate }}</div>
+                                            </div>
+
+                                        </md-input-container>
+                                    </div>
+                                    <div flex="60">
+                                        <md-input-container class="md-icon-float md-icon-left md-block">
+                                            <label>{{ 'organizzazioni.descrizione' | translate }}</label>
+                                            <input id="organizzazioneDesc" ng-model="organizzazione.desc" type="text" ng-required="true"
+                                                name="desc">
+                                            <div ng-messages="formModificaOrganizzazione.desc.$error">
+                                                <div ng-message="required">{{ 'organizzazioni.descrizione_required' | translate }}</div>
+                                                <div ng-message="md-maxlength">{{ 'organizzazioni.descrizione_maxlength' | translate }}</div>
+                                            </div>
+
+                                        </md-input-container>
+                                    </div>
+                                </div>
+
+                                <div layout="row">
+                                    <md-input-container class="md-icon-float md-icon-left md-block" flex="30">
+                                        <md-icon ng-style="iconStyle">toc</md-icon>
+                                        <label>{{ 'organizzazioni.categoria.label' | translate }}</label>
+                                        <md-select ng-model="categoriaSelezionata" ng-required="true" flex>
+                                            <md-option layout-align="start start"  ng-value="categoria" ng-repeat="categoria in categorie">{{
+                                                categoria.id}}-{{ categoria.nome }}</md-option>
+                                        </md-select>
+                                        <div ng-messages="formModificaOrganizzazione.categoriaSelezionata.$error">
+                                            <div ng-message="required">{{ 'organizzazioni.categoria_required' | translate }}</div>
+                                        </div>
+
+                                    </md-input-container>
+                                </div>
+
+                                <div layout="row">
+                                    <md-input-container>
+                                        {{ 'organizzazioni.stato.label' | translate }}
+                                        <md-switch class="md-invert md-inline md-primary" aria-label="Stato" ng-model="organizzazione.active">{{organizzazione.active
+                                            ? ('organizzazioni.stato.attiva' | translate) : ('organizzazioni.stato.non_attiva' | translate) )}}</md-switch>
+                                    </md-input-container>
+                                </div>
+                                <div layout="row">
+                                    <md-input-container>
+                                        {{ 'organizzazioni.esenzione_iva' | translate }}
+                                        <md-switch class="md-invert md-inline md-primary" aria-label="Regime Esenzione Iva"
+                                            ng-model="organizzazione.hasvat">{{organizzazione.hasvat
+                                            ? ('si' | translate) : ('no' | translate) }}</md-switch>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="step">
+                        <div>
+                            <div class="circle">2</div>
+                            <div class="line"></div>
+                        </div>
+                        <div>
+                            <div class="title-step  text-dark">{{ 'organizzazioni.indirizzo_organizzazione' | translate }}</div>
+                            <div class="body">
+                                <div layout="row">
+                                    <div flex="50">
+                                        <md-input-container class="md-icon-float md-icon-left md-block">
+                                            <label>{{ 'organizzazioni.indirizzo' | translate }}</label>
+                                            <md-icon ng-style="iconStyle">place</md-icon>
+                                            <input id="organizzazionePostalAddress" ng-model="organizzazione.postaladdress" type="text" ng-required="true"
+                                                name="postaladdress">
+                                            <div ng-messages="formModificaOrganizzazione.postaladdress.$error">
+                                                <div ng-message="required">{{ 'organizzazioni.indirizzo_required' | translate }}</div>
+                                            </div>
+                                        </md-input-container>
+                                    </div>
+                                    <div flex="50">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="step">
+                        <div>
+                            <div class="circle">3</div>
+                            <div class="line"></div>
+                        </div>
+                        <div>
+                            <div class="title-step  text-dark">{{ 'organizzazioni.recapiti_email' | translate }}</div>
+                            <div class="body">
+                              <div layout="row">
+                                    <div flex="50">
+                                        <md-input-container style="color:#4285f4;" class="md-caption">
+                                            {{ 'organizzazioni.recapiti_email_alert' | translate }}
+                                        </md-input-container>  
+                                        <md-input-container class="md-icon-float md-icon-left md-block">
+                                            <label>{{ 'organizzazioni.email' | translate }}</label>
+                                            <md-icon ng-style="iconStyle">email</md-icon>
+                                            <input id="organizzazioneEmail" ng-model="organizzazione.email" type="email" ng-required="false"
+                                                name="email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+                                            <div ng-messages="formModificaOrganizzazione.email.$error">
+                                                <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                    {{ 'organizzazioni.email_required' | translate }}
+                                                </div>
+                                            </div>
+                                        </md-input-container>
+
+                                    </div>
+                                    <div flex="50">
+                                    </div>
+                                </div>
+                                <div layout="row">
+                                    <div flex="50">
+                                        <md-input-container class="md-icon-float md-icon-left md-block">
+                                            <label>{{ 'organizzazioni.indirizzo_pec' | translate }}</label>
+                                            <md-icon ng-style="iconStyle">email</md-icon>
+                                            <input id="organizzazioneLegalEmail" ng-model="organizzazione.legalemail" type="legalemail"
+                                                ng-required="false" name="email" minlength="10" maxlength="100"
+                                                ng-pattern="/^.+@.+\..+$/">
+                                            <div ng-messages="formModificaOrganizzazione.legalemail.$error">
+                                                <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                    {{ 'organizzazioni.indirizzo_pec_required' | translate }}
+                                                </div>
+                                            </div>
+                                        </md-input-container>
+                                    </div>
+                                    <div flex="50">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div>
+                            <div class="circle">4</div>
+                            <div class="line"></div>
+                        </div>
+                        <div>
+                            <div class="title-step  text-dark">{{ 'organizzazioni.referente' | translate }}</div>
+                            <div class="body">
+                                <div layout="row">
+                                    <div flex="30">
+                                        <md-input-container class="md-icon-float md-icon-left md-block">
+                                            <label>{{ 'organizzazioni.referente' | translate }}</label>
+                                            <md-icon ng-style="iconStyle">supervisor_account</md-icon>
+                                            <input id="organizzazioneReferent" ng-model="organizzazione.referent" type="text" ng-required="true" name="referent">
+                                            <div ng-messages="formModificaOrganizzazione.referent.$error">
+                                                <div ng-message="required">{{ 'organizzazioni.referente_required' | translate }}</div>
+
+                                            </div>
+                                        </md-input-container>
+
+                                    </div>
+                                    <div flex="50">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Ente di Remedy associato -->
+                    <div class="step">
+                        <div>
+                            <div class="circle">5</div>
+                            <div class="line"></div>
+                        </div>
+                        <div>
+                            <div class="title-step  text-dark">{{ 'organizzazioni.ente_riferimento' | translate }}</div>
+                            <div class="body">
+                                <div layout="row">
+                                    <div flex="50">
+                                        <md-input-container class="md-icon-float md-icon-left md-block">
+                                            <label>{{ 'organizzazioni.ente' | translate }}</label>
+                                            <md-icon ng-style="iconStyle">account_balance</md-icon>
+                                            <md-autocomplete md-no-cache="true" md-selected-item="organizzazione.enteSelezionato" 
+                                                md-search-text="ricercaEnte" 
+                                                md-items="ente in cercaEnti(ricercaEnte)"
+                                                md-item-text="ente.descrizioneEnte">
+                                                <md-item-template>
+                                                    <span md-highlight-text="ricercaEnte">{{ente.descrizioneEnte}}</span>
+                                                  </md-item-template>
+                                                  <md-not-found>
+                                                    {{ 'organizzazioni.ente_not_found' | translate }}
+                                                  </md-not-found>
+                                            </md-autocomplete>
+                                           
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <md-divider md-inset></md-divider>
+
+                    <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="actions.indietro()">
+                        <md-icon>keyboard_backspace</md-icon> {{ 'indietro' | translate }}
+                    </md-button>
+                    <md-button type="submit" ng-click="actions.salvaDati()" class="animation-target md-raised pull-right md-primary md-hue-2">
+                        <md-icon>send</md-icon>{{ 'salva' | translate }}
+                    </md-button>
+                </form>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>

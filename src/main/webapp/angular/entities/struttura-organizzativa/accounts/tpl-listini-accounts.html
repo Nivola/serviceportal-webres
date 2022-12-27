@@ -1,0 +1,83 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<md-content class="md-no-momentum" layout="column">
+		<md-card>
+			<md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length || filter.show">
+				<div class="md-toolbar-tools">
+					<div flex="20"></div>
+					<div flex>
+						<md-card-title flex>
+							<md-card-title-text layout-align="center center">
+								<div class="md-headline titolo-sezione">
+									<md-icon class="icon-card-header-green">format_list_numbered</md-icon> {{ 'accounts.listini.titolo' | translate }}
+									<span ng-if="nomeAcc"> {{nomeAcc}}</span>
+								</div>
+							</md-card-title-text>
+						</md-card-title>
+					</div>
+					<div flex=20 layout="row" layout-align="end center">
+						<md-button class="animation-target md-fab md-mini md-primary" ng-click="actions.refresh()">
+							<md-icon>autorenew</md-icon>
+							<md-tooltip>{{ 'accounts.quote.aggiorna' | translate }} </md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+			<md-toolbar class="md-table-toolbar md-default">
+				<div class="md-toolbar-tools">
+					<form name="filter.form" flex>
+						<md-input-container class="md-icon-float md-block" flex>
+							<label>Ricerca</label>
+							<md-icon class="material-icons">search</md-icon>
+							<input id="filterSearch" class="layout-fill" type="text" ng-model="filter.search"
+								ng-model-options="filter.options" esc-key="resetFilter()">
+						</md-input-container>
+					</form>
+				</div>
+			</md-toolbar>
+			
+			<md-card>
+				<md-table-container>
+					<table md-table ng-model="selected" md-progress="promise">
+						<thead ng-if="!options.decapitate" md-head md-order="query.order">
+							<tr md-row>
+								<th md-column md-order-by="servizio"><span>{{ 'accounts.listini.servizio' | translate }}</span></th>
+								<th md-column md-order-by="voce"><span>{{ 'accounts.listini.voce' | translate }}</span></th>
+								<th md-column md-order-by="udm"><span>{{ 'accounts.listini.udm' | translate }}</span></th>
+								<th md-column md-order-by="qta"><span>{{ 'accounts.listini.qta' | translate }}</span></th>
+								<th md-column md-order-by="importoAnnuo"><span>{{ 'accounts.listini.importo' | translate }}</span></th>
+							</tr>
+						</thead>
+						<tbody md-body>
+							<tr md-row md-select="istanza" md-auto-select="options.autoSelect"
+								ng-repeat="dettaglio in dettagliListini | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+								<td md-cell>{{dettaglio.servizio}}</td>
+								<td md-cell>{{dettaglio.voce}}</td>
+								<td md-cell>{{dettaglio.udm}}</td>
+								<td md-cell>{{dettaglio.qta}}</td>
+								<td md-cell>{{dettaglio.importoAnnuo | currency:'€ ':2}}</td>
+								
+							</tr>
+						</tbody>
+					</table>
+				</md-table-container>
+	
+			</md-card>
+			
+
+			<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+				md-total="{{dettagliListini.length}}" md-page-select="options.pageSelect"
+				md-boundary-links="options.boundaryLinks">
+			</md-table-pagination>
+		</md-card>
+	</md-content>
+</div>

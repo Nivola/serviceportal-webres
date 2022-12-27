@@ -1,0 +1,1415 @@
+abbandona|Abbandona|Cancel
+account|Account|Account
+accounts.abilitazione_capabilities|Abilitazione / Capabilities|Enablement / Capabilities
+accounts.abilitazioni|Abilitazioni|Authorization
+accounts.acronimo|Acronimo|Acronym
+accounts.acronimo_info|l'acronimo viene utilizzato:<br>1-per identificare univocamente l'account<br>2-per assegnare un nome univoco alle risorse VM.|Acronym is used for: <br> 1-to uniquely identify the account <br> 2-assign a unique name to VM resources.
+accounts.acronimo_pattern|l'acronimo deve iniziare con un carattere non numerico<br> deve essere di lunghezza 10<br> e non deve contenere caratteri speciali|Acronym must start with a non-numeric character <br> must be 10 <br> long and must not contain special characters
+accounts.anagrafica|Anagrafica Account|Account Info
+accounts.applica_costi|Applica i costi del listino a tutti i consumi|Apply pricelist to every cost
+accounts.attivita.aggiorna|Aggiorna Elenco|Refresh
+accounts.attivita.data|Data|Date
+accounts.attivita.descrizione|Descrizione|Description
+accounts.attivita.di| | 
+accounts.attivita.di_piu|...di più|...more info
+accounts.attivita.ip|Ip|Ip
+accounts.attivita.non_definito|Non definito|Undefined
+accounts.attivita.oggetto|Oggetto|Object
+accounts.attivita.parametri|Parametri|Parameters
+accounts.attivita.parametri_attivita|Parametri Attivita|Activity Parameters
+accounts.attivita.ruolo|User-role|User-role
+accounts.attivita.selezionata|attivita selezionata|selected activity
+accounts.attivita.selezionate|attivita selezionate|selected activities
+accounts.attivita.titolo|Elenco Attività|Activity
+accounts.attivita.utente|Utente|User
+accounts.attivita.visualizza.bottone|Visualizza Dettaglio|Detail
+accounts.attivita.vuoto|Non ci sono attività effettuate su questo account|There are no activities on this account
+accounts.capabilities|Capabilities|Capabilities
+accounts.categoria|categoria|category
+accounts.data_creazione|data creazione|creation date
+accounts.data_inizio_consumi|data inizio valorizzazione costi|start date of cost billing
+accounts.data_inizio_consumi_scegli|Scegli data|Choose date
+accounts.data_inizio_consumi_scegliere|scegliere una data di inizio valorizzazione costi|choose a start date for cost billing
+accounts.denominazione|Denominazione|Name
+accounts.denominazione_maxlength|Denominazione non deve superare 100 caratteri|Name must not exceed 100 characters
+accounts.denominazione_required|Campo obbligatorio|Required field
+accounts.descrizione|Descrizione|Description
+accounts.dettaglio|Dettaglio|Detail
+accounts.elenco.aggiorna|Aggiorna Elenco|Refresh
+accounts.elenco.azioni|Azioni Utente|User Actions
+accounts.elenco.selezionati|account selezionati|selected accounts
+accounts.elenco.selezionato|account selezionato|selected account
+accounts.elenco.titolo|Elenco Accounts|Account list
+accounts.elenco.titolo_di|di|of
+accounts.elimina.bottone|Elimina Elemento|Delete
+accounts.email|Indirizzo Mail|Email address
+accounts.email_required|Email non Valida|Invalid email
+accounts.email_supporto|Email di supporto|Support email
+accounts.email_supporto_required|PEC non Valida|certified E-mail not valid
+accounts.impostazione_account|Impostazione Account|Account Setup
+accounts.indirizzo|Indirizzo|Address
+accounts.indirizzo_account|indirizzo account|account address
+accounts.indirizzo_required|Indirizzo obbligatorio|Address required
+accounts.info_rendicontazione.azioni|Azioni|Actions
+accounts.info_rendicontazione.data_fine|Data Fine|End date
+accounts.info_rendicontazione.data_fine_invalid|Il valore inserito non corrisponde ad una data valida|The entered value does not correspond to a valid date
+accounts.info_rendicontazione.data_fine_mindate|Inserisci una data valida|Invalid date
+accounts.info_rendicontazione.data_fine_required|Data Fine obbligatoria|End Date is required
+accounts.info_rendicontazione.data_inizio|Data Inizio|Start date
+accounts.info_rendicontazione.data_inizio_invalid|Il valore inserito non corrisponde ad una data valida|The entered value does not correspond to a valid date
+accounts.info_rendicontazione.data_inizio_maxdate|Inserisci una data valida|Invalid Date
+accounts.info_rendicontazione.data_inizio_required|Data Inizio obbligatoria|Start Date 
+accounts.info_rendicontazione.data_modifica|Data modifica|Change
+accounts.info_rendicontazione.elimina.bottone|Elimina|Delete
+accounts.info_rendicontazione.elimina.error|Si è verificato un errore durante l'eliminazione della Voce di costo|An error occurred while deleting the item
+accounts.info_rendicontazione.elimina.procedere|Procedere con la cancellazione ?|Proceed with deletion?
+accounts.info_rendicontazione.elimina.success|La richiesta di eliminazione della Voce di costo è stata eseguita correttamente|The deletion operation was successful
+accounts.info_rendicontazione.elimina.testo|La Rimozione della voce di costo implica la cancellazione fisica|Removal of the cost item implies physical deletion
+accounts.info_rendicontazione.elimina.titolo|Cancellazione|Removing
+accounts.info_rendicontazione.info|Info|Info
+accounts.info_rendicontazione.livello|Livello|Level
+accounts.info_rendicontazione.livello_tenant|Livello Tenant|Tenant level
+accounts.info_rendicontazione.metrica|Metrica|Metric
+accounts.info_rendicontazione.modifica.bottone|Modifica|Edit
+accounts.info_rendicontazione.modifica.error|Si è verificato un errore durante il tentativo di inserimento della Voce di costo|An error occurred while trying to enter item
+accounts.info_rendicontazione.modifica.success|l'operazione di modifica è completata con successo|the change operation is completed successfully
+accounts.info_rendicontazione.nuova.error_procedere|Errore durante l'aggiornamento|Error during update
+accounts.info_rendicontazione.modifica.titolo|Modifica info di rendicontazione per l'account|Change additional services for account
+accounts.info_rendicontazione.nuova.bottone|Aggiungi una Nuova Info di rendicontazione|Add additionan service
+accounts.info_rendicontazione.nuova.error|Si è verificato un errore durante il tentativo di inserimento della Voce di costo|An error occurred while trying to insert item
+accounts.info_rendicontazione.nuova.success|l'operazione di creazione di una nuova info di rendicontazione è completata con successo|Item added succesfully
+accounts.info_rendicontazione.nuova.titolo|Nuova info di rendicontazione per l'account|New additional services for the account
+accounts.info_rendicontazione.storico_metrica|Storico Metrica|Service history
+accounts.info_rendicontazione.valore|Valore|Value
+accounts.info_rendicontazione.valore_pattern|Il valore inserito non è valido <br> Il numero deve essere compreso tra 1-64|The value entered is invalid <br> The number must be between 1-64
+accounts.info_rendicontazione.valore_required|Valore obbligatorio|Required value
+accounts.info_rendicontazione.valore_valid|Il valore inserito non è valido<br> Il numero deve essere compreso tra 1-5000|The value entered is invalid <br> The number must be between 1-5000
+accounts.label|Accounts|Accounts
+accounts.managed|Managed|Managed
+accounts.modifica.abilita|Abilita|Enable
+accounts.modifica.abilitata|Abilitata|Enabled
+accounts.modifica.abilitazione_error|Si è verificato un errore durante l'abilitazione della capability|An error occurred while enabling the capability
+accounts.modifica.abilitazione_required|Abilitazione della capability richiesta|Enabling the required capability
+accounts.modifica.acronimo_usato|L'acronimo {{acronimo}} è già stato utilizzato|The acronym {{acronym}} has already been used
+accounts.modifica.aggiorna_elenco|Aggiorna Elenco|Refresh List
+accounts.modifica.aggiungi_info|Aggiungi una Nuova Info di rendicontazione|Add a new additional Services
+accounts.modifica.associazione_account_share|associazione account-share|account-share association
+accounts.modifica.bottone|Modifica Elemento|Edit Item
+accounts.modifica.categoria_required|La categoria è obbligatoria|Category is required
+accounts.modifica.denominazione_required|La denominazione è obbligatoria|Denomination is mandatory
+accounts.modifica.divisione_required|La divisione è obbligatoria|Division is mandatory
+accounts.modifica.elenco_servizi|Elenco servizi attivi|Active services
+accounts.modifica.elenco_shares|Elenco Shares Netapp|Elenco Shares Netapp
+accounts.modifica.error|Si è verificato un errore durante l'aggiornamento dell'account|An error occurred while updating the account
+accounts.modifica.fail|Si è verificato un errore nel salvataggio dei dati|An error occurred while saving data
+accounts.modifica.in_corso|In corso...|In progress...
+accounts.modifica.in_errore|In errore|In error
+accounts.modifica.no_servizi_attivi|Nessun servizio attivo per l'Account|No active service for the Account
+accounts.modifica.no_shares|Non ci sono shares associate a questo account.|There are no shares associated with this account.
+accounts.modifica.non_abilitata|Non abilitata|Not enabled
+accounts.modifica.organizzazione_required|L'organizzazione è obbligatoria.|Organization is mandatory.
+accounts.modifica.servizi_gestione|Servizi di gestione abilitati|Additional Services
+accounts.modifica.shares|Shares Netapp|Shares Netapp
+accounts.modifica.success|L'account è stato aggiornato correttamente|The account was updated successfully
+accounts.modifica.tipologia_required|scegli la tipologia prezzi da applicare.|choose the price list to apply.
+accounts.modifica.titolo|Modifica Account|Edit Account
+accounts.not_managed|Not managed|Not managed
+accounts.nota|Note|Note
+accounts.nota_maxlength|Note non deve superare 100 caratteri|Note must not exceed 100 characters
+accounts.nota_required|Campo obbligatorio|Required field
+accounts.nuovo.acronimo_usato|L'acronimo {{acronimo}} è già stato utilizzato|The acronym {{acronym}} has already been used
+accounts.nuovo.bottone|Crea un Nuovo Account|Create a New Account
+accounts.nuovo.crea|Crea Account|Create Account
+accounts.nuovo.error|Si è verificato un errore durante la creazione dell'account|An error occurred while creating the account
+accounts.nuovo.fail|Si è verificato un errore durante il tentativo di creazione dell'account|An error occurred while trying to create the account
+accounts.nuovo.success|L'account è stato creato correttamente|The account was created successfully
+accounts.nuovo.titolo|Nuovo Account|New Account
+accounts.prezzario|prezzario da applicare|Price list to apply
+accounts.prezzario_applicato|prezzario applicato|applied price list
+accounts.prezzario_seleziona|selezionare una tipologia prezzi da applicare|select a price list to apply
+accounts.quote.aggiorna|Aggiorna Elenco|Refresh List
+accounts.quote.limite|Limite|Limit
+accounts.quote.quota|Quota|Quote
+accounts.quote.risorsa.db|Database Service|Database Services
+accounts.quote.risorsa.staas|Storage Service|Storage Services
+accounts.quote.risorsa.tutti|Tutti i servizi|All Services
+accounts.quote.risorsa.vm|Compute Service|Compute services
+accounts.quote.scegli_risorsa|Scegli il tipo di risorsa.|Choose Service.
+accounts.quote.servizio|Servizio|Service
+accounts.quote.tab|Quote|Quote
+accounts.quote.titolo|Quote servizi|Services Quotas
+accounts.quote.utilizzo|Utilizzo|Usage
+accounts.quote.valore|Valore|Value
+accounts.recapiti_email|Recapiti Mail|Email contact
+accounts.referente|Referente|Contact
+accounts.referente_required|Referente Richiesto|Contact Required
+accounts.ricalcolo_costi|Ricalcolo costi|Cost recalculation
+accounts.scarica_file_csv|scarica file CSV|download CSV file
+accounts.servizi_gestione.aggiorna|Aggiorna Elenco|Refresh
+accounts.servizi_gestione.aggiungi|Aggiungi un Nuovo servizio attivo|Add Service
+accounts.servizi_gestione.elenco|Elenco servizi attivi|Active Services
+accounts.servizi_gestione.no_data|Nessun servizio attivo per l'Account.|No active service for the Account.
+accounts.servizi_gestione.titolo|Servizi di gestione abilitati|Additional Services
+accounts.shares.azioni|Azioni|Actions
+accounts.shares.data_fine|Data Fine associazione|End date
+accounts.shares.data_fine_invalid|Il valore inserito non corrisponde ad una data valida|The entered value does not correspond to a valid date
+accounts.shares.data_fine_mindate|Scegli una data corretta|Scegli una data corretta
+accounts.shares.data_fine_required|Data Fine obbligatoria|End date required
+accounts.shares.data_inizio|Data Inizio associazione|Start date
+accounts.shares.data_inizio_invalid|Il valore inserito non corrisponde ad una data valida|The entered value does not correspond to a valid date
+accounts.shares.data_inizio_maxdate|Scegli una data valida|Choose a valid date
+accounts.shares.data_inizio_required|Data Inizio obbligatoria|Start Date required
+accounts.shares.elimina.bottone|Elimina Elemento|Delete Item
+accounts.shares.evs|EVS|EVS
+accounts.shares.filesystem|FileSystem|FileSystem
+accounts.shares.modifica.bottone|Modifica elemento|Edi
+accounts.shares.modifica.error|Si è verificato un errore durante il tentativo di associazione di una share|An error occurred while trying to associate a share
+accounts.shares.modifica.success|l'operazione di associazione di una share  è completata con successo|the share association operation is completed successfully
+accounts.shares.modifica.titolo|Modifica asscociazione Share per l'account|Edit Share association for the account
+accounts.shares.nuova.error|Si è verificato un errore durante il tentativo di associazione di una share|An error occurred while trying to associate a share
+accounts.shares.nuova.success|l'operazione è completata con successo|the operation is completed successfully
+accounts.shares.nuova.titolo|Nuova associazione Share|New Share association
+accounts.shares.share|Share|Share
+accounts.shares.shares_netapp|Shares Netapp|Shares Netapp
+accounts.shares.tipo|Tipo di share|Share type
+accounts.shares.tipologia|Tipologia|Typology
+accounts.stato.active|Attivo|Active
+accounts.stato.label|Stato|State
+accounts.stato.not_active|Non attivo|Inactive
+accounts.tipologia_prezzi|Tipologia Prezzi|Price list
+accounts.visualizza.bottone|Visualizza Dettaglio|Detail
+accounts.visualizza.consumi.aggiorna_grafico|Aggiorna grafico|Refresh chart
+accounts.visualizza.consumi.costi_a|al|to
+accounts.visualizza.consumi.costi_da|Costi non rendicontati dal|Not reported costs from
+accounts.visualizza.consumi.costo|Costo(€)|Fee(€)
+accounts.visualizza.consumi.parametro|Parametro|Parameter
+accounts.visualizza.consumi.rendiconto.file_csv|File CSV|File CSV
+accounts.visualizza.consumi.rendiconto.importo|Importo|Amount
+accounts.visualizza.consumi.rendiconto.pdf_dettaglio|Pdf Dettaglio|Pdf Detail
+accounts.visualizza.consumi.rendiconto.pdf_sintesi|Pdf Sintesi|Pdf Summary
+accounts.visualizza.consumi.rendiconto.periodo|Periodo|Period
+accounts.visualizza.consumi.rendiconto.stato|Stato|Status
+accounts.visualizza.consumi.report_mensili|Report Mensili|Monthly Reports
+accounts.visualizza.consumi.servizio|Servizio|Service
+accounts.visualizza.consumi.titolo|Consumi|Cost Explorer
+accounts.visualizza.consumi.totale|Totale|Total
+accounts.visualizza.servizi.risorsa.db|Database Services|Database Services
+accounts.visualizza.servizi.risorsa.sg|Security Group|Security Group
+accounts.visualizza.servizi.risorsa.staas|Servizi Storage|Storage Services
+accounts.visualizza.servizi.risorsa.vm|Compute Services|Compute Services
+accounts.visualizza.servizi.risorsa.vol|Volumi|Volumes
+accounts.visualizza.servizi.risorsa.vpc|VPC|VPC
+accounts.visualizza.servizi.scegli_risorsa|Scegli il tipo di risorsa.|Choose the service.
+accounts.visualizza.servizi.titolo|Servizi|Services
+accounts.visualizza.utenti.accredita|Accredita nuovo utente|New credit
+accounts.visualizza.utenti.email|Email|Email
+accounts.visualizza.utenti.nome|Nome|Name
+accounts.visualizza.utenti.not_found|Non Ci sono Utenti collegati a questo account|There are no Users connected to this account
+accounts.visualizza.utenti.ruolo|Ruolo|Role
+accounts.visualizza.utenti.selezionati|utenti selezionati|selected users
+accounts.visualizza.utenti.selezionato|utente selezionato|selected user
+accounts.visualizza.utenti.titolo|Utenti|Users
+accounts.visualizza.utenti.username|Username|Username
+accounts.visualizza.utenti.utente_di_portale|Utente di portale|Portal user
+aggiorna|Aggiorna|Refresh
+ambienti.col|Collaudo|Preproduction
+ambienti.dev|Sviluppo|Development
+ambienti.prd|Produzione|Production
+ambienti.tst|Test|Test
+annulla|Annulla|Cancel
+annulla_modifica|Annulla modifica|Undo change
+assistenza.dettagli.bottone|Visualizza dettagli Ticket|View details
+assistenza.elenco.data|Data della </br>richiesta|Request </br> date
+assistenza.elenco.data_aggiornamento|Data ultimo </br>aggiornamento|Last Updated </br>
+assistenza.elenco.data_risoluzione|Data ultima </br>risoluzione|Date of last </br>resolution
+assistenza.elenco.id|ID|ID
+assistenza.elenco.nuova|Apri nuovo Ticket|Open new Ticket
+assistenza.elenco.oggetto|Oggetto|Object
+assistenza.elenco.ricarica|Ricarica lista|Reload list
+assistenza.elenco.ricerca_avanzata|Ricerca avanzata|Advanced Search
+assistenza.elenco.riferimento|Riferimento</br>Remedy|Remedy </br> Reference
+assistenza.elenco.selezionata|Richiesta selezionata|Selected request
+assistenza.elenco.selezionate|Richieste selezionate|Selected requests
+assistenza.elenco.stato|Stato Ticket|Status
+assistenza.elenco.testo|Testo|Description
+assistenza.elenco.tipo|Tipo richiesta|Type
+assistenza.elenco.titolo|Elenco Richieste|Requests
+assistenza.elenco.vuoto|Non ci sono Richieste presenti|There are no Requests
+assistenza.elimina.notizia|Elimina notizia|Delete new
+assistenza.elimina.notizie|Elimina notizie|Delete news
+assistenza.email|E-mail|E-mail
+assistenza.email_required|L'e-mail è obbligatoria|Email required
+assistenza.error|Si è verificato un errore durante il tentativo di richiedere assistenza|An error occurred while trying to request assistance
+assistenza.messaggio|Messaggio|Message
+assistenza.messaggio_required|Il messaggio è obbligatorio|Message required
+assistenza.nome|Nome|Name
+assistenza.nome_required|Il nome è obbligatorio.|Name required.
+assistenza.oggetti.altro|Altro Oggetto|Other Object
+assistenza.oggetti.baas|Backup as a Service|Backup as a Service
+assistenza.oggetti.dbaas|Data Base as a Service|Data Base as a Service
+assistenza.oggetti.gestione|Gestione e monitoraggio|Gestione e monitoraggio
+assistenza.oggetti.label|Oggetti|Objects
+assistenza.oggetti.risorse|Risorse Elaborative|Risorse Elaborative
+assistenza.oggetti.saas|Storage as a Service|Storage as a Service
+assistenza.oggetto|Oggetto|Object
+assistenza.oggetto_required|L'oggetto è obbligatorio|Subject is required
+assistenza.oggetto_seleziona|seleziona  un oggetto|select an object
+assistenza.oggetto_selezionato|hai selezionato l'oggetto|you have selected the object
+assistenza.richiesta_supporto|Richiesta Supporto|Support Request
+assistenza.success|La richiesta d'assistenza è stata inviata correttamente|The support request has been sent successfully
+campi_non_validi|Campi non validi|Invalid fields
+campo_necessario|Campo necessario|Field required
+caricamento.controlla|Controlla la connessione ad internet|Check your internet connection
+caricamento.dati_non_disponibili|Dati non disponibili|Data not available
+caricamento.fallito|Caricamento fallito|Loading failed
+caricamento.in_corso|caricamento in corso ...|loading ...
+cerca...|Cerca ...|Search for ...
+conferma|Conferma|Confirm
+costi_consumi.aggiorna_grafico|Aggiorna grafico|Refresh chart
+costi_consumi.andamento_costi|Andamento dei Costi|Cost trend
+costi_consumi.costi_del_account|Costi suddivisi per account|Costs by account
+costi_consumi.costi_del_divisione|Costi suddivisi per divisione|Costs by division
+costi_consumi.costi_del_periodo|Costi del periodo|Costs for the period
+costi_consumi.costi_non_rendicontati_a|al|to
+costi_consumi.costi_non_rendicontati_da|Costi non rendicontati dal|Not reported costs from
+costi_consumi.costo|Costo(€)|Fee(€)
+costi_consumi.no_rendiconti|Non ci sono rendiconti presenti|There are no reports
+costi_consumi.parametro|Parametro|Parameter
+costi_consumi.rendicontazioni.consolidato|Consolidato|Consolidated
+costi_consumi.rendicontazioni.file|File|File
+costi_consumi.rendicontazioni.file_sintesi|File CSV Sintesi|CSV Summary
+costi_consumi.rendicontazioni.importo|Importo|Amount
+costi_consumi.rendicontazioni.in_corso|In corso|In progress
+costi_consumi.rendicontazioni.pdf_dettaglio|Pdf Dettaglio|Pdf Detail
+costi_consumi.rendicontazioni.pdf_sintesi|Pdf Sintesi|Pdf Summary
+costi_consumi.rendicontazioni.periodo|Periodo|Period
+costi_consumi.rendicontazioni.stato|Stato|Status
+costi_consumi.report_mensili|Report Mensili|Monthly Reports
+costi_consumi.scarica_file|scarica file|download file
+costi_consumi.scarica_file_csv|scarica file CSV|download CSV
+costi_consumi.scarica_file_dettaglio|scarica file dettaglio|download pdf
+costi_consumi.scarica_file_sintetico|scarica file sintetico|download pdf
+costi_consumi.servizio|Servizio|Service
+costi_consumi.suddivisi_per_account|suddivisi per account|by account
+costi_consumi.suddivisi_per_divisione|suddivisi per divisione|by division
+costi_consumi.suddivisi_per_mese|suddivisi per mese|by mounth
+costi_consumi.totale|Totale|Total
+costi_stimati|Costi stimati|Estimated costs
+costo_al_mese|€/mese|€/month
+costo_incluso|incluso|included
+dbaas.aggiorna|Aggiorna Elenco|Refresh
+dbaas.connetti.bottone|Connetti|Connect
+dbaas.connetti.msg01|Utilizza il seguente link per raggiungere al pannello di controllo phpMyAdmin|Use the following link to access phpMyAdmin control panel
+dbaas.connetti.msg02|Utilizza il seguente link per raggiungere al pannello di controllo phpPgAdmin|Use the following link to access phpPgAdmin control panel
+dbaas.connetti.msg03|Accedi inserendo Username e Password del database a cui ci si vuole connettere.|Log in by entering Username and Password of the database you want to connect to.
+dbaas.connetti.msg04|Se hai bisogno di assistenza per la connessione alla tua istanza, consulta la nostra documentazione di connessione.|If you need help connecting to your instance, please see our help documentation.
+dbaas.connetti.sottotitolo|Per accedere alla tua istanza|To log into your instance
+dbaas.connetti.titolo|Connetti|Connect
+dbaas.crea|Crea un Nuovo Dbaas|Create Dbaas instance
+dbaas.elenco|Elenco Dbaas|Dbaas instances
+dbaas.elimina.bottone|Elimina Elemento|Delete
+dbaas.elimina.conferma|Confermi la cancellazione dell'istanza|Are you sure you want to delete the instance
+dbaas.elimina.error|Si è verificato un errore durante l'eliminazione dell'istanza|An error occurred while deleting the instance
+dbaas.elimina.errorNameNotMatching|il nome inserito non è corretto|the name entered is incorrect
+dbaas.elimina.info|L'istanza verrà cancellata definitivamente.|The instance will be permanently deleted.
+dbaas.elimina.info01|La Rimozione dell'istanza implica la cancellazione fisica del DB|Removing the instance implies the physical deletion of the DB
+dbaas.elimina.info02|Eseguire un Backup prima di procedere con la cancellazione|we reccomend you to make a Backup before proceeding with the deletion
+dbaas.elimina.msg_inserisci_nome|Inserire Nome del Database per confermare l'operazione|Enter Database Name to confirm the operation
+dbaas.elimina.placeholder|Nome del Database|Database name
+dbaas.elimina.prosegui|Si vuole procedere con la cancellazione ?|Do you want to proceed with the delete operation?
+dbaas.elimina.selezione|Selezionare solo una istanza DBAAS|Select only one DBAAS instance
+dbaas.elimina.success|La richiesta di rimozione dell'istanza {{nome}} è stata inviata correttamente.|Request to delete instance {{name}} was sent successfully.
+dbaas.elimina.titolo|Cancellazione Istanza|Delete instance
+dbaas.gestione|Pannello gestione Dbaas|Dbaas control panel
+dbaas.lista.active_flag|Stato|Status
+dbaas.lista.cpu_ram|Classe istanza|Instance class
+dbaas.lista.engine|DB Engine|DB Engine
+dbaas.lista.errore|Si è verificato un errore durante il caricamento delle informazioni sul DB|An error occurred while loading the instance information
+dbaas.lista.nome|Nome|Name
+dbaas.lista.region_az|Region - A.Z.|Region - Zone
+dbaas.lista.storage|Storage|Storage
+dbaas.lista.tags|Tags|Tags
+dbaas.lista.vuoto|Nessun Data Base presente|No instances present
+dbaas.manage.dettagli.data_creazione|Data Creazione|Creation date
+dbaas.manage.dettagli.disco|Disco|Disk
+dbaas.manage.dettagli.dns_name|FQDN|FQDN
+dbaas.manage.dettagli.engine|Engine|Engine
+dbaas.manage.dettagli.inserisci_tag|Inserisci un tag ...|Insert tag ...
+dbaas.manage.dettagli.ip_address|IP address|IP address
+dbaas.manage.dettagli.nome|Nome|Name
+dbaas.manage.dettagli.port|Port|Port
+dbaas.manage.dettagli.proprieta|Proprieta|Property
+dbaas.manage.dettagli.region|Region - A.Z.|Region - Zone
+dbaas.manage.dettagli.security_group|Security Group|Security Group
+dbaas.manage.dettagli.stato|Stato VM|Status
+dbaas.manage.dettagli.subnet|Subnet|Subnet
+dbaas.manage.dettagli.tags|Tags|Tags
+dbaas.manage.dettagli.tipo|Tipo VM|Type
+dbaas.manage.dettagli.titolo|Dettagli|Details
+dbaas.manage.dettagli.valore|Valore|Value
+dbaas.manage.dettagli.version|Version|Version
+dbaas.manage.titolo|Pannello di Gestione DB|DB Control Panel
+dbaas.manage.utenti.crea_utente|Crea Utente|Create User
+dbaas.manage.utenti.creazione.error|Si è verificato un errore durante il tentativo di creazione dell'utente|An error occurred while trying to create user
+dbaas.manage.utenti.creazione.success|L'operazione di creazione dell'utente è stata inviata correttamente|The user creation operation was successfully started
+dbaas.manage.utenti.dismetti_utente|Dismetti Utente|Cancel User
+dbaas.manage.utenti.elimina.error|Si è verificato un errore durante l'eliminazione dell'utente|An error occurred while deleting the user
+dbaas.manage.utenti.elimina.success|la richiesta di cancellazione dell'utente è stata inviata correttamente|the user's cancellation request has been sent successfully
+dbaas.manage.utenti.elimina.testo|l'utente verrà cancellato definitivamente.|the user will be permanently deleted.
+dbaas.manage.utenti.elimina.titolo|Confermi la cancellazione dell'utente?|Are you sure to delete the user?
+dbaas.manage.utenti.nome.label|Nome|Name
+dbaas.manage.utenti.nome.pattern|Il nome deve iniziare con un carattere minuscolo <br> Deve contenere solo lettere (minuscole) e numeri o il carattere "_"<br>Deve avere lunghezza compresa  tra  5 e 64 caratteri|Name must begin with a lowercase character <br> Must contain only (lowercase) letters and numbers or the "_" character <br> Must be between 5 and 64 characters in length
+dbaas.manage.utenti.nome.placeholder|es: nome_istanza|ex: instance_name
+dbaas.manage.utenti.note_placeholder|inserire eventuali note|enter notes
+dbaas.manage.utenti.tipologia.amministrativa|Amministrativa|Administrative
+dbaas.manage.utenti.tipologia.lettura_scrittura|Lettura e scrittura|Read/Write
+dbaas.manage.utenti.tipologia.sola_lettura|Solo Lettura|Read Only
+dbaas.manage.utenti.tipologia.titolo|Scegliere una Tipologia|Choose a Type
+dbaas.manage.utenti.titolo|UTENTI|USERS
+dbaas.nuova.assistenza.error|Si è verificato un errore durante il tentativo di informare l'assistenza della creazione del DBAAS|An error occurred while trying to notify action to support
+dbaas.nuova.assistenza.success|L'assistenza è stata informata  correttamente della creazione del DBAAS|Support was successfully notified of the instance creation
+dbaas.nuova.database.codice_progressivo.inserisci|Inserire un codice progressivo di tre cifre nel formato 001,002 che ti permetterà di identificare il tuo DBAAS.|Enter a three-digit using 001,002 format. It will allow you to uniquely identify your DBAAS.
+dbaas.nuova.database.codice_progressivo.maxlength|il codice è troppo lungo |Code is too long
+dbaas.nuova.database.codice_progressivo.pattern|Il codice non è valido|Code is invalid
+dbaas.nuova.database.codice_progressivo.required|Inserire un codice di 3 cifre|Enter a 3-digit code
+dbaas.nuova.database.codice_progressivo.titolo|progressivo|progressive
+dbaas.nuova.database.istanza.label|Nome del Database|Database name
+dbaas.nuova.database.istanza.maxlength|Il nome specificato è troppo lungo|Specified name is too long
+dbaas.nuova.database.istanza.placeholder|Specificare il nome del Database|Specify the name of the database
+dbaas.nuova.database.istanza.required|Devi specificare il nome del Database|You must specify database name
+dbaas.nuova.database.istanza.titolo|In base alle scelte che hai effettuato la tua istanza si chiamera'|Based on your choices your instance will be named 
+dbaas.nuova.database.opzione.col|Collaudo|Testing
+dbaas.nuova.database.opzione.dev|Sviluppo|Development
+dbaas.nuova.database.opzione.prd|Produzione|Production
+dbaas.nuova.database.opzione.seleziona|Selezionare un'opzione per differenziare i tuoi ambienti|Select an option to identify your environments
+dbaas.nuova.database.opzione.tst|Test|Test
+dbaas.nuova.database.scegli|Scegli il database.|Choose database engine.
+dbaas.nuova.database.titolo|1. Scegli il database|1. Choose the database
+dbaas.nuova.database.vai_a_tipo_istanza|VAI A TIPO ISTANZA|NEXT
+dbaas.nuova.dettagli.porta.default|Porta di default|Default port
+dbaas.nuova.dettagli.porta.placeholder|specificare la porta|specify port
+dbaas.nuova.dettagli.porta.required|Devi specificare la porta|You must specify port
+dbaas.nuova.dettagli.porta.titolo|Porta di ascolto di default|Default port
+dbaas.nuova.dettagli.schema.nome|Nome dello schema di default|Name of the default schema
+dbaas.nuova.dettagli.schema.placeholder|specificare il nome dello schema|specify schema name
+dbaas.nuova.dettagli.schema.principale|Schema principale|Main schema
+dbaas.nuova.dettagli.schema.required|Devi specificare il nome dello schema|You must specify a schema name
+dbaas.nuova.dettagli.titolo|4. Dettagli DBaaS|4. DBaaS details
+dbaas.nuova.dettagli.vai_a_info|VAI A INFORMAZIONI|NEXT
+dbaas.nuova.error|Si è verificato un errore durante il tentativo di creazione dell'istanza|An error occurred while trying to create the instance
+dbaas.nuova.error_disksize|La dimensione del disco specificata non è applicabile!|The specified disk size is not applicable!
+dbaas.nuova.info.aggiungi_zone|AGGIUNGI UNA AVAILABILITY ZONE|ADD AN AVAILABILITY ZONE
+dbaas.nuova.info.region|Region|Region
+dbaas.nuova.info.rimuovi_disco|Rimuovi disco aggiuntivo|Remove additional disk
+dbaas.nuova.info.scegli_region|Scegli la Region e Availability Zone.|Selecr Region and Availability Zone.
+dbaas.nuova.info.scegli_security_group|Scegli in che gruppo di sicurezza inserire il database.|Select a security group for your instance.
+dbaas.nuova.info.scegli_subnet|Scegli la subnet nella quale collocare la virtual machine che stai creando.|Select subnet.
+dbaas.nuova.info.security_group|Gruppo di sicurezza|Security group
+dbaas.nuova.info.subnet|Subnet|Subnet
+dbaas.nuova.info.titolo|5. Network|5. Network
+dbaas.nuova.info.vai_a_riepilogo|VAI A RIEPILOGO|NEXT
+dbaas.nuova.info.zone|Availability Zone|Availability Zone
+dbaas.nuova.riepilogo.costi_stimati|Costi stimati|Estimated costs
+dbaas.nuova.riepilogo.costo_al_mese|€/mese|€/month
+dbaas.nuova.riepilogo.costo_incluso|incluso|included
+dbaas.nuova.riepilogo.creazione_conferma|CONFERMA E CREA L'ISTANZA|CONFIRM
+dbaas.nuova.riepilogo.creazione_msg01|La crezione dell'istanza potrebbe richiedere del tempo.|Creating the instance may take some time.
+dbaas.nuova.riepilogo.creazione_msg02|Verrai avvisato al completamento dell'operazione.|You will be notified when the operation is complete.
+dbaas.nuova.riepilogo.disco|Disco|Disk
+dbaas.nuova.riepilogo.disco_aggiuntivo|Disco aggiuntivo|Additional disk
+dbaas.nuova.riepilogo.fqdn|FQDN|FQDN
+dbaas.nuova.riepilogo.modifica|Modifica|Edit
+dbaas.nuova.riepilogo.modifica_disco|Modifica Disco|Edit Disc
+dbaas.nuova.riepilogo.modifica_disco_aggiuntivo|Modifica disco aggiuntivo|Edit additional disk
+dbaas.nuova.riepilogo.modifica_nome|Modifica Nome VM|Change VM Name
+dbaas.nuova.riepilogo.modifica_region|Modifica Region - A.Z.|Change Region - Zone.
+dbaas.nuova.riepilogo.modifica_security_group|Modifica Security group|Change Security group
+dbaas.nuova.riepilogo.modifica_subnet|Modifica Subnet|Change Subnet
+dbaas.nuova.riepilogo.modifica_template|Modifica Template|Edit Template
+dbaas.nuova.riepilogo.modifica_tipo_istanza|Modifica Tipo Istanza|Change Instance Type
+dbaas.nuova.riepilogo.porta|Porta|Port
+dbaas.nuova.riepilogo.proprieta|Proprieta| 
+dbaas.nuova.riepilogo.rdbms|RDBMS|RDBMS
+dbaas.nuova.riepilogo.region|Region - A.Z.|Region-Zone
+dbaas.nuova.riepilogo.security_group|Security group|Security group
+dbaas.nuova.riepilogo.sottotitolo|Assicurati di aver selezionato le opzioni corrette, dopodichè avvia la creazione dell'istanza.|Make sure you have selected the correct options, then start the instance creation.
+dbaas.nuova.riepilogo.stime_mensile_di|Stima mensile di |Monthly estimate 
+dbaas.nuova.riepilogo.subnet|Subnet|Subnet
+dbaas.nuova.riepilogo.tipo_istanza|Tipo Istanza|Instance Type
+dbaas.nuova.riepilogo.titolo|6. Riepilogo|6. Confirm
+dbaas.nuova.riepilogo.valore|Valore|Value
+dbaas.nuova.spazio.aggiungi_disco|AGGIUNGI DISCO AGGIUNTIVO|ADD ADDITIONAL DISK
+dbaas.nuova.spazio.dimensione|Dimensione|Size
+dbaas.nuova.spazio.dimensione_disco|Dimensione del disco|Disc size
+dbaas.nuova.spazio.rimuovi_disco|Rimuovi disco aggiuntivo|Remove additional disk
+dbaas.nuova.spazio.scegli|Scegli le opzioni relative allo spazio di archiviazione.|Choose your storage options.
+dbaas.nuova.spazio.tipologia|Tipologia|Type
+dbaas.nuova.spazio.tipologia_disco|Tipologia del disco|Disc type
+dbaas.nuova.spazio.titolo|3. Spazio di archiviazione|3. DISK SIZE
+dbaas.nuova.spazio.vai_a_dettagli|VAI A DETTAGLI DBAAS|NEXT
+dbaas.nuova.success|L'operazione di creazione dell'istanza è stata avviata correttamente|The instance creation operation started successfully
+dbaas.nuova.tipo_istanza.disco|Disco|Disk
+dbaas.nuova.tipo_istanza.ram|RAM|RAM
+dbaas.nuova.tipo_istanza.selezionato|Attualmente selezionato|Currently selected
+dbaas.nuova.tipo_istanza.sottotitolo|Dimensiona le risorse da assegnare all'istanza di database.|Size the resources for your database instance.
+dbaas.nuova.tipo_istanza.tipo|Type|Type
+dbaas.nuova.tipo_istanza.titolo|2. Tipo Istanza|2. Instance Type
+dbaas.nuova.tipo_istanza.vai_a_spazio|VAI A SPAZIO DI ARCHIVIAZIONE|NEXT
+dbaas.nuova.tipo_istanza.vcpus|vCPU|vCPU
+dbaas.nuova.titolo|Crea una Nuova istanza di DBaaS|Create DBaaS instance
+dbaas.selezionati|Dbaas selezionati|Selected dbaas
+dbaas.selezionato|Dbaas selezionato|Selected dbaas
+dbaas.stato.available|Il DBAAS è attivo|Instance is active
+dbaas.stato.error|Il DBAAS è in errore|Instance is in error
+dbaas.stato.inactive|Il DBAAS non è attivo|Instance is not active
+dbaas.stato.pending|Il DBAAS è in uno stato temporaneo|Instance is in a temporary state
+dbaas.stato.stopped|Il DBAAS è stopped|Instance is stopped
+dbaas.stato.undefined|L'informazione sullo stato del DBAAS non è disponibile.|Information on the instance status is not available.
+dbaas.stato.value|Il DBAAS è nello stato |Instance is in the state
+di|di|of
+divisione|Divisione|Division
+divisioni.categoria.csi|Csi|Csi
+divisioni.categoria.label|Categoria|Category
+divisioni.categoria.privata|Privata|Private
+divisioni.categoria.public|Pubblica Amministrazione|Public Administration
+divisioni.data_creazione|data creazione|creation date
+divisioni.denominazione|Denominazione|Name
+divisioni.denominazione_maxlength|Denominazione non deve superare 100 caratteri|Name must not exceed 100 characters
+divisioni.denominazione_required|Campo obbligatorio|Required field
+divisioni.descrizione|Descrizione|Description
+divisioni.elenco.aggiorna|Aggiorna Elenco|Refresh List
+divisioni.elenco.di|di|of
+divisioni.elenco.error|Si è verificato un errore!|An error has occurred!
+divisioni.elenco.selezionato|Elemento selezionato|Selected item
+divisioni.elenco.titolo|Elenco Divisioni|Division List
+divisioni.elenco.vai_a_account|Vai agli account|Go to accounts
+divisioni.elimina.bottone|Elimina Elemento|Delete Item
+divisioni.email|Indirizzo Mail|Email address
+divisioni.email_required|Email non Valida|Invalid email
+divisioni.ente|Ente|Body
+divisioni.ente_not_found|Nessun ente trovato|No entity found
+divisioni.ente_riferimento|Ente di riferimento per richieste Remedy|Reference body for Remedy requests
+divisioni.indirizzo|Indirizzo|Address
+divisioni.indirizzo_divisione|indirizzo divisione|division address
+divisioni.indirizzo_pec|Indirizzo Pec|Certified e-mail
+divisioni.indirizzo_pec_required|PEC non Valida|CEM not valid
+divisioni.indirizzo_required|Indirizzo obbligatorio|Address required
+divisioni.label|Divisioni|Divisions
+divisioni.modifica.anagrafica|Anagrafica Divisione|Division Master Data
+divisioni.modifica.bottone|Modifica divisione|Change division
+divisioni.modifica.error|Si è verificato un errore durante l'aggiornamento della divisione|An error occurred while updating the division
+divisioni.modifica.error_anagrafica|Si è verificato un errore durante il caricamento del dettaglio anagrafico della divisione|An error occurred while loading the division master detail
+divisioni.modifica.error_salva|Si è verificato un errore nel salvataggio dei dati|An error occurred while saving data
+divisioni.modifica.success|La divisione è stata aggiornata correttamente|The division was updated successfully
+divisioni.modifica.titolo|Modifica Divisione|Edit Division
+divisioni.nuova.anagrafica|Anagrafica Divisione|Division Detail
+divisioni.nuova.bottone|Crea una Nuova Divisione|Create Division
+divisioni.nuova.crea|Crea divisione|Create division
+divisioni.nuova.error|Si è verificato un errore durante la creazione della Divisione|An error occurred while creating Division
+divisioni.nuova.success|La Divisione è stata creata correttamente|The Division was created successfully
+divisioni.nuova.titolo|Nuova Divisione|New Division
+divisioni.recapiti_email|Recapiti Mail|Mail contacts
+divisioni.recapiti_email_alert|*Specificare almeno una delle due mail|* Specify at least one of the two emails
+divisioni.referente|Referente|Referrer
+divisioni.referente_required|Referente Richiesto|Referrer Required
+divisioni.stato.attiva|Attiva|Active
+divisioni.stato.label|Stato|Status
+divisioni.stato.non_attiva|Non attiva|Not active
+divisioni.visualizza.account_collegati|Account collegati|Linked accounts
+divisioni.visualizza.aggiorna_grafico|Aggiorna grafico|Refresh chart
+divisioni.visualizza.andamento_costi|Andamento dei Costi|Cost trend
+divisioni.visualizza.azioni|Azioni|Actions
+divisioni.visualizza.bottone|Visualizza Dettaglio|Detail
+divisioni.visualizza.consolidato|Consolidato|Consolidated
+divisioni.visualizza.consumi|Consumi|Cost Explorer
+divisioni.visualizza.consumi_non_rendicontati_a|al|to the
+divisioni.visualizza.consumi_non_rendicontati_da|Costi non rendicontati dal|Costs not reported from
+divisioni.visualizza.costi_servizi_cpaass|Costi servizi CPAAS|CPAAS service costs
+divisioni.visualizza.costo|Costo(€)|Cost(€)
+divisioni.visualizza.costo_cpaas|Costo CPAAS|CPAAS cost
+divisioni.visualizza.costo_dbaas|Costo DBAAS|DBAAS cost
+divisioni.visualizza.costo_staas|Costo STAAS|STAAS cost
+divisioni.visualizza.dettaglio|Dettaglio|Detail
+divisioni.visualizza.dettaglio_utente|Dettaglio utente|User detail
+divisioni.visualizza.error_anagrafica|Si è verificato un errore durante il caricamento del dettaglio anagrafico della divisione|An error occurred while loading the division master detail
+divisioni.visualizza.error_costi|Si è verificato un errore durante il caricamento dei dati relativi all'andamento dei costi|An error occurred while loading cost trend data
+divisioni.visualizza.error_download|Si è verificato un errore durante il download del file|An error occurred while downloading the file
+divisioni.visualizza.error_non_rendicontati|Si è verificato un errore durante il caricamento dell'elenco dei consumi non rendicontati|An error occurred while loading the unreported consumption list
+divisioni.visualizza.error_rendicontati|Si è verificato un errore durante il caricamento dell'elenco dei consumi rendicontati|An error occurred while loading the list of reported consumptions
+divisioni.visualizza.error_utenti|Si è verificato un errore durante il caricamento dell'elenco utenti|An error occurred while loading the user list
+divisioni.visualizza.file|File|File
+divisioni.visualizza.importo|Importo|Amount
+divisioni.visualizza.in_corso|In corso|In progress
+divisioni.visualizza.mese_in_corso|mese in corso|current month
+divisioni.visualizza.parametro|Parametro|Parameter
+divisioni.visualizza.periodo|Periodo|Period
+divisioni.visualizza.registra_utente|Registra utente|Insert user
+divisioni.visualizza.report_mensili|Report Mensili|Monthly Reports
+divisioni.visualizza.servizio|Servizio|Service
+divisioni.visualizza.stato|Stato|Status
+divisioni.visualizza.totale|Totale|Total
+divisioni.visualizza.utenti|Utenti|Users
+divisioni.visualizza.utenti_not_found|Non Ci sono Utenti collegati a questo account|There are no Users connected to this account
+divisioni.visualizza.vai_a_account|Vai agli account|Go to Accounts
+documentazione.condizioni|Condizioni Generali di fornitura dei Servizi Cloud CSI|General Terms and Conditions of CSI Cloud Services
+documentazione.condizioni_fornitori|Condizioni Generali Fornitori Cliente Nivola|General Conditions for Nivola Customer.
+documentazione.condizioni_fornitori_testo|Le presenti Condizioni Generali di utilizzo di servizi Cloud del CSI-Piemonte regolano le condizioni d’utilizzo della piattaforma Cloud offerta ai fornitori del Consorzio e funzionale all’erogazione di beni o servizi o soluzioni applicative a favore del CSI stesso o dei suoi Clienti e regolati da specifico e distinto accordo negoziale.|These General Terms and Conditions for the use of Cloud services of CSI-Piemonte regulate the conditions of use of the Cloud platform offered to the suppliers of the Consortium and functional to the provision of goods or services or application solutions in favor of the CSI itself or its Customers and regulated by a specific and distinct negotiation agreement.
+documentazione.condizioni_testo|Le presenti Condizioni Generali disciplinano i termini e le condizioni di fornitura di Servizi Cloud da parte del CSI Piemonte nei confronti dei propri clienti.|These General Conditions govern the terms and conditions of the provision of Cloud Services by CSI Piemonte to its customers.
+documentazione.sla_testo| 20-01-2021 - Il presente documento riporta i risultati degli SLA rilevati per i singoli servizi della piattaforma Nivola relativi al periodo dal 01-07-2020 al 31-12-2020|20-01-2021 - This document reports SLAs detected for the services of the Nivola platform relating to the period from 01-07-2020 to 31-12-2020
+documentazione.titolo|Condizioni Generali|General Term and Conditions
+elimina|Elimina|Delete
+error.campo_obbligatorio|Campo obbligatorio|Required field
+error.download_file|Si è verificato un errore durante il download del file|An error occurred while downloading file
+error.errore_download|Si è verificato un errore durante il download del file|An error occurred while downloading file
+error.loading_account|Si è verificato un errore durante il caricamento del dettaglio dell'account|An error occurred while loading account detail
+error.loading_account_anagrafica|Si è verificato un errore durante il caricamento del dettaglio anagrafico dell'account|An error occurred while loading account master detail
+error.loading_accounts|Si è verificato un errore durante il caricamento degli account|An error occurred while loading accounts
+error.loading_andamento_costi|Si è verificato un errore durante il caricamento dei dati relativi all'andamento dei costi|An error occurred while loading cost trend data
+error.loading_attivita|Si è verificato un errore durante il caricamento di attivita|An error occurred while loading tasks
+error.loading_autorizzazioni|Si è verificato un errore durante il caricamento delle autorizzazioni|An error occurred while loading permissions
+error.loading_capabilities|Si è verificato un errore durante il caricamento delle capabilities|An error occurred while loading capabilities
+error.loading_chiavi|Si è verificato un errore durante il caricamento delle chiavi|An error occurred while loading ssh-Keys
+error.loading_consumi_non_rendicontati|Si è verificato un errore durante il caricamento dell'elenco dei Consumi non rendicontati|An error occurred while loading costs information
+error.loading_consumi_rendicontati|Si è verificato un errore durante il caricamento dell'elenco dei consumi rendicontati|An error occurred while loading the list of reported costs
+error.loading_costi|Si è verificato un errore durante il caricamento di costi|An error occurred while loading costs
+error.loading_divisione|Si è verificato un errore durante il caricamento del dettaglio anagrafico della divisione|An error occurred while loading the division detail
+error.loading_divisioni|Si è verificato un errore durante il caricamento dell'elenco (divisioni/organizzazioni)|An error occurred while loading list (divisions / organizations)
+error.loading_engines|Si è verificato un errore durante il caricamento degli engines|An error occurred while loading engines
+error.loading_entita|Si è verificato un errore durante il caricamento delle entità|An error occurred while loading entities
+error.loading_flavour|Si è verificato un errore durante il caricamento dei flavour|An error occurred while loading flavors
+error.loading_grafico_dettaglio|Si è verificato un errore durante il caricamento dei dati per il grafico di dettaglio|An error occurred while loading data for the detail chart
+error.loading_istanze|Si è verificato un errore durante il caricamento delle istanze|An error occurred while loading instances
+error.loading_listini|Si è verificato un errore durante il caricamento dei listini|An error occurred while loading price lists
+error.loading_notizia|Si è verificato un errore durante il caricamento della notizia|An error occurred while loading news
+error.loading_notizie|Si è verificato un errore durante il caricamento di notizie|An error occurred while loading news
+error.loading_organizzazioni|Si è verificato un errore durante il caricamento delle organizzazioni|An error occurred while loading organizations
+error.loading_prezzari|Si è verificato un errore durante il caricamento del listino Prezzari|An error occurred while loading price list
+error.loading_regioni|Si è verificato un errore durante il caricamento delle regioni|An error occurred while loading regions
+error.loading_remedy|Si è verificato un errore durante il caricamento delle remedy|An error occurred while loading support ticket
+error.loading_rendicontazioni_account|Si è verificato un errore durante il caricamento delle informazioni di rendicontazioni dell'account|An error occurred while loading account cost information
+error.loading_security_group|Si è verificato un errore durante il caricamento dei Security Group|An error occurred while loading Security Groups
+error.loading_security_group_info|Si è verificato un errore durante il caricamento delle informazioni del security group|An error occurred while loading security group information
+error.loading_servizi_account|Si è verificato un errore durante il caricamento di  servizi attivi dell'account|An error occurred while loading active account services
+error.loading_shares|Si è verificato un errore durante il caricamento delle Shares|An error occurred while loading Shares
+error.loading_shares_associati|Si è verificato un errore durante il caricamento delle Shares associati|An error occurred while loading associated Shares
+error.loading_snapshot|Si è verificato un errore durante il caricamento degli snapshots|An error occurred while loading snapshots
+error.loading_staas|Si è verificato un errore durante il caricamento dei tipi dello STAAS|An error occurred while loading STAAS types
+error.loading_storage|Si è verificato un errore durante il caricamento dei servizi Storage|An error occurred while loading Storage services
+error.loading_subnet|Si è verificato un errore durante il caricamento delle subnet|An error occurred while loading subnets
+error.loading_template|Si è verificato un errore durante il caricamento dei template|An error occurred while loading  templates
+error.loading_templates|Si è verificato un errore durante il caricamento dei templates|An error occurred while loading templates
+error.loading_utente|Si è verificato un errore durante il caricamento delle informazioni dell'utente|An error occurred while loading user information
+error.loading_utenti|Si è verificato un errore durante il caricamento degli utenti|An error occurred while loading users
+error.loading_vm|Si è verificato un errore durante il caricamento delle macchine virtuali|An error occurred while loading virtual machines
+error.loading_voci_di_costo|Si è verificato un errore durante caricamento delle voci di costo|An error occurred while loading cost items
+error.loading_volumi|Si è verificato un errore durante il caricamento dei volumi|An error occurred while loading the volumes
+error.loading_vpc|Si è verificato un errore durante il caricamento dei Vpc|An error occurred while loading tVpc
+error.loading_zone|Si è verificato un errore durante il caricamento delle availability zone|An error occurred while loading availability zones
+error.non_autorizzato|non sei autorizzato ad accedere al contenuto richiesto.|you are not authorized to access the requested content.
+error.operazione_non_consentita|Operazione non consentita|Operation not allowed
+errore|Errore|Error
+finito|Finito|Finished
+guida|Guida utente|User guide
+header.cambia_profilo|Cambia profilo|Change profile
+header.contatta_assistenza|Contatta l'assistenza|Contact support
+header.csi_piemonte|CSI Piemonte|CSI Piemonte
+header.documentazione_nivola|Documentazione Nivola|Documentation
+header.esci|Esci da Nivola|Logout
+header.selezione_account|Il mio profilo|My Profile
+header.visualizza_info_utente|Visualizza informazioni utente|User information
+homepage.appengine.sigla|AppEngine|AppEngine
+homepage.appengine.titolo|AppEngine|AppEngine
+homepage.avvisi_notifiche.segna_lette|Segna come lette|Check as read
+homepage.avvisi_notifiche.titolo|Avvisi e Notifiche|Notifications
+homepage.compute.numero_cpu|Numero CPU|vCPU
+homepage.compute.risorse|Compute Service|Compute Service
+homepage.compute.titolo|Compute|Compute
+homepage.compute.totale_ram|Totale RAM|RAM
+homepage.compute.vm|istanze VM|Instances
+homepage.costi.titolo|Costi|Cost Explorer
+homepage.costi_mese_in_corso|Costi mese in corso|Current month cost
+homepage.costo_della_giornata|Costo della giornata|Daily cost
+homepage.dbaas.sigla|DBAAS|DBAAS
+homepage.dbaas.spazio_disco|Spazio disco|Disk space
+homepage.dbaas.titolo|DataBase|Database
+homepage.dbaas.totale_ram|Totale RAM|RAM
+homepage.dettaglio|Dettaglio|View
+homepage.nessun_servizio_attivo|Nessun Servizio Attivo|No Active Service
+homepage.notizie.segna_lette|Segna come lette|Check as read
+homepage.notizie.titolo|Notizie|News
+homepage.portafoglio.titolo|Costi|Costs
+homepage.risorse_divisione.titolo|Utilizzo piattaforma Divisione|Active Services - Division
+homepage.risorse_organizzazione.titolo|Utilizzo piattaforma Organizzazione|Active Services - Organization
+homepage.servizi_attivi.titolo|Servizi Attivi Account|Active Services
+homepage.servizio_attivo|Attivo|Active
+homepage.staas.gb_spazio_disco|Spazio disco|Disk space
+homepage.staas.sigla|STAAS|STAAS
+homepage.staas.spazio_disco|Spazio disco|Disk space
+homepage.staas.titolo|Storage|Storage
+homepage.stato_servizi.aggiorna|Aggiorna ora|Refresh
+homepage.stato_servizi.titolo|Stato dei servizi|Services Status
+homepage.stato_utilizzatori.titolo|Utilizzo piattaforma|Platform utilization
+homepage.titolo|Home Page|Home Page
+homepage.widget.aggiungi_colonna|Aggiungi una colonna|Add a column
+homepage.widget.nascondi|Nascondi questa scheda|Hide tab
+homepage.widget.rimuovi_colonna|Rimuovi questa colonna|Remove column
+homepage.widget.ripristina|Ripristina questa scheda|Restore tab
+indietro|Indietro|Back
+invia|Invia|Send
+istanza|Istanza|Instance
+istanze|Istanze|Instances
+keypair.elenco.aggiorna|Aggiorna lista Chiavi|Refresh List
+keypair.elenco.crea|Crea una Nuova Chiave SSH|Add SSH Key
+keypair.elenco.elimina|Elimina Chiave|Delete SSH Key
+keypair.elenco.errore|Si è verificato un errore durante il caricamento delle chiavi|An error occurred while loading keys
+keypair.elenco.importa|Importa una Chiave SSH|Import SSH Key
+keypair.elenco.impronta|Impronta|Fingerprint
+keypair.elenco.nome|Nome chiave|Key name
+keypair.elenco.selezionata|Chiave selezionata|Selected key
+keypair.elenco.selezionate|Chiavi selezionate|Selected keys
+keypair.elenco.titolo|Elenco Chiavi SSH|SSH Keys
+keypair.elenco.vuoto|Non ci sono Chiavi SSH presenti|There are no SSH Keys
+keypair.elimina.errore|Si è verificato un errore durante l'eliminazione della chiave|An error occurred while deleting ey
+keypair.elimina.info|La chiave verrà cancellata definitivamente.|The key will be permanently deleted
+keypair.elimina.success|La richiesta di eliminazione della Chiave è stata inoltrata correttamente.|The request has been successfully processed.
+keypair.elimina.titolo|Confermi la cancellazione della chiave selezionata?|Are you sure you want to delete the selected key?
+keypair.errore_chiave_stesso_nome|Esite già una chiave con lo stesso nome|A key with the same name already exists
+keypair.errore_nome_presente|Operazione non consentita. Nome già presente|Operation not allowed. Name already present
+keypair.importa.errore|Si è verificato un errore durante il tentativo di importazione della chiave|An error occurred while trying to import the key
+keypair.importa.errore_chiave_non_valida|Chiave non valida.|Invalid key.
+keypair.importa.importa|IMPORTA|Import
+keypair.importa.info|Al termine dell'operazione verrà generato un file .pem contenente la chiave.|At the end of the operation a .pem file will be generated.
+keypair.importa.inserimento|Inserire il nome della chiave|Enter the key Name
+keypair.importa.label|Chiave RSA (solo la stringa chiave pubblica senza 'ssh-rsa' iniziale, e senza riferimenti email finali. )|RSA key (only the public key string without initial 'ssh-rsa', and without final email references)
+keypair.importa.msg_parte_pubblica|Inserire la parte pubblica della chiave come stringa|Enter a string containing the public part of the key
+keypair.importa.success|L'operazione di importazione della chiave è stata conclusa correttamente|The import operation was completed successfully
+keypair.importa.titolo|Importazione nuova Chiave SSH|Import SSH key
+keypair.nome|Nome della chiave|Key name
+keypair.nome_completo|Nome Completo assegnato alla chiave|Full Name assigned to Key
+keypair.nuova.crea|Crea Chiave|Create Key
+keypair.nuova.errore|Si è verificato un errore durante il tentativo di creazione della chiave|An error occurred while trying to create key
+keypair.nuova.info|Al termine dell'operazione verrà generato un file .pem contenente la chiave.|At the end of the operation a .pem file will be generated.
+keypair.nuova.inserimento|Inserire il nome della nuova chiave|Digit the key Name
+keypair.nuova.msg|Al termine dell'operazione verrà generato un file .pem contenente la chiave.|At the end of the operation a .pem file will be generated containing the key.
+keypair.nuova.success|L'operazione di creazione della chiave è stata conclusa correttamente|The key creation was completed successfully
+keypair.nuova.titolo|Creazione nuova Chiave SSH|SSH key creation
+keypair.pattern|Il nome deve iniziare con un carattere non numerico<br>La lunghezza deve essere tra (8-40) caratteri. <br>caratteri speciali accettati : <b>'_','-' </b><br>Es: chiave_1,chiave-1|Name must begin with a non-numeric character <br> Length must be between (8-40) characters. <br> accepted special characters: <b> '_', '-' </b> <br> Ex: key_1, key-1
+listini.data_cancellazione|Data cancellazione|Deletion date
+listini.data_creazione|Data creazione|Creation date
+listini.data_fine|Data fine validita|Validity end date
+listini.data_inizio|Data inizio validita|Validity start date
+listini.data_modifica|Data modifica|Edit date
+listini.descrizione|Descrizione|Description
+listini.dettaglio.bottone|Visualizza dettagli listino|View price list
+listini.dettaglio.titolo|Dettaglio Listino|Price list detail
+listini.elenco.ricarica|Ricarica elenco Listini|Reload the price list
+listini.elenco.selezionati|listini selezionati|selected price lists
+listini.elenco.selezionato|listino selezionato|selected price list
+listini.elenco.titolo|Elenco Listini|List Price Lists
+listini.elimina.bottone|Elimina listino|Delete price list
+listini.elimina.bottones|Elimina listini|Delete price lists
+listini.elimina.error|Si è verificato un errore durante l'eliminazione del listino|An error occurred while deleting the price list
+listini.elimina.success|il listino è stato eliminato correttamente|the price list was successfully deleted
+listini.elimina.testo|Gli utenti verranno cancellati definitivamente.|Users will be permanently deleted.
+listini.elimina.titolo|Confermi la cancellazione dei listini selezionati?|Are you sure to delete the selected price list?
+listini.nome|Nome|Name
+logout|Logout|Logout
+logout_msg|Sei sicuro di voler terminare la sessione?|Are you sure you want to end the session?
+menu.amministrazione.catalogo.cataloghi|Cataloghi|Catalogs
+menu.amministrazione.catalogo.titolo|Catalogo|Catalog
+menu.amministrazione.listini.elenco|Elenco listini|Price lists
+menu.amministrazione.listini.registra|Registra nuovo listino|Add price list
+menu.amministrazione.listini.titolo|Listini|Price lists
+menu.amministrazione.portafoglio.titolo|Portafoglio|Wallet
+menu.amministrazione.portafoglio.wallets|Wallets Org-Divisioni|Wallets Org-Divisions
+menu.amministrazione.report.report|Report|Report
+menu.amministrazione.report.titolo|Report|Report
+menu.amministrazione.struttura_organizzativa.accounts|Accounts|Accounts
+menu.amministrazione.struttura_organizzativa.divisioni|Divisioni|Divisions
+menu.amministrazione.struttura_organizzativa.organizzazioni|Organizzazioni|Organizations
+menu.amministrazione.struttura_organizzativa.titolo|Struttura organizzativa|Structure
+menu.amministrazione.titolo|Amministrazione|Administration
+menu.amministrazione.utenti.accreditamento|Accreditamento|Credits
+menu.amministrazione.utenti.lista_registrati|Lista utenti registrati|Users list
+menu.amministrazione.utenti.registra|Registra nuovo utente|Add user
+menu.amministrazione.utenti.titolo|Utenti|Users
+menu.assistenza.area_condivisione|Area di condivisione|File share
+menu.assistenza.chat|Chat|Chat
+menu.assistenza.richiesta_supporto|Richiesta supporto|Request
+menu.assistenza.titolo|Assistenza|Support
+menu.avvisi_notifiche.titolo|Avvisi e Notifiche|Notifications
+menu.documentazione.compliance|Compliance|Compliance
+menu.documentazione.condizioni_generali|Condizioni Generali|General Conditions
+menu.documentazione.guida_utente.titolo|Guida Utente|User Guide
+menu.documentazione.guida_utente.url|https://nivola-userguide.readthedocs.io/it/latest/index.html|https://nivola-userguide.readthedocs.io/it/latest/index.html
+menu.documentazione.guida_utente.url_test|https://www.csipiemonte.it/web/it|https://www.csipiemonte.it/web/it
+menu.documentazione.sla|sla|sla
+menu.documentazione.titolo|Documentazione|Documentation
+menu.gestione_account.attivita|Attivita|Activity
+menu.gestione_account.costi_consumi|Costi e consumi|Cost Explorer
+menu.gestione_account.quote_servizi|Quote servizi|Quotas
+menu.gestione_account.servizi_gestione|Servizi di gestione|Additional Services
+menu.gestione_account.titolo|Gestione account|Account Administration
+menu.gestione_account.utenti.lista_accreditati|Lista utenti accreditati|Users list
+menu.gestione_account.utenti.titolo|Utenti|Users
+menu.gestione_divisione.costi_consumi|Costi e consumi|Cost Explorer
+menu.gestione_divisione.struttura_organizzativa.accounts|Accounts|Accounts
+menu.gestione_divisione.struttura_organizzativa.titolo|Struttura organizzativa|Structure
+menu.gestione_divisione.titolo|Gestione Divisione|Administration
+menu.gestione_divisione.utenti.lista_accreditati|Lista utenti accreditati|User list
+menu.gestione_divisione.utenti.titolo|Utenti|Users
+menu.gestione_organizzazione.costi_consumi|Costi e consumi|Cost Explorer
+menu.gestione_organizzazione.titolo|Gestione Organizzazione|Administration
+menu.homepage.titolo|Home Page / Dashboard|Home Page
+menu.notizie.titolo|Notizie|News
+menu.servizi.appengine.istanze|Istanze AppEngine|AppEngine instances
+menu.servizi.appengine.titolo|AppEngine|AppEngine
+menu.servizi.compute.chiavi_ssh|Chiavi SSH|SSH keys
+menu.servizi.compute.titolo|Compute|Compute
+menu.servizi.compute.vm|VM|VM instance
+menu.servizi.compute.volumi|Volumi|Volumes
+menu.servizi.database.dbaas|Istanze DBAAS|DBAAS instance
+menu.servizi.database.titolo|Database|Database
+menu.servizi.networking.security_group|Security Group|Security Group
+menu.servizi.networking.titolo|Reti e Sicurezza|Networks and Security
+menu.servizi.networking.vpc|VPC|VPC
+menu.servizi.storage.shares|Shares|Shares
+menu.servizi.storage.titolo|Storage|Storage
+menu.servizi.titolo|Servizi|Services
+menu.strumenti.log_management|Log Management|Logging
+menu.strumenti.monitoraggio|Monitoraggio|Monitoring
+menu.strumenti.titolo|Strumenti|Tools
+menu.task_richieste.titolo|Task e richieste|Tasks and requests
+modifica|Modifica|Edit
+no|no|no
+notizie.dettaglio.bottone|Visualizza dettagli Notizia|View details
+notizie.dettaglio.titolo|Dettaglio Notizia|News Detail
+notizie.elenco.contenuto|Contenuto|Content
+notizie.elenco.data_pubblicazione|Data pubblicazione|Publication date
+notizie.elenco.priorita|Priorita|Priority
+notizie.elenco.titolo|Titolo|Title
+notizie.elimina.error|Si è verificato un errore durante l'eliminazione della notizia|An error occurred while deleting the news
+notizie.elimina.notizia|Elimina notizia|Delete news
+notizie.elimina.notizie|Elimina notizie|Delete news
+notizie.elimina.success|La notizia è stata eliminata correttamente|The news was successfully deleted
+notizie.elimina.testo|le notizie verranno cancellate definitivamente.|the news will be permanently deleted.
+notizie.elimina.titolo|Confermi la cancellazione di notizie selezionate?|Are you sure you want to delete the selected news?
+notizie.modifica.bottone|Modifica Notizia|Edit News
+notizie.modifica.content|Testo del Notizia|Content
+notizie.modifica.error|Si è verificato un errore durante l'aggiornamento della Notizia|An error occurred while updating news
+notizie.modifica.success|La notizia è stata salvata|News saved
+notizie.modifica.titolo|Modifica Notizia|Edit News
+notizie.nuova.bottone|Crea nuova Notizia|Add News
+notizie.nuova.content_maxlength|Il contenuto specificato è troppo lungo|Content is too long
+notizie.nuova.content_required|Devi specificare il contenuto della Notizia|Content required
+notizie.nuova.error|Si è verificato un errore durante il salvataggio della notizia|An error occurred while saving the news
+notizie.nuova.priorita|Priorita' Notizia|Priority
+notizie.nuova.pubblica_a|Fino al|Until the
+notizie.nuova.pubblica_da|Pubblica in data|Publish on
+notizie.nuova.stato|Stato della Notizia|Status
+notizie.nuova.success|La notizia è stata creata|The news was created
+notizie.nuova.titolo|Crea Notizia|Add News
+notizie.nuova.titolo_notizia|Titolo della Notizia|Title
+notizie.nuova.titolo_notizia_maxlength|Il titolo specificato è troppo lungo|The specified title is too long
+notizie.nuova.titolo_notizia_required|Devi specificare il titolo della Notizia|You must specify the title of the News
+notizie.priorita.alta|Alta|High
+notizie.priorita.bassa|Bassa|Low
+notizie.priorita.media|Media|Medium
+notizie.ricarica|Ricarica lista Notizie|Refresh list
+notizie.ricerca_avanzata|Ricerca avanzata|Advanced Search
+notizie.selezionata|notizia selezionata|selected news
+notizie.selezionate|notizie selezionate|selected news
+notizie.stato.bozza|Bozza|Draft
+notizie.stato.obsoleta|Obsoleta|Obsolete
+notizie.stato.pubblicata|Pubblicata|Published
+notizie.titolo|Elenco Notizie|News
+organizzazione|Organizzazione|Organization
+organizzazioni.categoria.csi|Csi|Csi
+organizzazioni.categoria.label|Categoria|Category
+organizzazioni.categoria.privata|Privata|Private
+organizzazioni.categoria.public|Pubblica Amministrazione|Public administration
+organizzazioni.categoria_required|Seleziona Una Categoria|Select category
+organizzazioni.denominazione|Denominazione|Name
+organizzazioni.denominazione_maxlength|Denominazione non deve superare 100 caratteri|Name must not exceed 100 characters
+organizzazioni.denominazione_required|Campo obbligatorio|Required field
+organizzazioni.descrizione|Descrizione|Description
+organizzazioni.descrizione_maxlength|Descrizione non deve superare 100 caratteri|Description must not exceed 100 characters
+organizzazioni.descrizione_required|Campo obbligatorio|Required field
+organizzazioni.elenco.aggiorna|Aggiorna Elenco|Refresh List
+organizzazioni.elenco.selezionato|Elemento selezionato|Selected item
+organizzazioni.elenco.titolo|Elenco Organizzazioni|Organization
+organizzazioni.elenco.vai_a_divisione|Vai alla divisione|Go to division
+organizzazioni.elimina.bottone|Elimina Elemento|Delete Item
+organizzazioni.elimina.error|Non è stato possibile eliminare l'organizzazione selezionata|The selected organization could not be deleted
+organizzazioni.elimina.success|l'organizzazione {{name}} è stata eliminata con successo|organization {{name}} was successfully deleted
+organizzazioni.elimina.testo|L'organizzazione verrà cancellata definitivamente.|The organization will be permanently deleted.
+organizzazioni.elimina.titolo|Confermi la cancellazione l'organizzazione selezionata?|Are you sure to delete the selected organization?
+organizzazioni.email|Indirizzo Mail|Email address
+organizzazioni.email_required|Email non Valida|Invalid email
+organizzazioni.ente|Ente|Body
+organizzazioni.ente_not_found|Nessun ente trovato|No Agency found
+organizzazioni.ente_riferimento|Ente di riferimento per richieste Remedy|Reference agency for requests
+organizzazioni.error|Si è verificato un Errore nel caricamento della pagina|There was an Error loading the page
+organizzazioni.esenzione_iva|Esenzione Iva|VAT exemption
+organizzazioni.indirizzo|Indirizzo|Address
+organizzazioni.indirizzo_organizzazione|Indirizzo Organizzazione|Address
+organizzazioni.indirizzo_pec|Indirizzo Pec|Certified email
+organizzazioni.indirizzo_pec_required|PEC non Valida|CEM not valid
+organizzazioni.indirizzo_required|Indirizzo obbligatorio|Address required
+organizzazioni.label|Organizzazioni|Organizations
+organizzazioni.modifica.anagrafica|Anagrafica organizzazione|Organization data
+organizzazioni.modifica.bottone|Modifica Elemento|Edit Item
+organizzazioni.modifica.error|Si è verificato un errore nel caricamento dei dati|An error occurred while loading the data
+organizzazioni.modifica.success|Aggiornamento effettuato con successo|Update successful
+organizzazioni.nuova.bottone|Crea una Nuova Organizzazione|Add Organization
+organizzazioni.nuova.error|Si è verificato un errore nel salvataggio dei dati|An error occurred while saving the data
+organizzazioni.nuova.success|E' stata creata correttamente una nuova organizzazione|Organization was successfully created
+organizzazioni.nuova.titolo|Nuova Organizzazione|New Organization
+organizzazioni.recapiti_email|Recapiti Mail|e-mail
+organizzazioni.recapiti_email_alert|*Specificare almeno una delle due mail|* Specify at least one email
+organizzazioni.referente|Referente|Referrer
+organizzazioni.referente_required|Referente Richiesto|Referrer Required
+organizzazioni.ricarica_pagina|ricarica_pagina|reload_page
+organizzazioni.stato.attiva|Attiva|Activate
+organizzazioni.stato.label|Stato|Status
+organizzazioni.stato.non_attiva|Non attiva|Not active
+organizzazioni.visualizza.aggiorna_grafico|Aggiorna grafico|Refresh chart
+organizzazioni.visualizza.anagrafica|Anagrafica|Registry
+organizzazioni.visualizza.andamento_costi|Andamento dei Costi|Cost trend
+organizzazioni.visualizza.attributi|Attributi dell'organizzazione|Organization attributes
+organizzazioni.visualizza.bottone|Visualizza Dettaglio|View Detail
+organizzazioni.visualizza.consumi|Consumi|Cost Explorer
+organizzazioni.visualizza.costi_a|al|to
+organizzazioni.visualizza.costi_da|Costi non rendicontati dal|Costs not reported from
+organizzazioni.visualizza.costi_del_periodo|Costi del periodo|Costs for 
+organizzazioni.visualizza.costo|Costo(€)|Cost(€)
+organizzazioni.visualizza.dettaglio|Dettaglio|Detail
+organizzazioni.visualizza.error|Si è verificato un errore nel caricamento dei dati|An error occurred while loading the data
+organizzazioni.visualizza.no_data|Non è stata trovata nessuna organizzazione con i criteri di ricerca|No organization was found with the search criteria
+organizzazioni.visualizza.parametro|Parametro|Parameter
+organizzazioni.visualizza.servizio|Servizio|Service
+organizzazioni.visualizza.suddivisi_per_mese|suddivisi per mese|broken down by month
+organizzazioni.visualizza.totale|Totale|Total
+paginazione.elementi_di|di|of
+paginazione.pagina|Pagina|Page
+paginazione.righe|Righe per pagina|Lines in page
+procedi|Procedi|GO ahead
+proprieta|Proprietà|Property
+report.aggiorna|Aggiorna|Refresh
+report.error_selezione|selezionare le date di inizio e fine validita|select validity start/end dates
+report.scarica_file|scarica file|download file
+report.selezionare|Selezionare la data di inizio, la data di fine estrazione, il tipo di report desiderato e la modalità di visualizzazione|Select start/end date, report type and view mode
+report.selezionare_a|Fino a|Until
+report.selezionare_da|A partire da|Starting from
+report.titolo|Estrazione report CSV somma costi per periodo|CSV detail report by period
+resize|Resize|Resize
+ricerca|Ricerca|Search
+ricerca_avanzata|Ricerca avanzata|Advanced Search
+ruoli|Ruoli|Roles
+ruoli_elenco.AccountAdminRole|Master di Account|Account Master
+ruoli_elenco.AccountOperatorRole|Operatore di Account|Account Operator
+ruoli_elenco.AccountViewerRole|Viewer di Account|Account Viewer
+ruoli_elenco.BOADMIN|Amministratore di backoffice|Back office Administrator
+ruoli_elenco.BOMONITORING|Monitoraggio di backoffice|Back office Monitoring
+ruoli_elenco.CatalogAdminRole|Amministratore del catalogo dei servizi|Service Catalog Administrator
+ruoli_elenco.DivAdminRole|Master di Division|Division Master
+ruoli_elenco.DivOperatorRole|Operatore di Division|Division Operator
+ruoli_elenco.DivViewerRole|Viewer di Division|Division Viewer
+ruoli_elenco.OrgAdminRole|Master di Organization|Organization Master
+ruoli_elenco.OrgOperatorRole|Operatore di Organization|Organization Operator
+ruoli_elenco.OrgViewerRole|Viewer di Organization|Organization Viewer
+ruolo|Ruolo|Role
+salva|Salva|Save
+salva_modifiche|Salva modifiche|Save Changes
+security_group.elenco.aggiorna|Aggiorna lista Security Group|Refresh List
+security_group.elenco.nome|Nome Security Group|Security Group Name
+security_group.elenco.nvlVpcName|nvlVpcName|nvlVpcName
+security_group.elenco.seleziona|Selezionare solo un security group!|Select only a security group!
+security_group.elenco.selezionati|Security Group selezionati|Selected Security Groups
+security_group.elenco.selezionato|Security Group selezionato|Selected Security Group
+security_group.elenco.stato|Stato|Status
+security_group.elenco.titolo|Elenco Security Group|Security Group list
+security_group.elenco.vuoto|Nessuna security group presente|There are no Security Group
+security_group.elimina.bottone|Elimina Security Group|Delete Security Group
+security_group.elimina.conferma|Confermi la cancellazione del securityGroup|Are you sure to delete che selected securityGroup?
+security_group.elimina.error|Si è verificato un errore durante l'eliminazione del SecurityGroup|An error occurred while deleting the SecurityGroup
+security_group.elimina.success|Il SecurityGroup è stato eliminato correttamente.|The Security Group was successfully deleted.
+security_group.elimina.testo|la securityGroup verrà cancellato definitivamente.|Security Group will be permanently deleted.
+security_group.modifica.bottone|Modifica Security Group|Update Security Group
+security_group.nuovo.aggiorna|Aggiorna|Refresh
+security_group.nuovo.bottone|Crea una Nuova Security Group|Create New Security Group
+security_group.nuovo.crea|Crea Security Group|Security Group Name
+security_group.nuovo.error|Si è verificato un errore durante il tentativo di creazione del Security Group|An error occurred while trying to create the Security Group
+security_group.nuovo.error_campi|Non Tutti i campi sono stati valorizzati|You must specify all required fields
+security_group.nuovo.nome|Nome|Name
+security_group.nuovo.nome_maxlength|Il nome del gruppo inserito &egrave; troppo lungo|Security Group Name entered is; too long
+security_group.nuovo.nome_pattern|Il nome non deve contenere spazi, numeri, caratteri speciali  e deve essere lungo almeno 10 caratteri|The name must not contain spaces, numbers, special characters and must be at least 10 characters long
+security_group.nuovo.nome_required|Devi specificare il nome|Name required
+security_group.nuovo.nome_scegli|Dai un nome al tuo Security Group|Security Group Name
+security_group.nuovo.success|L'operazione di creazione della regola di sicurezza è stata avviata correttamente|Operation started successfully
+security_group.nuovo.template_scegli|Scegli un Template di sicurrezza da cui partire|Choose a security template to start from
+security_group.nuovo.titolo|Crea Nuovo Security Group|Create New Security Group
+security_group.nuovo.vpc_default|Default|Default
+security_group.nuovo.vpc_nome|Nome VPC|VPC name
+security_group.nuovo.vpc_scegli|Scegli il VPC di riferimento|Choose the reference VPC
+security_group.nuovo.vpc_selezionare|Selezionare una VPC|Select a VPC
+security_group.regole.a_porta|A Porta|To Port
+security_group.regole.aggiorna|Aggiorna Lista|Refresh List
+security_group.regole.aggiungi|Aggiungi Regola|Add Rule
+security_group.regole.bottone|Visualizza Regole|View Rules
+security_group.regole.cidr|CIDR/SG|CIDR/SG
+security_group.regole.crea.error|Si è verificato un errore durante il tentativo di creazione della regola di sicurezza|An error occurred while creating security rule
+security_group.regole.crea.success|L'operazione di creazione della regola di sicurezza è stata avviata correttamente|The security rule creation operation started successfully
+security_group.regole.da_cidr|Da CIDR|By CIDR
+security_group.regole.da_porta|Da Porta|From Port
+security_group.regole.da_security_group|Da Security Group|From Security Group
+security_group.regole.default|Default|Default
+security_group.regole.descrizione|Descrizione|Description
+security_group.regole.di_ingresso|Regole di Ingresso|Ingress Rules
+security_group.regole.di_uscita|Regole di Uscita|Egress Rules
+security_group.regole.domain|Classless Inter-Domain Routing|Classless Inter-Domain Routing
+security_group.regole.dominio|Dominio|Domain
+security_group.regole.elimina.error|Si è verificato un errore durante il tentativo di cancellazione della regola di sicurezza|An error occurred while deleting the security rule
+security_group.regole.elimina.success|L'operazione di cancellazione della regola di sicurezza è stata avviata correttamente|Operation started successfully
+security_group.regole.ip_range|IP Range|IP Range
+security_group.regole.ip_range_placeholder|e.g 10.0.0.0/8|e.g 10.0.0.0/8
+security_group.regole.nome|Nome|Name
+security_group.regole.porta_pattern|ammessi:<br> * <br> 0-65535|allowed: <br> * <br> 0-65535
+security_group.regole.porta_tooltip|Inserire * per tutte le porte o un valore tra 0-65535|Enter * for all ports or a value between 0-65535
+security_group.regole.protocollo|Protocollo|Protocol
+security_group.regole.rimuovi|Rimuovi regola|Delete rule
+security_group.regole.salva|SALVA REGOLA|ADD RULE
+security_group.regole.security_group|Security Group|Security Group
+security_group.regole.stato|Stato|Status
+security_group.regole.tipo|Tipo|Type
+security_group.regole.tipo_regola|Tipo di regola|Type of rule
+security_group.regole.titolo|Regole Security Group|Security Group Rules
+security_group.regole.verso_cidr|Verso CIDR|To CIDR
+security_group.regole.verso_security_group|Verso Security Group|To Security Group
+selezionata|selezionata|selected
+shares.aggiorna|Aggiorna Elenco|Refresh List
+shares.autorizzazioni.aggiorna|Aggiorna Elenco|Refresh List
+shares.autorizzazioni.aggiungi|Aggiungi autorizzazione|Add authorization
+shares.autorizzazioni.bottone|Autorizzazioni|Authorizations
+shares.autorizzazioni.elimina.bottone|Elimina Elemento|Delete Item
+shares.autorizzazioni.elimina.error|Si è verificato un errore durante il tentativo di revoca dell'autorizzazione|An error occurred while trying to revoke the authorization
+shares.autorizzazioni.elimina.success|Autorizzazione revocata correttamente|Authorization successfully revoked
+shares.autorizzazioni.lista.access_level|Livello Accesso|Access Level
+shares.autorizzazioni.lista.access_to|Autorizzato|Authorized
+shares.autorizzazioni.lista.access_type|Tipo di Accesso|Type of Access
+shares.autorizzazioni.lista.state|Stato|Status
+shares.autorizzazioni.lista.titolo|Elenco Autorizzazioni Share|Share Permissions
+shares.autorizzazioni.lista.vuota|Non ci sono autorizzazione per questa share|There are no permissions for this share
+shares.autorizzazioni.livelli.lettura_scrittura|Lettura e scrittura|Read and Write
+shares.autorizzazioni.livelli.sola_lettura|Sola lettura|Read only
+shares.autorizzazioni.nuova.access_to|Accesso verso|Access from
+shares.autorizzazioni.nuova.access_to_placeholder|e.g 10.0.0.0/8|e.g 10.0.0.0/8
+shares.autorizzazioni.nuova.access_to_required|Devi specificare chi può accedere allo share|You must specify who can access the share
+shares.autorizzazioni.nuova.crea|Crea autorizzazione|Add Authorization
+shares.autorizzazioni.nuova.error|Si è verificato un errore durante il tentativo di creazione del grant|An error occurred while trying to create authorization
+shares.autorizzazioni.nuova.indirizzo_ip|Indirizzo IP|IP address
+shares.autorizzazioni.nuova.livello|Livello di accesso|Access level
+shares.autorizzazioni.nuova.livello_required|Devi specificare livello di accesso|You must specify access level
+shares.autorizzazioni.nuova.success|L'operazione di creazione del Grant è stata avviata correttamente|The creation operation has started successfully
+shares.autorizzazioni.nuova.tipo_accesso|Tipo di accesso|Access type
+shares.autorizzazioni.nuova.tipo_accesso_required|Devi specificare tipo di accesso|You must specify type of access
+shares.autorizzazioni.nuova.titolo|Crea nuova autorizzazione sulla Share|Add Share Authorization
+shares.autorizzazioni.selezionata|Share selezionato|Selected Share
+shares.autorizzazioni.selezionate|Shares selezionati|Selected Shares
+shares.autorizzazioni.stati.cert|Cert|Cert
+shares.autorizzazioni.stati.indirizzo_ip|Indirizzo IP|IP address
+shares.autorizzazioni.stati.utente|Utente|User
+shares.crea|Crea un Nuovo Share|Add Share
+shares.elenco|Elenco Shares|Shares
+shares.elimina.bottone|Elimina Share|Delete Share
+shares.elimina.conferma|Confermi la cancellazione dell'istanza|Are you sure to delete the selected share?
+shares.elimina.error|Si è verificato un errore durante l'eliminazione dell'istanza|An error occurred while deleting share
+shares.elimina.errorNameNotMatching|il nome inserito non è corretto|Name entered is incorrect
+shares.elimina.info|L'istanza verrà cancellata definitivamente.|Share will be permanently deleted.
+shares.elimina.info01|La Rimozione dell'istanza implica la cancellazione fisica della Share|Share will be permanently deleted
+shares.elimina.info02|Eseguire un Backup prima di procedere con la cancellazione|We recommend you to make a Backup before proceeding
+shares.elimina.msg_inserisci_nome|Inserire Nome della Share per confermare l'operazione|Enter the Share Name to confirm the operation
+shares.elimina.placeholder|Nome della Share|Share Name
+shares.elimina.prosegui|Si vuole procedere con la cancellazione ?|Do you want to proceed with the cancellation?
+shares.elimina.selezione|Selezionare solo una istanza STASS|Select only one Share
+shares.elimina.success|La richiesta di rimozione dell'istanza {{nome}} è stata inviata correttamente.|Request {{name}} was sent successfully.
+shares.elimina.titolo|Cancellazione Istanza|Confirm  to delete 
+shares.gestione|Pannello gestione Share|Control Panel
+shares.lista.data_creazione|Data Creazione|Creation date
+shares.lista.dimensione|Dimensione|Share
+shares.lista.ip_address|Ip Address|Ip Address
+shares.lista.mount_targets|Mount Targets|Mount Targets
+shares.lista.nome|Nome|Name
+shares.lista.protocol|Protocol|Protocol
+shares.lista.stato|Stato File System|File System Status
+shares.lista.vuota|Nessuno share presente|No share present
+shares.manage.dettagli.data_creazione|Data creazione|Creation date
+shares.manage.dettagli.dimensione|Dimensione|Size
+shares.manage.dettagli.dimensione_modifica|Modifica Dimensione|Update Size
+shares.manage.dettagli.dimensione_share|Dimensione dello share|Share size
+shares.manage.dettagli.indirizzo_ip|Indirizzo IP|IP address
+shares.manage.dettagli.nome|Nome|Name
+shares.manage.dettagli.protocollo|Protocollo|Protocol
+shares.manage.dettagli.stato|Stato|Status
+shares.manage.dettagli.tags|Tags|Tags
+shares.manage.dettagli.tags_placeholder|Inserisci un tag ...|Insert tag ...
+shares.manage.dettagli.target_id|Target ID|Target ID
+shares.manage.dettagli.titolo|Dettagli|Details
+shares.manage.error|Si è verificato un errore durante il tentativo di Aggiornamento dimensione share|An error occurred while trying to resize share
+shares.manage.success|Aggiornamento dimensione share in corso|Share size update in progress
+shares.manage.titolo|Pannello di Gestione Share|Share Control Panel
+shares.nuova.error|Si è verificato un errore durante il tentativo di creazione dello Share|An error occurred while trying to create the share
+shares.nuova.generali.nome.label|Nome dello Share|Share name
+shares.nuova.generali.nome.maxlength|Il nome specificato è troppo lungo|Entered Name is too long
+shares.nuova.generali.nome.placeholder|Inserire il nome dello share|DIGIT the share Name
+shares.nuova.generali.nome.required|Devi specificare il nome dello Share|You must specify a Name
+shares.nuova.generali.nome.titolo|Dai un nome al tuo share.|Name your share.
+shares.nuova.generali.protocollo.nfs|NFS|NFS
+shares.nuova.generali.protocollo.titolo|Scegli il tipo di Protocollo.|Choose Protocol.
+shares.nuova.generali.titolo|1. Generali|1. General
+shares.nuova.generali.vai_a_spazio|AVANTI|NEXT
+shares.nuova.network.region|Region - A.Z.|Region - Zone
+shares.nuova.network.scegli_region_zone|Scegli la Region e Availability Zone.|Select Network settings
+shares.nuova.network.scegli_subnet|Scegli la subnet|Select Subnet
+shares.nuova.network.subnet|Subnet|Subnet
+shares.nuova.network.titolo|3. Network|3. Network
+shares.nuova.network.vai_a_riepilogo|AVANTI|NEXT
+shares.nuova.network.zone|Availability Zone|Availability Zone
+shares.nuova.riepilogo.conferma|CONFERMA E CREA SHARE|CONFIRM AND CREATE SHARE
+shares.nuova.riepilogo.creazione_msg01|La creazione dello share potrebbe richiedere del tempo.|The operation may take some time.
+shares.nuova.riepilogo.creazione_msg02|Aggiorna la lista per consultare lo stato del nuovo share.|Refresh list to control the share status.
+shares.nuova.riepilogo.dimensione|Dimensione dello share|Share size
+shares.nuova.riepilogo.dimensione_modifica|Modifica Dimensione dello share|Resize
+shares.nuova.riepilogo.nome|Nome dello share|Share name
+shares.nuova.riepilogo.nome_modifica|Modifica Nome dello share|Change Name
+shares.nuova.riepilogo.protocollo|Protocollo|Protocol
+shares.nuova.riepilogo.protocollo_modifica|Modifica Protocollo|Change Protocol
+shares.nuova.riepilogo.region|Region - A.Z.|Region - Zone
+shares.nuova.riepilogo.region_modifica|Modifica Region - A.Z.|Change Region-Zone
+shares.nuova.riepilogo.sottotitolo|Assicurati di aver selezionato le opzioni corrette, dopodichè avvia la creazione dello share.|Make sure you have selected the correct options, then start creating the share.
+shares.nuova.riepilogo.subnet|Subnet|Subnet
+shares.nuova.riepilogo.subnet_modifica|Modifica Subnet|Change Subnet
+shares.nuova.riepilogo.titolo|4. Riepilogo|4. Confirm
+shares.nuova.spazio.dimensione|Dimensione|Size
+shares.nuova.spazio.dimensione_disco|Dimensione del disco|Share size
+shares.nuova.spazio.dimensione_share|Dimensione dello share|Share size
+shares.nuova.spazio.opzioni|Scegli le opzioni relative allo spazio di archiviazione.|Choose share options.
+shares.nuova.spazio.rimuovi_disco|Rimuovi disco aggiuntivo|Remove additional disk
+shares.nuova.spazio.tipologia|Tipologia|Type
+shares.nuova.spazio.tipologia_disco|Tipologia del disco|Disc type
+shares.nuova.spazio.tipologia_share|Tipologia dello share|Type of share
+shares.nuova.spazio.titolo|2. Spazio di archiviazione|2. Storage space
+shares.nuova.spazio.vai_a_network|AVANTI|NEXT
+shares.nuova.success|Creazione share in corso|Share creation in progress
+shares.nuova.titolo|Crea una Nuova Share|Create Share
+shares.selezionati|Shares selezionati|Selected Shares
+shares.selezionato|Share selezionato|Selected Share
+si|si|yes
+stima_mensile_di|Stima mensile di|Monthly estimate of
+tags.elimina_error|Si è verificato un errore durante la rimozione del Tag|An error occurred while removing Tag
+tags.elimina_success|Tag Rimosso con successo !|Tag successfully removed!
+tags.save_error|Si è verificato un errore durante la creazione del Tag|An error occurred while adding Tag
+tags.save_error_pattern|Tag Non Salvato! Può contenere numeri e lettere (minuscole,maiuscole, no lettere accentate) e i caratteri speciali : "-", "_" |Tag Not Saved! It can contain only numbers and letters (lowercase, uppercase, no accented letters) and special characters: "-", "_"
+tags.save_success|Tag salvato con successo|Tag successfully added
+utente|Utente|User
+utente.accesso_cli|Accesso alla CLI Utente|Access to User CLI
+utente.accesso_portal|Accesso al Service Portal|Access to the Service Portal
+utente.accredita.accreditamenti|Accreditamenti|Profiles
+utente.accredita.anagrafica|Anagrafica|User Detail
+utente.accredita.bottone|Accredita|Submit
+utente.accredita.bottone_nuovo_utente|Nuovo utente|Add user
+utente.accredita.bottone_revoca|Revoca accreditamento|Revoke profile
+utente.accredita.error|Si è verificato un errore durante il tentativo di accreditare l'utente|An error occurred while trying to add profile to user
+utente.accredita.livello_non_valido|Livello non valido|Invalid level
+utente.accredita.operazione_non_permessa|Operazione non permessa!|Operation not permitted!
+utente.accredita.operazione_non_permessa_per_ruolo|Operazione non permessa per ruolo corrente|Operation not allowed for current role
+utente.accredita.revoca_error|Si è verificato un errore durante il tentativo di revocare l'accreditamento dell'utente|An error occurred while trying to revoke the user's profile
+utente.accredita.revoca_success|L'accreditamento dell'utente è stato revocato correttamente|User profile has been successfully revoked
+utente.accredita.ruolo_selezionato_non_valido|Ruolo selezionato non valido|Invalid role selected
+utente.accredita.seziona_un_utente|Selezionare solo un utente|Select only one user
+utente.accredita.success|L'utente è stato accreditato correttamente|The profile has been successfully added
+utente.accredita.titolo|Accredita Utente|Edit user profile
+utente.aggiungi_ruolo|Aggiungi un ruolo|Add a role
+utente.chi_stai_cercando|Chi stai cercando?|Who are you looking for?
+utente.codice_fiscale|Codice Fiscale|Identification Code
+utente.codice_fiscale_check|Codice Fiscale non valido|Invalid identification Code
+utente.codice_fiscale_duplicated|Codice Fiscale già associato ad un utente registrato|Identification Code already associated with a registered user
+utente.codice_fiscale_required|Codice Fiscale obbligatorio|Identification code required
+utente.cognome|Cognome|Surname
+utente.cognome_required|Il cognome è obbligatorio|Surname required
+utente.data_creazione|Data creazione|Creation date
+utente.dettagli.anagrafica|ANAGRAFICA|USER DETAIL
+utente.dettagli.bottone|Visualizza dettagli utente|View user details
+utente.dettagli.ruoli_permessi|RUOLI & PERMESSI|ROLES & PROFILES
+utente.dettagli.ruoli_permessi_nessuno|Non Ci sono Ruoli o Permessi assegnati a questo utente|There are no Profiles assigned to this user
+utente.dettagli.titolo|Dettaglio Utente|User Detail
+utente.di_portale|Utente di portale|Portal user
+utente.elenco.accredita|Accredita utente|Edit Profile
+utente.elenco.ricarica|Ricarica lista utenti|Refresh list
+utente.elenco.selezionati|Utenti selezionati|Selected users
+utente.elenco.selezionato|Utente selezionato|Selected user
+utente.elenco.titolo|Elenco Utenti|User List
+utente.elenco_account.ricarica|Ricarica lista utenti|Refreshr list
+utente.elenco_account.titolo|Elenco Utenti Account|User List
+utente.elenco_divisione.titolo|Elenco Utenti Divisione|User List
+utente.elimina.error|Si è verificato un errore durante l'eliminazione dell'utente|An error occurred while deleting the user
+utente.elimina.success|L'utente è stato eliminato correttamente|The user was successfully deleted
+utente.elimina.testo|Gli utenti verranno cancellati definitivamente.|Users will be permanently deleted.
+utente.elimina.titolo|Confermi la cancellazione degli utenti selezionati?|Are you sure to delete the selected user?
+utente.elimina.utente|Elimina utente|Delete user
+utente.elimina.utenti|Elimina utenti|Delete users
+utente.email|Email|Email
+utente.email_indirizzo|Indirizzo email|Email address
+utente.email_required|Email non valida|Invalid email
+utente.informazioni|Informazioni Utente|User Information
+utente.matricola|Matricola CSI|CSI number
+utente.modifica.bottone|Modifica utente|Edit user
+utente.nome|Nome|Name
+utente.nome_account|Nome Account|Account Name
+utente.nome_required|Il nome è obbligatorio|Name is required
+utente.non_trovato|non trovato.|not found.
+utente.nuovo.bottone|Registra nuovo utente|Add user
+utente.nuovo.error|Si è verificato un errore durante il tentativo di registrare l'utente|An error occurred while trying to add the user
+utente.nuovo.success|L'utente è stato registrato correttamente|The user has been successfully registered
+utente.nuovo.titolo|Registrazione nuovo utente|Add user
+utente.registra|REGISTRA UTENTE|ADD USER
+utente.ruolo|Ruolo|Role
+utente.ruolo_corrente_non_valido|Ruolo corrente non valido|Current role not valid
+utente.ruolo_placeholder|Seleziona un ruolo|Select a role
+utente.seleziona_account|Seleziona account|Select account
+utente.seleziona_divisione|Seleziona divisione|Select division
+utente.seleziona_organizzazione|Seleziona Organizzazione|Select Organization
+utente.seleziona_ruolo|Seleziona un ruolo|Select a role
+utente.stato.attivo|Attivo|Active
+utente.stato.disattivo|Disattivo|Inactive
+utente.stato.label|Stato|Status
+utente.tab_accreditamento|Accreditamento|Accreditation
+utente.tab_utente|Utente|User
+utente.username|Username|Username
+utente.username_cmp|Username CMP|CMP username
+utente.username_portale|Username portale|Portal username
+utente.vai_a_accreditamento|VAI A ACCREDITAMENTO|NEXT
+utenti|Utenti|Users
+valore|Valore|Value
+vm.aggiorna|Aggiorna lista VM|Refresh list
+vm.arresto.error|Si è verificato un errore durante il tentativo di arrestare la macchina virtuale|An error occurred while trying to shut down the virtual machine
+vm.arresto.success|L'arresto della virtual machine sta avvenendo correttamente|The virtual machine is shutting down successfully
+vm.avvia.error|Si è verificato un errore durante il tentativo di avviare la macchina virtuale|An error occurred while trying to start the virtual machine
+vm.avvia.success|L'avvio della virtual machine sta avvenendo correttamente|The virtual machine is starting
+vm.connetti.bottone|Connetti|Connect
+vm.connetti.esempio|Esempio|Example
+vm.connetti.msg01|Apri un client SSH (e.g., PuTTY).|Open an SSH client (e.g., PuTTY).
+vm.connetti.msg02|Individua il file della tua chiave privata (e.g., my-nivola-key.pem). La procedura guidata rileva automaticamente la chiave utilizzata per avviare l'istanza.|Locate your private key file (e.g., my-nivola-key.pem). The wizard automatically detects the key used to launch the instance.
+vm.connetti.msg03|La chiave non deve essere pubblicamente visibile affinché SSH funzioni. Usa questo comando se necessario|The key does not have to be publicly visible for SSH to work. Use this command if necessary
+vm.connetti.msg04|Collegati alla tua istanza usando il suo IP|Connect to your instance using its IP
+vm.connetti.msg05|Se hai bisogno di assistenza per la connessione alla tua istanza, consulta la nostra documentazione di connessione.|If you need help connecting to your instance, please see our connection documentation.
+vm.connetti.sottotitolo|Per accedere alla tua istanza|To log into your instance
+vm.connetti.titolo|Connetti|Connect
+vm.crea|Crea una nuova VM|Create VM instance
+vm.elenco|Elenco VM|VM instances
+vm.elimina.bottone|Elimina VM|Delete VM instance
+vm.elimina.error|Si è verificato un errore durante l'eliminazione della virtual machine|An error occurred while deleting the virtual machine
+vm.elimina.success|La richiesta di eliminazione della VM è stata inoltrata correttamente.|The request to delete the vm instance was successfully started
+vm.elimina.testo|La virtual machine verrà cancellata definitivamente.|The virtual machine will be permanently deleted.
+vm.elimina.titolo|Confermi la cancellazione della virtual machine selezionata?|Confirm the deletion of the selected vm instance
+vm.gestione|Pannello gestione VM|VM Control panel
+vm.lista.cpu|CPU e RAM|Cpu, RAM
+vm.lista.disco|Disco|Disk
+vm.lista.ip|IP assegnato|Assigned IP
+vm.lista.name|Nome VM|Name
+vm.lista.os|Template|Template
+vm.lista.region_az|Region - A.Z.|Region - Zone
+vm.lista.security_group|Security Group|Security Group
+vm.lista.stato|Stato|Status
+vm.lista.tags|Tag(s)|Tag(s)
+vm.lista.vuoto|Nessuna VM presente|No VM instance available
+vm.manage.data_creazione|Data Creazione|Creation date
+vm.manage.dettagli|Dettagli|Details
+vm.manage.dischi|Dischi|Volumes
+vm.manage.dns_name|FQDN|FQDN
+vm.manage.error|Si è verificato un errore durante il caricamento delle informazioni della virtual machine|An error occurred while loading information
+vm.manage.error_update|Si è verificato un errore durante il tentativo di aggiornamento delle security group|An error occurred while trying to update security groups
+vm.manage.inserisci_un_tag|Inserisci un tag ...|Insert a tag ...
+vm.manage.ip_address|IP address|IP address
+vm.manage.modifica_flavour|modifica Flavour|edit Flavor
+vm.manage.modifica_security_group|Modifica Security Group|Change Security Group
+vm.manage.nome|Nome|Name
+vm.manage.nuovo_snapshot|Crea un nuovo Snapshot|Create Snapshot
+vm.manage.proprieta|Proprieta| 
+vm.manage.region|Region - A.Z.|Region - Zone
+vm.manage.security_group|Security Group|Security Group
+vm.manage.start|START|START
+vm.manage.start_stop|Start/Stop|Start/Stop
+vm.manage.stato|Stato VM|Status
+vm.manage.stop|STOP|STOP
+vm.manage.subnet|Subnet|Subnet
+vm.manage.success|L'operazione di aggiornamento delle security group della virtual machine è stata avviata correttamente|Security group update operation started successfully
+vm.manage.tags|Tags|Tags
+vm.manage.tecnologia|Tecnologia|Technology
+vm.manage.template|Template|Template
+vm.manage.tipo|Tipo VM|Type
+vm.manage.titolo|Pannello di Gestione VM|VM Control Panel
+vm.manage.valore|Valore|Value
+vm.modifica_flavour.conferma|Confermi la modifica del flavour?|Do you confirm Type change?
+vm.modifica_flavour.errore|Si è verificato un errore durante il tentativo di aggiornamento del Flavour della virtual machine|An error occurred while trying to update vm type
+vm.modifica_flavour.errore_caricamento|Si è verificato un errore durante il caricamento dei flavour|An error occurred while loading types
+vm.modifica_flavour.ram|RAM|RAM
+vm.modifica_flavour.success|L'operazione di aggiornamento del Flavour della virtual machine è stata avviata correttamente|The Virtual Machine Type Update operation started successfully
+vm.modifica_flavour.testo|Hai selezionato il nuovo type della vm {{nome}} con caratteristiche {{vcpus}} Cpu {{ram}} di Ram ... L'applicazione delle modifiche comporterà un riavvio dell'istanza con interruzione dei servizi attivi. Eventuali dati non salvati potranno andare persi.|You have selected the new VM type {{name}} with {{vcpus}} Cpu {{ram}} ... For this operation is required an automatic vm restart with outrage of active services. Any unsaved data may be lost.
+vm.modifica_flavour.tipo|Type|Type
+vm.modifica_flavour.titolo|Modifica Flavour|Edit Flavor
+vm.modifica_flavour.vcpus|VCPUs|VCPUs
+vm.nuova.disco.aggiungi|AGGIUNGI DISCO AGGIUNTIVO|ADD ADDITIONAL DISK
+vm.nuova.disco.dimensione|Dimensione|Size
+vm.nuova.disco.dimensione_estesa|Dimensione del disco|Disk size
+vm.nuova.disco.rimuovi|Rimuovi disco aggiuntivo|Remove additional disk
+vm.nuova.disco.scegli|Scegli le opzioni relative allo spazio di archiviazione.|Choose disk settings
+vm.nuova.disco.tipologia|Tipologia|Type
+vm.nuova.disco.tipologia_estesa|Tipologia del disco|Disc type
+vm.nuova.disco.tipologia_gold|storage prestazionale|performance storage
+vm.nuova.disco.tipologia_silver|low range|low range storage
+vm.nuova.disco.titolo|3. Disco|3. Disk
+vm.nuova.disco.vai_a_network|VAI A NETWORK E SECURITY|NEXT
+vm.nuova.error|Si è verificato un errore durante il tentativo di creazione della macchina virtuale|An error occurred while trying to create the virtual machine
+vm.nuova.network.gruppo_sicurezza|Gruppo di sicurezza|Security group
+vm.nuova.network.regione|Region|Region
+vm.nuova.network.scegli_gruppo_sicurezza|Scegli in che gruppo di sicurezza inserire la virtual machine.| 
+vm.nuova.network.scegli_region|Scegli la Region e Availability Zone.|Choose the Network Settings for the VM instance
+vm.nuova.network.scegli_subnet|Scegli la subnet nella quale collocare la virtual machine che stai creando.|  
+vm.nuova.network.subnet|Subnet|Subnet
+vm.nuova.network.titolo|4. Network e Security|4. Network
+vm.nuova.network.vai_a_sicurezza|VAI A SICUREZZA|NEXT
+vm.nuova.network.zona_disponibilita|Availability Zone|Availability Zone
+vm.nuova.riepilogo.FQDN|FQDN|FQDN
+vm.nuova.riepilogo.chiaveSSH|Chiave SSH|SSH key
+vm.nuova.riepilogo.costi_stimati|Costi stimati|Estimated costs
+vm.nuova.riepilogo.costo_al_mese|€/mese|€ / month
+vm.nuova.riepilogo.costo_incluso|incluso|included
+vm.nuova.riepilogo.creazione_conferma|CONFERMA E CREA LA VIRTUAL MACHINE|CONFIRM AND CREATE THE VIRTUAL MACHINE
+vm.nuova.riepilogo.creazione_msg01|La creazione della virtual machine potrebbe richiedere del tempo.|Creating the virtual machine may take some time.
+vm.nuova.riepilogo.creazione_msg02|Verrai avvisato al completamento dell'operazione.|You will be notified when the operation is complete.
+vm.nuova.riepilogo.descrizione|Assicurati di aver selezionato le opzioni corrette, dopodichè avvia la creazione della virtual machine.|Make sure you have selected the correct options, then start creating the virtual machine.
+vm.nuova.riepilogo.disco|Disco|Disk
+vm.nuova.riepilogo.modifica|Modifica|Edit
+vm.nuova.riepilogo.password|Password|Password
+vm.nuova.riepilogo.proprieta|Proprieta|Property
+vm.nuova.riepilogo.region|Region - A.Z.|Region - A.Z.
+vm.nuova.riepilogo.security_group|Security Group|Security Group
+vm.nuova.riepilogo.stima_mensile|Stima mensile di|Monthly estimate of
+vm.nuova.riepilogo.subnet|Subnet|Subnet
+vm.nuova.riepilogo.tecnologia|Tecnologia|Technology
+vm.nuova.riepilogo.template|Template|Template
+vm.nuova.riepilogo.tipo|Tipo VM|VM type
+vm.nuova.riepilogo.titolo|6. Riepilogo|6. Summary
+vm.nuova.riepilogo.valore|Valore|Value
+vm.nuova.sicurezza.chiave.impronta|Impronta|Fingerprint
+vm.nuova.sicurezza.chiave.nome|Nome Chiave|Key Name
+vm.nuova.sicurezza.chiavi_creazione_01|La creazione di una nuova VM è possibile solo indicando una chiave SSH da utilizzare|To create a VM instance you must enter an SSH key to use
+vm.nuova.sicurezza.chiavi_creazione_02|E' possibile generare nuove chiavi o importarne di esistenti per questo Account andando nella sezione|It is possible to generate new keys or import existing ones for this Account by going to the section
+vm.nuova.sicurezza.chiavi_creazione_link_desc_01|Reti e Sicurezza - Chiavi SSH|Networks and Security - SSH Keys
+vm.nuova.sicurezza.chiavi_creazione_link_desc_02|, oppure crearla immediatamente utilizzando le funzionalità presenti a destra|, or create it immediately using the features on the right
+vm.nuova.sicurezza.chiavi_non_disponibili|Non sono disponibili chiavi SSH per questo Account.|There are no SSH keys available for this Account.
+vm.nuova.sicurezza.crea_chiave|Crea una Nuova Chiave SSH|Create SSH Key
+vm.nuova.sicurezza.importa_chiave|Importa una Chiave SSH|Import SSH Key
+vm.nuova.sicurezza.mostra_password|mostra password|show password
+vm.nuova.sicurezza.nascondi_password|nascondi password|hide password
+vm.nuova.sicurezza.password_conferma|conferma password|Confirm password
+vm.nuova.sicurezza.password_memo|Memorizzarsi accuratamente la password inserita in quanto non sarà più visualizzabile tramite Service Portal|The password, once entered, will no longer be viewable from the Service Portal
+vm.nuova.sicurezza.password_necessaria|E' necessario impostare una password|A password must be set
+vm.nuova.sicurezza.password_pattern|La password deve essere lunga tra 10 e 16 caratteri, deve contenere almeno una lettera minuscola, una maiuscola, </br>un numero e un carattere speciale[#$^+=!*()@%&]", oppure crearla immediatamente utilizzando le funzionalità presenti a destra|The password must be between 10 and 16 characters long, must contain at least one lowercase letter, one uppercase letter, </br> one number and one special character [# $ ^ + = ! * () @% &] "
+vm.nuova.sicurezza.password_uguali|le password devono essere valide e uguali!!!|passwords does not match
+vm.nuova.sicurezza.scegli_chiave|Scegliere una chiave da assegnare alla virtual machine|Select an SHH Key to allow access to this instance
+vm.nuova.sicurezza.scegli_password|Scegli la password di amministrazione per la VM|Insert the administration password for your VM instance
+vm.nuova.sicurezza.selezionato|Attualmente selezionato|Currently selected
+vm.nuova.sicurezza.titolo|5. SICUREZZA|5. SECURITY
+vm.nuova.sicurezza.vai_a_riepilogo|VAI A RIEPILOGO|NEXT
+vm.nuova.success|L'operazione di creazione della virtual machine è stata avviata correttamente|The virtual machine creation operation started successfully
+vm.nuova.template.nome|Nome della virtual machine|Instance name
+vm.nuova.template.nome_error|Il nome della vm non deve contenere il carattere "_"|Name must start with a lowercase letter followeb by up to 50 lowercase letters, numbers or hyphens
+vm.nuova.template.nome_placeholder|Specificare il nome della virtual machine|Digit the name
+vm.nuova.template.nome_titolo|Dai un nome alla tua virtual machine.|Name your virtual machine.
+vm.nuova.template.scegli|Scegli il template da cui generare la virtual machine.|Select a VM Template
+vm.nuova.template.titolo|1. Template|1. Template
+vm.nuova.template.vai_a_tipo|VAI A TIPO VM|NEXT
+vm.nuova.tipo.dimensione|Dimensiona le risorse da assegnare alla virtual machine.|Select vCPU cores and Memory.
+vm.nuova.tipo.disco|Disco|Disk
+vm.nuova.tipo.ram|RAM|RAM
+vm.nuova.tipo.selezionato|Attualmente selezionato|Currently selected
+vm.nuova.tipo.tipo|Type|Type
+vm.nuova.tipo.titolo|2. Tipo VM|2. TYPE
+vm.nuova.tipo.vai_a_disco|VAI A DISCO|NEXT
+vm.nuova.tipo.vcpus|VCPUs|vCPU
+vm.nuova.titolo|Crea una Nuova VM|Create VM instance
+vm.selezionata|VM selezionata|VM selected
+vm.selezionate|VM selezionate|VM selected
+vm.snapshot.azioni|Azioni|Actions
+vm.snapshot.btnDelete|Elimina Snapshot|Delete Snapshot
+vm.snapshot.btnRevert|Revert Snapshot|Revert Snapshot
+vm.snapshot.data_creazione|Data Creazione|Creation time
+vm.snapshot.elimina.error|Si è verificato un errore durante l'eliminazione della Snapshot|An error occurred while deleting Snapshot
+vm.snapshot.elimina.procedere|Procedere con la cancellazione ?|Are you sure to delete the selected Snapshot?
+vm.snapshot.elimina.success|La richiesta di eliminazione della Snapshot è stata eseguita correttamente|The delete operation was successfully
+vm.snapshot.elimina.testo|La Rimozione della Snapshot  implica la cancellazione definitiva|Deleting the Snapshot all data will be lost
+vm.snapshot.elimina.titolo|Cancellazione Snapshot|Delete Snapshot 
+vm.snapshot.label|Snapshot|Snapshot
+vm.snapshot.no_data|Non ci sono snapshots per questa VM |There are no snapshots for this VM
+vm.snapshot.nome|Nome Snapshot|Snapshot Name
+vm.snapshot.nuova.crea|Crea Snapshot|Create Snapshot
+vm.snapshot.nuova.error|Si è verificato un errore durante il tentativo di creazione dello snapshot|An error occurred while trying to create snapshot
+vm.snapshot.nuova.error_presente|Operazione non consentita Nome già presente|Operation not allowed - Name already present
+vm.snapshot.nuova.nome|Inserire il nome dello Snapshot|Enter Snapshot Name
+vm.snapshot.nuova.nome_completo|Nome Completo assegnato allo snapshot|Full name assigned to the snapshot
+vm.snapshot.nuova.nome_pattern|Il nome deve iniziare con un carattere non numerico<br>La lunghezza deve essere tra (8-40) caratteri. <br>caratteri speciali accettati : <b>'_','-' </b><br>Es: snapshot_1,snapshot-1|Name must start with a non-numeric character <br> Length must be between (8-40) characters. <br> special characters accepted: <b> '_', '-' </b> <br> Ex: snapshot_1, snapshot-1
+vm.snapshot.nuova.nome_placeholder|nome dello Snapshot|Snapshot Name
+vm.snapshot.nuova.nome_presente|Esite già uno Snapshot con lo stesso nome|A Snapshot with the same name already exists
+vm.snapshot.nuova.success|L'operazione di creazione dello snapshot conclusa correttamente|Snapshot has been created successfully
+vm.snapshot.nuova.titolo|Nuova Snapshot|New Snapshot
+vm.snapshot.revert.error|Si è verificato un errore durante il ripristino della Snapshot|An error occurred while restoring Snapshot
+vm.snapshot.revert.procedere|Procedere con il ripristino ?|Are you sure to proceed with the revert operation?
+vm.snapshot.revert.success|La richiesta di ripristino della Snapshot è stata eseguita correttamente|The Snapshot restore request was successful
+vm.snapshot.revert.testo|Gli stati correnti del disco e della memoria vengono eliminati <br>, la macchina virtuale tornerà agli stati del disco e della memoria della snapshot ripristinata|Current disk and memory states will be overridden with disk and memory states of the restored snapshot
+vm.snapshot.revert.titolo|Ripristinare Snapshot|Restore Snapshot
+vm.snapshot.stato|Stato|Status
+vm.stato.pending|La VM è in uno stato temporaneo|This instance is in temporary state
+vm.stato.running|La VM è accesa|This instance is running
+vm.stato.stopped|La VM è spenta|This instance is stopped
+vm.stato.undefined|La VM è in uno stato indefinito|This instance is in undefined state
+vm.stato.value|La VM è nello stato |Instance status
+volume.aggiorna|Aggiorna lista VM|Refresh list
+volume.dettaglio.bottone|Visualizza dettagli volume|View details
+volume.dettaglio.titolo|Dettaglio Volume|Volume control panel
+volume.elenco|Elenco Volumi|Volumes
+volume.elimina.error|Si è verificato un errore durante l'eliminazione del volume|An error occurred while deleting the volume
+volume.elimina.success|il Volume è stato eliminata correttamente|Volume was successfully deleted
+volume.elimina.testo|i volumi verranno cancellati definitivamente.|Volumes will be permanently deleted.
+volume.elimina.titolo|Confermi la cancellazione di volumi selezionati?|CAre you sure to delete the selected volume?
+volume.elimina.volume|Elimina Volume|Delete Volume
+volume.elimina.volumi|Elimina Volumi|Delete Volumes
+volume.lista.availabilityZone|AvailabilityZone|AvailabilityZone
+volume.lista.createTime|Data Creazione|Creation date
+volume.lista.emptyLit|Nessun Volume presente|No Volume present
+volume.lista.hypervisor|Hypervisor|Hypervisor
+volume.lista.name|Nome Volume|Name
+volume.lista.size|Dimensione|Size
+volume.lista.status|Stato|State
+volume.lista.tipo|Tipo Volume|Volume Type
+volume.modifica.bottone|Modifica Volume|Update Volume
+volume.modifica.error|Si è verificato un errore durante la creazione del volume|An error occurred while creating volume
+volume.modifica.success|Il volume è stato creato con successo|Volume was successfully created
+volume.modifica.titolo|Modifica Volume|Update Volume
+volume.nuovo.bottone|Crea nuovo volume|Create a volume
+volume.nuovo.error|Si è verificato un errore durante il salvataggio del volume|An error occurred while saving the volume
+volume.nuovo.success|Il volume  è stato creato|The requested volume has been created
+volume.nuovo.titolo|Crea Volume|Create Volume
+volume.ricarica|ricarica volumi|refresh volumes
+volume.selezionati|Volumi selezionati|Selected volumes
+volume.selezionato|Volume selezionato|Volume selected
+vpc.elenco.aggiorna|Aggiorna lista VPC|Refresh List
+vpc.elenco.cidrBlock|Blocchi cidr|Blocks cidr
+vpc.elenco.default|Default|Default
+vpc.elenco.nvlName|Nome VPC|VPC Name
+vpc.elenco.selezionati|VPC selezionati|Selected VPCs
+vpc.elenco.selezionato|VPC selezionato|Selected VPC
+vpc.elenco.titolo|Elenco VPC|VPC list
+vpc.elenco.vuoto|Nessun vpc presente|There are no VPC
+vpc.nuova.bottone|Crea una Nuova VPC|Create VPC

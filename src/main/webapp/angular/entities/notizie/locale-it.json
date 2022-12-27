@@ -1,0 +1,59 @@
+{
+    "notizie": {
+        "ricarica": "Ricarica lista Notizie",
+        "ricerca_avanzata": "Ricerca avanzata",
+        "selezionata": "notizia selezionata",
+        "selezionate": "notizie selezionate",
+        "titolo": "Elenco Notizie",
+        "dettaglio": {
+            "bottone": "Visualizza dettagli Notizia",
+            "titolo": "Dettaglio Notizia"
+        },
+        "elenco": {
+            "contenuto": "Contenuto",
+            "data_pubblicazione": "Data pubblicazione",
+            "priorita": "Priorita",
+            "titolo": "Titolo"
+        },
+        "elimina": {
+            "error": "Si è verificato un errore durante l'eliminazione della notizia",
+            "notizia": "Elimina notizia",
+            "notizie": "Elimina notizie",
+            "success": "La notizia è stata eliminata correttamente",
+            "testo": "le notizie verranno cancellate definitivamente.",
+            "titolo": "Confermi la cancellazione di notizie selezionate?"
+        },
+        "modifica": {
+            "bottone": "Modifica Notizia",
+            "content": "Testo del Notizia",
+            "error": "Si è verificato un errore durante l'aggiornamento della Notizia",
+            "success": "La notizia è stata salvata",
+            "titolo": "Modifica Notizia"
+        },
+        "nuova": {
+            "bottone": "Crea nuova Notizia",
+            "content_maxlength": "Il contenuto specificato è troppo lungo",
+            "content_required": "Devi specificare il contenuto della Notizia",
+            "error": "Si è verificato un errore durante il salvataggio della notizia",
+            "priorita": "Priorita' Notizia",
+            "pubblica_a": "Fino al",
+            "pubblica_da": "Pubblica in data",
+            "stato": "Stato della Notizia",
+            "success": "La notizia è stata creata",
+            "titolo": "Crea Notizia",
+            "titolo_notizia": "Titolo della Notizia",
+            "titolo_notizia_maxlength": "Il titolo specificato è troppo lungo",
+            "titolo_notizia_required": "Devi specificare il titolo della Notizia"
+        },
+        "priorita": {
+            "alta": "Alta",
+            "bassa": "Bassa",
+            "media": "Media"
+        },
+        "stato": {
+            "bozza": "Bozza",
+            "obsoleta": "Obsoleta",
+            "pubblicata": "Pubblicata"
+        }
+    }
+}

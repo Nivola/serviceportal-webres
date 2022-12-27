@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+
+<html>
+<head>
+  
+</head>
+<body>
+
+	<div layout="column" ng-cloak>
+
+		<md-content class="md-no-momentum" layout="column">
+			<md-card>
+				<div class="md-toolbar-tools">
+					<div flex=20>
+						<md-card-actions layout="row" layout-align="start center" flex="20">
+							<md-button class="md-fab read-me "  ng-href="{{rtdUtentiView}}" target="_blank">
+								<md-icon  class="material-icons">local_library</md-icon>
+								<md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+							</md-button>
+						</md-card-actions> 
+					</div>
+					<div flex>
+						<md-card-title>
+							<md-card-title-text layout-align="center center">
+								<div class="md-headline titolo-sezione">
+									<md-icon hide-xs class="icon-card-header-green">file_present</md-icon>{{ 'accounts.visualizza.allegati.upload_titolo' | translate }}
+								</div>
+							</md-card-title-text>
+						</md-card-title>
+					
+					</div>
+					<div flex=20 layout="row" layout-align="end center">
+						
+					</div>
+				</div>
+			</md-card>
+
+			
+
+
+			<md-card>
+				<md-card-content>
+					<form name="uploadAllegatiForm">
+								<md-tab-body  nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+
+									<div layout="row" class="riepilogo-utente-row"></div>
+									<div layout="row" >
+										
+											<div layout="column" flex="15">  
+												<div >
+													
+													<div nv-file-drop="" uploader="uploader">
+														<div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">
+															{{ 'accounts.visualizza.allegati.drop' | translate }}
+														</div>
+													</div>
+							
+												</div>
+												<md-input-container class="md-block">
+													<div >
+													
+														<input type="file" nv-file-select="" uploader="uploader"  multiple /><br/> 
+														
+													</div>
+		
+												</md-input-container>
+												
+												<md-input-container class="md-block">
+													<label>{{ 'accounts.visualizza.allegati.tipo_doc' | translate }}</label>
+													<div  >
+														<md-select  ng-model="allegato.selectedtipo" md-on-open="loadtipi()"   flex required>
+															<md-option ng-value="tipo" ng-repeat="tipo in tipi">{{tipo.descrizione}}</md-option>
+														</md-select>
+													</div>
+												</md-input-container>
+											</div>
+										
+											<div layout="column" flex="5">  </div>
+
+										
+											<div layout="column" flex="80">
+												<div  style="margin-bottom: 40px">
+													<p>{{ 'accounts.visualizza.allegati.coda' | translate }}: {{ uploader.queue.length }}</p>
+								
+													<table class="table">
+														<thead>
+															<tr >
+																<th width="30%">{{ 'accounts.visualizza.allegati.nome' | translate }}</th>
+																<th ng-show="uploader.isHTML5">{{ 'accounts.visualizza.allegati.dimensione' | translate }}</th>
+																<th width="10%" ng-show="uploader.isHTML5">{{ 'accounts.visualizza.allegati.progress' | translate }}</th> 
+																
+																<th>{{ 'accounts.visualizza.allegati.tipo_doc' | translate }}</th>
+																<th>{{ 'accounts.visualizza.allegati.azioni' | translate }}</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr ng-repeat="item in uploader.queue" >
+																<td><strong>{{ item.file.name }}</strong></td>
+																<td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+																<td ng-show="uploader.isHTML5">
+																	<div class="progress-allegati" style="margin-bottom: 0;">
+																		<div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+																	</div>
+																</td>
+																
+																<td nowrap>
+																	{{allegato.selectedtipo.descrizione}}
+																
+																</td>
+																
+																<td nowrap>
+																	<button type="button" class="btn btn-success-allegati btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || !allegato.selectedtipo || item.isUploading || item.isSuccess">
+																		<md-icon style="color: cornsilk;">upload</md-icon>{{ 'accounts.visualizza.allegati.uploadsingle' | translate }}
+																	</button>
+																	<button type="button" class="btn btn-warning-allegati btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+																		<md-icon style="color: cornsilk;">block</md-icon></span>{{ 'accounts.visualizza.allegati.cancel' | translate }}
+																	</button>
+																	<button type="button" class="btn btn-danger-allegati btn-xs" ng-click="item.remove()">
+																		<md-icon style="color: cornsilk;">delete</md-icon></span>{{ 'accounts.visualizza.allegati.remove' | translate }}
+																	</button>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+								
+													<div>
+														<div>
+															{{ 'accounts.visualizza.allegati.qprogress' | translate }}:
+															<div class="progress-allegati" style="">
+																<div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+															</div>
+														</div>
+														
+														<button type="button" class="btn btn-success-allegati btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.queue.length || !allegato.selectedtipo">
+															<md-icon style="color: cornsilk;">upload</md-icon> {{ 'accounts.visualizza.allegati.uploadall' | translate }}
+														</button>
+														<button type="button" class="btn btn-warning-allegati btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+															<md-icon style="color: cornsilk;">block</md-icon></span>{{ 'accounts.visualizza.allegati.cancelall' | translate }}
+														</button>
+														<button type="button" class="btn btn-danger-allegati btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+															<md-icon style="color: cornsilk;">delete</md-icon></span></span>{{ 'accounts.visualizza.allegati.removeall' | translate }}
+														</button>
+													</div>
+								
+												</div>
+											</div>
+										
+										
+										
+									
+									</div>
+
+								</md-tab-body>
+						
+						<md-divider></md-divider>
+						<md-card-actions layout="row" layout-align="space-between center">
+							<md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+								<md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate }}
+							</md-button>
+							
+						</md-card-actions>
+					</form>
+
+				</md-card-content>
+			</md-card>
+
+
+
+			
+
+		</md-content>
+	</div>
+
+</body>
+</html>

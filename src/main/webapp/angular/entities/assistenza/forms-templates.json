@@ -1,0 +1,1646 @@
+{
+    "items": [
+        {
+            "id": "1",
+            "prev": "0",
+            "title": "MALFUNZIONAMENTO",
+            "cards": [
+                {
+                    "next": "9",
+                    "head": "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                    "subhead": "Il malfunzionamento impedisce l'erogazione di tutti (o la maggior parte) dei servizi presenti sul mio account Nivola, compromettendo attività di sportello e/o servizi web?"
+                },
+                {
+                    "next": "FORM",
+                    "head": "RALLENTAMENTI O DISSERVIZI PARZIALI",
+                    "subhead": "I servizi sono disponibili ma si segnalano forti rallentamenti o perdita di alcune funzionalità? Per cortesia indicare le VM impattate",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 2",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "I servizi sono disponibili ma si segnalano forti rallentamenti o perdita di alcune funzionalità? Per cortesia indicare le VM impattate",
+                            "part3" : "",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "CPAAS",
+                        "qserv" : "CPAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "SIGNIFICATIVO_GRANDE",
+                        "qsev" :    3
+                    }
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "prev": "0",
+            "title": "NUOVI SERVIZI E INFORMAZIONI",
+            "cards": [
+                {
+                    "next": "3",
+                    "head": "NUOVI SERVIZI",
+                    "subhead": "Si vuole attivare un nuovo servizio?"
+                },
+                {
+                    "next": "4",
+                    "head": "ATTIVAZIONE - DISATTIVAZIONE",
+                    "subhead": "Si vuole modificare/disattivare un servizio già attivo?"
+                },
+                {
+                    "next": "6",
+                    "head": "POLICY DI RETE",
+                    "subhead": "Abilitazione di rete?"
+                },
+                {
+                    "next": "FORM",
+                    "head": "INFORMAZIONI",
+                    "subhead": "Informazioni sulla Piattaforma Nivola o sul servizio",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 4",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "INFORMAZIONI",
+                            "part3" : "Informazioni sulla Piattaforma Nivola o sul servizio",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "INFO-NIVOLA",
+                        "qserv" : "INFO",
+                        "qtipo" : "REQUEST",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "HOW TO USE",
+                    "subhead": "How to use - Service Portal",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 5",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "HOW TO USE",
+                            "part3" : "How to use - Service Portal",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "INFO-SP",
+                        "qserv" : "INFO",
+                        "qtipo" : "REQUEST",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                }
+            ]
+        },
+        {
+
+            "id": "3",
+            "prev": "2",
+            "title": "NUOVI SERVIZI",
+            "cards": [
+                {
+                    "next": "FORM",
+                    "head": "Backup-as-a-service?",
+                    "subhead": "Backup-as-a-service? Per cortesia indicare la VM o le VM su cui intervenire, specificando il periodo di ritenzione (7,14 o 30 giorni)",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 1 - 1",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "Si vuole attivare un nuovo servizio",
+                            "part3" : "Backup-as-a-service? Per cortesia indicare la VM o le VM su cui intervenire, specificando il periodo di ritenzione (7,14 o 30 giorni)",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "BCKAAS-ATTIVA",
+                        "qserv" : "BCKAAS",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MODERATO_LIMITATO",
+                        "qsev" :    4
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "Monitoraggio?",
+                    "subhead": "Per cortesia indicare la VM o le VM su cui intervenire",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 1 - 2",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "Si vuole attivare un nuovo servizio",
+                            "part3" : "Monitoraggio : Per cortesia indicare la VM o le VM su cui intervenire",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "MONIT-VM",
+                        "qserv" : "MONIT",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MODERATO_LIMITATO",
+                        "qsev" :    4
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "Logging?",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 1 - 3",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "Si vuole attivare un nuovo servizio",
+                            "part3" : "Logging",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "LOGGING-VM",
+                        "qserv" : "LOGGING",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "Nuova VM Windows?",
+                    "subhead": "Indicare SO e il flavor da applicare",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 1 - 4",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "Si vuole attivare un nuovo servizio",
+                            "part3" : "Nuova VM Windows : Indicare SO e il flavor da applicare",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "CPAAS-NEWVM-MS",
+                        "qserv" : "CPAAS-NEWVM-MS",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                },
+                {
+                   
+                    "next": "FORM",
+                    "head": "Nuova VM Linux?",
+                    "subhead": "Indicare SO e il flavor da applicare",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 1 - 5",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "Si vuole attivare un nuovo servizio",
+                            "part3" : "Nuova VM Linux : Indicare SO e il flavor da applicare",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "CPAAS-NEWVM-LINUX",
+                        "qserv" : "CPAAS-NEWVM-LINUX",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                },
+                {
+                   
+                    "next": "DB",
+                    "head": "Nuovo DB?",
+                    "subhead": "Indicare la tecnologia ed il flavor da applicare"
+                    
+                },
+                {
+                   
+                    "next": "FORM",
+                    "head": "Nuova STaaS?",
+                    "subhead": "Specificare il dimensionamento richiesta e quali VM dell'account devono poter accedervi",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 1 - 7",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "Si vuole attivare un nuovo servizio",
+                            "part3" : "Nuova STaaS : Specificare il dimensionamento richiesta e quali VM dell'account devono poter accedervi",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "STAAS-NUOVO",
+                        "qserv" : "STAAS",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                }
+                
+            ]
+
+
+        },
+        {
+            "id": "DB",
+            "prev": "",
+            "title": "Nuovo DB",
+            "cards": [
+                {
+                    "next": "FORM",
+                    "head": "MYSQL",
+                    "subhead": "la tecnologia del dbaas è MYSQL",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 1 - 6 - 1",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "Si vuole attivare un nuovo servizio",
+                            "part3" : "Nuovo DB? Indicare la tecnologia ed il flavor da applicare",
+                            "part4" : "la tecnologia del dbaas è MYSQL"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-NUOVO-MYSQL",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "POSTGRES",
+                    "subhead": "la tecnologia del dbaas è POSTGRES",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 1 - 6 - 2",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "Si vuole attivare un nuovo servizio",
+                            "part3" : "Nuovo DB? Indicare la tecnologia ed il flavor da applicare",
+                            "part4" : "la tecnologia del dbaas è POSTGRES"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-NUOVO-POSTGRES",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "MS-SQL",
+                    "subhead": "la tecnologia del dbaas è MS-SQL",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 1 - 6 - 3",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "Si vuole attivare un nuovo servizio",
+                            "part3" : "Nuovo DB? Indicare la tecnologia ed il flavor da applicare",
+                            "part4" : "la tecnologia del dbaas è MS-SQL"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-NUOVO-MS-SQL",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "ORACLE",
+                    "subhead": "la tecnologia del dbaas è ORACLE",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 1 - 6 - 4",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "Si vuole attivare un nuovo servizio",
+                            "part3" : "Nuovo DB? Indicare la tecnologia ed il flavor da applicare",
+                            "part4" : "la tecnologia del dbaas è ORACLE"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-NUOVO-ORACLE",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                }
+            ]           
+        },
+        {
+
+            "id": "4",
+            "prev": "2",
+            "title": "ATTIVAZIONE - DISATTIVAZIONE",
+            "cards": [
+                {
+                    "next": "5",
+                    "head": "Backup-as-a-service?",
+                    "subhead": ""
+                    
+                },
+                {
+                    "next": "FORM",
+                    "head": "Si vuole disattivare il monitoraggio?",
+                    "subhead": " Per cortesia specificare a quale o quali VM ",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 2 - 2",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "ATTIVAZIONE - DISATTIVAZIONE",
+                            "part3" : "Si vuole disattivare il monitoraggio ",
+                            "part4" : "Per cortesia specificare a quale o quali VM"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "MONIT-VM",
+                        "qserv" : "MONIT",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MODERATO_LIMITATO",
+                        "qsev" :    4
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "Si vuole disattivare il Logging?",
+                    "subhead": "Per cortesia specificare a quale o quali VM ",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 2 - 3",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "ATTIVAZIONE - DISATTIVAZIONE",
+                            "part3" : "Si vuole disattivare il Logging",
+                            "part4" : "Per cortesia specificare a quale o quali VM"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "LOGGING-VM",
+                        "qserv" : "LOGGING",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                }
+            ]
+
+
+        },
+        {
+
+            "id": "5",
+            "prev": "4",
+            "title": "Backup-as-a-service",
+            "cards": [
+                
+                {
+                    "next": "FORM",
+                    "head": "Si vuole disattivare? Specificare a quale o quali VM",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 2 - 1 - 1",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "ATTIVAZIONE - DISATTIVAZIONE",
+                            "part3" : "Backup-as-a-service",
+                            "part4" : " Si vuole disattivare? Specificare a quale o quali VM"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "BCKAAS-DISATTIVA",
+                        "qserv" : "BCKAAS",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "Si vuole modificare il periodo di ritenzione? Scegliere tra le opzioni disponibili 7, 14 o 30 giorni",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 2 - 1 - 2",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "ATTIVAZIONE - DISATTIVAZIONE",
+                            "part3" : "Backup-as-a-service",
+                            "part4" : "Si vuole modificare il periodo di ritenzione? Scegliere tra le opzioni disponibili 7, 14 o 30 giorni"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "BCKAAS-MODIFICA",
+                        "qserv" : "BCKAAS",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                }
+            ]
+
+
+        },
+        
+        {
+
+            "id": "6",
+            "prev": "2",
+            "title": "POLICY DI RETE",
+            "cards": [
+                
+                {
+                    "next": "7",
+                    "head": "Si richiede una nuova abilitazione",
+                    "subhead": ""
+                },
+                {
+                    "next": "8",
+                    "head": "Si richiede la dismissione di una abilitazione attualmente attiva?",
+                    "subhead": ""
+                   
+                }
+            ]
+        },
+
+        {
+
+            "id": "7",
+            "prev": "6",
+            "title": "nuova abilitazione",
+            "cards": [
+                
+                {
+                    "next": "FORM",
+                    "head": "L'abilitazione è solo tra VM all'interno dell'account Nivola? Specificare IP sorgente, IP destinazione e porte",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 3 - 1 - 1",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "POLICY DI RETE",
+                            "part3" : "Si richiede una nuova abilitazione",
+                            "part4" : "L'abilitazione è solo tra VM all'interno dell'account Nivola? Specificare IP sorgente, IP destinazione e porte"
+                        
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "NETWORK-ATTIVA",
+                        "qserv" : "NETWORK",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "L'abilitazione riguarda anche IP esterni al proprio account Nivola? Specificare IP sorgente, IP destinazione e porte",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 3 - 1 - 2",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "POLICY DI RETE",
+                            "part3" : "Si richiede una nuova abilitazione",
+                            "part4" : "L'abilitazione riguarda anche IP esterni al proprio account Nivola? Specificare IP sorgente, IP destinazione e porte"
+                        
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "NETWORK-ATTIVA",
+                        "qserv" : "NETWORK",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                }
+            ]
+
+
+        },
+        {
+
+            "id": "8",
+            "prev": "6",
+            "title": "dismissione di una abilitazione attualmente attiva",
+            "cards": [
+                
+                {
+                    "next": "FORM",
+                    "head": " L'abilitazione è solo tra VM all'interno dell'account Nivola? Specificare IP sorgente, IP destinazione e porte",
+                    "subhead": "",
+                    "riep" : [
+                        { 
+                            "part0" : "2 - 3 - 2 - 1",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "POLICY DI RETE",
+                            "part3" : "Si richiede la dismissione di una abilitazione attualmente attiva?",
+                            "part4" : " L'abilitazione è solo tra VM all'interno dell'account Nivola? Specificare IP sorgente, IP destinazione e porte"
+                        
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "NETWORK-RIMUOVE",
+                        "qserv" : "NETWORK",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "L'abilitazione riguarda anche IP esterni al proprio account Nivola? Specificare IP sorgente, IP destinazione e porte",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "2 - 3 - 2 - 2",
+                            "part1" : "NUOVI SERVIZI E INFORMAZIONI",
+                            "part2" : "POLICY DI RETE",
+                            "part3" : "Si richiede la dismissione di una abilitazione attualmente attiva?",
+                            "part4" : "L'abilitazione riguarda anche IP esterni al proprio account Nivola? Specificare IP sorgente, IP destinazione e porte"
+                        
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "NETWORK-RIMUOVE",
+                        "qserv" : "NETWORK",
+                        "qtipo" : "CHANGE",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                }
+            ]
+
+
+        },
+        {
+            "id": "9",
+            "prev": "1",
+            "title": "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+            "cards": [
+                {
+                    "next": "10",
+                    "head": "Sono compromessi servizi di sportello o servizi web?",
+                    "subhead": ""
+                },
+                {
+                    "next": "10BIS",
+                    "head": "Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative entro 48 ore",
+                    "subhead": ""
+                   
+                },
+                {
+                    "next": "10TRIS",
+                    "head": "Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative oltre le 48 ore",
+                    "subhead": ""
+                }
+            ]
+        },
+        {
+            "id": "10",
+            "prev": "9",
+            "title": "DI CHE COSA SI TRATTA?",
+            "cards": [
+                {
+                    "next": "DB10",
+                    "head": "La tua richiesta riguarda un Database?",
+                    "subhead": ""
+                },
+                {
+                    "next": "FORM",
+                    "head": "La tua richiesta riguarda una risorsa infrastrutturali in ambito Microsoft?",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 1 - 2",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi di sportello o servizi web",
+                            "part3" : "La tua richiesta riguarda una risorsa infrastrutturali in ambito Microsoft",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "CPAAS-MS",
+                        "qserv" : "CPAAS-MS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    1
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "La tua richiesta riguarda una o più VM in particolare?",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 1 - 3",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi di sportello o servizi web",
+                            "part3" : "La tua richiesta riguarda una o più VM in particolare",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "CPAAS-ACCESSO",
+                        "qserv" : "CPAAS-ACCESSO",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    1
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "La tua richiesta è di altro tipo?",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 1 - 4",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi di sportello o servizi web",
+                            "part3" : "La tua richiesta è di altro tipo",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "CPAAS",
+                        "qserv" : "CPAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    1
+                    }
+                }
+            ]
+        },
+        
+        {
+            "id": "10BIS",
+            "prev": "9",
+            "title": "DI CHE COSA SI TRATTA?",
+            "cards": [
+                {
+                    "next": "DB10BIS",
+                    "head": "La tua richiesta riguarda un Database?",
+                    "subhead": ""
+                },
+                {
+                    "next": "FORM",
+                    "head": "La tua richiesta riguarda una risorsa infrastrutturali in ambito Microsoft?",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 2 - 2",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative entro 48 ore",
+                            "part3" : "La tua richiesta riguarda una risorsa infrastrutturali in ambito Microsoft",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "CPAAS-MS",
+                        "qserv" : "CPAAS-MS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    1
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "La tua richiesta riguarda una o più VM in particolare?",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 2 - 3",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative entro 48 ore",
+                            "part3" : "La tua richiesta riguarda una o più VM in particolare",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "CPAAS-ACCESSO",
+                        "qserv" : "CPAAS-ACCESSO",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    1
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "La tua richiesta è di altro tipo?",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 2 - 4",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative entro 48 ore",
+                            "part3" : "La tua richiesta è di altro tipo",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "CPAAS",
+                        "qserv" : "CPAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    1
+                    }
+                }
+            ]
+        },
+        
+        {
+            "id": "10TRIS",
+            "prev": "9",
+            "title": "",
+            "cards": [
+                {
+                    "next": "DB10TRIS",
+                    "head": "La tua richiesta riguarda un Database?",
+                    "subhead": ""
+                },
+                {
+                    "next": "FORM",
+                    "head": "La tua richiesta riguarda una risorsa infrastrutturali in ambito Microsoft?",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 3 - 2",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative oltre le 48 ore",
+                            "part3" : "La tua richiesta riguarda una risorsa infrastrutturali in ambito Microsoft",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "CPAAS-MS",
+                        "qserv" : "CPAAS-MS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    2
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "La tua richiesta riguarda una o più VM in particolare?",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 3 - 3",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative oltre le 48 ore",
+                            "part3" : "La tua richiesta riguarda una o più VM in particolare",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "CPAAS-ACCESSO",
+                        "qserv" : "CPAAS-ACCESSO",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    2
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "La tua richiesta è di altro tipo?",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 3 - 4",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative oltre le 48 ore",
+                            "part3" : "La tua richiesta è di altro tipo",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "CPAAS",
+                        "qserv" : "CPAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    2
+                    }
+                }
+            ]
+        },
+        {
+            "id": "DB10",
+            "prev": "10",
+            "title": "",
+            "cards": [
+                {
+                    "next": "FORM",
+                    "head": "MYSQL",
+                    "subhead": "la tecnologia del dbaas è MYSQL",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 1 - 1 -1",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi di sportello o servizi web",
+                            "part3" : "La tua richiesta riguarda un Database",
+                            "part4" : "la tecnologia del dbaas è MYSQL"
+                        }
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-MYSQL",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    1
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "POSTGRES",
+                    "subhead": "la tecnologia del dbaas è POSTGRES",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 1 - 1 -2",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi di sportello o servizi web",
+                            "part3" : "La tua richiesta riguarda un Database",
+                            "part4" : "la tecnologia del dbaas è POSTGRES"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-POSTGRES",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    1
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "MS-SQL",
+                    "subhead": "la tecnologia del dbaas è MS-SQL",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 1 - 1 -3",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi di sportello o servizi web",
+                            "part3" : "La tua richiesta riguarda un Database",
+                            "part4" : "la tecnologia del dbaas è MS-SQL"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-MS-SQL",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    1
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "ORACLE",
+                    "subhead": "la tecnologia del dbaas è ORACLE",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 1 - 1 -4",
+                            "part1" : " MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi di sportello o servizi web",
+                            "part3" : "La tua richiesta riguarda un Database",
+                            "part4" : "la tecnologia del dbaas è ORACLE"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-ORACLE",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    1
+                    }
+                }
+            ]           
+        },
+        {
+            "id": "DB10BIS",
+            "prev": "10BIS",
+            "title": "",
+            "cards": [
+                {
+                    "next": "FORM",
+                    "head": "MYSQL",
+                    "subhead": "la tecnologia del dbaas è MYSQL",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 2 - 1 - 1",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative entro 48 ore",
+                            "part3" : "La tua richiesta riguarda un Database",
+                            "part4" : "la tecnologia del dbaas è MYSQL"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-MYSQL",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    1
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "POSTGRES",
+                    "subhead": "la tecnologia del dbaas è POSTGRES",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 2 - 1 - 2",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative entro 48 ore",
+                            "part3" : "La tua richiesta riguarda un Database",
+                            "part4" : "la tecnologia del dbaas è POSTGRES"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-POSTGRES",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    1
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "MS-SQL",
+                    "subhead": "la tecnologia del dbaas è MS-SQL",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 2 - 1 - 3",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative entro 48 ore",
+                            "part3" : "La tua richiesta riguarda un Database",
+                            "part4" : "la tecnologia del dbaas è MS-SQL"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-MS-SQL",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    1
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "ORACLE",
+                    "subhead": "la tecnologia del dbaas è ORACLE",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 2 - 1 - 4",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative entro 48 ore",
+                            "part3" : "La tua richiesta riguarda un Database",
+                            "part4" : "la tecnologia del dbaas è ORACLE"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-ORACLE",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    1
+                    }
+                }
+            ]           
+        },
+        {
+            "id": "DB10TRIS",
+            "prev": "10TRIS",
+            "title": "",
+            "cards": [
+                {
+                    "next": "FORM",
+                    "head": "MYSQL",
+                    "subhead": "la tecnologia del dbaas è MYSQL",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 3 - 1 - 1",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative oltre le 48 ore",
+                            "part3" : "La tua richiesta riguarda un Database",
+                            "part4" : "la tecnologia del dbaas è MYSQL"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-MYSQL",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    2
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "POSTGRES",
+                    "subhead": "la tecnologia del dbaas è POSTGRES",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 3 - 1 - 2",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative oltre le 48 ore",
+                            "part3" : "La tua richiesta riguarda un Database",
+                            "part4" : "la tecnologia del dbaas è POSTGRES"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-POSTGRES",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    2
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "MS-SQL",
+                    "subhead": "la tecnologia del dbaas è MS-SQL",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 3 - 1 - 3",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative oltre le 48 ore",
+                            "part3" : "La tua richiesta riguarda un Database",
+                            "part4" : "la tecnologia del dbaas è MS-SQL"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-MS-SQL",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    2
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "ORACLE",
+                    "subhead": "la tecnologia del dbaas è ORACLE",
+                    "riep" : [
+                        {
+                            "part0" : "1 - 1 - 3 - 1 - 4",
+                            "part1" : "MALFUNZIONAMENTO IMPATTANTE ED URGENTE",
+                            "part2" : "Sono compromessi servizi interni e devono essere rispettate delle scadenza amministrative oltre le 48 ore",
+                            "part3" : "La tua richiesta riguarda un Database",
+                            "part4" : "la tecnologia del dbaas è ORACLE"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-ORACLE",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "VASTO_DIFFUSO",
+                        "qsev" :    2
+                    }
+                }
+            ]           
+        },
+        {
+            "id": "11",
+            "prev": "0",
+            "title": "BACKUP E RIPRISTINI",
+            "cards": [
+                {
+                    "next": "12",
+                    "head": "RESTORE PER RIPRISTINO SERVIZIO",
+                    "subhead": "La richieste consente il ripristino di un servizio che attualmente non è disponibile?"
+                },
+                {
+                    "next": "12BIS",
+                    "head": "RIPRISTINO PER RECUPERO DATI",
+                    "subhead": "La richiesta consente il recupero di dati che attualmente sono corrotti o non disponibili, ma il servizio è disponibile?"
+                   
+                }
+            ]
+        },
+
+        {
+            "id": "12",
+            "prev": "11",
+            "title": "RESTORE PER RIPRISTINO SERVIZIO",
+            "cards": [
+
+                {
+                    "next": "FORM",
+                    "head": "Ripristino VM? Indicare il nome o ip della VM",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "3 - 1 - 1",
+                            "part1" : "BACKUP E RIPRISTINI",
+                            "part2" : "RESTORE PER RIPRISTINO SERVIZIO",
+                            "part3" : "La richieste consente il ripristino di un servizio che attualmente non è disponibile",
+                            "part4" : "Ripristino VM : Indicare il nome o ip della VM"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "CPAAS-ACCESSO",
+                        "qserv" : "CPAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "MODERATO_LIMITATO",
+                        "qsev" :    1
+                    }
+                },
+               
+                {
+                    "next": "DB12",
+                    "head": "Ripristino DB indicare il nome o ip della VM",
+                    "subhead": ""
+                   
+                }
+            ]
+        },
+        {
+            "id": "12BIS",
+            "prev": "11",
+            "title": "RIPRISTINO PER RECUPERO DATI",
+            "cards": [
+
+                {
+                    "next": "FORM",
+                    "head": "Ripristino VM? Indicare il nome o ip della VM",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "3 - 2 - 1",
+                            "part1" : "BACKUP E RIPRISTINI",
+                            "part2" : "RIPRISTINO PER RECUPERO DATI",
+                            "part3" : "La richiesta consente il recupero di dati che attualmente sono corrotti o non disponibili, ma il servizio è disponibile",
+                            "part4" : "Ripristino VM : Indicare il nome o ip della VM"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "BCKAAS-RESTORE",
+                        "qserv" : "BCKAAS",
+                        "qtipo" : "REQUEST",
+                        "qimpatto" :  "MODERATO_LIMITATO",
+                        "qsev" :    3
+                    }
+                },
+               
+                {
+                    "next": "DB12BIS",
+                    "head": "Ripristino DB indicare il nome o ip della VM",
+                    "subhead": ""
+                   
+                }
+            ]
+        },
+        {
+            "id": "DB12",
+            "prev": "12",
+            "title": "RESTORE PER RIPRISTINO SERVIZIO",
+            "cards": [
+                {
+                    "next": "FORM",
+                    "head": "MYSQL",
+                    "subhead": "la tecnologia del dbaas è MYSQL",
+                    "riep" : [
+                        {
+                            "part0" : "3 - 1 - 2 - 1",
+                            "part1" : "BACKUP E RIPRISTINI",
+                            "part2" : "RESTORE PER RIPRISTINO SERVIZIO",
+                            "part3" : "Ripristino DB indicare il nome o ip della VM",
+                            "part4" : "la tecnologia del dbaas è MYSQL"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-RESTORE-MYSQL",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "MODERATO_LIMITATO",
+                        "qsev" :    1
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "POSTGRES",
+                    "subhead": "la tecnologia del dbaas è POSTGRES",
+                    "riep" : [
+                        {
+                            "part0" : "3 - 1 - 2 - 2",
+                            "part1" : "BACKUP E RIPRISTINI",
+                            "part2" : "RESTORE PER RIPRISTINO SERVIZIO",
+                            "part3" : "Ripristino DB indicare il nome o ip della VM",
+                            "part4" : "la tecnologia del dbaas è POSTGRES"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-RESTORE-POSTGRES",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "MODERATO_LIMITATO",
+                        "qsev" :    1
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "MS-SQL",
+                    "subhead": "la tecnologia del dbaas è MS-SQL",
+                    "riep" : [
+                        {
+                            "part0" : "3 - 1 - 2 - 3",
+                            "part1" : "BACKUP E RIPRISTINI",
+                            "part2" : "RESTORE PER RIPRISTINO SERVIZIO",
+                            "part3" : "Ripristino DB indicare il nome o ip della VM",
+                            "part4" : "la tecnologia del dbaas è MS-SQL"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-RESTORE-MS-SQL",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "MODERATO_LIMITATO",
+                        "qsev" :    1
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "ORACLE",
+                    "subhead": "la tecnologia del dbaas è ORACLE",
+                    "riep" : [
+                        {
+                            "part0" : "3 - 1 - 2 - 4",
+                            "part1" : "BACKUP E RIPRISTINI",
+                            "part2" : "RESTORE PER RIPRISTINO SERVIZIO",
+                            "part3" : "Ripristino DB indicare il nome o ip della VM",
+                            "part4" : "la tecnologia del dbaas è ORACLE"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-RESTORE-ORACLE",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "MODERATO_LIMITATO",
+                        "qsev" :    1
+                    }
+                }
+            ]           
+        },
+        {
+            "id": "DB12BIS",
+            "prev": "12BIS",
+            "title": "RIPRISTINO PER RECUPERO DATI",
+            "cards": [
+                {
+                    "next": "FORM",
+                    "head": "MYSQL",
+                    "subhead": "la tecnologia del dbaas è MYSQL",
+                    "riep" : [
+                        {
+                            "part0" : "3 - 2 - 2 - 1",
+                            "part1" : "BACKUP E RIPRISTINI",
+                            "part2" : "RIPRISTINO PER RECUPERO DATI",
+                            "part3" : "Ripristino DB indicare il nome o ip della VM",
+                            "part4" : "la tecnologia del dbaas è MYSQL"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-RESTORE-MYSQL",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "REQUEST",
+                        "qimpatto" :  "MODERATO_LIMITATO",
+                        "qsev" :    3
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "POSTGRES",
+                    "subhead": "la tecnologia del dbaas è POSTGRES",
+                    "riep" : [
+                        {
+                            "part0" : "3 - 2 - 2 - 2",
+                            "part1" : "BACKUP E RIPRISTINI",
+                            "part2" : "RIPRISTINO PER RECUPERO DATI",
+                            "part3" : "Ripristino DB indicare il nome o ip della VM",
+                            "part4" : "la tecnologia del dbaas è POSTGRES"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-RESTORE-POSTGRES",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "REQUEST",
+                        "qimpatto" :  "MODERATO_LIMITATO",
+                        "qsev" :    3
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "MS-SQL",
+                    "subhead": "la tecnologia del dbaas è MS-SQL",
+                    "riep" : [
+                        {
+                            "part0" : "3 - 2 - 2 - 3",
+                            "part1" : "BACKUP E RIPRISTINI",
+                            "part2" : "RIPRISTINO PER RECUPERO DATI",
+                            "part3" : "Ripristino DB indicare il nome o ip della VM",
+                            "part4" : "la tecnologia del dbaas è MS-SQL"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-RESTORE-MS-SQL",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "REQUEST",
+                        "qimpatto" :  "MODERATO_LIMITATO",
+                        "qsev" :    3
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "ORACLE",
+                    "subhead": "la tecnologia del dbaas è ORACLE",
+                    "riep" : [
+                        {
+                            "part0" : "3 - 2 - 2 - 4",
+                            "part1" : "BACKUP E RIPRISTINI",
+                            "part2" : "RIPRISTINO PER RECUPERO DATI",
+                            "part3" : "Ripristino DB indicare il nome o ip della VM",
+                            "part4" : "la tecnologia del dbaas è ORACLE"
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DBAAS-RESTORE-ORACLE",
+                        "qserv" : "DBAAS",
+                        "qtipo" : "REQUEST",
+                        "qimpatto" :  "MODERATO_LIMITATO",
+                        "qsev" :    3
+                    }
+                }
+            ]           
+        },
+        
+        {
+
+            "id": "13",
+            "prev": "0",
+            "title": "VPN",
+            "cards": [
+                
+                {
+                    "next": "FORM",
+                    "head": "NUOVO UTENTE",
+                    "subhead": "Si vuole accreditare un nuovo utente sul proprio profilo consentendo l'accesso agli ambienti Nivola?",
+                    "riep" : [
+                        {
+                            "part0" : "4 - 1",
+                            "part1" : "VPN : Si vuole inoltrare una richiesta relativa alle VPN",
+                            "part2" : "NUOVO UTENTE",
+                            "part3" : "Si vuole accreditare un nuovo utente sul proprio profilo consentendo l'accesso agli ambienti Nivola",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "NETWORK-VPN-NEWUSER",
+                        "qserv" : "NETWORK",
+                        "qtipo" : "REQUEST",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "MODIFICA DEL PROFILO",
+                    "subhead": "Si vuole modificare il proprio profilo?",
+                    "riep" : [
+                        {
+                            "part0" : "4 - 2",
+                            "part1" : "VPN : Si vuole inoltrare una richiesta relativa alle VPN",
+                            "part2" : "MODIFICA DEL PROFILO",
+                            "part3" : "Si vuole modificare il proprio profilo",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "NETWORK-VPN-MODIFICA",
+                        "qserv" : "NETWORK",
+                        "qtipo" : "REQUEST",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                }
+            ]
+
+
+        }
+        ,
+        
+        {
+
+            "id": "14",
+            "prev": "0",
+            "title": "PAAS : Si prega di indicare per quale servizio non risulta disponibile",
+            "cards": [
+                
+                {
+                    "next": "FORM",
+                    "head": "La richieste consente il ripristino di un servizio che attualmente non è disponibile?",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "5 - 1",
+                            "part1" : "PAAS : Si vuole inoltrare una richiesta relativa alle PaaS",
+                            "part2" : "La richieste consente il ripristino di un servizio che attualmente non è disponibile",
+                            "part3" : "",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "PAAS-ACCESSO",
+                        "qserv" : "PAAS",
+                        "qtipo" : "INCIDENT",
+                        "qimpatto" :  "MODERATO_LIMITATO",
+                        "qsev" :    1
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "La richiesta richiede di modificare la configurazione attuale?",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "5 - 2",
+                            "part1" : "PAAS : Si vuole inoltrare una richiesta relativa alle VPN",
+                            "part2" : "La richiesta richiede di modificare la configurazione attuale",
+                            "part3" : "",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "PAAS-MODIFICA",
+                        "qserv" : "PAAS",
+                        "qtipo" : "REQUEST",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                }
+            ]
+
+
+        }
+        ,
+        
+        {
+
+            "id": "15",
+            "prev": "0",
+            "title": "ALTRE RICHIESTE",
+            "cards": [
+                
+                {
+                    "next": "FORM",
+                    "head": "Richiesta di un nuovo account?",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "6 - 1",
+                            "part1" : "ALTRE RICHIESTE",
+                            "part2" : "Si vuole richiedere il provisioning di un nuovo account, chiedere la registrazione di un DNS interno, inoltrare suggerimenti, proposte di miglioramento o altri temi non presenti nelle precedenti opzioni",
+                            "part3" : "Richiesta di un nuovo account",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "ACCOUNT-NUOVO",
+                        "qserv" : "ACCOUNT",
+                        "qtipo" : "REQUEST",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                },
+                {
+                    "next": "FORM",
+                    "head": "Registrazione DNS?",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "6 - 2",
+                            "part1" : "ALTRE RICHIESTE",
+                            "part2" : "Si vuole richiedere il provisioning di un nuovo account, chiedere la registrazione di un DNS interno, inoltrare suggerimenti, proposte di miglioramento o altri temi non presenti nelle precedenti opzioni",
+                            "part3" : "Registrazione DNS",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "DNS-NUOVO",
+                        "qserv" : "DNS",
+                        "qtipo" : "REQUEST",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                }
+                ,
+                {
+                    "next": "FORM",
+                    "head": "Proposte di miglioramento?",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "6 - 3",
+                            "part1" : "ALTRE RICHIESTE",
+                            "part2" : "Si vuole richiedere il provisioning di un nuovo account, chiedere la registrazione di un DNS interno, inoltrare suggerimenti, proposte di miglioramento o altri temi non presenti nelle precedenti opzioni",
+                            "part3" : "Proposte di miglioramento",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "INFO-SUGGERIMENTO",
+                        "qserv" : "INFO",
+                        "qtipo" : "REQUEST",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                }
+                ,
+                {
+                    "next": "FORM",
+                    "head": "Altro, argomento non presente nelle precedenti voci",
+                    "subhead": "",
+                    "riep" : [
+                        {
+                            "part0" : "6 - 4",
+                            "part1" : "ALTRE RICHIESTE",
+                            "part2" : "Si vuole richiedere il provisioning di un nuovo account, chiedere la registrazione di un DNS interno, inoltrare suggerimenti, proposte di miglioramento o altri temi non presenti nelle precedenti opzioni",
+                            "part3" : "Altro, argomento non presente nelle precedenti voci",
+                            "part4" : ""
+                        }
+                       
+                    ],
+                    "parametri": {
+                        "qtec" : "ALTRO",
+                        "qserv" : "ALTRO",
+                        "qtipo" : "REQUEST",
+                        "qimpatto" :  "MINIMO_LOCALIZZATO",
+                        "qsev" :    4
+                    }
+                }
+            ]
+
+
+        }
+
+
+    ]
+}

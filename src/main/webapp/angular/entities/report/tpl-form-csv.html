@@ -1,0 +1,99 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="row" layout-fill layout-align="start start">
+
+    <!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<!-- Include stylesheet -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script>
+
+</script>
+
+    <md-card flex="grow">
+        <md-card>
+            <div class="md-toolbar-tools">
+                <div flex>
+                    <md-card-title>
+                        <md-card-title-text layout-align="center center">
+                            <div class="md-headline titolo-sezione">
+                                <md-icon hide-xs class="icon-card-header-green"></md-icon>
+                                {{ 'report.titolo' | translate }}
+                            </div>
+                        </md-card-title-text>
+                    </md-card-title>
+                </div>
+            </div>
+        </md-card>
+        <md-card>
+            <md-card-content>
+                <loading-placeholder status="status" ></loading-placeholder>
+
+                <div>
+
+                    <form name="form">
+                        <p style="padding-top:1em;">{{ 'report.selezionare' | translate }}</p>
+                        <div layout="column">
+                            <div layout="row" layout-xs="column">
+                                <md-input-container class="md-icon-float md-block md-column" flex>
+                                    <label>{{ 'report.selezionare_da' | translate }}:</label>
+                                    <md-datepicker ng-model="csv.dataDa" ></md-datepicker>
+                                </md-input-container>
+                                
+                                <md-input-container class="md-icon-float md-block md-column" flex>
+                                    <label>{{ 'report.selezionare_a' | translate }}:</label>
+                                    <md-datepicker ng-model="csv.dataA" ></md-datepicker>
+                                </md-input-container>
+                            </div> 
+                        </div>
+                        
+                        <div layout="row">
+                                <md-input-container class="md-icon-float md-block md-column" flex>
+                                    <label>Tipo di report:</label>
+                                    <md-select ng-model="csv.tipo" placeholder="Seleziona tipo" style="width:50%">
+                                      <md-option ng-value="'tot'">Totali account</md-option>
+                                      <md-option ng-value="'wbs'">Per WBS</md-option>
+                                    </md-select>
+                                </md-input-container>
+
+                                <md-input-container class="md-icon-float md-block md-column" style="width:50%" flex ng-if="csv.tipo == 'tot'">
+                                    <label>Colonne da visualizzare:</label>
+                                    <md-select  ng-model="csv.colonne" placeholder="Seleziona colonne">
+                                      <md-option ng-value="'all'">TUTTE (costo + consumo)</md-option>
+                                      <md-option ng-value="'costo'">Solo costo</md-option>
+                                      <md-option ng-value="'consumo'">Solo consumo</md-option>
+                                    </md-select>
+                                </md-input-container>
+
+                        </div>
+
+                        <md-card-actions layout="row" layout-align="end center">
+                            <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="actions.invia()">
+                                {{ 'scarica' | translate }}
+                            </md-button>
+                        </md-card-actions>
+                      
+                    </form>
+                </div>
+                
+                <md-divider></md-divider>
+                <md-card-actions layout="row" layout-align="space-between left">
+                    <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+                        <md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate }}
+                    </md-button>
+                </md-card-actions>
+
+            </md-card-content>
+        </md-card>
+        </md-card>
+
+</div>
+

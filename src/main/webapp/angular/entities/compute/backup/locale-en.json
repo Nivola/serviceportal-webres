@@ -1,0 +1,105 @@
+{
+    "job":{
+        "bottoni":{
+            "elimina":"Delete Job",
+            "dettaglio":"Go to Job detail",
+            "back":"BACK",	
+            "creation_step_0":"zero",	
+            "creation_step_1":"uno",	
+            "creation_step_2":"uno",	
+            "creation_step_3":"tre"
+        },
+        "tabs":{
+            "dettaglio_label":"Details",
+            "points_label":"Restore points"
+        },
+        "dettaglio":{
+            "zone":"Zone",
+            "number_istances":"Number of istances",
+            "istances":"Istances",
+            "dataCreazione":"Created",
+            "status":"State",
+            "hypervisor":"Hypervisor",
+            "enable_status_tooltip":{
+                "active":"",
+                "stopped":""
+            },
+            "access":"Accessibility",
+            "name":"Name",
+            "policy_label":"Policy",
+            "policy":{
+                "interval_full":"Full backup interval",
+                "start":"Start time",
+                "interval":"Interval",
+                "retention_policy":"Retention policy"
+                },
+            "dataModifica":"Last update",
+            "reason":"Ragion",
+            "active":"ACTIVE",
+            "inactive":"INACTIVE",
+            "labels":{
+                "title":"Backup Job management panel"
+            }
+        },
+        "new":{	            
+            "steps":{	
+                "init":"1. INITIALIZE JOB",	
+                "tecnology":"2. A.Z. & TECHNOLOGY",	
+                "vms":"3. VM LIST",	
+                "configurations":"4. CONFIGURATIONS",	
+                "recap":"5. RECAP"	
+            },	
+            "placeholders":{	
+                "name": "Specify the backup job name"
+            },
+            "labels":{
+                "title":"Create new Backup job",
+                "name":"Job name",
+                "success":"The backup job creation operation was started successfully",
+                "error":"An error occurred while trying to create the backup job",
+                "name_section":"Choose the job name.",
+                "region_zone_section":"Choose Region and Availability Zone.",
+                "region":"Region",
+                "availability_zone":"Availability Zone",
+                "tech_section":"Choose Virtualization technology.",
+                "tech":"Virtualization technology"
+            }
+        },
+        "restore_point":{
+            "no_data":"No data was found",
+            "name":"Name",
+            "date":"Creation date",
+            "status":"Status",
+            "time_taken":"Time taken",
+            "updated":"Last execution",
+            "finished":"Finished: ",
+            "size":"Size updated: ",
+            "hypervisor":"Hypervisor: ",
+            "type":"Type: ",
+            "progress":"In progress: ",
+            "resource_type":"Resource type: ",
+            "site":"Zone: ",
+            "istanceNum":"Number of istances: ",
+            "istanceSet":"VM list"   ,
+            "name_vm":"Nsme",
+            "region_vm":"Region",
+            "cpu_ram_vm":"CPU | RAM",
+            "template_vm":"Template",
+            "ip_vm":"IP",
+            "status_vm":"Status" 
+        },
+        "modifica":{
+            "tabs":{
+                "vm":"Manage associated VM",
+                "restore_points":"MAnage associated restore points"
+            }
+        },
+    "errors":{
+        "restore_vm_ko":"Request for the virtual machine restore procedure failed",
+        "loading_restore_points":"An error occurred while trying to fetch the backup job's restore points",
+        "reloading_detail_job":"An error occurred while trying to fetch the backup job",
+        "loading_restore_points_detail":"An error occurred while trying to fetch detailed Restore points.",
+        "loading_associated_vms":"An error occurred while trying to fetch vm associated to the Restore point."
+    }
+    }
+}

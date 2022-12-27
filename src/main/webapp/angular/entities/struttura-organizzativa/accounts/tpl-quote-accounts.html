@@ -1,0 +1,89 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<md-content class="md-no-momentum" layout="column">
+		<md-card>
+			<md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length || filter.show">
+				<div class="md-toolbar-tools">
+					<div flex="20"></div>
+					<div flex>
+						<md-card-title flex>
+							<md-card-title-text layout-align="center center">
+								<div class="md-headline titolo-sezione">
+									<md-icon class="icon-card-header-green">pie_chart</md-icon> {{ 'accounts.quote.titolo' | translate }}
+									<span ng-if="nomeAcc">({{ 'di' | translate }}  {{nomeAcc}})</span>
+								</div>
+							</md-card-title-text>
+						</md-card-title>
+					</div>
+					<div flex=20 layout="row" layout-align="end center">
+						<md-button class="animation-target md-fab md-mini md-primary" ng-click="actions.refresh()">
+							<md-icon>autorenew</md-icon>
+							<md-tooltip>{{ 'accounts.quote.aggiorna' | translate }} </md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+			<md-toolbar class="md-table-toolbar md-default">
+			</md-toolbar>
+			<span  ng-show="quote && quote.length!=0">
+				<md-card  style="background-color:rgb(232, 245, 250);">
+				
+						<p>
+							{{ 'accounts.quote.scegli_risorsa' | translate }}
+						</p>
+						<md-radio-group layout="row" ng-model="quoteServiziSelezionata" ng-init="quoteServiziSelezionata='all'"  ng-change="tabQuoteSelected()" aria-label="risorsa selezionata radio group">
+							<md-radio-button value="all" flex="25">{{ 'accounts.quote.risorsa.tutti' | translate }}</md-radio-button>
+							<md-radio-button value="vm"  flex="25">{{ 'accounts.quote.risorsa.vm' | translate }}</md-radio-button>
+							<md-radio-button value="db"  flex="25">{{ 'accounts.quote.risorsa.db' | translate }}</md-radio-button>
+							<md-radio-button value="staas"  flex="25">{{ 'accounts.quote.risorsa.staas' | translate }}</md-radio-button>
+						</md-radio-group>
+					
+				</md-card>
+			</span>
+			<md-card>
+				<md-table-container>
+					<table md-table ng-model="selected" md-progress="promise">
+						<thead ng-if="!options.decapitate" md-head md-order="query.order">
+							<tr md-row>
+								<th md-column md-order-by="servizio"><span>{{ 'accounts.quote.servizio' | translate }}</span></th>
+								<th md-column md-order-by="nomeQuota"><span>{{ 'accounts.quote.quota' | translate }}</span></th>
+								<th md-column md-order-by="totale"><span>{{ 'accounts.quote.limite' | translate }}</span></th>
+								<th md-column md-order-by="used"><span>{{ 'accounts.quote.valore' | translate }}</span></th>
+								<th md-column md-order-by="percent"><span>{{ 'accounts.quote.utilizzo' | translate }}</span></th>
+							</tr>
+						</thead>
+						<tbody md-body>
+							<tr md-row md-select="istanza" md-auto-select="options.autoSelect"
+								ng-repeat="istanza in quote | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+								<td md-cell>{{istanza.servizio}}</td>
+								<td md-cell>{{istanza.nomeQuota}}</td>
+								<td md-cell>{{istanza.totale}}</td>
+								<td md-cell>{{istanza.used}}</td>
+								<td md-cell> <span flex="80"><md-progress-linear md-mode="determinate" 
+									ng-class="istanza.colore"
+									value="{{istanza.percent}}"></md-progress-linear></span flex><span> {{istanza.percent}}% </span></td> 
+					
+							</tr>
+						</tbody>
+					</table>
+				</md-table-container>
+	
+			</md-card>
+			
+
+			<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+				md-total="{{quote.length}}" md-page-select="options.pageSelect"
+				md-boundary-links="options.boundaryLinks">
+			</md-table-pagination>
+		</md-card>
+	</md-content>
+</div>

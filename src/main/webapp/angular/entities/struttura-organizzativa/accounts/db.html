@@ -1,0 +1,66 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-card>
+<md-toolbar class="md-table-toolbar md-default">
+    <div class="md-toolbar-tools">
+        <form name="filter.form" flex>
+            <md-input-container class="md-icon-float md-block" flex>
+                <label>{{ 'ricerca' | translate }}</label>
+                <md-icon class="material-icons">search</md-icon>
+                <input  id="fSearch" class="layout-fill" type="text" ng-model="filter.search"
+                    ng-model-options="filter.options" esc-key="resetFilter()">
+            </md-input-container>
+        </form>
+    </div>
+</md-toolbar>
+<div  ng-if="!dbaas && dbaas.length==0" layout-align="center center">
+    <p style="color:red;">{{ 'dbaas.lista.vuoto' | translate }}</p>
+</div>
+<md-table-container>
+    <table md-table  md-progress="promise">
+        <thead md-head md-order="query.order">
+            <tr md-row>
+                <th md-column md-order-by="nome"><span>{{ 'dbaas.lista.nome' | translate }}</span></th>
+                <th md-column md-order-by="region_az"><span>{{ 'dbaas.lista.region_az' | translate }}</span></th>
+                <th md-column md-order-by="engine"><span>{{ 'dbaas.lista.engine' | translate }}</span></th>
+                <th md-column md-order-by="cpu_ram"><span>{{ 'dbaas.lista.cpu_ram' | translate }} </span></th>
+                <th md-column md-order-by="storage"><span>{{ 'dbaas.lista.storage' | translate }}</span></th>
+                <th md-column md-order-by="active_flag"><span>{{ 'dbaas.lista.active_flag' | translate }}</span></th>
+            </tr>
+        </thead>
+        <tbody md-body>
+            <tr md-row md-select="istanza" ng-repeat="istanza in dbaas | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                <td md-cell>{{istanza.nome}}</td>
+                <td md-cell>{{istanza.region_az}}</td>
+                <td md-cell>{{istanza.engine}}</td>
+                <td md-cell>{{istanza.cpu_ram}}</td>
+                <td md-cell>{{istanza.storage}}GB</td>
+                <!-- <td md-cell>
+                    <span
+                        ng-class="istanza.status == 'attivo' ? 'badge badge-success' : 'badge badge-danger'">
+                        {{istanza.status}}
+                    </span>
+                </td> -->
+                <td md-cell>
+                    <md-icon class="material-icons" ng-style="{ 'color': istanza.stato.color }">
+                        {{istanza.stato.icon}}
+                    </md-icon>
+                    <md-tooltip>{{istanza.stato.tooltip}}</md-tooltip>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</md-table-container>
+
+<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+    md-total="{{dbaas.length}}" md-page-select="options.pageSelect"
+    md-boundary-links="options.boundaryLinks"></md-table-pagination>
+</md-card>

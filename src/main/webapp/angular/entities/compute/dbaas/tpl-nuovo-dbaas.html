@@ -1,0 +1,1146 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+    <br />
+    <md-content class="md-no-momentum">
+        <md-card>
+            <md-card-title>
+                <div flex=20>
+                    <md-card-actions layout="row" layout-align="start center" flex="20">
+                        <md-button class="md-fab read-me " ng-href="{{rtdDbaasnew}}" target="_blank">
+                            <md-icon  class="material-icons">local_library</md-icon>
+                            <md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+                        </md-button>
+                    </md-card-actions>
+                </div>
+                <md-card-title-text layout-align="center center" flex="60">
+                    <span class="md-headline titolo-sezione">
+                        <md-icon class="icon-card-header-green">laptop</md-icon> {{ 'dbaas.nuova.titolo' | translate}}
+                    </span>
+                    <div class="callout callout-info">
+                    </div>
+                </md-card-title-text>
+                <md-card-actions layout="row" layout-align="end center" flex="20">
+                    <!-- <md-button type="submit" ng-click="actions.invia()" class="md-raised">
+                                <md-icon ng-style="iconStyle" class="material-icons">send</md-icon> CREA DBAAS
+                            </md-button> -->
+                </md-card-actions>
+            </md-card-title>
+
+            <md-card-content>
+                <form name="dbaasForm">
+                    <md-tabs md-dynamic-height md-border-bottom md-center-tabs class="tab-min-200"
+                        md-selected="status.tabIndex">
+                        <md-tab label="{{ 'dbaas.nuova.database.titolo' | translate}}">
+                            <md-content class="md-padding">
+                <div  class="md-padding" ng-cloak>                           
+                                <p>
+                                    {{ 'dbaas.nuova.database.scegli' | translate}}
+                                </p>
+
+                                <!-- <p class="md-caption">
+                                    <md-icon>warning</md-icon>
+                                    Ricordati che il database non potr&agrave; essere cambiato successivamente
+                                    senza dover distruggere e ricreare il database da zero.
+                                </p> -->
+
+                                <div flex ng-if="vm.selectedTemplate">
+                                    <!-- <md-checkbox ng-model="vm.isDBaaSMulticast" aria-label="multicast checkbox">
+                                        Multicast
+                                    </md-checkbox> -->
+
+                                    <md-radio-group ng-model="vm.isDBaaSMulticast"
+                                        aria-label="database type radio group" disabled>
+                                        <md-radio-button ng-value="false">Standalone</md-radio-button>
+                                        <md-radio-button ng-value="true">Multi-availability</md-radio-button>
+                                    </md-radio-group>
+                                </div>
+
+                                <div class="container" ng-class="{'visible' : status.loading}"
+                                    ng-if="vm.isDBaaSMulticast">
+                                    <md-progress-linear md-mode="query" ng-disabled="!status.loading">
+                                    </md-progress-linear>
+                                    <div class="bottom-block" flex>
+                                        <md-grid-list md-cols="6" md-cols-sm="6" md-cols-md="8" md-cols-gt-md="8"
+                                            md-row-height="4:2" md-gutter="8px">
+                                            <md-grid-tile
+                                                ng-repeat="availableTemplate in vm.availableMulticastTemplates"
+                                                md-rowspan="1" md-colspan="2"
+                                                ng-class="{'md-list-item-selected': vm.selectedIndex===$index}"
+                                                ng-click="onImageSelected(availableTemplate, $index, $event)">
+                                                <span class="text-inside-grid">
+                                                    <md-icon class="material-icons md-48"
+                                                        md-svg-src='{{::getEngineIcon(availableTemplate)}}'
+                                                        aria-label="engine">
+                                                    </md-icon>
+                                                    <b>{{ availableTemplate.name }}</b>
+                                                </span>
+                                            </md-grid-tile>
+                                        </md-grid-list>
+                                    </div>
+                                </div>
+
+                                <div class="container" ng-class="{'visible' : status.loading}"
+                                    ng-if="!vm.isDBaaSMulticast">
+                                    <md-progress-linear md-mode="query" ng-disabled="!status.loading">
+                                    </md-progress-linear>
+                                    <div class="bottom-block" flex>
+                                        <md-grid-list md-cols="6" md-cols-sm="6" md-cols-md="8" md-cols-gt-md="8"
+                                            md-row-height="4:2" md-gutter="8px">
+                                            <md-grid-tile ng-repeat="availableTemplate in vm.availableTemplates"
+                                                md-rowspan="1" md-colspan="2"
+                                                ng-class="{'md-list-item-selected': vm.selectedIndex===$index}"
+                                               
+                                                ng-click="onImageSelected(availableTemplate, $index, $event)">
+                                                <span class="text-inside-grid">
+                                                    <md-icon class="material-icons md-48"
+                                                        md-svg-src='{{::getEngineIcon(availableTemplate)}}'
+                                                        aria-label="engine">
+                                                    </md-icon>
+                                                    <b>{{ availableTemplate.name }}</b>
+                                                </span>
+                                            </md-grid-tile>
+                                        </md-grid-list>
+                                    </div>
+                                </div>
+
+                 </div>
+                               
+
+
+                               <div  class="md-padding" layout="row">
+
+                                        <div  layout-align="start center" flex="40">
+                                            <p > <b>{{ 'dbaas.nuova.database.opzione.seleziona' | translate}}</b>  </p>
+                                            
+                                            <md-radio-group ng-model="nomeVM.partambiente" ng-change="buildName()">
+                                            <md-radio-button value="prd" class="md-primary">{{ 'dbaas.nuova.database.opzione.prd' | translate}}</md-radio-button>
+                                            <md-radio-button value="tst" class="md-primary">{{ 'dbaas.nuova.database.opzione.tst' | translate}}</md-radio-button>
+                                            <md-radio-button value="dev" class="md-primary">{{ 'dbaas.nuova.database.opzione.dev' | translate}}</md-radio-button>
+                                            <md-radio-button value="col" class="md-primary">{{ 'dbaas.nuova.database.opzione.col' | translate}}</md-radio-button>
+                                            </md-radio-group>
+                                        </div>
+                                        
+                                        <div  layout-align="start center" flex="30" ng-if="nomeVM.partambiente && vm.selectedTemplate">
+                                            <p ><b>{{ 'dbaas.nuova.database.codice_progressivo.inserisci' | translate}}</b> </p>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label>{{ 'dbaas.nuova.database.codice_progressivo.titolo' | translate}}</label>
+                                                <input name="progressivo" ng-model="nomeVM.partProgressivo" placeholder="123" 
+                                                ng-change="buildName()"
+                                                    required ng-pattern="/^[0-9]{3}$/" md-maxlength="3" limit-to="3"> 
+
+                                                <div ng-messages="dbaasForm.progressivo.$error" role="alert" multiple>
+                                                <div ng-message="required" class="my-message">{{ 'dbaas.nuova.database.codice_progressivo.required' | translate}}</div>
+                                                <div ng-message="pattern" class="my-message">{{ 'dbaas.nuova.database.codice_progressivo.pattern' | translate}}
+                                                    
+                                                </div>
+                                                <div ng-message="md-maxlength" class="my-message">
+                                                    {{ 'dbaas.nuova.database.codice_progressivo.maxlength' | translate}}
+                                                </div>
+                                                </div>
+        
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="30"></div>
+
+                               </div>
+                               
+
+                                
+
+
+
+
+                        <div  class="md-padding" ng-cloak   ng-if="nomeVM.partambiente && vm.selectedTemplate">
+
+                                <br />
+
+                                <p>
+                                   <b>{{ 'dbaas.nuova.database.istanza.titolo' | translate}}:</b> 
+                                </p>
+
+                                <div layout="column">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>insert_comment</md-icon>
+                                        <label>{{ 'dbaas.nuova.database.istanza.titolo' | translate}}</label>
+                                        <input id="vmname" ng-model="vm.selectedVmName" name="vmname"
+                                            ng-change="onChangeNomeDbaas()"
+                                            ng-readonly="true"
+                                            
+                                           
+                                            required placeholder="{{ 'dbaas.nuova.database.istanza.placeholder' | translate}}"
+                                            >
+                                            <!-- pattern ="[a-z][a-z0-9]*" -->
+
+                                        <div ng-messages="dbaasForm.vmname.$error" role="alert" multiple>
+                                            <div ng-message="required" class="my-message">
+                                                {{ 'dbaas.nuova.database.istanza.required' | translate}}
+                                            </div>
+                                            <div ng-message="md-maxlength" class="my-message">
+                                                {{ 'dbaas.nuova.database.istanza.maxlength' | translate}}
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                        </div>
+
+                                <!-- <div class="container" ng-class="{'visible' : status.loading}">
+                                    <md-progress-linear md-mode="query" ng-disabled="!status.loading">
+                                    </md-progress-linear>
+                                    <div class="bottom-block">
+                                        <md-list class="md-dense" flex>
+                                            <md-list-item class="md-2-line"
+                                                ng-click="onImageSelected(availableTemplate, $index, $event)"
+                                                ng-repeat="availableTemplate in vm.availableTemplates | orderBy:'name'"
+                                                ng-class="{'md-list-item-selected': vm.selectedIndex===$index}">
+                                                <md-icon class="material-icons md-48"
+                                                    md-svg-src='{{::getEngineIcon(availableTemplate)}}'
+                                                    aria-label="engine"></md-icon>
+                                                <div class="md-list-item-text">
+                                                    <h3>{{ availableTemplate.name }}</h3>
+                                                    <p> {{ availableTemplate.softwareDescription }} </p>
+                                                </div>
+                                            </md-list-item>
+                                        </md-list>
+                                    </div>
+                                </div> -->
+
+                                <br />
+
+
+                                <div class="pull-right" ng-if="vm.selectedVmName && vm.selectedTemplate && validName">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(1)">
+                                        {{ 'avanti' | translate}}
+                                        <md-icon ng-style="iconStyle" class="material-icons">keyboard_arrow_right
+                                        </md-icon>
+                                    </md-button>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="{{ 'dbaas.nuova.tipo_istanza.titolo' | translate}}" ng-disabled="!(vm.selectedVmName && vm.selectedTemplate && validName)">
+                            <md-content class="md-padding">
+                               
+                                <!-- <p>
+                                        Puoi selezionare uno dei possibili dimensionamenti che includono il numero
+                                        di CPU, la quantit&agrave; di memoria RAM, lo spazio su disco, ecc.
+                                    </p> -->
+
+                                <!-- <p class="md-caption">
+                                        <md-icon>warning</md-icon>
+                                        Ricordati che le risorse potranno essere incrementate ma non ridotte senza dover
+                                        distruggere l'istanza di database per ricrearla da zero.
+                                    </p> -->
+
+                                <!-- <br /> -->
+
+                                <md-card>
+                                    <md-toolbar class="md-table-toolbar alternate">
+                                        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                                            <div flex>
+                                                <span ng-show="vm.selectedSize.length && options.rowSelection">
+                                                    <b>{{ 'dbaas.nuova.tipo_istanza.selezionato' | translate}}:</b> {{vm.selectedSize[0].descrizione}}
+                                                </span>
+                                                <span ng-hide="vm.selectedSize.length && options.rowSelection">
+                                                    <b>{{ 'dbaas.nuova.tipo_istanza.sottotitolo' | translate}}</b> 
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </md-toolbar>
+
+                                    <md-table-container>
+                                        <table md-table md-row-select="options.rowSelection"
+                                            multiple="{{options.multiSelect}}" ng-model="vm.selectedSize"
+                                            md-progress="promise">
+                                            <thead ng-if="!options.decapitate" md-head md-order="query.order">
+                                                <tr md-row>
+                                                    <th md-column><span>{{ 'dbaas.nuova.tipo_istanza.tipo' | translate}}</span></th>
+                                                    <th md-column><span>{{ 'dbaas.nuova.tipo_istanza.vcpus' | translate}}</span></th>
+                                                    <th md-column><span>{{ 'dbaas.nuova.tipo_istanza.ram' | translate}}</span></th>
+                                                    <th md-column><span>{{ 'dbaas.nuova.tipo_istanza.disco' | translate}}</span></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody md-body>
+                                                <tr md-row md-select="availableSizing.item"
+                                                    md-auto-select="options.autoSelect" md-on-select="onFlavourSelected"
+                                                    ng-repeat="availableSizing in vm.availableSizings | orderBy:['cpusOrderBy','ramOrderBy']">
+                                                    <td md-cell>{{availableSizing.item.nome}}</td>
+                                                    <td md-cell>
+                                                        {{availableSizing.item.vcpus}}
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{availableSizing.item.ram}}
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{availableSizing.item.disco}}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </md-table-container>
+                                </md-card>
+
+                                <div class="pull-left" >
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(0)">
+                                        <md-icon ng-style="iconStyle" class="material-icons">chevron_left
+                                        </md-icon> {{ 'indietro' | translate}}
+                                    </md-button>
+                                </div>
+
+                                <div class="pull-right" ng-if="vm.selectedSize.length">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(2)">
+                                        {{ 'avanti' | translate}}
+                                        <md-icon ng-style="iconStyle" class="material-icons">keyboard_arrow_right
+                                        </md-icon>
+                                    </md-button>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="{{ 'dbaas.nuova.spazio.titolo' | translate}}"
+                            ng-disabled="!(vm.selectedVmName && vm.selectedTemplate && validName)">
+                            <md-content class="md-padding">
+                                <p>
+                                    {{ 'dbaas.nuova.spazio.scegli' | translate}}
+                                </p>
+
+                                <!-- <p>
+                                    Puoi selezionare la dimensione del disco, il tipo e le opzioni relative alla
+                                    crittografia dei dati.
+                                </p> -->
+
+                                <!-- <p class="md-caption">
+                                    <md-icon>warning</md-icon>
+                                    Ricordati che le opzioni relative alla crittografia non potranno essere modificate
+                                    senza dover
+                                    distruggere il database per ricrearla da zero.
+                                </p> -->
+
+                                <md-card>
+                                    <table md-table>
+                                        <thead md-head>
+                                            <tr md-row>
+                                                <th md-column>{{ 'dbaas.nuova.spazio.dimensione' | translate}}</th>
+                                                <th md-column>{{ 'dbaas.nuova.spazio.tipologia' | translate}}</th>
+                                                <!-- <th md-column>Crittografia</th> -->
+                                                <th md-column></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody md-body>
+                                            <tr md-row>
+                                                <td md-cell>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label>{{ 'dbaas.nuova.spazio.dimensione_disco' | translate}}</label>
+                                                        <md-select ng-model="vm.selectedDiskSize">
+                                                            <md-option
+                                                                ng-repeat="opt in vm.availableDiskSizings | filter: greaterThan"
+                                                                value="{{opt}}">
+                                                                {{opt}}
+                                                            </md-option>
+                                                        </md-select>
+                                                    </md-input-container>
+                                                </td>
+                                                <td md-cell>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label>{{ 'dbaas.nuova.spazio.tipologia_disco' | translate}}</label>
+                                                        <md-select ng-model="vm.selectedDiskType">
+                                                            <md-option ng-repeat="opt in vm.availableDiskTypes"
+                                                                value="{{opt.id}}">
+                                                                {{opt.name}} - {{opt.description}}
+                                                            </md-option>
+                                                        </md-select>
+                                                    </md-input-container>
+                                                </td>
+                                                <!-- <td md-cell>
+                                                    <md-switch class="md-primary" ng-model="vm.enableCryptography"
+                                                        aria-label="Abilita la crittografia">
+                                                        Abilita
+                                                    </md-switch>
+                                                </td> -->
+                                                <td md-cell>
+                                                    <md-button class="md-icon-button md-warn" disabled>
+                                                        <md-icon></md-icon>
+                                                    </md-button>
+                                                </td>
+                                            </tr>
+                                            <tr md-row ng-if="vm.additionalStorages"
+                                                ng-repeat="n in [] | range:vm.additionalStorages">
+                                                <td md-cell>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label>{{ 'dbaas.nuova.spazio.dimensione_disco' | translate}}</label>
+                                                        <md-select ng-model="vm.selectedAdditionalStoragesSize[$index]">
+                                                            <md-option ng-repeat="opt in vm.availableDiskSizings"
+                                                                value="{{opt}}">
+                                                                {{opt}}GB
+                                                            </md-option>
+                                                        </md-select>
+                                                    </md-input-container>
+                                                </td>
+                                                <td md-cell>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label>{{ 'dbaas.nuova.spazio.tipologia_disco' | translate}}</label>
+                                                        <md-select ng-model="vm.selectedAdditionalStoragesType[$index]">
+                                                            <md-option ng-repeat="opt in vm.availableDiskTypes"
+                                                                value="{{opt.id}}">
+                                                                {{opt.name}} - {{opt.description}}
+                                                            </md-option>
+                                                        </md-select>
+                                                    </md-input-container>
+                                                </td>
+                                                <!-- <td md-cell>
+                                                    <md-switch class="md-primary" ng-model="vm.enableCryptography"
+                                                        aria-label="Abilita la crittografia">
+                                                        Abilita
+                                                    </md-switch>
+                                                </td> -->
+                                                <td md-cell>
+                                                    <md-button class="md-icon-button md-warn"
+                                                        ng-click="onAdditionalStorageRemoved($index)"
+                                                        aria-label="{{ 'dbaas.nuova.spazio.rimuovi_disco' | translate}}">
+                                                        <md-icon>highlight_off</md-icon>
+                                                        <md-tooltip md-direction="top">{{ 'dbaas.nuova.spazio.rimuovi_disco' | translate}}
+                                                        </md-tooltip>
+                                                    </md-button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </md-card>
+                                <div layout="row" ng-if="additionalStorageEnabled">
+                                    <md-button class="md-raised" ng-click="onAdditionalStorageAdded()">
+                                        <md-icon ng-style="iconStyle" class="material-icons">add
+                                        </md-icon> {{ 'dbaas.nuova.spazio.aggiungi_disco' | translate}}
+                                    </md-button>
+                                </div>
+
+                                <div class="pull-left" ng-if="vm.selectedSize.length">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(1)">
+                                        <md-icon ng-style="iconStyle" class="material-icons">chevron_left
+                                        </md-icon> {{ 'indietro' | translate}}
+                                    </md-button>
+                                </div>
+
+                                <div class="pull-right" ng-if="vm.selectedDiskSize && vm.selectedDiskType">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(3)">
+                                        {{ 'avanti' | translate}}
+                                        <md-icon ng-style="iconStyle" class="material-icons">keyboard_arrow_right
+                                        </md-icon>
+                                    </md-button>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="{{ 'dbaas.nuova.dettagli.titolo' | translate}}" ng-disabled="!(vm.selectedVmName && vm.selectedTemplate && validName)">
+                            <md-content class="md-padding">
+                                <p>
+                                    {{ 'dbaas.nuova.dettagli.schema.nome' | translate}}
+                                </p>
+
+                                <div layout="column">
+                                    <!-- al momento lo nascondo https://tree.taiga.io/project/dadone72-nivola-service-portal/issue/313 -->
+                                    <md-input-container class="md-block" flex-gt-sm ng-show="false" >
+                                        <md-icon>dns</md-icon>
+                                        <label>{{ 'dbaas.nuova.dettagli.schema.principale' | translate}}</label>
+                                        <input id="schema" ng-model="vm.istanza.schema" name="schema" tabindex="1" required
+                                            md-maxlength="50" placeholder="{{ 'dbaas.nuova.dettagli.schema.placeholder' | translate}}">
+
+                                        <div ng-messages="dbaasForm.schema.$error" role="alert" multiple>
+                                            <div ng-message="required" class="my-message">
+                                                {{ 'dbaas.nuova.dettagli.schema.required' | translate}}
+                                            </div>
+                                            <div ng-message="md-maxlength" class="my-message">
+                                                {{ 'dbaas.nuova.dettagli.schema.maxlength' | translate}}
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+
+                                <!-- <p>
+                                    Password utente root
+                                </p> -->
+
+                                <!-- <div layout="row">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>lock_open</md-icon>
+                                        <label>Password utente root</label>
+                                        <input ng-model="vm.istanza.rootPassword" name="rootPassword" tabindex="2"
+                                            required md-maxlength="50" type="password"
+                                            placeholder="specificare la password di root">
+
+                                        <div ng-messages="dbaasForm.rootPassword.$error" role="alert" multiple>
+                                            <div ng-message="required" class="my-message">
+                                                Devi specificare la password
+                                            </div>
+                                            <div ng-message="md-maxlength" class="my-message">
+                                                La password specificata &egrave; troppo lunga
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>lock_open</md-icon>
+                                        <label>Verifica password</label>
+                                        <input ng-model="vm.istanza.checkPassword" name="checkPassword" tabindex="3"
+                                            required md-maxlength="50" type="password"
+                                            placeholder="Verifica la password di root"
+                                            compare-to="vm.istanza.rootPassword">
+
+                                        <div ng-messages="dbaasForm.checkPassword.$error" role="alert" multiple>
+                                            <div ng-message="required" class="my-message">
+                                                Devi specificare la password
+                                            </div>
+                                            <div ng-message="compareTo" class="my-message">
+                                                La password non corrisponde!
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div> -->
+
+                                <p>
+                                    {{ 'dbaas.nuova.dettagli.porta.titolo' | translate}}
+                                </p>
+
+                                <div layout="column">
+                                 <!-- al momento lo nascondo https://tree.taiga.io/project/dadone72-nivola-service-portal/issue/313 -->
+                                    <md-input-container class="md-block" flex-gt-sm ng-disabled="true">
+                                        <md-icon>hearing</md-icon>
+                                        <label>{{ 'dbaas.nuova.dettagli.porta.default' | translate}}</label>
+                                        <input id="defaultPort" ng-model="vm.istanza.defaultPort" name="defaultPort" tabindex="4"
+                                            required type="number" step="1" min="1000" max="99999"
+                                            placeholder="{{ 'dbaas.nuova.dettagli.porta.placeholder' | translate}}" disabled>
+                                        <div ng-messages="dbaasForm.defaultPort.$error" role="alert">
+                                            <div ng-message="required" class="my-message">
+                                                {{ 'dbaas.nuova.dettagli.porta.required' | translate}}
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="pull-left" >
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(2)">
+                                        <md-icon ng-style="iconStyle" class="material-icons">chevron_left
+                                        </md-icon> {{ 'indietro' | translate}}
+                                    </md-button>
+                                </div>
+
+                                <div class="pull-right" ng-if="vm.istanza.schema && vm.istanza.defaultPort">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(4)">
+                                        {{ 'avanti' | translate}}
+                                        <md-icon ng-style="iconStyle" class="material-icons">keyboard_arrow_right
+                                        </md-icon>
+                                    </md-button>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="{{ 'dbaas.nuova.info.titolo' | translate}}" ng-disabled="!(vm.selectedVmName && vm.selectedTemplate && validName)">
+                            <md-content class="md-padding">
+                                <p>
+                                    {{ 'dbaas.nuova.info.scegli_region' | translate}}
+                                </p>
+
+                                <div layout="row">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>public</md-icon>
+                                        <label>{{ 'dbaas.nuova.info.region' | translate}}</label>
+                                        <md-select ng-model="vm.selectedRegion" ng-change="onInfoDbChanged('region')">
+                                            <md-option ng-repeat="opt in vm.availableRegions" value="{{opt.id}}">
+                                                {{opt.description}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>location_on</md-icon>
+                                        <label>{{ 'dbaas.nuova.info.zone' | translate}}</label>
+                                        <md-select ng-model="vm.selectedAvailabilityZone"
+                                            ng-change="onInfoDbChanged('az')">
+                                            <md-option
+                                                ng-repeat="opt in vm.availableAvailabilityZones | filter: {regionName: vm.selectedRegion}"
+                                                value="{{opt.id}}">
+                                                {{opt.description}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+
+                                <p>
+                                    {{ 'dbaas.nuova.info.scegli_subnet' | translate}}
+                                </p>
+
+                                <div layout="column">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>router</md-icon>
+                                        <label>{{ 'dbaas.nuova.info.subnet' | translate}}</label>
+                                        <md-select ng-model="vm.selectedSubnet" ng-change="onInfoDbChanged('subnet')">
+                                            <md-option
+                                                ng-repeat="opt in vm.availableSubnets | filter: {availabilityZone: fromIdToObj(vm.availableAvailabilityZones, vm.selectedAvailabilityZone).description}"
+                                                value="{{opt.id}}">
+                                                {{opt.description}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+
+                                <div layout="row"
+                                    ng-if="vm.isDBaaSMulticast && vm.selectedAdditionalAvailabilityZones.length < vm.availableAvailabilityZones.length - 1">
+                                    <md-button class="md-raised" ng-click="onAdditionalAvailabilityZoneAdded()">
+                                        <md-icon ng-style="iconStyle" class="material-icons">add
+                                        </md-icon> {{ 'dbaas.nuova.info.aggiungi_zone' | translate}}
+                                    </md-button>
+                                </div>
+
+                                <div ng-if="vm.isDBaaSMulticast && vm.additionalAvailabilityZones"
+                                    ng-repeat="n in [] | range:vm.additionalAvailabilityZones"
+                                    ng-if="!vm.isDBaaSMulticast">
+
+                                    <p>
+                                        {{ 'dbaas.nuova.info.scegli_region' | translate}}
+                                    </p>
+
+                                    <div layout="row">
+                                        <md-input-container class="md-block" flex-gt-sm>
+                                            <md-icon>location_on</md-icon>
+                                            <label>{{ 'dbaas.nuova.info.region' | translate}}</label>
+                                            <md-select ng-model="vm.selectedAdditionalRegions[$index]">
+                                                <md-option ng-repeat="opt in vm.availableRegions" value="{{opt.id}}">
+                                                    {{opt.description}}
+                                                </md-option>
+                                            </md-select>
+                                        </md-input-container>
+
+                                        <md-input-container class="md-block" flex-gt-sm>
+                                            <md-icon>location_on</md-icon>
+                                            <label>{{ 'dbaas.nuova.info.zone' | translate}}</label>
+                                            <md-select ng-model="vm.selectedAdditionalAvailabilityZones[$index]">
+                                                <md-option
+                                                    ng-repeat="opt in vm.availableAvailabilityZones | filter: azFilter "
+                                                    value="{{opt.id}}">
+                                                    {{opt.description}}
+                                                </md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+
+                                    <p>
+                                        {{ 'dbaas.nuova.info.scegli_subnet' | translate}}
+                                    </p>
+
+                                    <div layout="column">
+                                        <md-input-container class="md-block" flex-gt-sm>
+                                            <md-icon>router</md-icon>
+                                            <label>{{ 'dbaas.nuova.info.subnet' | translate}}</label>
+                                            <md-select ng-model="vm.selectedAdditionalSubnets[$index]">
+                                                <md-option ng-repeat="opt in vm.availableSubnets" value="{{opt.id}}">
+                                                    {{opt.description}}
+                                                </md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+
+                                    <md-button class="md-icon-button md-warn"
+                                        ng-click="onAdditionalAvailabilityZoneRemoved($index)"
+                                        aria-label="rimuovi disco aggiuntivo">
+                                        <md-icon>highlight_off</md-icon>
+                                        <md-tooltip md-direction="top">{{ 'dbaas.nuova.info.rimuovi_disco' | translate}}
+                                        </md-tooltip>
+                                    </md-button>
+                                </div>
+
+                                <br />
+
+                                <p>
+                                    {{ 'dbaas.nuova.info.scegli_security_group' | translate}}
+                                </p>
+
+                                <div layout="column">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>security</md-icon>
+                                        <label>{{ 'dbaas.nuova.info.security_group' | translate}}</label>
+                                        <md-select ng-model="vm.selectedSecurityGroup">
+                                            <md-option
+                                                ng-repeat="group in vm.availableSecurityGroups  | filter: {vpcId: fromIdToObj(vm.availableSubnets, vm.selectedSubnet).vpcId}"
+                                                value="{{group.id}}">
+                                                {{group.description}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+
+                                <br />
+
+                                <div class="pull-left" >
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(3)">
+                                        <md-icon ng-style="iconStyle" class="material-icons">chevron_left
+                                        </md-icon> {{ 'indietro' | translate}}
+                                    </md-button>
+                                </div>
+
+                                <div class="pull-right"
+                                    ng-if="vm.selectedRegion && vm.selectedAvailabilityZone && vm.selectedSubnet && vm.selectedSecurityGroup">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(5)">
+                                        <md-icon ng-style="iconStyle" class="material-icons">keyboard_arrow_right
+                                        </md-icon> {{ 'avanti' | translate}}
+                                    </md-button>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <!-- <md-tab label="6. Tags" ng-disabled="!(vm.selectedVmName && vm.selectedTemplate && validName)">
+                            <md-content class="md-padding">
+                                <p>
+                                    Assegna dei tag alla virtual machine che stai creando.
+                                </p>
+
+                                <div>
+                                    <md-chips ng-model="vm.tags" name="tags" readonly="status.tagsReadOnly"
+                                        md-removable="status.tagsRemovable" md-max-chips="10"
+                                        placeholder="Inserisci un tag ...">
+                                        <md-chip-template>
+                                            <strong>{{$chip}}</strong>
+                                            &nbsp;
+                                        </md-chip-template>
+                                    </md-chips>
+                                </div>
+
+                                <br />
+
+                                <div class="pull-right">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(6)">
+                                        <md-icon ng-style="iconStyle" class="material-icons">
+                                            keyboard_arrow_right
+                                        </md-icon>
+                                        VAI A RIEPILOGO
+                                    </md-button>
+                                </div>
+                            </md-content>
+                        </md-tab> -->
+                        <md-tab label="{{ 'dbaas.nuova.riepilogo.titolo' | translate}}"  md-on-select="actions.onTabSelected(6)" 
+                            ng-disabled="!(vm.selectedVmName && vm.selectedTemplate && vm.selectedRegion && vm.selectedAvailabilityZone && vm.selectedSubnet && vm.selectedSecurityGroup && validName)">
+                            <md-content class="md-padding">
+                                <!-- <p>
+                                    Scegli la tecnologia di virtualizzazione.
+                                </p> -->
+
+                                <!-- <md-input-container class="md-block" flex-gt-sm>
+                                    <md-icon>memory</md-icon>
+                                    <label>Tecnologia di Virtualizzazione</label>
+                                    <md-select ng-model="vm.selectedVirtualizationOption" ng-disabled="true">
+                                        <md-option ng-repeat="opt in vm.availableVirtualizationOptions" value="{{opt.id}}">
+                                            {{opt.description}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container> -->
+
+                                <!-- <br /> -->
+
+                                <p>
+                                    {{ 'dbaas.nuova.riepilogo.sottotitolo' | translate}}
+                                </p>
+
+                                <div layout="row" layout-align="space-around start">
+                                    <md-card>
+                                        <md-table-container>
+                                            <table md-table>
+                                                <thead md-head>
+                                                    <tr md-row>
+                                                        <th md-column><span>{{ 'dbaas.nuova.riepilogo.proprieta' | translate}}</span></th>
+                                                        <th md-column><span>{{ 'dbaas.nuova.riepilogo.valore' | translate}}</span></th>
+                                                        <th md-column><span>{{ 'dbaas.nuova.riepilogo.modifica' | translate}}</span></th>
+                                                        <th md-column><span layout="row" layout-align="center">{{ 'dbaas.nuova.riepilogo.costi_stimati' | translate}}</span></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody md-body>
+                                                    <!-- FQDN (Nome VM) -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>computer</md-icon>
+                                                                    <b>{{ 'dbaas.nuova.riepilogo.fqdn' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{vm.selectedVmName.toLowerCase()}}.{{fromIdToObj(vm.availableAvailabilityZones, vm.selectedAvailabilityZone).site.toLowerCase()}}.nivolapiemonte.it
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(0)"
+                                                                aria-label="{{ 'dbaas.nuova.riepilogo.modifica_nome' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'dbaas.nuova.riepilogo.modifica_nome' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">-</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- RDBMS -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>memory</md-icon>
+                                                                    <b>{{ 'dbaas.nuova.riepilogo.rdbms' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{ vm.selectedTemplate.name }}
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(0)"
+                                                                aria-label="modifica template">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'dbaas.nuova.riepilogo.modifica_template' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">{{ 'dbaas.nuova.riepilogo.costo_incluso' | translate}}</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Porta -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>hearing</md-icon>
+                                                                    <b>{{ 'dbaas.nuova.riepilogo.porta' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{ vm.istanza.defaultPort }}
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(3)"
+                                                                aria-label="modifica template" ng-show="false">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'dbaas.nuova.riepilogo.modifica_template' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">-</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Tipo Istanza -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>tune</md-icon>
+                                                                    <b>{{ 'dbaas.nuova.riepilogo.tipo_istanza' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            vcpus:{{vm.selectedSize[0].vcpus}} ram:{{vm.selectedSize[0].ram}} 
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(1)"
+                                                                aria-label="{{ 'dbaas.nuova.riepilogo.modifica_tipo_istanza' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'dbaas.nuova.riepilogo.modifica_tipo_istanza' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <nobr>
+                                                                    <h6 class="md-subhead">
+                                                                        {{costi.costoTotaleCpu + costi.costoTotaleRam | number : 2}} {{ 'dbaas.nuova.riepilogo.costo_al_mese' | translate}}
+                                                                    </h6>
+                                                                </nobr>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Disco -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>storage</md-icon>
+                                                                    <b>{{ 'dbaas.nuova.riepilogo.disco' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{fromIdToObj(vm.availableDiskTypes, vm.selectedDiskType).description}}:
+                                                            {{vm.selectedDiskSize}}GB
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(2)"
+                                                                aria-label="{{ 'dbaas.nuova.riepilogo.modifica_disco' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'dbaas.nuova.riepilogo.modifica_disco' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell ng-if="vm.additionalStorages">
+                                                            <div layout="column" layout-align="center center">
+                                                                <nobr>
+                                                                    <h6 class="md-subhead">
+                                                                       -
+                                                                    </h6>
+                                                                </nobr>
+                                                            </div>
+                                                        </td>
+                                                        <td md-cell ng-if="!vm.additionalStorages">
+                                                            <div layout="column" layout-align="center center">
+                                                                <nobr>
+                                                                    <h6 class="md-subhead">
+                                                                        {{ costi.gbDiscoBase * costi.costoUnitarioDiscoBase + costi.gbDiscoPrestazionale * costi.costoUnitarioDiscoPrestazionale | number : 2}} {{ 'dbaas.nuova.riepilogo.costo_al_mese' | translate}}
+                                                                    </h6>
+                                                                </nobr>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Disco Aggiuntivo -->
+                                                    <tr md-row ng-if="vm.additionalStorages"
+                                                        ng-repeat="n in [] | range:vm.additionalStorages">
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>storage</md-icon>
+                                                                    <b>{{ 'dbaas.nuova.riepilogo.disco_aggiuntivo' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{fromIdToObj(vm.availableDiskTypes, vm.selectedAdditionalStoragesType[$index]).description}}:
+                                                            {{vm.selectedAdditionalStoragesSize[$index]}}GB
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(2)"
+                                                                aria-label="{{ 'dbaas.nuova.riepilogo.modifica_disco_aggiuntivo' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'dbaas.nuova.riepilogo.modifica_disco_aggiuntivo' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <nobr>
+                                                                    <h6 class="md-subhead">
+                                                                        -
+                                                                        <!-- {{vm.price.disk}} €/mese -->
+                                                                    </h6>
+                                                                </nobr>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Region - A.Z. -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>public</md-icon>
+                                                                    <b>{{ 'dbaas.nuova.riepilogo.region' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{fromIdToObj(vm.availableRegions, vm.selectedRegion).description}}
+                                                            -
+                                                            {{fromIdToObj(vm.availableAvailabilityZones, vm.selectedAvailabilityZone).description}}
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(4)"
+                                                                aria-label="{{ 'dbaas.nuova.riepilogo.modifica_region' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'dbaas.nuova.riepilogo.modifica_region' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">{{ 'dbaas.nuova.riepilogo.costo_incluso' | translate}}</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Subnet -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>router</md-icon>
+                                                                    <b>{{ 'dbaas.nuova.riepilogo.subnet' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{fromIdToObj(vm.availableSubnets, vm.selectedSubnet).description}}
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(4)"
+                                                                aria-label="{{ 'dbaas.nuova.riepilogo.modifica_subnet' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'dbaas.nuova.riepilogo.modifica_subnet' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">{{ 'dbaas.nuova.riepilogo.costo_incluso' | translate}}</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Security Group -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>security</md-icon>
+                                                                    <b>{{ 'dbaas.nuova.riepilogo.security_group' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{fromIdToObj(vm.availableSecurityGroups, vm.selectedSecurityGroup).description}}
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(4)"
+                                                                aria-label="{{ 'dbaas.nuova.riepilogo.modifica_security_group' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'dbaas.nuova.riepilogo.modifica_security_group' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">{{ 'dbaas.nuova.riepilogo.costo_incluso' | translate}}</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                   
+                                                    <!-- <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>label</md-icon>
+                                                                    <b>Tags</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{ vm.tags.toString() }}
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(4)"
+                                                                aria-label="modifica tags">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    Modifica Tags
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">-</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr> -->
+                                                </tbody>
+                                            </table>
+                                        </md-table-container>
+                                    </md-card>
+
+                                    <md-card>
+                                        <md-card-content>
+                                            <div layout="column" layout-align="space-around start">
+                                                <h6 class="md-subhead">
+                                                    <nobr>
+                                                        {{ 'dbaas.nuova.riepilogo.stime_mensile_di' | translate}} <span
+                                                            class="md-title">
+                                                            {{costi.costoTotaleCpu + costi.costoTotaleRam + (costi.gbDiscoBase * costi.costoUnitarioDiscoBase) + (costi.gbDiscoPrestazionale * costi.costoUnitarioDiscoPrestazionale)  | number : 2}} {{ 'dbaas.nuova.riepilogo.costo_al_mese' | translate}}
+                                                            </span>
+                                                    </nobr>
+                                                </h6>
+                                            </div>
+
+                                            <br />
+                                            <md-divider></md-divider>
+                                            <br />
+
+                                            <div layout="column" layout-align="center center" flex>
+                                                <p align="center">
+                                                    <small>
+                                                        {{ 'dbaas.nuova.riepilogo.creazione_msg01' | translate}}
+                                                    </small>
+
+                                                    <br />
+
+                                                    <small>
+                                                        {{ 'dbaas.nuova.riepilogo.creazione_msg02' | translate}}
+                                                    </small>
+                                                </p>
+
+                                                <div layout="column" layout-align="start center" layout-margin
+                                                    ng-if="vm.selectedVirtualizationOption">
+                                                    <div layout="row" layout-sm="column" layout-align="space-around">
+                                                        <md-progress-circular md-mode="indeterminate"
+                                                            ng-if="status.pending">
+                                                        </md-progress-circular>
+                                                    </div>
+                                                    <md-button class="md-raised md-primary" ng-click="submit()"
+                                                        ng-disabled="status.pending">
+                                                        <md-icon ng-style="iconStyle" class="material-icons">
+                                                            keyboard_arrow_right
+                                                        </md-icon> {{ 'dbaas.nuova.riepilogo.creazione_conferma' | translate}}
+                                                    </md-button>
+                                                </div>
+                                            </div>
+                                        </md-card-content>
+                                    </md-card>
+                                </div>
+                            </md-content>
+
+                            <div class="pull-left" >
+                                <md-button class="md-raised" ng-click="actions.gotoTab(4)">
+                                    <md-icon ng-style="iconStyle" class="material-icons">chevron_left
+                                    </md-icon> {{ 'indietro' | translate}}
+                                </md-button>
+                            </div>
+                        </md-tab>
+                    </md-tabs>
+                    <md-divider></md-divider>
+                    <md-card-actions layout="row" layout-align="space-between center">
+                        <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+                            <md-icon class="material-icons">keyboard_backspace</md-icon> {{('abbandona' | translate)}} 
+                        </md-button>
+                    </md-card-actions>
+                </form>
+            </md-card-content>
+        </md-card>
+    </md-content>
+</div>

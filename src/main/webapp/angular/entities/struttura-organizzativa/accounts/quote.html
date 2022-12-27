@@ -1,0 +1,57 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-card>
+    <md-toolbar class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools">
+            <form name="filterQuote.form" flex>
+                <md-input-container class="md-icon-float md-block" flex>
+                    <label>{{ 'ricerca' | translate }}</label>
+                    <md-icon class="material-icons">search</md-icon>
+                    <input id="filterSearch" class="layout-fill" type="text" ng-model="filterQuote.search"
+                        ng-model-options="filterQuote.options" esc-key="resetFilterQuote()">
+                </md-input-container>
+            </form>
+        </div>
+    </md-toolbar>
+   
+    <md-table-container >
+        <table md-table ng-model="selected" md-progress="promise">
+            <thead ng-if="!options.decapitate" md-head md-order="query.order">
+                <tr md-row>
+                    <th md-column md-order-by="servizio"><span>{{ 'accounts.quote.servizio' | translate }}</span></th>
+                    <th md-column md-order-by="quota"><span>{{ 'accounts.quote.quota' | translate }}</span></th>
+                    <th md-column md-order-by="limite"><span>{{ 'accounts.quote.limite' | translate }}</span></th>
+                    <th md-column md-order-by="valore"><span>{{ 'accounts.quote.valore' | translate }}</span></th>
+                    <th md-column md-order-by=""><span>{{ 'accounts.quote.utilizzo' | translate }}</span></th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row md-select="istanza" md-auto-select="options.autoSelect"
+                    ng-repeat="istanza in quote | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                    <td md-cell>{{istanza.servizio}}</td>
+                    <td md-cell>{{istanza.nomeQuota}}</td>
+                    <td md-cell>{{istanza.totale}}</td>
+                    <td md-cell>{{istanza.used}}</td>
+                    <td md-cell> <span flex="80"><md-progress-linear md-mode="determinate" 
+                        ng-class="istanza.colore"
+                        value="{{istanza.percent}}"></md-progress-linear></span flex><span> {{istanza.percent}}% </span></td> 
+        
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+        md-total="{{quote.length}}" md-page-select="options.pageSelect"
+        md-boundary-links="options.boundaryLinks">
+    </md-table-pagination>
+</md-card>
+

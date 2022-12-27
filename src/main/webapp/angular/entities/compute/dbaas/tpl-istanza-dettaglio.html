@@ -1,0 +1,293 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="row" layout-fill layout-align="start start">
+
+    <md-card flex="grow">
+        <md-card-title>
+            <md-card-title-text layout-align="center center">
+	      	    <span class="md-headline"> Istanza DBaaS {{vm.istanza ? ' - ' + vm.istanza.dbName : ''}} </span>
+                <!--<span class="md-subhead"> Visualizza il dettaglio della Virtual Machine </span>-->
+            </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+            <loading-placeholder status="status" ></loading-placeholder>
+
+            <div ng-show="status.loaded">
+
+                <md-tabs md-dynamic-height md-border-bottom md-center-tabs md-selected="status.selectedTabIndex">
+                    <md-tab label="Riepilogo della macchina">
+                        <md-content class="md-padding">
+
+                            <md-grid-list
+                                    md-cols-xs="2" 
+                                    md-cols-sm="6" 
+                                    md-cols-md="10" 
+                                    md-cols-gt-md="12"
+                                    md-row-height-gt-md="2:2" 
+                                    md-row-height="4:4"
+                                    md-gutter="2px" 
+                                    md-gutter-gt-sm="2px" >
+
+                                <md-grid-tile md-rowspan="2" md-colspan="4" md-colspan-sm="3" md-colspan-xs="3">
+
+                                    <md-grid-tile-header>
+                                        <h3>Stato</h3>
+                                    </md-grid-tile-header>
+
+                                    <div layout="column" layout-align="center center">
+
+                                        <p ng-if="vm.istanza.state.code != 16 && vm.istanza.state.code != 80">
+                                        <md-progress-circular md-mode="indeterminate" md-diameter="15"
+                                                              style="display:inline;"
+                                        ></md-progress-circular>
+                                        </p>
+
+                                        <p ng-if="vm.istanza.state.code == 16"><md-icon class="icon-big">play_arrow</md-icon></p>
+                                        <p ng-if="vm.istanza.state.code == 16">La macchina &egrave; in esecuzione ({{vm.istanza.state.name}})</p>
+                                        <p ng-if="vm.istanza.state.code == 80"><md-icon class="icon-big">error_outline</md-icon></p>
+                                        <p ng-if="vm.istanza.state.code != 16" >La macchina non &egrave; in esecuzione ({{vm.istanza.state.name}})</p>
+
+                                        <br/>
+                                    </div>
+
+                                </md-grid-tile>
+
+                                <md-grid-tile md-rowspan="5" md-colspan="4" md-colspan-sm="4" md-colspan-xs="4">
+                                    <md-grid-tile-header>
+                                        <h3>Informazioni sulla macchina</h3>
+                                    </md-grid-tile-header>
+
+                                    <div layout="column" layout-align="center center">
+                                        <p><md-icon class="icon-big">fingerprint</md-icon></p>
+
+										<p>istanza {{vm.istanza.dbName}}</p>
+                                        <p>ID istanza {{vm.istanza.dbInstanceIdentifier}}</p>
+                                        <p>Engine {{vm.istanza.engine}}</p>
+                                        <p>Gruppo di sicurezza {{vm.istanza.dbSecurityGroups[0]}}</p>
+                                    </div>
+
+                                </md-grid-tile>
+
+                                <md-grid-tile md-rowspan="2" md-colspan="4" md-colspan-sm="4" md-colspan-xs="4">
+                                    <md-grid-tile-header>
+                                        <h3>Avvisi</h3>
+                                    </md-grid-tile-header>
+
+                                    <div layout="column" layout-align="center center">
+                                        <p><md-icon class="icon-big" style="color:green;">done</md-icon></p>
+
+                                        <p>Niente da segnalare.</p>
+                                    </div>
+
+                                </md-grid-tile>
+
+                                <md-grid-tile md-rowspan="3" md-colspan="4" md-colspan-sm="4" md-colspan-xs="4">
+                                    <md-grid-tile-header>
+                                        <h3>Snapshots</h3>
+                                    </md-grid-tile-header>
+
+                                    <div layout="column" layout-align="center center">
+                                        <p><md-icon class="icon-big">photo_camera</md-icon></p>
+
+                                        <p>Ci sono 4 snapshot in archivio</p>
+                                    </div>
+                                </md-grid-tile>
+
+                                <md-grid-tile md-rowspan="3" md-colspan="4" ng-if="vm.istanza.tags">
+                                    <md-grid-tile-header>
+                                        <h3>Tags</h3>
+                                    </md-grid-tile-header>
+
+                                    <div layout="column" layout-align="center center">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr ng-repeat="tag in vm.istanza.tags">
+                                                    <td> <md-icon class="icon-big">code</md-icon> </td>
+                                                    <td>{{tag.key}}</td>
+                                                    <td> = </td>
+                                                    <td>{{tag.value ? tag.value : '[non definito]'}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </md-grid-tile>
+
+                            </md-grid-list>
+
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Configurazioni hardware">
+                        <md-content class="md-padding">
+                            <md-list class="" flex>
+
+                                <md-list-item class="md-3-line"
+                                    ng-click="nop"
+                                >
+                                    <md-icon>storage</md-icon>
+                                    <div class="md-list-item-text">
+                                        <h3> Storage space </h3>
+                                        <h4> {{ vm.istanza.allocatedStorage }} GB (default allocation) </h4>
+                                        <p>Criptatura dei dati: {{vm.istanza.storageEncrypted ? 'Sì' : 'No'}}</p>
+                                    </div>
+
+                                </md-list-item>
+
+                                <md-list-item class="md-3-line"
+                                              ng-repeat="resource in vm.istanza.dbSecurityGroups"
+                                              ng-click="nop"
+                                >
+                                    <md-icon>network_wifi</md-icon>
+                                    <div class="md-list-item-text">
+                                        <h3> DBaaS Security Group {{ resource }} </h3>
+                                        <h4> su network DBaaS dedicata </h4>
+                                    </div>
+
+                                </md-list-item>
+
+                                <md-list-item class="md-3-line"
+                                              ng-repeat="resource in vm.istanza.vpcSecurityGroupIds"
+                                              ng-click="nop"
+                                >
+                                    <md-icon>network_wifi</md-icon>
+                                    <div class="md-list-item-text">
+                                        <h3> VPC Security Group {{ resource }} </h3>
+                                        <h4> su network VPC </h4>
+                                    </div>
+
+                                </md-list-item>
+
+                            </md-list>
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab label="Operazioni e manutenzione">
+                        <md-content class="md-padding">
+
+                            <md-list>
+
+                                <md-subheader class="md-no-sticky">
+                                    <!--<md-icon>power_settings_new</md-icon>-->
+                                    Connessione e gestione
+                                </md-subheader>
+
+                                <md-list-item ng-click="todo('', $event)">
+                                    <md-icon>cast</md-icon>
+                                    <p>Collegati al DB</p>
+                                </md-list-item>
+
+                                <md-divider></md-divider>
+
+                                <md-subheader class="md-no-sticky">
+                                    <!--<md-icon>power_settings_new</md-icon>-->
+                                    Opzioni di avvio e spegnimento
+                                </md-subheader>
+
+                                <md-list-item ng-click="actions.doInstanceStart()" ng-hide="vm.istanza.state.code != 80">
+                                    <md-icon>play_arrow</md-icon>
+                                    <p>Avvia l'istanza</p>
+                                </md-list-item>
+                                <md-list-item ng-click="actions.doInstanceRestart()" ng-hide="vm.istanza.state.code != 16 || !status.allowReboot">
+                                    <md-icon>cached</md-icon>
+                                    <p>Riavvia l'istanza</p>
+                                </md-list-item>
+                                <md-list-item ng-click="actions.doInstanceStop()" ng-hide="vm.istanza.state.code != 16">
+                                    <md-icon>stop</md-icon>
+                                    <p>Ferma l'istanza</p>
+                                </md-list-item>
+
+                                <md-divider></md-divider>
+
+                                <md-subheader class="md-no-sticky">
+                                    <!--<md-icon>delete</md-icon>-->
+                                    Archiviazione
+                                </md-subheader>
+
+                                <md-list-item ng-click="todo('', $event)" class="md-accent">
+                                    <md-icon>delete</md-icon>
+                                    <p>Elimina l'istanza</p>
+                                </md-list-item>
+                            </md-list>
+
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Snapshots">
+                        <md-content class="md-padding">
+
+                            <md-list>
+                                <md-subheader class="md-no-sticky">
+                                    <!--<md-icon>power_settings_new</md-icon>-->
+                                    Azioni
+                                </md-subheader>
+
+                                <md-list-item ng-click="todo('new_snapshot')">
+                                    <md-icon>photo_camera</md-icon>
+                                    <p> Acquisisci un nuovo snapshot </p>
+                                </md-list-item>
+
+                                <md-list-item ng-click="todo('delete_snapshots')">
+                                    <md-icon>delete</md-icon>
+                                    <p> Cancella tutti gli snapshots </p>
+                                </md-list-item>
+
+                                <md-subheader class="md-no-sticky">
+                                    <!--<md-icon>power_settings_new</md-icon>-->
+                                    Archivio snapshot
+                                </md-subheader>
+
+                                <md-list-item ng-repeat="snapshot in vm.snapshots">
+                                    <md-icon>photo_camera</md-icon>
+                                    <p> {{snapshot.name}} </p>
+
+                                    <md-menu class="md-secondary">
+                                        <md-button class="md-icon-button">
+                                            <md-icon>build</md-icon>
+                                        </md-button>
+                                        <md-menu-content width="4">
+                                            <md-menu-item>
+                                                <md-button>
+                                                    <md-icon>delete</md-icon>
+                                                    Cancella snapshot
+                                                </md-button>
+                                            </md-menu-item>
+                                            <md-menu-item>
+                                                <md-button>
+                                                    <md-icon>restore</md-icon>
+                                                    Ripristina snapshot
+                                                </md-button>
+                                            </md-menu-item>
+                                        </md-menu-content>
+                                    </md-menu>
+
+                                </md-list-item>
+
+                            </md-list>
+
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab>
+                        <md-tab-label><md-icon>code</md-icon> Dettaglio API</md-tab-label>
+                        <md-tab-body>
+                            <md-content class="md-padding">
+                                <pre id="custom-spacing">{{ vm.istanza | json:4 }}</pre>
+                            </md-content>
+                        </md-tab-body>
+                    </md-tab>
+
+
+                </md-tabs>
+
+            </div>
+        </md-card-content>
+    </md-card>
+
+</div>

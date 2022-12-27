@@ -1,0 +1,52 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-card>
+   
+    <md-table-container >
+        <table md-table ng-model="selected" md-progress="promise">
+            <thead ng-if="!options.decapitate" md-head md-order="query.order">
+                <tr md-row>
+                    <th md-column md-order-by="dataInizioAssociazione"><span>{{ 'accounts.wbs.dataI' | translate }}</span></th>
+                    <th md-column md-order-by="dataFineAssociazione"><span>{{ 'accounts.wbs.dataF' | translate }}</span></th>
+                    <th md-column md-order-by="ewbs"><span>{{ 'accounts.wbs.wbs' | translate }}</span></th>
+                    <th md-column md-order-by="committente"><span>{{ 'accounts.wbs.cliente' | translate }}</span></th>
+                    <th md-column md-order-by="ewbsPerc"><span>{{ 'accounts.wbs.percentage' | translate }}</span></th>
+                    <!-- <th md-column></th> -->
+                    
+                </tr>
+            </thead>
+            <tbody   md-body>
+                <tr md-row md-select="istanza" md-auto-select="options.autoSelect"
+                    ng-repeat="item in elencoWbs | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                    <td md-cell>{{item.dataInizioAssociazione | date:'dd/MM/yyyy'}}</td>
+                    <td md-cell>{{item.dataFineAssociazione | date:'dd/MM/yyyy'}}</td>
+                    <td md-cell>{{item.ewbs}}</td>
+                    <td md-cell>{{item.committente}}</td>
+                    <td md-cell>{{item.ewbsPerc*100}}</td>
+                    <!-- <td md-cell>
+                        <md-button type="button" ng-click="actions.revocaAssociaWbs( item.id )"
+                            class="md-icon-button md-accent">
+                            <md-tooltip>{{ 'accounts.wbs.revoke.label' | translate }}</md-tooltip>
+                            <md-icon style="color: rgb(194, 20, 20);">delete</md-icon>
+                        </md-button>
+                    </td> -->
+                    
+                    
+        
+                </tr>
+              
+                
+            </tbody>
+        </table>
+    </md-table-container>
+    <h5 ng-if="elencoWbs.length==0" class="warn-color">{{ 'accounts.wbs.emptylist' | translate }}</h5>
+</md-card>
+

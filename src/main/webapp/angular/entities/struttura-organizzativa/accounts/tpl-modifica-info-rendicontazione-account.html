@@ -1,0 +1,162 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="row" layout-fill layout-align="start start">
+    <md-card flex="grow">
+        <md-card-content>
+            <!-- aggiungere InfoRendicontazione  -->
+            <div class="b-all m-t-20" id="editInfoRendicontazione">
+                <form name="formEditInfoRendicontazione" novalidate>
+                    <div class="bg-warning m-0">
+                        <h4 class="m-t-0 m-l-10 p-t-10 p-b-10 " style="color:white"> 
+                            {{ 'accounts.info_rendicontazione.modifica.titolo' | translate }} {{accountName | uppercase}}
+                        </h4>
+                    </div>
+                    <div layout="row" class="m-l-10 m-r-10 m-t-20">
+                        <div flex="50" class="m-r-10">
+                            <b>{{ 'accounts.info_rendicontazione.metrica' | translate }} </b>
+                            <div class="m-t-10 b-t b-r b-r" style="background-color: lightgrey;">
+                                <md-input-container class="md-block" flex-gt-sm  >   
+                                    <label>{{ 'accounts.info_rendicontazione.metrica' | translate }}</label>
+                                    <md-select ng-model="nInfoRendicontazione.metrica" ng-disabled="true" >
+                                        <md-option ng-repeat="m in metriche | orderBy : 'metrica'" ng-value="m">
+                                            {{m.descrizione}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div flex="50"
+                            ng-show="nInfoRendicontazione.metrica !=null && nInfoRendicontazione.metrica.elencoValoriAmmessi !=null && nInfoRendicontazione.metrica.elencoValoriAmmessi.length > 0">
+                            <b>{{ 'accounts.info_rendicontazione.livello_tenant' | translate }} </b>
+                            <div class="m-t-10 b-t b-r b-r" style="background-color: lightgrey;">
+                                <md-input-container class="md-block" flex-gt-sm  >
+                                    <label>{{ 'accounts.info_rendicontazione.livello' | translate }}</label>
+                                    <md-select ng-model="nInfoRendicontazione.livelloTenant" ng-disabled="true">
+                                        <md-option ng-repeat="mInfo in nInfoRendicontazione.metrica.elencoValoriAmmessi"
+                                            value="{{mInfo.codice}}">
+                                            {{mInfo.etichetta}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="row" class="m-l-10 m-r-10 m-t-20">
+                        <div flex="50" class="m-r-10">
+                            <b>{{ 'accounts.info_rendicontazione.data_inizio' | translate }}</b>
+                            <div class="m-t-10 b-all" style="background-color: lightgrey;"> 
+                                <md-input-container class="md-icon-float md-block md-column-2" flex ng-disabled="true" >
+                                    <label>{{ 'accounts.info_rendicontazione.data_inizio' | translate }}</label>
+                                    <md-datepicker ng-model="nInfoRendicontazione.dataInizio"
+                                        md-max-date="nInfoRendicontazione.dataInizioMax" name="dataInizio"
+                                        ng-change="onChangeDataInizio()" required ng-disabled="true">
+                                    </md-datepicker>
+                                    <div ng-messages="formEditInfoRendicontazione.dataInizio.$error">
+                                        <div ng-message="required">{{ 'accounts.info_rendicontazione.data_inizio_required' | translate }}</div>
+                                        <div ng-message="valid">{{ 'accounts.info_rendicontazione.data_inizio_invalid' | translate }}</div>
+                                        <div ng-message="maxdate">{{ 'accounts.info_rendicontazione.data_inizio_maxdate' | translate }}
+                                            {{nInfoRendicontazione.dataInizioMax | date:"shortDate"}}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div flex="50">
+                            <b>{{ 'accounts.info_rendicontazione.data_fine' | translate }}</b>
+                            <div class="m-t-10 b-all">
+                                <md-input-container class="md-icon-float md-block md-column-2" flex>
+                                    <label>{{ 'accounts.info_rendicontazione.data_fine' | translate }}</label>
+                                    <md-datepicker ng-model="nInfoRendicontazione.dataFine" name="dataFine"
+                                        md-min-date="nInfoRendicontazione.dataFineMin"
+                                        md-date-filter="soloDataMaggioreDataInizio" ng-change="onChangeDataFine()">
+                                    </md-datepicker>
+                                    <div ng-messages="formEditInfoRendicontazione.dataFine.$error">
+                                        <div ng-message="required">{{ 'accounts.info_rendicontazione.data_fine_required' | translate }}</div>
+                                        <div ng-message="valid">{{ 'accounts.info_rendicontazione.data_fine_invalid' | translate }}</div>
+                                        <div ng-message="mindate">{{ 'accounts.info_rendicontazione.data_fine_mindate' | translate }}
+                                            {{nInfoRendicontazione.dataFineMin | date:"shortDate"}}</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="row" class="m-l-10 m-r-10 m-t-20" >
+                        <div flex="35" class="m-r-10 " ng-show="!(nInfoRendicontazione.metrica !=null && nInfoRendicontazione.metrica.elencoValoriAmmessi !=null && nInfoRendicontazione.metrica.elencoValoriAmmessi.length > 0)">
+                            <b>{{ 'accounts.info_rendicontazione.valore' | translate }}</b>
+                            <div class="m-t-10 b-all"  style="background-color: lightgrey;">
+                                <md-input-container class="md-block m-l-10" flex-gt-sm ng-disabled="true"  >
+                                    <label>{{ 'accounts.info_rendicontazione.valore' | translate }}</label>
+                                    <input name="valore" ng-model="nInfoRendicontazione.valore" placeholder="2" required ng-disabled="true"
+                                        ng-pattern="/^([1-9]|[1-5][0-9]|6[0-4])$/">
+
+                                    <div ng-messages="formEditInfoRendicontazione.valore.$error" role="alert" multiple>
+                                        <div ng-message="required">{{ 'accounts.info_rendicontazione.valore_required' | translate }}</div>
+                                        <div ng-message="pattern" ng-bind-html="'accounts.info_rendicontazione.valore_pattern' | translate">
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <!-- tabella storico -->
+            <div class="b-all m-t-20" ng-show="nInfoRendicontazione.elencoStorici.length > 0">
+                <div class="bg-warning m-0">
+                    <h4 class="m-t-0 m-l-10 p-t-10 p-b-10" style="color:white"> {{ 'accounts.info_rendicontazione.storico_metrica' | translate }}</h4>
+                </div>
+                <md-table-container id="tableElencoStoricoRendicontazione">
+                    <table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}" ng-model="selected"
+                        md-progress="promise">
+                        <thead ng-if="!options.decapitate" md-head md-order="query.order">
+                            <tr md-row style="background-color:#e3f2fd">
+                                <th md-column md-order-by="dataDa" class="th-bold " style="padding-left: 10px;"><span>{{ 'accounts.info_rendicontazione.data_inizio' | translate }}</span></th>
+                                <th md-column md-order-by="dataA" class="th-bold"><span>{{ 'accounts.info_rendicontazione.data_fine' | translate }}</span></th>
+                                <th md-column md-order-by="dataModifica" class="th-bold"><span>{{ 'accounts.info_rendicontazione.data_modifica' | translate }}</span></th>
+                                <th md-column class="th-bold"><span>{{ 'accounts.info_rendicontazione.valore' | translate }}</span></th>
+            
+                            </tr>
+                        </thead>
+                        <tbody md-body>
+                            <tr md-row md-select="info" md-auto-select="options.autoSelect"
+                                ng-repeat="info in nInfoRendicontazione.elencoStorici | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                                <td md-cell style="padding-left: 10px;">
+                                    {{info.dataDa | date:'dd/MM/yyyy'}}</td>
+                                <td md-cell>{{info.dataA | date:'dd/MM/yyyy'}}</td>
+                                <td md-cell>{{info.dataModifica | date:'dd/MM/yyyy'}}</td>
+                                <td md-cell>
+                                    <span ng-if="isInfoTenant()" class="badge badge-success">
+                                        {{info.etichettaValore}}
+                                    </span>
+                                    <span ng-if="!isInfoTenant()">{{info.quantita}}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+                <md-table-pagination style="background-color:#e3f2fd" md-limit="query.limit" md-limit-options="limitOptions"
+                    md-page="query.page" md-total="{{nInfoRendicontazione.elencoStorici.length}}" md-page-select="options.pageSelect"
+                    md-boundary-links="options.boundaryLinks">
+                </md-table-pagination>
+            </div>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="space-between center">
+            <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+                <md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate }}
+            </md-button>
+            <md-button class="md-raised md-primary md-hue-2" type="submit"
+                ng-disabled="!actions.isSalvaAbilitata()" layout-align="end center"
+                ng-click="actions.salva($event)">
+                <md-icon ng-style="iconStyle" class="material-icons">send</md-icon> {{ 'salva' | translate }}
+            </md-button>
+        </md-card-actions>
+    </md-card>
+</div>

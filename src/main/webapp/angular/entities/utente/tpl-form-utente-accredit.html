@@ -1,0 +1,230 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<br />
+	<md-content class="md-no-momentum">
+		<md-card>
+			<div class="md-toolbar-tools">
+                <!-- <span class="md-headline">Elenco Utenti</span> -->
+                <div flex=20>
+                    <md-card-actions layout="row" layout-align="start center" flex="20">
+                        <md-button class="md-fab read-me "  ng-href="{{rtdUtentiNew}}" target="_blank">
+                            <md-icon  class="material-icons">local_library</md-icon>
+                            <md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+                        </md-button>
+                    </md-card-actions> 
+                </div>
+                <div flex>
+					<md-card-title>
+						<md-card-title-text layout-align="center center">
+							<span class="md-headline titolo-sezione">
+								<md-icon class="icon-card-header-green">people</md-icon> {{ 'utente.accredita.bottone_nuovo_utente' | translate }}
+							</span>
+							<div class="callout callout-info">
+							</div>
+						</md-card-title-text>
+					</md-card-title>
+                </div>
+                <div flex=20 layout="row" layout-align="end center">
+                </div>
+            </div>
+		</md-card>
+		<md-card>
+
+			
+
+			<md-tabs md-dynamic-height md-border-bottom md-center-tabs class="tab-min-200" md-selected="selectedTab">
+				<md-tab label="{{ 'utente.tab_utente' | translate }}">
+				  <md-content class="md-padding">
+					<md-card>
+						<md-card-content>
+							<form name="userForm">
+								<md-input-container class="md-icon-float md-block" layout="row">
+									<!-- Use floating placeholder instead of label -->
+									<label>{{ 'utente.codice_fiscale' | translate }}</label>
+									<md-icon ng-style="iconStyle">picture_in_picture</md-icon>
+									<input id="codiceFiscale" name="cf" style="text-transform: uppercase;" ng-model="utenteInserimento.codiceFiscale" type="text"
+									 ng-required="true" ng-blur="actions.controlla()" cf-check>
+									<div ng-messages="userForm.cf.$error">
+										<div ng-message="required">{{ 'utente.codice_fiscale_required' | translate }}</div>
+										<div ng-message="cfCheck">{{ 'utente.codice_fiscale_check' | translate }}</div>
+									</div>
+								</md-input-container>
+								<div layout="column">
+									<div layout="row" layout-xs="column">
+										<md-input-container class="md-icon-float md-block" flex>
+											<!-- Use floating label instead of placeholder -->
+											<label>{{ 'utente.nome' | translate }}</label>
+											<md-icon ng-style="iconStyle">person</md-icon>
+											<input id="nome" name="nome" ng-model="utenteInserimento.nome" type="text" ng-required="true" ng-disabled="disabledform">
+											<div ng-messages="userForm.nome.$error">
+												<div ng-message="required">{{ 'campo_necessario' | translate }}</div>
+											</div>
+										</md-input-container>
+										<md-input-container md-no-float class="md-block" flex>
+											<label>{{ 'utente.cognome' | translate }}</label>
+											<md-icon ng-style="iconStyle" hide>person</md-icon>
+											<input id="Cognome" name="cognome" ng-model="utenteInserimento.cognome" type="text" ng-required="true" ng-disabled="disabledform">
+											<div ng-messages="userForm.cognome.$error">
+												<div ng-message="required">{{ 'campo_necessario' | translate }}</div>
+											</div>
+										</md-input-container>
+									</div>
+									<div layout="row" layout-xs="column">
+										<md-input-container class="md-block" flex>
+											<!-- Use floating placeholder instead of label -->
+											<label>{{ 'utente.email_indirizzo' | translate }}</label>
+											<md-icon ng-style="iconStyle">email</md-icon>
+											<input id="email" name="email" ng-model="utenteInserimento.email" type="email" ng-required="true"  uncapitalize ng-disabled="disabledform">
+											<div ng-messages="userForm.email.$error">
+												<div ng-message="required">{{ 'utente.email_required' | translate }}</div>
+											</div>
+										</md-input-container>
+										<md-input-container ng-if="utenteInserimento.email.includes('@csi.it') || utenteInserimento.email.includes('@consulenti.csi.it')"
+										 class="md-block" flex>
+											<!-- Use floating label instead of placeholder -->
+											<label>{{ 'utente.matricola' | translate }}</label>
+											<md-icon ng-style="iconStyle">confirmation_number</md-icon>
+											<input id="matricolaCsi" ng-model="utenteInserimento.matricolaCsi" type="text" ng-required="false" ng-disabled="disabledform">
+										</md-input-container>
+									</div>
+								</div>
+							</form>
+			
+							<br />
+			
+							<div layout="column" layout-align="space-around start" layout-align-xs="space-around center">
+								<md-checkbox ng-model="utenteInserimento.attivo" aria-label="Permesso Nivola Service Portal">
+									{{ 'utente.accesso_portal' | translate }}
+								</md-checkbox>
+			
+								<md-checkbox ng-disabled="!cliCheckboxEnabled" ng-model="utenteInserimento.attivoCMP" aria-label="Permesso Nivola CLI">
+									{{ 'utente.accesso_cli' | translate }}
+								</md-checkbox>
+							</div>
+			
+							<br />
+			
+							<md-card-actions layout="row" layout-align="space-between center">
+								<md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+									<md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate }}
+								</md-button>
+			
+	
+								<div class="pull-right">
+									<md-button class="md-raised" ng-click="selectedTab = 1"
+									ng-disabled="!(utenteInserimento.codiceFiscale &&   utenteInserimento.nome && utenteInserimento.cognome && utenteInserimento.email)">
+										<md-icon ng-style="iconStyle" class="material-icons">keyboard_arrow_right
+										</md-icon> {{ 'utente.vai_a_accreditamento' | translate }}
+									</md-button>
+								</div>
+							</md-card-actions>
+						</md-card-content>
+					</md-card>
+					
+				  </md-content>
+				</md-tab>
+				<md-tab label="{{ 'utente.tab_accreditamento' | translate }}"
+					ng-disabled="!(utenteInserimento.codiceFiscale &&   utenteInserimento.nome && utenteInserimento.cognome && utenteInserimento.email)">
+				  <md-content class="md-padding">
+					<md-card>
+						<md-card-content>
+							<div layout="column">
+								<md-input-container class="md-icon-float md-block" layout="row">
+									<md-icon ng-style="iconStyle">gavel</md-icon>
+									<md-select placeholder="{{ 'utente.ruolo_placeholder' | translate }}" ng-model="roleSelected" md-on-open="loadRoles()"
+										ng-change="onRoleSelectedChange()" flex>
+										<md-option ng-value="role" ng-repeat="role in roles">
+											<!-- {{::print(role)}} -->
+											{{ ('ruoli_elenco.' + role) | translate }}
+											<!-- {{role}} -->
+										</md-option>
+									</md-select>
+								</md-input-container>
+	
+								<md-input-container class="md-icon-float md-block ng-hide" layout="row" ng-show="roleSelected && !isBORoleSelected">
+									<md-icon ng-bind="firstLevelEntityIcon" ng-style="iconStyle"></md-icon>
+									<md-select  ng-attr-placeholder="{{firstLevelPlaceholder}}" ng-model="firstLevelEntitySelected"
+										md-on-open="loadEntities()" ng-change="readyToAccredit = true"
+										flex>
+										<md-option ng-value="entity.uuid" ng-repeat="entity in firstLevelEntities | orderBy:'nome'">
+											{{entity.nome}}
+										</md-option>
+									</md-select>
+								</md-input-container>
+	
+								
+								<md-button class="md-raised pull-right md-primary md-hue-2 ng-hide" type="button" ng-click="accreditaUtente()"
+									ng-show="readyToAccredit">
+									<md-icon>done</md-icon>{{ 'utente.accredita.bottone' | translate }}
+								</md-button>
+							</div>
+	
+							<br />
+	
+							<div layout="column">
+								<md-subheader class="md-no-sticky">{{ 'utente.accredita.anagrafica' | translate }}</md-subheader>
+								<md-input-container class="md-icon-float md-block" flex>
+									<md-icon>picture_in_picture</md-icon>
+									<input readonly aria-label="cf" style="text-transform: uppercase;" ng-model="utenteInserimento.codiceFiscale">
+								</md-input-container>
+	
+								<div layout="row" layout-xs="column">
+									<md-input-container class="md-icon-float md-block" flex>
+										<md-icon>person</md-icon>
+										<input readonly aria-label="nome" ng-model="utenteInserimento.nome">
+									</md-input-container>
+									<md-input-container md-no-float class="md-block" flex>
+										<md-icon hide>person</md-icon>
+										<input readonly aria-label="cognome" ng-model="utenteInserimento.cognome">
+									</md-input-container>
+								</div>
+							</div>
+	
+							<br />
+	
+							<div layout="column">
+								<md-subheader class="md-no-sticky">{{ 'utente.accredita.accreditamenti' | translate }}</md-subheader>
+								<md-table-container>
+									<table md-table>
+										<thead md-head>
+											<tr md-row>
+												<th md-column><span>{{ 'ruolo' | translate }}</span></th>
+												<th md-column><span>{{ 'account' | translate }}</span></th>
+												<th md-column><span>{{ 'divisione' | translate }}</span></th>
+												<th md-column><span>{{ 'organizzazione' | translate }}</span></th>
+											</tr>
+										</thead>
+										<tbody md-body>
+											<tr md-row ng-repeat="role in elencoAbilitazioni ">
+												<td md-cell>{{ ('ruoli_elenco.' + role.userRole) | translate }}</td>
+												<td md-cell>{{role.accountDesc ? role.accountDesc : role.accountName}}</td>
+												<td md-cell>{{role.divDesc ? role.divDesc : role.divName}}</td>
+												<td md-cell>{{role.orgDesc ? role.orgDesc : role.orgName}}</td>
+												<td md-cell>
+													<md-button class="md-icon-button md-warn" ng-click="revocaAccreditamento(role)"
+														aria-label="revoca accreditamento" ng-disabled="!revocaEnabled(role)">
+														<md-icon>delete_forever</md-icon>
+														<md-tooltip md-direction="right">{{ 'utente.accredita.bottone_revoca' | translate }}</md-tooltip>
+													</md-button>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</md-table-container>
+							</div>
+					</md-card>
+				  </md-content>
+				</md-tab>
+			  </md-tabs>
+		</md-card>
+	</md-content>
+</div>

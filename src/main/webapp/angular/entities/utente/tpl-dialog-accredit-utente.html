@@ -1,0 +1,135 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-dialog aria-label="Accredita Utente">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{ 'utente.accredita.titolo' | translate }}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon class="md-icon-button" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-card>
+                    <md-card-content>
+                        <div layout="column">
+                            <md-input-container class="md-icon-float md-block" layout="row">
+                                <md-icon ng-style="iconStyle">gavel</md-icon>
+                                <md-select placeholder="{{ 'utente.seleziona_ruolo' | translate }}" ng-model="roleSelected" md-on-open="loadRoles()"
+                                    ng-change="onRoleSelectedChange()" flex>
+                                    <md-option ng-value="role" ng-repeat="role in roles">
+                                        <!-- {{::print(role)}} -->
+                                        {{ ('ruoli_elenco.' + role) | translate }}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block ng-hide" layout="row" ng-show="roleSelected && !isBORoleSelected">
+                                <md-icon ng-bind="firstLevelEntityIcon" ng-style="iconStyle"></md-icon>
+                                <md-select ng-attr-placeholder="{{firstLevelPlaceholder}}"  ng-model="firstLevelEntitySelected"
+                                    md-on-open="loadEntities('firstLevelEntity')" ng-change="onFirstLevelEntitySelectedChange()"
+                                    flex>
+                                    <md-option ng-value="entity.uuid" ng-repeat="entity in firstLevelEntities | orderBy:'nome'">
+                                        {{entity.nome}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block ng-hide" layout="row" ng-show="secondLevelEnabled">
+                                <md-icon ng-bind="secondLevelEntityIcon" ng-style="iconStyle"></md-icon>
+                                <md-select  ng-attr-placeholder="{{secondLevelPlaceholder}}" ng-model="secondLevelEntitySelected"
+                                    md-on-open="loadEntities('secondLevelEntity')" ng-change="onSecondLevelEntitySelectedChange()"
+                                    flex>
+                                    <md-option ng-value="entity.uuid" ng-repeat="entity in secondLevelEntities | orderBy:'nome'">
+                                        {{entity.nome}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block ng-hide" layout="row" ng-show="thirdLevelEnabled">
+                                <md-icon ng-bind="thirdLevelEntityIcon" ng-style="iconStyle"></md-icon>
+                                <md-select  ng-attr-placeholder="{{thirdLevelPlaceholder}}" ng-model="thirdLevelEntitySelected"
+                                    md-on-open="loadEntities('thirdLevelEntity')" ng-change="readyToAccredit = true"
+                                    flex>
+                                    <md-option ng-value="entity.uuid" ng-repeat="entity in thirdLevelEntities | orderBy:'nome'">
+                                        {{entity.nome}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-button class="md-raised pull-right md-primary md-hue-2 ng-hide" type="button" ng-click="accreditaUtente()"
+                                ng-show="readyToAccredit">
+                                <md-icon>done</md-icon>{{ 'utente.accredita.bottone' | translate }}
+                            </md-button>
+                        </div>
+
+                        <br />
+
+                        <div layout="column">
+                            <md-subheader class="md-no-sticky">{{ 'utente.accredita.anagrafica' | translate }}</md-subheader>
+                            <md-input-container class="md-icon-float md-block" flex>
+                                <md-icon>picture_in_picture</md-icon>
+                                <input readonly aria-label="cf" style="text-transform: uppercase;" ng-model="userDetails.codiceFiscale">
+                            </md-input-container>
+
+                            <div layout="row" layout-xs="column">
+                                <md-input-container class="md-icon-float md-block" flex>
+                                    <md-icon>person</md-icon>
+                                    <input readonly aria-label="nome" ng-model="userDetails.firstName">
+                                </md-input-container>
+                                <md-input-container md-no-float class="md-block" flex>
+                                    <md-icon hide>person</md-icon>
+                                    <input readonly aria-label="cognome" ng-model="userDetails.lastName">
+                                </md-input-container>
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div layout="column">
+                            <md-subheader class="md-no-sticky">{{ 'utente.accredita.accreditamenti' | translate }}</md-subheader>
+                            <md-table-container>
+                                <table md-table>
+                                    <thead md-head>
+                                        <tr md-row>
+                                            <th md-column ><span>{{ 'ruolo' | translate }}</span></th>
+                                            <th md-column ><span>{{ 'organizzazione' | translate }}</span></th>
+                                            <th md-column ><span>{{ 'divisione' | translate }}</span></th>
+                                            <th md-column ><span>{{ 'account' | translate }}</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody md-body>
+                                        <tr md-row ng-repeat="role in userDetails.elencoAbilitazioni" ng-hide="!revocaEnabled(role)">
+                                            <td md-cell>{{ ('ruoli_elenco.' + role.userRole) | translate }}</td>
+                                            <td md-cell>{{role.orgDesc ? role.orgDesc : role.orgName}}</td>
+                                            <td md-cell>{{role.divDesc ? role.divDesc : role.divName}}</td>
+                                            <td md-cell>{{role.accountDesc ? role.accountDesc : role.accountName}}</td>
+                                            <td md-cell>
+                                                <md-button class="md-icon-button md-warn" ng-click="revocaAccreditamento(role)"
+                                                    aria-label="revoca accreditamento" ng-disabled="!revocaEnabled(role)">
+                                                    <md-icon>delete_forever</md-icon>
+                                                    <md-tooltip md-direction="right">{{ 'utente.accredita.bottone_revoca' | translate }}</md-tooltip>
+                                                </md-button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </md-table-container>
+                        </div>
+                </md-card>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

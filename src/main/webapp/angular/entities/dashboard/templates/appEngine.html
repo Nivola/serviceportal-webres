@@ -1,0 +1,60 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<!-- CARICAMENTO OK -->
+<div ng-if="!widget.loading && !widget.failed">
+    <md-list class="md-dense" flex>
+
+        <!-- AppEngine -->
+        <md-list-item class="md-2-line md-long-text" >
+            <md-icon  class="material-icons {{ widget.data.appEngine.isActive ? 'widget-icon-active' : 'widget-icon-notactive' }}">devices_other</md-icon>
+            <div class="md-list-item-text" ng-if="widget.data.appEngine.isActive">
+                <h3><b>{{widget.data.appEngine.numeroIstanze}} istanz{{widget.data.appEngine.numeroIstanze === 1 ? 'a' : 'e'}}</b></h3>
+                <!--<p style="margin-top:10px;">
+                    {{widget.data.appEngine.cpu.valore}} CPU ({{widget.data.appEngine.cpu.quota}}),
+                    {{widget.data.appEngine.ram.valore}} {{widget.data.appEngine.ram.unita}} RAM ({{widget.data.appEngine.ram.quota}})
+                </p>-->
+            </div>
+            <div class="md-list-item-text" ng-if="!widget.data.appEngine.isActive">
+                <h3 style="color:#FF8C00">{{ 'homepage.nessun_servizio_attivo' | translate }}</h3>
+            </div>
+        </md-list-item>
+    </md-list>
+</div>
+    
+<!-- STA CARICATO I DATI -->
+<div ng-if="widget.loading">
+    <md-list class="md-dense" flex>
+        <md-list-item class="md-2-line" ng-click="null" >
+            <div style="min-width:60px;">
+                <md-icon>autorenew</md-icon>
+            </div>
+            <div class="md-list-item-text" layout="column">
+                <h3>{{ 'caricamento.in_corso' | translate }}</h3>
+                <p style="margin-top:10px;">
+                    <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+                </p>
+            </div>
+        </md-list-item>
+    </md-list>
+</div>
+    
+<!-- CARICAMENTO ERRORE -->
+<div ng-if="widget.failed">
+    <md-list class="md-dense" flex>
+        <md-list-item class="md-2-line md-long-text">
+            <md-icon  style="color: red;">error</md-icon>
+            <div class="md-list-item-text" layout="column">
+                <h3 style="color: red;">{{ 'caricamento.fallito' | translate }}</h3>
+                <p>{{ 'caricamento.controlla' | translate }}</p>
+            </div>
+        </md-list-item>
+    </md-list>
+</div>

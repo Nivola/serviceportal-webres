@@ -1,0 +1,134 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<md-content class="md-no-momentum" layout="column">
+		<md-card>
+			<md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length || filter.show">
+				<div class="md-toolbar-tools">
+					<div flex="20"></div>
+					<div flex>
+						<md-card-title flex>
+							<md-card-title-text layout-align="center center">
+								<div class="md-headline titolo-sezione">
+									<md-icon class="icon-card-header-green">account_circle</md-icon> {{ 'accounts.elenco.titolo' | translate}}
+									<span ng-if="divisione">({{ 'accounts.elenco.titolo_di' | translate}} {{divisione}})</span>
+								</div>
+							</md-card-title-text>
+						</md-card-title>
+					</div>
+					<div flex=20 layout="row" layout-align="end center">
+						<md-button class="animation-target md-fab md-mini md-primary md-hue-2" ng-click="actions.add()"
+							require-uc="{{::actions.auth.new}}">
+							<md-icon>add</md-icon>
+							<md-tooltip>{{ 'accounts.nuovo.bottone' | translate}}</md-tooltip>
+						</md-button>
+						<md-button class="animation-target md-fab md-mini md-primary" ng-click="actions.refresh()">
+							<md-icon>autorenew</md-icon>
+							<md-tooltip>{{ 'accounts.elenco.aggiorna' | translate}}</md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+
+			<md-toolbar class="md-table-toolbar alternate" ng-show="selected.length && options.rowSelection">
+				<div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+					<md-button class="md-icon-button" ng-click="unselectAll()" aria-label="Unselect items">
+						<md-icon class="material-icons">close</md-icon>
+					</md-button>
+					<div flex>
+						<span>
+							{{ selected.length }}
+							{{selected.length > 1 ? ('accounts.elenco.selezionati' | translate) : ('accounts.elenco.selezionato' | translate) }}
+						</span>
+					</div>
+					<md-button class="animation-target md-fab md-mini md-primary"
+							ng-click="actions.gotoAzioni()">
+							<md-icon>history</md-icon>
+							<md-tooltip>{{ 'accounts.elenco.azioni' | translate }}</md-tooltip>
+					</md-button>
+					<md-button class="animation-target md-fab md-mini md-primary md-hue-2" ng-click="actions.view()">
+						<md-icon>visibility</md-icon>
+						<md-tooltip>{{ 'accounts.visualizza.bottone' | translate }}</md-tooltip>
+					</md-button>
+					<md-button class="animation-target md-fab md-mini md-primary md-hue-2" ng-click="actions.change()"
+						require-uc="{{::actions.auth.change}}">
+						<md-icon>edit</md-icon>
+						<md-tooltip>{{ 'accounts.modifica.bottone' | translate }}</md-tooltip>
+					</md-button>
+					<md-button class="animation-target md-fab md-mini md-warn" ng-click="actions.delete($event)"
+						require-uc="{{::actions.auth.delete}}">
+						<md-icon>delete</md-icon>
+						<md-tooltip>{{ 'accounts.elimina.bottone' | translate }} </md-tooltip>
+					</md-button>
+				</div>
+			</md-toolbar>
+
+			<md-toolbar class="md-table-toolbar md-default">
+				<div class="md-toolbar-tools">
+					<form name="filter.form" flex>
+						<md-input-container class="md-icon-float md-block" flex>
+							<label>{{ 'ricerca' | translate }}</label>
+							<md-icon class="material-icons">search</md-icon>
+							<input id="search" class="layout-fill" type="text" ng-model="filter.search"
+								ng-model-options="filter.options" esc-key="resetFilter()">
+						</md-input-container>
+					</form>
+				</div>
+			</md-toolbar>
+
+			<md-table-container>
+				<table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}"
+					ng-model="selected" md-progress="promise">
+					<thead ng-if="!options.decapitate" md-head md-order="query.order">
+						<tr md-row>
+							<th md-column md-order-by="organizzazione_name"><span>{{ 'organizzazione' | translate }}</span></th>
+							<th md-column md-order-by="divisione_name"><span>{{ 'divisione' | translate }}</span></th>
+							<th md-column md-order-by="name"><span>{{ 'account' | translate }}</span></th>
+							<th md-column md-order-by="desc"><span>{{ 'accounts.descrizione' | translate }}</span></th>
+							<th md-column ><span>{{ 'accounts.managed' | translate }}</span></th>
+							<th md-column md-order-by="org.active.flag"><span>{{ 'accounts.stato.label' | translate }}</span></th>
+						</tr>
+					</thead>
+					<tbody md-body>
+						<tr md-row md-select="account" md-auto-select="options.autoSelect"
+							ng-repeat="account in accounts | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+							<td md-cell>{{account.organizzazione_name}}</td>
+							<td md-cell>{{account.divisione_name}}</td>
+							<td md-cell>{{account.name}}</td>
+							<td md-cell>{{account.desc}}</td>
+							<td md-cell>
+									<span ng-class="account.managed == true ? 'badge badge-success' : 'badge badge-danger'">
+										{{account.managed ? ('si' | translate):('no' | translate) }}
+									</span>
+							</td>
+							<td md-cell>
+								<md-icon class="material-icons" ng-style="{ 'color': account.stato.color }">
+									{{account.stato.icon}}
+								</md-icon>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>
+
+			<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+				md-total="{{accounts.length}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks">
+			</md-table-pagination>
+			<md-divider></md-divider>
+			<md-card-actions layout="row" layout-align="space-between center" ng-if="divisione">
+				<md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+					<md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate }}
+				</md-button>
+			</md-card-actions>
+		</md-card>
+
+	</md-content>
+</div>

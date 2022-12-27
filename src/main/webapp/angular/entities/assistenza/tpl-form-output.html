@@ -1,0 +1,189 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+  <br />
+  <md-content class="md-no-momentum">
+     
+
+
+
+    <md-card>
+      <div ng-cloak>
+          <md-tabs md-dynamic-height >
+              <md-tab  label="{{ 'assistenza.form.richiesta' | translate}}">
+                  <form name="servCloudForm">
+                    <md-card>
+                        <div style="color:orange; font-size: 13px;" ng-bind-html="riepilogoScelte"></div>
+                       
+                    </md-card>
+                      <md-card-content>
+
+                        
+                         
+                            <md-input-container class="md-block" flex>
+                              <label>{{ 'assistenza.oggetto' | translate}}</label>
+                              <input  type="text" ng-model="assistenza.oggetto" id="oggetto" class="form-control" name="oggetto" ng-disabled="isObjectFixed" required >
+                              <div ng-messages="servCloudForm.oggetto.$error" role="alert" multiple>
+                                  <div ng-message="required" class="my-message">
+                                      {{ 'assistenza.form.error_required_oggetto' | translate}}
+                                  </div>
+                              </div>
+                            </md-input-container>
+                          
+                          
+      
+                          
+
+                            <md-input-container class="md-block" >
+                                <!-- <label>{{ 'assistenza.messaggio' | translate}}</label> -->
+                                 <label>{{ 'assistenza.form.descrizione' | translate}}</label>
+                                 <textarea id="descrizione" ng-model="assistenza.descrizione" md-maxlength="1500" rows="4" md-select-on-focus ng-disabled="isObjectFixed" ></textarea>
+                             </md-input-container>
+      
+                        
+
+                          <div layout="row">
+                              <md-input-container class="md-block" ng-show="!isObjectFixed">
+                                  <input type="file" fileread="uploadme" />
+                              </md-input-container>
+                         
+
+                         
+                          </div>
+                          <md-card>
+                              <div layout="column" flex ng-if="isObjectFixed && datiTabInf.allegati.length!=0">
+                                  <div  style="margin-bottom: 40px">
+                                  
+                                      <table class="table">
+                                          <thead>
+                                              <tr >
+                                                  <th width="30%"><strong>{{ 'assistenza.form.allegato' | translate}}</strong></th>
+                                                  <th ng-show="uploader.isHTML5"><strong>{{ 'accounts.visualizza.allegati.dimensione' | translate }}</strong></th>
+                                                  <th><strong>{{ 'accounts.visualizza.allegati.azioni' | translate }}</strong></th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                              <tr ng-repeat="item in datiTabInf.allegati" >
+                                                  <td>{{ item.nomeFile }}</td>
+                                                  <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                                  <td nowrap>
+                                                      
+                                                  </td>
+                                              </tr>
+                                          </tbody>
+                                      </table>
+                  
+                                  </div>
+                              </div>
+                          </md-card>
+                          <!--Allegati-->
+                         
+      
+                          
+                          <md-button type="button" ng-click="actions.invia('true')" class="animation-target md-raised  md-primary pull-right" 
+                              ng-disabled="!assistenza.oggetto || !newFormReadyToSend ||isObjectFixed">
+                              <md-icon>send</md-icon>{{ 'invia' | translate}}
+                          </md-button>
+                          <md-button type="button" ng-click="actions.invia('false')" class="animation-target md-raised  md-primary pull-right"
+                              ng-disabled="!assistenza.oggetto || !newFormReadyToSend || isObjectFixed">
+                              <md-icon>edit_note</md-icon>{{ 'assistenza.bozza' | translate}}
+                          </md-button>
+      
+                          <!-- <md-button class="animation-target md-raised  md-primary md-hue-2"  ng-click="historyBack()">
+                              <md-icon>keyboard_backspace</md-icon> {{ 'annulla' | translate}}
+                          </md-button> -->
+      
+                      </md-card-content>
+                  </form>
+              </md-tab>
+
+              <md-tab ng-disabled="!isObjectFixed" label="info">
+                  <md-card flex >
+                  <md-content  layout-align="center center" class="md-padding">
+                      <div layout="row"  flex>
+                         
+                              <md-list flex>
+                                  <md-list-item class="md-2-line">
+                                      <md-icon class="icon-details-green">confirmation_number</md-icon>
+                                      <div class="md-list-item-text">
+                                      <h3> <b>{{ 'assistenza.form.ticketId' | translate}}</b></h3>
+                                      <p>{{ datiTabInf.ticketId}}</p>
+                                      </div>
+                                  </md-list-item>
+                                  <md-divider ></md-divider>
+                                  <md-list-item class="md-2-line">
+                                      <md-icon class="icon-details-green">support_agent</md-icon>
+                                      <div class="md-list-item-text">
+                                      <h3> <b>{{ 'assistenza.form.assegnatario' | translate}}</b></h3>
+                                      <p>{{ datiTabInf.assegnatario}}</p>
+                                      </div>
+                                  </md-list-item>
+                                  <md-divider ></md-divider>
+                                  <md-list-item class="md-2-line">
+                                      <md-icon class="icon-details-green">sticky_note_2</md-icon>
+                                      <div class="md-list-item-text">
+                                      <h3><b>{{ 'assistenza.form.motivo' | translate}}</b></h3>
+                                      <p>{{ datiTabInf.motivo}}</p>
+                                      </div>
+                                  </md-list-item>
+                              </md-list>
+
+                              <md-list flex>
+                                  <md-list-item class="md-2-line">
+                                      <md-icon class="icon-details-green">date_range</md-icon>
+                                      <div class="md-list-item-text">
+                                      <h3> <b>{{ 'assistenza.form.dataInvio' | translate}}</b></h3>
+                                      <p>{{ datiTabInf.dataInvio | date:'dd/MM/yyyy @ h:mma'}}</p>
+                                      </div>
+                                  </md-list-item>
+                                  <md-divider ></md-divider>
+                                  <md-list-item class="md-2-line">
+                                      <md-icon class="icon-details-green">tips_and_updates</md-icon>
+                                      <div class="md-list-item-text">
+                                      <h3><b>{{ 'assistenza.form.risoluzione' | translate}}</b></h3>
+                                      <p>{{ datiTabInf.risoluzione}}</p>
+                                      </div>
+                                  </md-list-item>
+                                  <md-divider ></md-divider>
+                                  <md-list-item class="md-2-line">
+                                      <md-icon class="icon-details-green">settings_suggest</md-icon>
+                                      <div class="md-list-item-text">
+                                      <h3><b>{{ 'assistenza.form.stato' | translate}}</b></h3>
+                                      <p>{{ datiTabInf.stato}}</p>
+                                      </div>
+                                  </md-list-item>
+                              </md-list>
+                          
+                          
+                          
+                      </div>
+                  </md-content>
+
+              </md-card>
+
+                  
+                  
+              </md-tab>
+
+
+          </md-tabs>
+      </div>
+
+    </md-card>
+                          
+
+    <md-button class="animation-target md-raised  md-primary md-hue-2"  ng-click="historyBack()">
+        <md-icon>keyboard_backspace</md-icon> {{ 'annulla' | translate}}
+    </md-button>
+
+     
+  </md-content>
+</div>

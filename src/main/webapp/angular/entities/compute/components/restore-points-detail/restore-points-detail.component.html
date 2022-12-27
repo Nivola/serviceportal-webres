@@ -1,0 +1,153 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="row" layout-align="center start">
+    <md-card flex="90">
+        <div layout="row" layout-align="center start" class="warn-color"
+            ng-if="$ctrl.data.length==0">
+            {{ 'job.restore_point.no_data' | translate }}
+        </div>
+        <div ng-if="$ctrl.data.length>0">
+            <md-table-container>
+                <table md-table md-progress="promise">
+                    <caption ng-hide="true">{{ 'job.tabs.points_label' | translate }}</caption>
+                    <thead md-head md-order="$ctrl.query.order">
+                        <tr md-row>
+                            <th md-column md-order-by="name">
+                                <span>
+                                    {{ 'job.restore_point.name' | translate}}
+                                </span>
+                            </th>
+                            <th md-column md-order-by="created">
+                                <span>
+                                    {{ 'job.restore_point.date' | translate}}
+                                </span>
+                            </th>
+                            <th md-column md-order-by="status">
+                                <span>
+                                    {{ 'job.restore_point.status' | translate}}
+                                </span>
+                            </th>
+                            <th md-column md-order-by="time_taken">
+                                <span>
+                                    {{ 'job.restore_point.time_taken' | translate}}
+                                </span>
+                            </th>
+                            <th md-column md-order-by="updated">
+                                <span>
+                                    {{ 'job.restore_point.updated' | translate}}
+                                </span>
+                            </th>
+                            <th md-column >
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+
+                        <tr md-row ng-repeat-start="point in $ctrl.data | orderBy: $ctrl.query.order:$ctrl.query.reverse | limitTo: $ctrl.query.limit : ($ctrl.query.page -1) * $ctrl.query.limit">
+                            <td md-cell>
+                                <span>
+                                    {{point.name|fillIfNull}}
+                                    <nobr>
+                                        <md-icon class="material-icons-outlined">
+                                            info</md-icon>
+                                        <md-tooltip ng-if="point.desc">
+                                            {{point.desc}}
+                                        </md-tooltip>
+                                    </nobr>
+                                </span>
+                            </td>
+                            <td md-cell>{{point.created| date:'dd/MM/yyyy'|fillIfNull:'date'}} <b>H:</b>{{point.created| date:'HH:mm'|fillIfNull:'time'}}</td>
+                            
+                            <td md-cell>
+                                <span class="badge"
+                            ng-class="point.status==='available'?'badge-success':'badge-danger'">
+                            {{(point.status==='available'?'available':'failure')|translate}}
+                        </span></td>
+                            <td md-cell>{{point.time_taken|fillIfNull:'number'}} <b>s</b></td>
+                            <td md-cell>{{point.updated| date:'dd/MM/yyyy'|fillIfNull:'date'}} <b>H:</b>{{point.updated| date:'HH:mm'|fillIfNull:'time'}}</td>
+                            <td md-cell>
+                                <nobr>
+                                    <div layout="row" layout-align="space-between start">
+                                        <md-button ng-disabled="true"
+                                            ng-click="resetToRestorePoint(point)">
+                                            <!-- color class: warn-color -->
+                                            <md-icon class="material-icons">
+                                                settings_backup_restore</md-icon>
+                                        </md-button>
+                                            <md-icon class="material-icons-outlined clickable m-0 m-l-20 my-auto"   ng-click="expanded = !expanded;$ctrl.onLoadVmList({vms: point.instanceSet,id:point.id})" expand>
+                                                {{expanded ? 'expand_less' : 'expand_more'}}</md-icon>
+                                            </div>
+                                    </nobr>
+
+                            </td>
+                           
+                        </tr>
+                        <tr ng-repeat-end ng-show="expanded">
+                            <td colspan="6">
+
+                                <md-card>
+                                    <div layout="row" layout-align="space-between start">
+                                        <div flex class="vertical-separator"> 
+                                            <div layout="row" layout-align="space-between center" class="p-10">
+                                                <div><b>{{ 'job.restore_point.finished' | translate}}</b></div>
+                                                <div class="m-r-5">{{point.finished| date:'dd/MM/yyyy'|fillIfNull:'date'}} <b>H:</b>{{point.finished| date:'HH:mm'|fillIfNull:'time'}}</div>
+                                            </div>
+                                            <div layout="row" layout-align="space-between center" class="p-10">
+                                                <div><b>{{ 'job.restore_point.size' | translate}}</b></div>
+                                                <div class="m-r-5">{{point.sizeUploaded|fillIfNull:'number'}} <b>bytes</b></div>
+                                            </div>
+                                            <div layout="row" layout-align="space-between center" class="p-10">
+                                                <div><b>{{ 'job.restore_point.hypervisor' | translate}}</b></div>
+                                                <div class="m-r-5">{{point.hypervisor|fillIfNull}}</div>
+                                            </div>
+                                            <div layout="row" layout-align="space-between center" class="p-10">
+                                                <div><b>{{ 'job.restore_point.type' | translate}}</b></div>
+                                                <div class="m-r-5">{{point.type|fillIfNull}}</div>
+                                            </div>
+                                        </div>
+                                        <div flex  ng-class="point.instanceSet&&point.instanceSet.length>0?'vertical-separator':''">
+                                            <div layout="row" layout-align="space-between center" class="p-10">
+                                                <div><b>{{ 'job.restore_point.progress' | translate}}</b></div>
+                                                <div class="m-r-5">{{point.progress|fillIfNull}}</div>
+                                            </div>
+                                            <div layout="row" layout-align="space-between center" class="p-10">
+                                                <div><b>{{ 'job.restore_point.resource_type' | translate}}</b></div>
+                                                <div class="m-r-5">{{point.resource_type|fillIfNull}}</div>
+                                            </div>
+                                            <div layout="row" layout-align="space-between center" class="p-10">
+                                                <div><b>{{ 'job.restore_point.site' | translate}}</b></div>
+                                                <div class="m-r-5">{{point.site|fillIfNull}}</div>
+                                            </div>
+                                            <div layout="row" layout-align="space-between center" class="p-10">
+                                                <div><b>{{ 'job.restore_point.istanceNum' | translate}}</b></div>
+                                                <div class="m-r-5">{{point.instanceSet.length|fillIfNull:'number'}}</div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-if="point.instanceSet&&point.instanceSet.length>0"  flex="60">
+                                            <simple-instance-list vm-list="point.vmList" ></simple-instance-list>
+                                        </div>
+                                    </div>
+                                    
+                           
+                                </md-card>
+                            </td> 
+                            </tr>
+
+
+                    </tbody>
+
+                </table>
+            </md-table-container>
+        </div>
+        
+    </md-card>
+</div>

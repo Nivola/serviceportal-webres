@@ -1,0 +1,154 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<md-content class="md-no-momentum" layout="column">
+		
+		<md-card>
+			<md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length || filter.show">
+				<div class="md-toolbar-tools">
+					<div flex=20>
+							<md-card-actions layout="row" layout-align="start center" flex="20">
+								<md-button class="md-fab read-me " ng-href="{{rtdDbaasList }}" target="_blank">
+									<md-icon  class="material-icons">local_library</md-icon>
+									<md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+								</md-button>
+							</md-card-actions>
+					</div>
+					<div flex>
+						<md-card-title flex>
+							<md-card-title-text layout-align="center center">
+								<div class="md-headline titolo-sezione">
+									<md-icon class="icon-card-header-green">view_week</md-icon>
+									{{ 'dbaas.elenco' | translate}}
+								</div>
+							</md-card-title-text>
+						</md-card-title>
+					</div>
+					<div flex=20 layout="row" layout-align="end center">
+						<md-button class="animation-target md-fab md-mini md-primary md-hue-2" ng-click="actions.add()"
+							require-uc="{{::actions.auth.new}}">
+							<md-icon>add</md-icon>
+							<md-tooltip>{{ 'dbaas.crea' | translate}}</md-tooltip>
+						</md-button>
+
+						<md-button class="animation-target md-fab md-mini md-primary md-hue-2"
+							require-uc="{{::actions.auth.new}}" ng-click="actions.downloadCSV($event)">
+							<md-icon>get_app</md-icon>
+							<md-tooltip>{{ 'scarica_csv' | translate}}</md-tooltip>
+						</md-button>
+					
+
+						<md-button class="animation-target md-fab md-mini md-primary" ng-click="actions.refresh()">
+							<md-icon>autorenew</md-icon>
+							<md-tooltip>{{ 'dbaas.aggiorna' | translate}}</md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+
+			<md-toolbar class="md-table-toolbar alternate" ng-show="selected.length && options.rowSelection">
+				<div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+					<md-button class="md-icon-button" ng-click="unselectAll()" aria-label="Unselect items">
+						<md-icon class="material-icons">close</md-icon>
+					</md-button>
+					<div flex>
+						<span>
+							{{ selected.length }}
+							{{selected.length > 1 ? ('dbaas.selezionati' | translate) : ('dbaas.selezionato' | translate)}}
+						</span>
+					</div>
+					<div layout="row" layout-align="end center">
+						<!-- LG 25.04.2019 Nasconde pulsanti per modifica istanza e pannello gestione -->
+						
+						<md-button class="animation-target md-fab md-mini md-primary md-hue-2"
+							ng-click="actions.manage()" require-uc="{{::actions.auth.manage}}">
+							<md-icon>dns</md-icon>
+							<md-tooltip>{{ 'dbaas.gestione' | translate}}</md-tooltip>
+						</md-button>
+						<!-- <md-button class=" animation-target md-fab md-mini md-primary md-hue-2"
+							ng-click="actions.change()" require-uc="{{::actions.auth.change}}">
+							<md-icon>edit</md-icon>
+							<md-tooltip>Modifica Elemento</md-tooltip>
+						</md-button> -->
+						
+						<md-button class="animation-target md-fab md-mini md-primary" ng-click="actions.connect()"
+							require-uc="{{::actions.auth.new}}">
+							<md-icon>link</md-icon>
+							<md-tooltip>{{ 'dbaas.connetti.bottone' | translate}}</md-tooltip>
+						</md-button>
+						<md-button class="animation-target md-fab md-mini md-warn" ng-click="actions.delete($event)"
+							require-uc="{{::actions.auth.delete}}">
+							<md-icon>delete</md-icon>
+							<md-tooltip>{{ 'dbaas.elimina.bottone' | translate}}</md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+
+			<md-toolbar class="md-table-toolbar md-default">
+				<div class="md-toolbar-tools">
+					<form name="filter.form" flex>
+						<md-input-container class="md-icon-float md-block" flex>
+							<label>{{ 'ricerca' | translate}}</label>
+							<md-icon class="material-icons">search</md-icon>
+							<input  id="fSearch" class="layout-fill" type="text" ng-model="filter.search"
+								ng-model-options="filter.options" esc-key="resetFilter()">
+						</md-input-container>
+					</form>
+				</div>
+			</md-toolbar>
+
+			<md-table-container>
+				<table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}"
+					ng-model="selected" md-progress="promise">
+					<thead ng-if="!options.decapitate" md-head md-order="query.order">
+						<tr md-row>
+							<th md-column md-order-by="nome"><span>{{ 'dbaas.lista.nome' | translate}}</span></th>
+							<th md-column md-order-by="region_az"><span>{{ 'dbaas.lista.region_az' | translate}}</span></th>
+							<th md-column md-order-by="engine"><span>{{ 'dbaas.lista.engine' | translate}}</span></th>
+							<th md-column md-order-by="cpu_ram"><span>{{ 'dbaas.lista.cpu_ram' | translate}}</span></th>
+							<th md-column md-order-by=""><span>{{ 'dbaas.lista.tags' | translate}}</span></th>
+							<th md-column md-order-by="storage"><span>{{ 'dbaas.lista.storage' | translate}}</span></th>
+							<th md-column md-order-by="active_flag"><span>{{ 'dbaas.lista.active_flag' | translate}}</span></th>
+						</tr>
+					</thead>
+					<tbody md-body>
+						<tr md-row md-select="istanza" md-auto-select="options.autoSelect"
+							ng-repeat="istanza in dbaas | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+							<td md-cell>{{istanza.nome}}</td>
+							<td md-cell>{{istanza.region_az}}</td>
+							<td md-cell>{{istanza.engine}}</td>
+							<td md-cell>{{istanza.cpu_ram}}</td>
+							<td md-cell>{{istanza.tags}}</td>
+							<td md-cell>{{istanza.storage}}GB</td>
+							<!-- <td md-cell>
+								<span
+									ng-class="istanza.status == 'attivo' ? 'badge badge-success' : 'badge badge-danger'">
+									{{istanza.status}}
+								</span>
+							</td> -->
+							<td md-cell>
+								<span ng-class="istanza.stato.badge">
+									{{istanza.stato.stato}}
+								</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>
+
+			<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+				md-total="{{dbaas.length}}" md-page-select="options.pageSelect"
+				md-boundary-links="options.boundaryLinks"></md-table-pagination>
+		</md-card>
+
+	</md-content>
+</div>

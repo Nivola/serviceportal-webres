@@ -1,0 +1,45 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+
+<md-list class="md-dense" flex>
+	<md-list-item class="md-2-line" ng-click="null">
+		<div style="min-width:60px;">
+			<md-icon>credit_card</md-icon>
+		</div>
+		<div class="md-list-item-text" layout="column">
+			<h3>{{widget.data.totalFatt | currency:'€ ':2}}</h3>
+			<p style="margin-top:10px;">nell'ultimo periodo (maggio 2017)</p>
+		</div>
+	</md-list-item>
+	<md-list-item class="md-2-line" ng-click="null">
+		<div style="min-width:60px;">
+			<md-icon>today</md-icon>
+		</div>
+		<div class="md-list-item-text" layout="column">
+			<h3>{{(widget.data.totalFatt + 728.35) | currency:'€ ':2}}</h3>
+			<p style="margin-top:10px;">da inizio anno</p>
+		</div>
+	</md-list-item>
+	<md-list-item class="md-2-line" ng-click="null">
+		<div style="min-width:60px;">
+			<md-icon style="color:green;">done</md-icon>
+		</div>
+		<div class="md-list-item-text" layout="column">
+			<h3>Tutto regolare</h3>
+			<p style="margin-top:10px;">stato del credito regolare</p>
+		</div>
+	</md-list-item>
+</md-list>
+<md-card-actions layout="row" layout-align="end center">
+	<md-button class="md-icon-button" aria-label="visualizza tutto" ng-click="widget.callbacks.notImplemented()">
+		<md-icon>more_horiz</md-icon>
+	</md-button>
+</md-card-actions>

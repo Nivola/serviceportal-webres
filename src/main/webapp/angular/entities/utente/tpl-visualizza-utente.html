@@ -1,0 +1,279 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+    <br />
+    <md-content class="md-no-momentum">
+        <md-card>
+            <div class="md-toolbar-tools">
+                <!-- <span class="md-headline">Elenco Utenti</span> -->
+                <div flex=20>
+                    <md-card-actions layout="row" layout-align="start center" flex="20">
+                        <md-button class="md-fab read-me "  ng-href="{{rtdUtentiView}}" target="_blank">
+                            <md-icon  class="material-icons">local_library</md-icon>
+                            <md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+                        </md-button>
+                    </md-card-actions> 
+                </div>
+                <div flex>
+                    <md-card-title>
+                        <md-card-title-text layout-align="center center">
+                            <div class="md-headline titolo-sezione">
+                                <md-icon hide-xs class="icon-card-header-green">person</md-icon>{{ 'utente.dettagli.titolo' | translate }}
+                            </div>
+                        </md-card-title-text>
+                    </md-card-title>
+                   
+                </div>
+                <div flex=20 layout="row" layout-align="end center">
+                    <md-button class=" animation-target md-fab md-mini md-primary md-hue-2" ng-click="actions.change()" require-uc="{{::actions.auth.edit}}" >
+                        <md-icon>edit</md-icon>
+                        <md-tooltip>{{ 'utente.modifica.bottone' | translate }}</md-tooltip>
+                    </md-button>
+                    <md-button class="animation-target md-fab md-mini md-primary" ng-click="actions.refresh()">
+                        <md-icon>autorenew</md-icon>
+                        <md-tooltip>{{ 'aggiorna' | translate }}</md-tooltip>
+                    </md-button>
+                </div>
+            </div>
+        </md-card>
+        <md-card>
+        
+            <md-progress-linear id="chartProgressBar" ng-show="!options.isDettaglioLoaded" md-mode="indeterminate">
+            </md-progress-linear>
+            <md-card-content>
+                <form name="visualizzaUtenteForm">
+                    <md-tabs md-dynamic-height md-border-bottom="true" class="tab-min-200"
+                        md-selected="status.tabIndex">
+                        <!-- TAB ANAGRAFICA ACCOUNT-->
+                        <md-tab>
+                            <md-tab-label>
+                                <md-icon class="material-icons">perm_contact_calendar</md-icon>
+                                {{ 'utente.dettagli.anagrafica' | translate }}
+                            </md-tab-label>
+                            <md-tab-body ng-if="options.isDettaglioLoaded">
+
+                                <div layout="row" class="riepilogo-utente-row"></div>
+                                <div layout="row" class="riepilogo-utente-row">
+                                    <div layout="column" flex="15">
+                                        <div layout="row" layout-align="start start">
+                                            <img flex="95" ng-src="{{userDetails.imageUrl}}"
+                                                class="md-card-image img-utente">
+                                        </div>
+                                    </div>
+                                    <div layout="column" flex="85">
+                                        <md-card md-theme-watch>
+                                            <div layout="row" class="riepilogo-utente-row">
+                                                <div flex="20">
+                                                    <b>{{ 'utente.username_portale' | translate }}</b>
+                                                </div>
+                                                <div flex="35">{{userDetails.login}}</div>
+                                                <div flex="20">
+                                                    <b>{{ 'utente.stato.label' | translate }}</b>
+                                                </div>
+                                                <div flex="10">
+                                                    <span ng-if="userDetails.attivo===true"
+                                                        class="badge badge-success">{{ 'utente.stato.attivo' | translate }}</span>
+                                                    <span ng-if="userDetails.attivo===false"
+                                                        class="badge badge-danger">{{ 'utente.stato.disattivo' | translate }}</span>
+                                                </div>
+
+                                                <div layout="row" class="riepilogo-utente-row">
+                                                    
+                                                </div>
+                                                
+                                            </div>
+                                            <div layout="row" class="riepilogo-utente-row">
+                                                <div flex="20">
+                                                    <b>{{ 'utente.username_cmp' | translate }}</b>
+                                                </div>
+                                                <div flex="35">{{userDetails.cmpUsername}}</div>
+                                            </div>
+                                            <div layout="row" class="riepilogo-utente-row">
+                                                <div flex="20">
+                                                    <b>{{ 'utente.nome' | translate }}</b>
+                                                </div>
+                                                <div flex="40">{{userDetails.firstName}} </div>
+                                            </div>
+                                            <div layout="row" class="riepilogo-utente-row">
+                                                <div flex="20">
+                                                    <b>{{ 'utente.cognome' | translate }}</b>
+                                                </div>
+                                                <div flex="40">{{userDetails.lastName}} </div>
+                                            </div>
+                                            <div layout="row" class="riepilogo-utente-row">
+                                                <div flex="20">
+                                                    <b>{{ 'utente.email' | translate }}</b>
+                                                </div>
+                                                <div flex="40">{{userDetails.email}} </div>
+                                            </div>
+                                            <div layout="row" class="riepilogo-utente-row"
+                                                ng-if="userDetails.matricolaCsi">
+                                                <div flex="20">
+                                                    <b>{{ 'utente.matricola' | translate }}</b>
+                                                </div>
+                                                <div flex="40">{{userDetails.matricolaCsi}} </div>
+                                            </div>
+                                            <div layout="row" class="riepilogo-utente-row">
+                                                <div flex="20">
+                                                    <b>Usa Ticketing</b>
+                                                </div>
+                                                <div flex="40">
+                                                    <div ng-if="userDetails.usaRemedy===true"
+                                                        class="badge badge-success">{{ 'utente.stato.attivo' | translate }}</div>
+                                                    <div ng-if="userDetails.usaRemedy===false"
+                                                        class="badge badge-danger">{{ 'utente.stato.disattivo' | translate }}</div>
+                                                </div>
+
+                                            </div>
+
+                                          
+                                                
+                                           
+                                        </md-card>
+                                    </div>
+                                </div>
+
+                            </md-tab-body>
+                        </md-tab>
+
+                        <!-- TAB RUOLI & PERMESSI -->
+                        <md-tab>
+                            <md-tab-label>
+                                <md-icon class="material-icons">perm_data_setting</md-icon>
+                                {{ 'utente.dettagli.ruoli_permessi' | translate }}
+                            </md-tab-label>
+                            <md-tab-body ng-if="options.isDettaglioLoaded" class="card-effect">
+                                <md-card ng-show="options.showAccreditaUtente">
+                                    <div layout="row" class="riepilogo-utente-row" layout-margin require-uc="{{::actions.auth.accredit}}">
+                                        <div flex="35">
+                                            <md-input-container class="md-icon-float md-block" >
+                                                <md-icon ng-style="iconStyle">gavel</md-icon>
+                                                <md-select placeholder="{{ 'utente.aggiungi_ruolo' | translate }}" ng-model="roleSelected"
+                                                    md-on-open="loadRoles()" ng-change="onRoleSelectedChange()" flex>
+                                                    <md-option ng-value="role" ng-repeat="role in roles">
+                                                        <!-- {{::print(role)}} -->
+                                                        {{ ('ruoli_elenco.' + role) | translate }}
+                                                    </md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                        </div>
+                                        <div flex="35">
+                                            <md-input-container class="md-icon-float md-block ng-hide"  ng-show="roleSelected && !isBORoleSelected">
+                                                <md-icon ng-bind="firstLevelEntityIcon" ng-style="iconStyle"></md-icon>
+                                                <md-select ng-attr-placeholder="{{firstLevelPlaceholder}}"  ng-model="firstLevelEntitySelected"
+                                                    md-on-open="loadEntities('firstLevelEntity')" ng-change="onFirstLevelEntitySelectedChange()"
+                                                    flex>
+                                                    <md-option ng-value="entity.uuid" ng-repeat="entity in firstLevelEntities | orderBy:'nome'">
+                                                        {{entity.desc ? entity.desc : entity.name}}
+                                                    </md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                        </div>
+
+                                    </div>
+                                    <div layout="row" class="riepilogo-utente-row"  layout-margin require-uc="{{::actions.auth.accredit}}">
+                                        <div flex="35">
+                                            <md-input-container class="md-icon-float md-block ng-hide"  ng-show="secondLevelEnabled">
+                                                <md-icon ng-bind="secondLevelEntityIcon" ng-style="iconStyle"></md-icon>
+                                                <md-select  ng-attr-placeholder="{{secondLevelPlaceholder}}" ng-model="secondLevelEntitySelected"
+                                                    md-on-open="loadEntities('secondLevelEntity')" ng-change="onSecondLevelEntitySelectedChange()"
+                                                    flex>
+                                                    <md-option ng-value="entity.uuid" ng-repeat="entity in secondLevelEntities | orderBy:'nome'">
+                                                        {{entity.desc ? entity.desc : entity.name}}
+                                                    </md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                        </div> 
+
+                                        <div flex="35">
+                                            <md-input-container class="md-icon-float md-block ng-hide" layout="row" ng-show="thirdLevelEnabled && secondLevelEntitySelected!==null ">
+                                                <md-icon ng-bind="thirdLevelEntityIcon" ng-style="iconStyle"></md-icon>
+                                                <md-select  ng-attr-placeholder="{{thirdLevelPlaceholder}}" ng-model="thirdLevelEntitySelected"
+                                                    md-on-open="loadEntities('thirdLevelEntity')" ng-change="readyToAccredit = true"
+                                                    flex>
+                                                    <md-option ng-value="entity.uuid" ng-repeat="entity in thirdLevelEntities | orderBy:'nome'">
+                                                        {{entity.desc ? entity.desc : entity.name}}
+                                                    </md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                        </div> 
+                                        
+                                    </div>
+                                    <div layout="row" flex="65"   layout-margin layout-align="start start">  
+                                        <md-button class="md-raised pull-right md-primary md-hue-2 ng-hide" type="button"
+                                                ng-click="accreditaUtente()" ng-show="readyToAccredit">
+                                            <md-icon>done</md-icon>{{ 'utente.accredita.bottone' | translate }}
+                                        </md-button>
+                                    </div> 
+                                 </md-card>
+                                <div layout="row" ng-if="userDetails.elencoAbilitazioni.length==0">
+                                    <md-list class="md-dense" flex>
+                                        <md-list-item class="md-2-line md-long-text">
+                                            <md-icon style="color: red;">error</md-icon>
+                                            <div class="md-list-item-text" layout="column">
+                                                <h3 style="color: red;">{{ 'utente.dettagli.ruoli_permessi_nessuno' | translate }}</h3>
+                                            </div>
+                                        </md-list-item>
+                                    </md-list>
+                                </div>
+                                <md-table-container ng-if="userDetails.elencoAbilitazioni.length>0" class="card-effect">
+                                    <table md-table 
+                                        multiple="{{options.multiSelect}}" ng-model="selected" md-progress="promise">
+                                        <thead ng-if="!options.decapitate" md-head md-order="query.order">
+                                            <tr md-row>
+                                                <th class="th-bold" md-column><span>{{ 'ruolo' | translate }}</span></th>
+                                                <th class="th-bold" md-column><span>{{ 'account' | translate }}</span></th>
+                                                <th class="th-bold" md-column><span>{{ 'divisione' | translate }}</span></th>
+                                                <th class="th-bold" md-column><span>{{ 'organizzazione' | translate }}</span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody md-body>
+
+                                            <tr md-row md-auto-select="options.autoSelect"
+                                                ng-repeat="role in userDetails.elencoAbilitazioni| filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                                                <td md-cell>{{ ('ruoli_elenco.' + role.userRole) | translate }}</td>
+                                                <td md-cell>{{role.accountDesc ? role.accountDesc : role.accountName}}</td>
+                                                <td md-cell>{{role.divDesc ? role.divDesc : role.divName}}</td>
+                                                <td md-cell>{{role.orgDesc ? role.orgDesc : role.orgName}}</td>
+                                                <td md-cell ng-show="options.showAccreditaUtente">
+                                                    <md-button class="md-icon-button md-warn" ng-click="revocaAccreditamento(role)"
+                                                        aria-label="revoca accreditamento" ng-disabled="!revocaEnabled(role)">
+                                                        <md-icon>delete_forever</md-icon>
+                                                        <md-tooltip md-direction="right">{{ 'utente.accredita.bottone_revoca' | translate }}</md-tooltip>
+                                                    </md-button>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </md-table-container>
+                                <md-table-pagination ng-if="userDetails.elencoAbilitazioni.length>5" 
+                                    md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+                                    md-total="{{userDetails.elencoAbilitazioni.length}}"
+                                    md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks">
+                                </md-table-pagination>
+
+                            </md-tab-body>
+                        </md-tab>
+                    </md-tabs>
+                    <md-divider></md-divider>
+                    <md-card-actions layout="row" layout-align="space-between center">
+                        <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+                            <md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate }}
+                        </md-button>
+                    </md-card-actions>
+                </form>
+
+            </md-card-content>
+        </md-card>
+
+    </md-content>
+</div>

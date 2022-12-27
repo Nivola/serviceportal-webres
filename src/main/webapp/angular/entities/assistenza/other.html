@@ -1,0 +1,82 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+
+<div  ng-cloak >
+  <md-card>
+    <md-card-title>
+        <md-card-title-text layout-align="center center">
+            <span class="md-headline titolo-sezione">
+              {{ 'assistenza.forms.other.title' | translate }}
+            </span>
+            <div class="callout callout-info">
+            </div>
+        </md-card-title-text>
+    </md-card-title>
+</md-card>
+  <md-content class="md-padding" layout-xs="column" layout="row" layout-align="center center">
+    <div flex-xs flex-gt-xs="100" layout="row">
+      <md-card md-theme="{{ 'dark-blue'  }}" md-theme-watch>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{ 'assistenza.forms.other.left_headline' | translate }}</span>
+            <span class="md-subhead">{{ 'assistenza.forms.other.left_subhead' | translate }}</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-sm card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-primary md-raised" ng-click="actions.sceltaTipoOther('NEW-ACCOUNT')"  >
+            {{ 'assistenza.btn.next' | translate }}
+          </md-button>
+        </md-card-actions>
+      </md-card>
+      <md-card md-theme="{{ 'blue'  }}" md-theme-watch>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{ 'assistenza.forms.other.center_headline' | translate }}</span>
+            <span class="md-subhead">{{ 'assistenza.forms.other.center_subhead' | translate }}</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-sm card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-primary md-raised" ng-click="actions.sceltaTipoOther('ADD-DNS')" >
+            {{ 'assistenza.btn.next' | translate }}
+          </md-button>
+        </md-card-actions>
+      </md-card>
+    
+      <md-card md-theme="{{ 'dark-blue'  }}" md-theme-watch>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{ 'assistenza.forms.other.right_headline' | translate }}</span>
+            <span class="md-subhead">……</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-sm card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-primary md-raised" ng-click="actions.sceltaTipoOther('CPAAS')"  >
+            {{ 'assistenza.btn.next' | translate }}
+          </md-button>
+        </md-card-actions>
+      </md-card>
+     
+    </div>
+
+   
+  </md-content>
+ 
+ 
+</div>

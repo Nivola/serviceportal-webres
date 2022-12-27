@@ -1,0 +1,30 @@
+This file is based on or incorporates material from the projects listed below
+(collectively, "Third Party Code").
+
+CSI-Piemonte is not the original author of the Third Party Code.
+The original copyright notice and the license, under which CSI-Piemonte received such Third Party Code,
+are set forth below. You can find the original source code at the link set hereafter.
+Please refer to the accompanying credits file for additional notices.
+
+
+[BSD 3-CLAUSE](https://opensource.org/licenses/BSD-3-Clause)\
+quilljs,1.3.6
+
+
+[MIT](https://opensource.org/licenses/MIT)\
+angularjs,1.6.5
+angular-file-upload,2.6.1
+angular-translate,2.18.3
+angular-translate-loader-partial,2.18.3
+angular-translate-loader-static-files,2.18.3
+angular-trix,1.0.2
+angular-ui,2.2.0
+angular-ui-router,0.4.2
+angular-chart.js,1.0.3
+ang-accordion,1.0.0
+autoNumeric.js
+chart.min.js,2.3.0
+danialf:ng-file-upload,12.2.13
+daniel-nagy/md-data-table,0.10.9
+jqueryui.com,1.11.4
+

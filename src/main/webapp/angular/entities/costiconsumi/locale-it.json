@@ -1,0 +1,35 @@
+{
+    "costi_consumi": {
+        "aggiorna_grafico": "Aggiorna grafico",
+        "andamento_costi": "Andamento dei Costi",
+        "costi_del_account": "Costi suddivisi per account",
+        "costi_del_divisione": "Costi suddivisi per divisione",
+        "costi_del_periodo": "Costi del periodo",
+        "costi_non_rendicontati_a": "al",
+        "costi_non_rendicontati_da": "Costi non rendicontati dal",
+        "costo": "Costo(\u20ac)",
+        "no_rendiconti": "Non ci sono rendiconti presenti",
+        "parametro": "Parametro",
+        "report_mensili": "Report Mensili",
+        "scarica_file": "scarica file",
+        "scarica_file_csv": "scarica file CSV",
+        "scarica_file_dettaglio": "scarica file dettaglio",
+        "scarica_file_sintetico": "scarica file sintetico",
+        "servizio": "Servizio",
+        "suddivisi_per_account": "suddivisi per account",
+        "suddivisi_per_divisione": "suddivisi per divisione",
+        "suddivisi_per_mese": "suddivisi per mese",
+        "totale": "Totale",
+        "rendicontazioni": {
+            "consolidato": "Consolidato",
+            "file": "File",
+            "file_sintesi": "File CSV Sintesi",
+            "importo": "Importo",
+            "in_corso": "In corso",
+            "pdf_dettaglio": "Pdf Dettaglio",
+            "pdf_sintesi": "Pdf Sintesi",
+            "periodo": "Periodo",
+            "stato": "Stato"
+        }
+    }
+}

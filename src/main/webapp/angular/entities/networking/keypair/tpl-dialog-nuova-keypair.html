@@ -1,0 +1,63 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-dialog aria-label="textConferma">
+    <form ng-cloak name="creaChiaveSSHForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <md-icon class="md-36">vpn_key</md-icon><h2 style="margin-left:5px;"> {{title}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon class="md-icon-button" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content class="md-dialog-content ng-scope" margin-bottom='0'>
+                <md-progress-linear md-mode="query" ng-disabled="!status.pending"> </md-progress-linear>
+            <div >
+                <b>{{ 'keypair.nuova.inserimento' | translate}} </b>
+                <div layout="column" flex="60">
+                    <md-input-container class="md-block" flex-gt-sm id="md-input-container-dialog-dbaas" style="margin-bottom: 1px;">
+                        <input ng-model="keypairNome" id="nome" name="keypairNome" ng-model-options="{ debounce: 250 }"
+                            ng-change="onNomeChange()" placeholder="{{ 'keypair.nome' | translate}}" pattern="^[A-Za-z_-]{1}[A-Za-z0-9_-]{7,39}" >
+                        <div ng-messages="creaChiaveSSHForm.keypairNome.$error" role="alert" multiple>
+                            <div class="md-char-counter"></div>
+                            <div ng-if="keypair.errorNamePresente" style="color:red;">{{ 'keypair.errore_chiave_stesso_nome' | translate}}</div>
+                            <div ng-message="pattern" ng-bind-html="'keypair.pattern' | translate">
+                                <!-- {{ 'keypair.pattern' | translate}} -->
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div ng-hide="!keypair.enableCrea">
+                    <b>{{ 'keypair.nome_completo' | translate}} : </b>
+                    <div  layout="column" flex="80">
+                        <md-input-container class="md-block" flex-gt-sm id="md-input-container-dialog-dbaas" style="margin-bottom: 1px;">
+                            <input ng-model="keypairFullName" name="keypairFullName" ng-model-options="{ debounce: 250 }" ng-readonly="true">
+                        </md-input-container>
+                    </div>
+                </div>
+                
+                <div>
+                    <b class="ng-binding">{{textInfo}}</b>
+                </div>
+                
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+                <span flex></span>
+                <button class="md-primary md-button ng-scope md-default-theme md-ink-ripple" type="button"
+                    ng-click="closeDialog()"><span class="ng-binding ng-scope">{{ 'annulla' | translate}}</span></button>
+                <button ng-disabled="!keypair.enableCrea"  class="md-primary md-button md-default-theme md-ink-ripple"
+                    type="button" ng-click="crea()"><span class="ng-binding ng-scope">{{ 'keypair.nuova.crea' | translate}}</span></button>
+            
+        </md-dialog-actions>
+    </form>
+</md-dialog>

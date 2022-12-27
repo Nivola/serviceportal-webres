@@ -1,0 +1,229 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+
+<div layout="column" ng-cloak ng-init="init()">
+	<md-content class="md-no-momentum" layout="column"  ng-if="consumiNonRendicontati">
+		<md-card>
+			<md-toolbar class="md-table-toolbar md-default ">
+				<div class="md-toolbar-tools toolbar-costi-consumi">
+					<div flex layout-align="start center">
+						<md-card-title flex>
+							<md-card-title-text layout-align="left center">
+								<div class="md-headline titolo-sezione">
+									<div>{{ 'account' | translate }} <b>{{nomeStruttura}}</b></div>
+									{{ 'costi_consumi.costi_non_rendicontati_da' | translate }} {{consumiNonRendicontati.periodoDA}} {{ 'costi_consumi.costi_non_rendicontati_a' | translate }} {{consumiNonRendicontati.periodoA}}
+								</div>
+							</md-card-title-text>
+						</md-card-title>
+					</div>
+					<div flex=20 layout="row" layout-align="end end">
+						<md-button  class="animation-target md-fab md-mini md-primary">
+							<md-icon>euro_symbol</md-icon>
+						</md-button>
+						
+					</div>
+				</div>
+			</md-toolbar>
+
+			<md-table-container>
+				<table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}"
+					ng-model="selected" md-progress="promise">
+					<thead ng-if="!options.decapitate" md-head md-order="query.order">
+						<tr md-row>
+							<th class="th-bold" md-column><span>{{ 'costi_consumi.servizio' | translate }}</span></th>
+							<th class="th-bold" md-column><span>{{ 'costi_consumi.parametro' | translate }}</span></th>
+							<th class="th-bold" md-column><span>{{ 'costi_consumi.costo' | translate }}</span></th>
+						</tr>
+					</thead>
+					<tbody md-body>
+						<tr md-row md-select="servizio" ng-repeat="servizio in consumiNonRendicontati.elencoServizi | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+							<td md-cell>{{servizio.nome}}</td>
+							<td md-cell>{{servizio.parametro}}</td>
+							<td md-cell> {{servizio.costo}}</td>
+						</tr>
+						<tr md-row >
+							<td md-cell></td>
+							<td md-cell id="md-cell-totale">
+									<div layout="row" layout-align="end center">
+											<div><b>{{ 'costi_consumi.totale' | translate }} :</b></div>
+									</div>
+								
+							</td>
+							<td md-cell><b>{{valuta.code}} {{consumiNonRendicontati.totaleConsumiNonRendicontati}}</b></td>
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>
+		</md-card>
+
+	</md-content>
+</div>
+
+
+<div layout="column" ng-cloak>
+		<md-content class="md-no-momentum" layout="column"  >
+				<md-card ng-if="options.isShowGrafico">
+						<md-toolbar class="md-table-toolbar md-default ">
+							<div class="md-toolbar-tools toolbar-costi-consumi">
+								<div flex layout-align="start center">
+									<md-card-title flex>
+										<md-card-title-text layout-align="left center">
+											<div class="md-headline titolo-sezione">
+												{{ 'costi_consumi.andamento_costi' | translate }}
+											</div>
+										</md-card-title-text>
+									</md-card-title>
+								</div>
+								<div flex=20 layout="row" layout-align="end end">
+									<md-button  class="animation-target md-fab md-mini md-primary" >
+										<md-icon>timeline</md-icon>
+									</md-button>
+									
+								</div>
+							</div>
+						</md-toolbar>
+						<md-progress-linear id="chartProgressBar" ng-show="chartLoading" md-mode="indeterminate"></md-progress-linear>
+
+						<md-card-title >
+								<md-card-title-text>
+										<span class="md-headline">{{intestazioneGrafico}}</span>
+										<span class="md-subhead"><SUB id="1"></SUB></span>
+									<md-card-content layout="row" layout-align="space-between">
+											<canvas id="chartconsumiCosti" class="chart-bar"
+												chart-data="data" chart-labels="labelsMesi" chart-colors="colors"
+												chart-dataset-override="datasetOverride" 
+												chart-options="chartOptions">
+											</canvas> 
+									</md-card-content>
+								</md-card-title-text>	
+								<md-card-actions layout="column">
+										<md-button class="md-icon-button" aria-label="Aggiorna" ng-click="aggiornaGrafico()">
+											<md-icon class="icon-card-options-green material-icons badge-warning">autorenew</md-icon>
+											<md-tooltip>{{ 'costi_consumi.aggiorna_grafico' | translate }}</md-tooltip>
+										</md-button>
+								</md-card-actions>
+							</md-card-title>
+
+					</md-card>
+	
+		</md-content>
+	</div>
+
+	<div layout="column" ng-cloak>
+		<md-content class="md-no-momentum" layout="column" >
+			<md-card>
+				<md-toolbar class="md-table-toolbar md-default ">
+					<div class="md-toolbar-tools toolbar-costi-consumi">
+						<div flex layout-align="start center">
+							<md-card-title flex>
+								<md-card-title-text layout-align="left center">
+									<div class="md-headline titolo-sezione">
+										{{ 'costi_consumi.report_mensili' | translate }}
+									</div>
+								</md-card-title-text>
+							</md-card-title>
+						</div>
+						<div flex=20 layout="row" layout-align="end end">
+							{{ 'costi_consumi.totale' | translate }} ({{rendicontazioni.length}})
+						</div>
+					</div>
+				</md-toolbar>
+				<div  ng-if="rendicontazioni.length===0" layout-align="start center">
+					<p>{{ 'costi_consumi.no_rendiconti' | translate }}</p>
+				</div>
+				<md-table-container ng-if="rendicontazioni.length>0">
+					<table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}"
+						ng-model="selected" md-progress="promise">
+						<thead ng-if="!options.decapitate" md-head md-order="query.order">
+							<tr md-row>
+								<th class="th-bold" md-column><span>{{ 'costi_consumi.rendicontazioni.periodo' | translate }}</span></th>
+								<th class="th-bold" md-column><span>{{ 'costi_consumi.rendicontazioni.importo' | translate }}</span></th>
+								<th class="th-bold" md-column><span>{{ 'costi_consumi.rendicontazioni.stato' | translate }}</span></th>
+								<th class="th-bold" md-column><span>{{ 'costi_consumi.rendicontazioni.pdf_sintesi' | translate }}</span></th>
+								<th class="th-bold" md-column><span>{{ 'costi_consumi.rendicontazioni.pdf_dettaglio' | translate }}</span></th>
+								<!--<th class="th-bold" md-column><span >File CSV Dettaglio</span></th>-->
+                                <th class="th-bold" md-column><span >{{ 'costi_consumi.rendicontazioni.file_sintesi' | translate }}</span></th>
+							</tr>
+						</thead>
+						<tbody md-body>
+							<tr md-row md-select="rendiconto" ng-repeat="rendiconto in rendicontazioni | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+								<td md-cell>
+									<p>
+										{{ estrazionePeriodo(rendiconto) }} {{rendiconto.anno}}
+										<md-tooltip md-direction='top'>
+													<b>{{rendiconto.descrizione}}</b>
+										</md-tooltip>
+									</p>
+
+								</td>
+								<td md-cell>{{rendiconto.importo}} </td>
+								<td md-cell >
+									
+									<span class="badge {{ rendiconto.meseInCorso ? 'badge-danger' : 'badge-success' }} " >
+											{{rendiconto.stato}}
+									</span>
+								</td>
+								<td md-cell>
+									<span class="md-subhead">
+									<md-button  ng-show="!rendiconto.meseInCorso"
+												ng-click="downloadFile($event,rendiconto)"
+												title="{{ 'costi_consumi.scarica_file_sintetico' | translate }}"
+												target="_self"
+												class="md-icon-button md-primary" >
+									<md-icon class="badge-info">picture_as_pdf</md-icon>
+									</md-button>
+									</span>
+								</td>
+								<td md-cell>
+									<span class="md-subhead">
+										<md-button  ng-show="!rendiconto.meseInCorso"
+													ng-click="downloadFileDett($event,rendiconto)"
+													title="{{ 'costi_consumi.scarica_file_dettaglio' | translate }}"
+													target="_self"
+													class="md-icon-button md-primary" >
+										<md-icon class="badge-info">picture_as_pdf</md-icon>
+										</md-button>
+									<span class="md-subhead">
+								</td>
+								<!--<td md-cell>
+									<span class="md-subhead">
+										<md-button  
+													ng-click="downloadFileCSV($event,rendiconto)"
+													title="scarica file CSV"
+													target="_self"
+													class="md-icon-button md-primary" >
+										<md-icon class="badge-info">list</md-icon>
+										</md-button>
+									</span>
+								</td>-->
+								<td md-cell>
+									<span class="md-subhead">
+										<md-button  ng-show="!rendiconto.meseInCorso"
+													ng-click="downloadFileCSVSintetico($event,rendiconto)"
+													title="{{ 'costi_consumi.scarica_file_csv' | translate }}"
+													target="_self"
+													class="md-icon-button md-primary" >
+										<md-icon class="badge-info">list</md-icon>
+										</md-button>
+									</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</md-table-container>
+				
+			<md-table-pagination ng-if="rendicontazioni.length>5" md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+						md-total="{{rendicontazioni.length}}" md-page-select="options.pageSelect"
+						md-boundary-links="options.boundaryLinks"></md-table-pagination>
+			</md-card>
+	
+		</md-content>
+	</div>

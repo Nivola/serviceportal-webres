@@ -1,0 +1,63 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-card>
+    <md-toolbar class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools">
+            <form name="filter.form" flex>
+                <md-input-container class="md-icon-float md-block" flex>
+                    <label>{{ 'ricerca' | translate }}</label>
+                    <md-icon class="material-icons">search</md-icon>
+                    <input id="search" class="layout-fill" type="text" ng-model="filter.search"
+                        ng-model-options="filter.options" esc-key="resetFilter()">
+                </md-input-container>
+            </form>
+        </div>
+    </md-toolbar>
+    <div  ng-if="vpcs && vpcs.length==0" layout-align="center center">
+        <p style="color:red;">{{ 'vpc.elenco.vuoto' | translate }}</p>
+    </div>
+    <md-table-container>
+        <table md-table  multiple="{{options.multiSelect}}"
+            ng-model="selected" md-progress="promise">
+            <thead ng-if="!options.decapitate" md-head md-order="query.order">
+                <tr md-row>
+                    <th md-column md-order-by="nvlName"><span>{{ 'vpc.elenco.nvlName' | translate }}</span></th>
+                    <th md-column md-order-by="cidrBlock"><span>{{ 'vpc.elenco.cidrBlock' | translate }}</span></th>
+                    <th md-column md-order-by="defaultForAz"><span>{{ 'vpc.elenco.default' | translate }}</span></th>
+                </tr>
+            </thead>
+
+            <tbody md-body>
+                <tr md-row md-select="vpc" md-auto-select="options.autoSelect"
+                    ng-repeat="vpc in vpcs | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                    <td md-cell>{{vpc['nvl-name']}}</td>
+                    <td md-cell >
+                            <p ng-if="vpc.cidrBlockAssociationSet.length > 0">
+                                    <span ng-repeat="cidr in vpc.cidrBlockAssociationSet" class="md-caption">
+                                      {{cidr.cidrBlock}}<br>
+                                    </span>
+                            </p>
+                    </td>
+                    <td md-cell hide-gt-xs hide-xs show-gt-sm>
+                        <span
+                            ng-class="vpc.isDefault === true ? 'badge badge-success' : 'badge badge-danger'">
+                            {{vpc.isDefault}}
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+        md-total="{{vpcs.length}}" md-page-select="options.pageSelect"
+        md-boundary-links="options.boundaryLinks"></md-table-pagination>
+</md-card>

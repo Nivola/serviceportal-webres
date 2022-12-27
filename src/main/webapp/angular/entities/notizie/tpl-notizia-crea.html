@@ -1,0 +1,138 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="row" layout-fill layout-align="start start">
+
+    <!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<!-- Include stylesheet -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script>
+
+</script>
+
+    <md-card flex="grow">
+        <md-card-title>
+            <md-card-title-text layout-align="center center">
+	      	    <span class="md-headline"> {{ 'notizie.nuova.titolo' | translate}} </span>
+            </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+            <loading-placeholder status="status" ></loading-placeholder>
+
+            <div ng-show="status.loaded">
+
+                <form name="form">
+
+                    <md-input-container class="md-block">
+                        <label>{{ 'notizie.nuova.titolo_notizia' | translate}}</label>
+                        <input id="title" ng-model="vm.entity.titolo" name="titolo" tabindex="1" required md-maxlength="255">
+
+                        <div ng-messages="form.titolo.$error" role="alert" multiple>
+                            <div ng-message="required" class="my-message">
+                                {{ 'notizie.nuova.titolo_notizia_required' | translate}}
+                            </div>
+                            <div ng-message="md-maxlength" class="my-message">
+                                {{ 'notizie.nuova.titolo_notizia_maxlength' | translate}}
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <!-- <p style="padding-top:1em;">
+                            <div id="editor"  >
+                                
+                              </div>
+                        </p> --> 
+                        <!-- <label>Contenuto della Notizia</label> -->
+                        <trix-editor angular-trix ng-model="vm.entity.contenuto" class="trix-content" required md-maxlength="5000"
+                        rows="5"></trix-editor>
+                       
+                        <!-- <textarea id="content" ng-model="vm.entity.contenuto" name="content" tabindex="2" required md-maxlength="5000"
+                        	rows="5"
+                        ></textarea> -->
+
+                        <div ng-messages="form.content.$error" role="alert" multiple>
+                            <div ng-message="required" class="my-message">
+                                {{ 'notizie.nuova.content_maxlength' | translate}}
+                            </div>
+                            <div ng-message="md-maxlength" class="my-message">
+                                {{ 'notizie.nuova.content_maxlength' | translate}}
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <p style="padding-top:1em;"></p>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>{{ 'notizie.nuova.priorita' | translate}}</label>
+                        <md-select ng-model="vm.entity.priorita">
+                            <md-option ng-repeat="opt in vm.elencoPriorita | orderBy:'code'" value="{{opt.code}}">
+                                {{opt.description}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>{{ 'notizie.nuova.stato' | translate}}</label>
+                        <md-select ng-model="vm.entity.stato">
+                            <md-option ng-repeat="opt in vm.availableStatuses | orderBy:'name'" value="{{opt.code}}">
+                                {{opt.description}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <p style="padding-top:1em;"></p>
+					<div layout="column">
+						<div layout="row" layout-xs="column">
+		                    <md-input-container class="md-icon-float md-block md-column-2" flex>
+		                    <label>{{ 'notizie.nuova.pubblica_da' | translate}}:</label>
+		                    <md-datepicker ng-model="vm.entity.dataPubblicazioneInizio" ></md-datepicker>
+		                    </md-input-container>
+		                    
+		                    <md-input-container class="md-icon-float md-block md-column-2" flex>
+		                    <label>{{ 'notizie.nuova.pubblica_a' | translate}}:</label>
+		                    <md-datepicker ng-model="vm.entity.dataPubblicazioneFine" ></md-datepicker>
+		                    </md-input-container>
+	                    </div>
+	                </div>
+	                    
+					<!-- FINE MODIFICHE--------------------- -->
+                    <p style="padding-top:1em;"></p>
+
+                    <div style="padding-top:2em;padding-bottom:2em;">
+                        <md-button class="md-raised md-primary" style="padding:1em 1em 1em 1em;min-width:200px;"
+                        	
+                        	ng-click="actions.save()"
+                        >
+                        {{ 'salva' | translate}}
+                        </md-button>
+                        
+                        <md-button class="md-raised" style="padding:1em 1em 1em 1em;min-width:75px;float:right;"
+                        	ng-if="MODIFICA" 
+                        	ng-click="actions.delete()"
+                        >
+                            <md-icon>delete_forever</md-icon>
+                        </md-button>
+                    </div>
+                </form>
+
+            </div>
+            
+            <md-button class="animation-target md-raised  md-primary md-hue-2"  ng-click="historyBack()">
+				<md-icon>keyboard_backspace</md-icon> {{ 'indietro' | translate}}
+			</md-button>
+
+        </md-card-content>
+    </md-card>
+
+</div>
+

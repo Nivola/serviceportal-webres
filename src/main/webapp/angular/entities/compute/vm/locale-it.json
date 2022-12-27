@@ -1,0 +1,277 @@
+{
+    "vm": {
+        "aggiorna": "Aggiorna lista VM",
+        "aggiorna_dettaglio": "Aggiorna dettagli VM",
+        "crea": "Crea una nuova VM",
+        "elenco": "Elenco VM",
+        "gestione": "Pannello gestione VM",
+        "selezionata": "VM selezionata",
+        "selezionate": "VM selezionate",
+        "arresto": {
+            "error": "Si è verificato un errore durante il tentativo di arrestare la macchina virtuale",
+            "success": "L'arresto della virtual machine sta avvenendo correttamente"
+        },
+        "avvia": {
+            "error": "Si è verificato un errore durante il tentativo di avviare la macchina virtuale",
+            "success": "L'avvio della virtual machine sta avvenendo correttamente"
+        },
+        "connetti": {
+            "bottone": "Connetti",
+            "esempio": "Esempio",
+            "msg01": "Apri un client SSH (e.g., PuTTY).",
+            "msg02": "Individua il file della tua chiave privata (e.g., my-nivola-key.pem). La procedura guidata rileva automaticamente la chiave utilizzata per avviare l'istanza.",
+            "msg03": "La chiave non deve essere pubblicamente visibile affinché SSH funzioni. Usa questo comando se necessario",
+            "msg04": "Collegati alla tua istanza usando il suo IP",
+            "msg05": "Se hai bisogno di assistenza per la connessione alla tua istanza, consulta la nostra documentazione di connessione.",
+            "sottotitolo": "Per accedere alla tua istanza",
+            "titolo": "Connetti"
+        },
+        "elimina": {
+            "bottone": "Elimina VM",
+            "error": "Si è verificato un errore durante l'eliminazione della virtual machine",
+            "success": "La richiesta di eliminazione della VM è stata inoltrata correttamente.",
+            "testo": "La virtual machine verrà cancellata definitivamente.",
+            "titolo": "Confermi la cancellazione della virtual machine selezionata?"
+        },
+        "lista": {
+            "cpu": "CPU e RAM",
+            "disco": "Disco",
+            "ip": "IP assegnato",
+            "name": "Nome VM",
+            "os": "Template",
+            "region_az": "Region - A.Z.",
+            "security_group": "Security Group",
+            "stato": "Stato",
+            "tags": "Tag(s)",
+            "vuoto": "Nessuna VM presente"
+        },
+        "manage": {
+            "associa_sg" : " associa nuova secutity group alla VM ",
+            "data_creazione": "Data Creazione",
+            "dettagli": "Dettagli",
+            "dischi": "Dischi",
+            "dns_name": "FQDN",
+            "elimina_sg" : " rimuovere secutity group dalla VM ",
+            "error": "Si è verificato un errore durante il caricamento delle informazioni della virtual machine",
+            "error_update": "Si è verificato un errore durante il tentativo di aggiornamento delle security group",
+            "error_newsg" : "Si è verificato un errore durante il tentativo di associazione di una nuova Security group alla Vm .", 
+            "error_deleteSG" : "Si è verificato un errore durante il tentativo di rimozione  della Security group",
+            "inserisci_un_tag": "Inserisci un tag ...",
+            "ip_address": "IP address",
+            "modifica_flavour": "modifica Flavour",
+            "nuova_sg": "nuova  Security Group",
+            "nome": "Nome",
+            "nuovo_snapshot": "Crea un nuovo Snapshot",
+            "proprieta": "Proprieta",
+            "region": "Region - A.Z.",
+            "security_group": "Security Group",
+            "start": "START",
+            "start_stop": "Start/Stop/Riavvia",
+            "stato": "Stato VM",
+            "stop": "STOP",
+            "reboot": "RIAVVIA",
+            "subnet": "Subnet",
+            "success_deletesg" : "L'operazione di rimozione della  Security group è stata avviata correttamente", 
+            "success_newsg" : "L'operazione di associazione di una nuova Security group alla Vm è stata avviata correttamente", 
+            "success": "L'operazione di aggiornamento delle security group della virtual machine è stata avviata correttamente",
+            "tags": "Tags",
+            "tecnologia": "Tecnologia",
+            "template": "Template",
+            "tipo": "Tipo VM",
+            "titolo": "Pannello di Gestione VM",
+            "valore": "Valore"
+        },
+        "modifica_flavour": {
+            "conferma": "Confermi la modifica del flavour?",
+            "errore": "Si è verificato un errore durante il tentativo di aggiornamento del Flavour della virtual machine",
+            "errore_caricamento": "Si è verificato un errore durante il caricamento dei flavour",
+            "ram": "RAM",
+            "success": "L'operazione di aggiornamento del Flavour della virtual machine è stata avviata correttamente",
+            "testo": "Hai selezionato il nuovo type della vm {{nome}} con caratteristiche {{vcpus}} Cpu {{ram}} di Ram ... L'applicazione delle modifiche comporterà un riavvio dell'istanza con interruzione dei servizi attivi. Eventuali dati non salvati potranno andare persi.",
+            "tipo": "Type",
+            "titolo": "Modifica Flavour",
+            "vcpus": "VCPUs"
+        },
+        "nuova": {
+            "error": "Si è verificato un errore durante il tentativo di creazione della macchina virtuale",
+            "success": "L'operazione di creazione della virtual machine è stata avviata correttamente",
+            "titolo": "Crea una Nuova VM",
+            "disco": {
+                "aggiungi": "AGGIUNGI DISCO AGGIUNTIVO",
+                "dimensione": "Dimensione",
+                "dimensione_estesa": "Dimensione del disco",
+                "rimuovi": "Rimuovi disco aggiuntivo",
+                "scegli": "Scegli le opzioni relative allo spazio di archiviazione.",
+                "tipologia": "Tipologia",
+                "tipologia_estesa": "Tipologia del disco",
+                "tipologia_gold": "storage prestazionale",
+                "tipologia_silver": "low range",
+                "titolo": "3. Disco",
+                "vai_a_network": "VAI A NETWORK E SECURITY"
+            },
+            "network": {
+                "gruppo_sicurezza": "Gruppo di sicurezza",
+                "regione": "Region",
+                "scegli_gruppo_sicurezza": "Scegli in che gruppo di sicurezza inserire la virtual machine.",
+                "scegli_region": "Scegli la Region e Availability Zone.",
+                "scegli_subnet": "Scegli la subnet nella quale collocare la virtual machine che stai creando.",
+                "subnet": "Subnet",
+                "titolo": "4. Network e Security",
+                "vai_a_sicurezza": "VAI A SICUREZZA",
+                "zona_disponibilita": "Availability Zone"
+            },
+            "riepilogo": {
+                "FQDN": "FQDN",
+                "chiaveSSH": "Chiave SSH",
+                "costi_stimati": "Costi stimati",
+                "costo_al_mese": "\u20ac/mese",
+                "costo_incluso": "incluso",
+                "creazione_conferma": "CONFERMA E CREA LA VIRTUAL MACHINE",
+                "creazione_msg01": "La creazione della virtual machine potrebbe richiedere del tempo.",
+                "creazione_msg02": "Verrai avvisato al completamento dell'operazione.",
+                "descrizione": "Assicurati di aver selezionato le opzioni corrette, dopodichè avvia la creazione della virtual machine.",
+                "disco": "Disco",
+                "modifica": "Modifica",
+                "password": "Password",
+                "proprieta": "Proprieta",
+                "region": "Region - A.Z.",
+                "security_group": "Security Group",
+                "stima_mensile": "Stima mensile di",
+                "subnet": "Subnet",
+                "tecnologia": "Tecnologia",
+                "template": "Template",
+                "tipo": "Tipo VM",
+                "titolo": "6. Riepilogo",
+                "valore": "Valore"
+            },
+            "sicurezza": {
+                "chiavi_creazione_01": "La creazione di una nuova VM è possibile solo indicando una chiave SSH da utilizzare",
+                "chiavi_creazione_02": "E' possibile generare nuove chiavi o importarne di esistenti per questo Account andando nella sezione",
+                "chiavi_creazione_link_desc_01": "Reti e Sicurezza - Chiavi SSH",
+                "chiavi_creazione_link_desc_02": ", oppure crearla immediatamente utilizzando le funzionalità presenti a destra",
+                "chiavi_non_disponibili": "Non sono disponibili chiavi SSH per questo Account.",
+                "crea_chiave": "Crea una Nuova Chiave SSH",
+                "importa_chiave": "Importa una Chiave SSH",
+                "mostra_password": "mostra password",
+                "nascondi_password": "nascondi password",
+                "password_conferma": "conferma password",
+                "password_memo": "Memorizzarsi accuratamente la password inserita in quanto non sarà più visualizzabile tramite Service Portal",
+                "password_necessaria": "E' necessario impostare una password",
+                "password_pattern": "La password deve essere lunga tra 10 e 16 caratteri, deve contenere almeno una lettera minuscola, una maiuscola, <\/br>un numero e un carattere speciale[#$^+=!*()@%&]\", oppure crearla immediatamente utilizzando le funzionalità presenti a destra",
+                "password_uguali": "le password devono essere valide e uguali!!!",
+                "scegli_chiave": "Scegliere una chiave da assegnare alla virtual machine",
+                "scegli_password": "Scegli la password di amministrazione per la VM",
+                "selezionato": "Attualmente selezionato",
+                "titolo": "5. SICUREZZA",
+                "vai_a_riepilogo": "VAI A RIEPILOGO",
+                "chiave": {
+                    "impronta": "Impronta",
+                    "nome": "Nome Chiave"
+                }
+            },
+            "template": {
+                "nome": "Nome della virtual machine",
+                "nome_error": "Il nome della vm non deve contenere il carattere \"_\"",
+                "nome_placeholder": "Specificare il nome della virtual machine",
+                "nome_titolo": "Dai un nome alla tua virtual machine.",
+                "scegli": "Scegli il template da cui generare la virtual machine.",
+                "titolo": "1. Template",
+                "vai_a_tipo": "VAI A TIPO VM"
+            },
+            "tipo": {
+                "dimensione": "Dimensiona le risorse da assegnare alla virtual machine.",
+                "disco": "Disco",
+                "ram": "RAM",
+                "selezionato": "Attualmente selezionato",
+                "tipo": "Type",
+                "titolo": "2. Tipo VM",
+                "vai_a_disco": "VAI A DISCO",
+                "vcpus": "VCPUs"
+            }
+        },
+        "reboot": {
+            "bottone": "reboot VM",
+            "error": "Si è verificato un errore durante il tentativo di riavvio della virtual machine",
+            "success": "La richiesta di riavvio della VM è stata inoltrata  correttamente.",
+            "testo": "La virtual machine verrà riavviata.",
+            "titolo": "Confermi il riavvio della virtual machine selezionata?"
+        },
+        "snapshot": {
+            "azioni": "Azioni",
+            "btnDelete": "Elimina Snapshot",
+            "btnRevert": "Revert Snapshot",
+            "data_creazione": "Data Creazione",
+            "label": "Snapshot",
+            "no_data": "Non ci sono snapshots per questa VM ",
+            "nome": "Nome Snapshot",
+            "stato": "Stato",
+            "elimina": {
+                "error": "Si è verificato un errore durante l'eliminazione della Snapshot",
+                "procedere": "Procedere con la cancellazione ?",
+                "success": "La richiesta di eliminazione della Snapshot è stata eseguita correttamente",
+                "testo": "La Rimozione della Snapshot  implica la cancellazione definitiva",
+                "titolo": "Cancellazione Snapshot"
+            },
+            "nuova": {
+                "crea": "Crea Snapshot",
+                "error": "Si è verificato un errore durante il tentativo di creazione dello snapshot",
+                "error_presente": "Operazione non consentita Nome già presente",
+                "nome": "Inserire il nome dello Snapshot",
+                "nome_completo": "Nome Completo assegnato allo snapshot",
+                "nome_pattern": "Il nome deve iniziare con un carattere non numerico<br>La lunghezza deve essere tra (8-40) caratteri. <br>caratteri speciali accettati : <b>'_','-' <\/b><br>Es: snapshot_1,snapshot-1",
+                "nome_placeholder": "nome dello Snapshot",
+                "nome_presente": "Esite già uno Snapshot con lo stesso nome",
+                "success": "L'operazione di creazione dello snapshot conclusa correttamente",
+                "titolo": "Creazione nuovo Snapshot"
+            },
+            "revert": {
+                "error": "Si è verificato un errore durante il ripristino della Snapshot",
+                "procedere": "Procedere con il ripristino ?",
+                "success": "La richiesta di ripristino della Snapshot è stata eseguita correttamente",
+                "testo": "Gli stati correnti del disco e della memoria vengono eliminati <br> e la macchina virtuale torna agli stati del disco e della memoria della snapshot principale",
+                "titolo": "Ripristinare Snapshot"
+            }
+        },
+        "stato": {
+            "pending": "La VM è in uno stato temporaneo",
+            "running": "La VM è accesa",
+            "stopped": "La VM è spenta",
+            "undefined": "La VM è in uno stato indefinito",
+            "value": "La VM è nello stato ",
+            "errore" : "La VM è in stato di errore ",
+            "error" : "La VM è in stato di errore ",
+            "building" :  "La VM è in corso di creazione ",
+            "terminated" :  "La VM è stata distrutta ",
+            "unknown" :  "La VM è in uno stato sconosiuto "
+        },
+        "volumi" :{
+            "no_data": "Non ci sono volumi associati per questa VM ",
+            "label": "Volumi",
+            "nome" : "Nome Volume",
+            "status" : "Stato",
+            "attachTime" : "attach Time",
+            "volumeSize" : "Dimensione",
+            "azioni" : "azioni"
+        },
+        "statoText":{
+            "pending": "temporaneo",
+            "running": "accesa",
+            "stopped": "spenta",
+            "undefined": "indefinito",
+            "errore" : "errore ",
+            "unknow" : "sconosciuto"
+        },
+        "restorePoints":{
+            "label":"Punti di ripristino",
+            "no_data":"Non ci sono punti di ripristino associati a VM"
+        },
+        "errors":{
+            "restore_vm_ko":"La richiesta di ripristino della macchina virtuale non è andato a buon fine",
+            "loading_restore_points":"Si è verificato un errore durante il caricamento dei Restore points del job di backup",
+            "loading_restore_points_detail":"Si è verificato un errore durante il caricamento dei Restore point dettagliati.",
+            "loading_associated_vms":"Si è verificato un errore durante il caricamento delle vm associate al Restore point.",
+            "reloading_detail_job":"Si è verificato un errore durante il caricamento del job di backup"
+        }
+
+    }
+}

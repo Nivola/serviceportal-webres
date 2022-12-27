@@ -1,0 +1,507 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+    <br />
+    <md-content class="md-no-momentum">
+        <md-card>
+            <div class="md-toolbar-tools">
+                <div flex=20>
+                    <md-card-actions layout="row" layout-align="start center" >
+                        <md-button class="md-fab read-me " ng-href="{{rtdStaasNew }}" target="_blank">
+                            <md-icon  class="material-icons">local_library</md-icon>
+                            <md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+                        </md-button>
+                    </md-card-actions>
+                </div>
+                <div flex>
+                    <md-card-title>
+                        <md-card-title-text layout-align="center center" flex>
+                            <span class="md-headline titolo-sezione">
+                                <md-icon class="icon-card-header-green">sd_storage</md-icon> {{ 'shares.nuova.titolo' | translate}}
+                            </span>
+                            <div class="callout callout-info">
+                            </div>
+                        </md-card-title-text>
+                        <md-card-actions layout="row" layout-align="end center" flex="20">
+
+                        </md-card-actions>
+                    </md-card-title>
+                </div>
+                
+                <div flex=20>
+    
+                </div>
+            </div>
+          
+
+            <md-card-content>
+                <form name="staasForm">
+                    <md-tabs md-dynamic-height md-border-bottom md-center-tabs class="tab-min-200"
+                        md-selected="status.tabIndex">
+
+
+                        <md-tab label="{{ 'shares.nuova.generali.titolo' | translate}}">
+           
+                            <md-content class="md-padding">
+                                <br>
+                                <b>
+                                    {{ 'shares.nuova.generali.nome.titolo' | translate}}
+                                </b>
+                                <br>
+
+                                <div layout="row">
+                                    <md-input-container class="md-block" flex="50">
+                                        <md-icon>insert_comment</md-icon>
+                                        <label>{{ 'shares.nuova.generali.nome.label' | translate}}</label>
+                                        <input id="selectedStaasName" ng-model="staas.selectedStaasName" name="staasname" required md-maxlength="50"
+                                            required placeholder="{{ 'shares.nuova.generali.nome.placeholder' | translate}}">
+
+                                        <div ng-messages="staasForm.staasname.$error" role="alert" multiple>
+                                            <div ng-message="required" class="my-message">
+                                                {{ 'shares.nuova.generali.nome.required' | translate}}
+                                            </div>
+                                            <div ng-message="md-maxlength" class="my-message">
+                                                {{ 'shares.nuova.generali.nome.maxlength' | translate}}
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+
+                                <b>
+                                    {{ 'shares.nuova.generali.protocollo.titolo' | translate}}
+                                </b>
+                                <br><br>
+                            <div layout="row">
+                                <div flex="50">
+                                    <md-radio-group ng-model="subnet.selectedProtocol" class="md-primary" aria-label="type radio group">
+                                        <md-radio-button value="NFS">{{ 'shares.nuova.generali.protocollo.nfs' | translate}}</md-radio-button>
+                                    </md-radio-group>
+                                </div>
+                            </div>
+                                <br />
+
+                                <div class="pull-right" ng-if="staas.selectedStaasName && subnet.selectedProtocol">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(1)">
+                                        {{ 'avanti' | translate}}
+                                        <md-icon ng-style="iconStyle" class="material-icons">keyboard_arrow_right
+                                        </md-icon>
+                                    </md-button>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="{{ 'shares.nuova.spazio.titolo' | translate}}"
+                            ng-disabled="!(staas.selectedStaasName && subnet.selectedProtocol)">
+                            <md-content class="md-padding">
+                                <p>
+                                    <b>{{ 'shares.nuova.spazio.opzioni' | translate}}</b>
+                                </p>
+
+                                <md-card>
+                                    <table md-table>
+                                        <thead md-head>
+                                            <tr md-row>
+                                                <th flex="50" class="th-bold" md-column>{{ 'shares.nuova.spazio.dimensione' | translate}}</th>
+                                                <th  ng-hide="true" flex="50" class="th-bold" md-column>{{ 'shares.nuova.spazio.tipologia' | translate}}</th> 
+                                                <th md-column></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody md-body>
+                                            <tr md-row>
+                                                <td md-cell>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label>{{ 'shares.nuova.spazio.dimensione_share' | translate}}</label>
+                                                        <md-select ng-model="staas.selectedStaasSize">
+                                                            <md-option ng-repeat="opt in staas.availableStaasSizings "
+                                                                value="{{opt}}">
+                                                                {{opt}} GB
+                                                            </md-option>
+                                                        </md-select>
+                                                    </md-input-container>
+                                                </td>
+                                                <td ng-hide="true" md-cell>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label>{{ 'shares.nuova.spazio.tipologia_share' | translate}}</label>
+                                                        <md-select   ng-model="staas.selectedStaasType" >
+                                                            <md-option ng-repeat=" (i,opt)  in staas.availableStaasTypes | limitTo:1"
+                                                                value="{{opt.uuid}}"
+                                                                ng-selected="i == 0 ? true:false">
+                                                                {{opt.nome}} - {{opt.descrizione}}
+                                                            </md-option>
+                                                        </md-select>
+                                                    </md-input-container>
+                                                </td>
+                                                <td md-cell>
+                                                    <md-button class="md-icon-button md-warn" disabled>
+                                                        <md-icon></md-icon>
+                                                    </md-button>
+                                                </td>
+                                            </tr>
+                                            <tr md-row ng-if="vm.additionalStorages"
+                                                ng-repeat="n in [] | range:vm.additionalStorages">
+                                                <td md-cell>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label>{{ 'shares.nuova.spazio.dimensione_disco' | translate}}</label>
+                                                        <md-select ng-model="vm.selectedAdditionalStoragesSize[$index]">
+                                                            <md-option ng-repeat="opt in vm.availableDiskSizings"
+                                                                value="{{opt}}">
+                                                                {{opt}}GB
+                                                            </md-option>
+                                                        </md-select>
+                                                    </md-input-container>
+                                                </td>
+                                                <td md-cell>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label>{{ 'shares.nuova.spazio.tipologia_disco' | translate}}</label>
+                                                        <md-select ng-model="vm.selectedAdditionalStoragesType[$index]">
+                                                            <md-option ng-repeat="opt in vm.availableDiskTypes"
+                                                                value="{{opt.id}}">
+                                                                {{opt.name}} - {{opt.description}}
+                                                            </md-option>
+                                                        </md-select>
+                                                    </md-input-container>
+                                                </td>
+                                                <td md-cell>
+                                                    <md-button class="md-icon-button md-warn"
+                                                        ng-click="onAdditionalStorageRemoved($index)"
+                                                        aria-label="rimuovi disco aggiuntivo">
+                                                        <md-icon>highlight_off</md-icon>
+                                                        <md-tooltip md-direction="top">{{ 'shares.nuova.spazio.rimuovi_disco' | translate}}
+                                                        </md-tooltip>
+                                                    </md-button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </md-card>
+
+                                <div class="pull-left" >
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(0)">
+                                        <md-icon ng-style="iconStyle" class="material-icons">chevron_left
+                                        </md-icon> {{ 'indietro' | translate}}
+                                    </md-button>
+                                </div>
+
+                                <div class="pull-right" ng-if="staas.selectedStaasType && staas.selectedStaasSize">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(2)">
+                                        {{ 'avanti' | translate}}
+                                        <md-icon ng-style="iconStyle" class="material-icons">keyboard_arrow_right
+                                        </md-icon>
+                                    </md-button>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="{{ 'shares.nuova.network.titolo' | translate}}" ng-disabled="!(staas.selectedStaasName && subnet.selectedProtocol && staas.selectedStaasType && staas.selectedStaasSize)">
+                            <md-content class="md-padding">
+                                <p>
+                                    {{ 'shares.nuova.network.scegli_region_zone' | translate}}
+                                </p>
+
+                                <div layout="row">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>public</md-icon>
+                                        <label>{{ 'shares.nuova.network.region' | translate}}</label>
+                                        <md-select ng-model="subnet.selectedRegion">
+                                            <md-option ng-repeat="opt in subnet.availableRegions" value="{{opt.id}}">
+                                                {{opt.description}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>location_on</md-icon>
+                                        <label>{{ 'shares.nuova.network.zone' | translate}}</label>
+                                        <md-select ng-model="subnet.selectedAvailabilityZone">
+                                            <md-option
+                                                ng-repeat="opt in subnet.availableAvailabilityZones  | filter: {regionName: subnet.selectedRegion}"
+                                                value="{{opt.id}}">
+                                                {{opt.description}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+
+                                <p>
+                                    {{ 'shares.nuova.network.scegli_subnet' | translate}}
+                                </p>
+
+                                <div layout="column">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>router</md-icon>
+                                        <label>{{ 'shares.nuova.network.subnet' | translate}}</label>
+                                        <md-select ng-model="subnet.selectedSubnet">
+                                            <md-option
+                                                ng-repeat="opt in subnet.availableSubnets | filter: {availabilityZone: fromIdToObj(subnet.availableAvailabilityZones, subnet.selectedAvailabilityZone).description}"
+                                                value="{{opt.id}}">
+                                                {{opt.description}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+
+    
+                                <br />
+
+                                <div class="pull-left" >
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(1)">
+                                        <md-icon ng-style="iconStyle" class="material-icons">chevron_left
+                                        </md-icon> {{ 'indietro' | translate}}
+                                    </md-button>
+                                </div>
+
+                                <div class="pull-right" ng-if="subnet.selectedRegion && subnet.selectedAvailabilityZone && subnet.selectedSubnet">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(3)">
+                                        {{ 'avanti' | translate}}
+                                        <md-icon ng-style="iconStyle" class="material-icons">keyboard_arrow_right
+                                        </md-icon>
+                                    </md-button>
+                                </div>
+                            </md-content>
+                        </md-tab>
+
+                        <md-tab label="{{ 'shares.nuova.riepilogo.titolo' | translate}}" md-on-select="actions.onTabSelected(4)"
+                            ng-disabled="!(staas.selectedStaasName && subnet.selectedProtocol && staas.selectedStaasType && staas.selectedStaasSize && subnet.selectedRegion && subnet.selectedAvailabilityZone && subnet.selectedSubnet)">
+                            <md-content class="md-padding">
+                                <p>
+                                    {{ 'shares.nuova.riepilogo.sottotitolo' | translate}}
+                                </p>
+
+                                <div layout="row" layout-align="space-around start">
+                                    <md-card>
+                                        <md-table-container>
+                                            <table md-table>
+                                                <thead md-head>
+                                                    <tr md-row>
+                                                        <th md-column><span>{{ 'proprieta' | translate}}</span></th>
+                                                        <th md-column><span>{{ 'valore' | translate}}</span></th>
+                                                        <th md-column><span>{{ 'modifica' | translate}}</span></th>
+                                                        <th md-column><span layout="row" layout-align="center">{{ 'costi_stimati' | translate}}</span></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody md-body>
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>sd_storage</md-icon>
+                                                                    <b>{{ 'shares.nuova.riepilogo.nome' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{staas.selectedStaasName}}
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(0)"
+                                                                aria-label="{{ 'shares.nuova.riepilogo.nome_modifica' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'shares.nuova.riepilogo.nome_modifica' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <nobr>
+                                                                    <h6 class="md-subhead"> - </h6>
+                                                                    
+                                                                </nobr>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>sd_storage</md-icon>
+                                                                    <b>{{ 'shares.nuova.riepilogo.dimensione' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{staas.selectedStaasSize}} GB
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(1)"
+                                                                aria-label="{{ 'shares.nuova.riepilogo.dimensione_modifica' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'shares.nuova.riepilogo.dimensione_modifica' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div ng-if="costi.costoTotaleStorage" layout="column" layout-align="center center">
+                                                                <span class="md-title">{{ costi.costoTotaleStorage | number : 2 }} €</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>tune</md-icon>
+                                                                    <b>{{ 'shares.nuova.riepilogo.protocollo' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{ subnet.selectedProtocol }}
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(0)"
+                                                                aria-label="{{ 'shares.nuova.riepilogo.protocollo_modifica' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'shares.nuova.riepilogo.protocollo_modifica' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">{{ 'costo_incluso' | translate}}</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>public</md-icon>
+                                                                    <b>{{ 'shares.nuova.riepilogo.region' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{fromIdToObj(subnet.availableRegions, subnet.selectedRegion).description}}
+                                                            -
+                                                            {{fromIdToObj(subnet.availableAvailabilityZones, subnet.selectedAvailabilityZone).description}}
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(2)"
+                                                                aria-label="{{ 'shares.nuova.riepilogo.region_modifica' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'shares.nuova.riepilogo.region_modifica' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">{{ 'costo_incluso' | translate}}</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>router</md-icon>
+                                                                    <b>{{ 'shares.nuova.riepilogo.subnet' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{fromIdToObj(subnet.availableSubnets, subnet.selectedSubnet).description}}
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(2)"
+                                                                aria-label="{{ 'shares.nuova.riepilogo.subnet' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'shares.nuova.riepilogo.subnet' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">{{ 'costo_incluso' | translate}}</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </md-table-container>
+                                    </md-card>
+
+                                    <md-card>
+                                        <md-card-content>
+                                            <div layout="column" layout-align="space-around start">
+                                                 <h6 class="md-subhead">
+                                                    <nobr>
+                                                        {{ 'stima_mensile_di' | translate}} <span
+                                                            class="md-title">{{ costi.costoTotaleStorage | number : 2}} {{ 'costo_al_mese' | translate}}</span>
+                                                    </nobr>
+                                                </h6> 
+                                            </div>
+                                            <br />
+                                            <md-divider></md-divider>
+                                            <br />
+
+                                            <div layout="column" layout-align="center center" flex>
+                                                <p align="center">
+                                                    <small>
+                                                        {{ 'shares.nuova.riepilogo.creazione_msg01' | translate}}
+                                                    </small>
+
+                                                    <br />
+
+                                                    <small>
+                                                        {{ 'shares.nuova.riepilogo.creazione_msg02' | translate}}
+                                                    </small>
+                                                </p>
+
+                                                <div layout="row" layout-align="start center" layout-margin>
+                                                    <md-button class="md-raised md-primary" ng-click="submit()" ng-disabled="status.pending">
+                                                                {{ 'avanti' | translate}}
+                                                        <md-icon ng-style="iconStyle" class="material-icons">
+                                                            keyboard_arrow_right
+                                                        </md-icon> 
+                                                    </md-button>
+                                                </div>
+                                            </div>
+                                        </md-card-content>
+                                    </md-card>
+                                </div>
+
+                                
+                            </md-content>
+
+                            <div class="pull-left" >
+                                <md-button class="md-raised" ng-click="actions.gotoTab(2)">
+                                    <md-icon ng-style="iconStyle" class="material-icons">chevron_left
+                                    </md-icon> {{ 'indietro' | translate}}
+                                </md-button>
+                            </div>
+                        </md-tab>
+
+
+                    </md-tabs>
+                </form>
+            </md-card-content>
+        </md-table-pagination>
+        <md-divider></md-divider>
+        <md-card-actions layout="row" layout-align="space-between center">
+            <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+                <md-icon class="material-icons">keyboard_backspace</md-icon> {{ ('abbandona' | translate)}} 
+            </md-button>
+        </md-card-actions>
+        </md-card>
+    </md-content>
+</div>

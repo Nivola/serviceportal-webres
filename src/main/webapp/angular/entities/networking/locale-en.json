@@ -1,0 +1,144 @@
+{
+    "keypair": {
+        "errore_chiave_stesso_nome": "A key with the same name already exists",
+        "errore_nome_presente": "Operation not allowed. Name already present",
+        "nome": "Key name",
+        "nome_completo": "Full Name assigned to Key",
+        "pattern": "Name must begin with a non-numeric character <br> Length must be between (8-40) characters. <br> accepted special characters: <b> '_', '-' <\/b> <br> Ex: key_1, key-1",
+        "elenco": {
+            "aggiorna": "Refresh List",
+            "crea": "Add SSH Key",
+            "elimina": "Delete SSH Key",
+            "errore": "An error occurred while loading keys",
+            "importa": "Import SSH Key",
+            "impronta": "Fingerprint",
+            "nome": "Key name",
+            "selezionata": "Selected key",
+            "selezionate": "Selected keys",
+            "titolo": "SSH Keys",
+            "vuoto": "There are no SSH Keys"
+        },
+        "elimina": {
+            "errore": "An error occurred while deleting ey",
+            "info": "The key will be permanently deleted",
+            "success": "The request has been successfully processed.",
+            "titolo": "Are you sure you want to delete the selected key?"
+        },
+        "importa": {
+            "errore": "An error occurred while trying to import the key",
+            "errore_chiave_non_valida": "Invalid key.",
+            "importa": "Import",
+            "info": "At the end of the operation a .pem file will be generated.",
+            "inserimento": "Enter the key Name",
+            "label": "RSA key (only the public key string without initial 'ssh-rsa', and without final email references)",
+            "msg_parte_pubblica": "Enter a string containing the public part of the key",
+            "success": "The import operation was completed successfully",
+            "titolo": "Import SSH key"
+        },
+        "nuova": {
+            "crea": "Create Key",
+            "errore": "An error occurred while trying to create key",
+            "info": "At the end of the operation a .pem file will be generated.",
+            "inserimento": "Digit the key Name",
+            "msg": "At the end of the operation a .pem file will be generated containing the key.",
+            "success": "The key creation was completed successfully",
+            "titolo": "SSH key creation"
+        }
+    },
+    "security_group": {
+        "elenco": {
+            "aggiorna": "Refresh List",
+            "nome": "Security Group Name",
+            "nvlVpcName": "nvlVpcName",
+            "seleziona": "Select only a security group!",
+            "selezionati": "Selected Security Groups",
+            "selezionato": "Selected Security Group",
+            "stato": "Status",
+            "titolo": "Security Group list",
+            "vuoto": "There are no Security Group"
+        },
+        "elimina": {
+            "bottone": "Delete Security Group",
+            "conferma": "Are you sure to delete che selected securityGroup?",
+            "error": "An error occurred while deleting the SecurityGroup",
+            "success": "The Security Group {{groupName}} was successfully deleted.",
+            "testo": "Security Group will be permanently deleted."
+        },
+        "modifica": {
+            "bottone": "Update Security Group"
+        },
+        "nuovo": {
+            "aggiorna": "Refresh",
+            "bottone": "Create New Security Group",
+            "crea": "Security Group Name",
+            "error": "An error occurred while trying to create the Security Group",
+            "error_campi": "You must specify all required fields",
+            "nome": "Name",
+            "nome_maxlength": "Security Group Name entered is; too long",
+            "nome_pattern": "The name must not contain spaces, numbers, special characters (only '-' is allowed) and must be at least 4 characters long",
+            "nome_required": "Name required",
+            "nome_scegli": "Security Group Name",
+            "success": "Operation started successfully",
+            "template_scegli": "Choose a security template to start from",
+            "titolo": "Create New Security Group",
+            "vpc_default": "Default",
+            "vpc_nome": "VPC name",
+            "vpc_scegli": "Choose the reference VPC",
+            "vpc_selezionare": "Select a VPC"
+        },
+        "regole": {
+            "a_porta": "To Port",
+            "aggiorna": "Refresh List",
+            "aggiungi": "Add Rule",
+            "bottone": "View Rules",
+            "cidr": "CIDR/SG",
+            "da_cidr": "By CIDR",
+            "da_porta": "From Port",
+            "da_security_group": "From Security Group",
+            "default": "Default",
+            "descrizione": "Description",
+            "di_ingresso": "Ingress Rules",
+            "di_uscita": "Egress Rules",
+            "domain": "Classless Inter-Domain Routing",
+            "dominio": "Domain",
+            "ip_range": "IP Range",
+            "ip_range_placeholder": "e.g 10.0.0.0/8",
+            "nome": "Name",
+            "porta_pattern": "allowed: <br> * <br> 0-65535",
+            "porta_tooltip": "Enter * for all ports or a value between 0-65535",
+            "protocollo": "Protocol/Service",
+            "rimuovi": "Delete rule",
+            "salva": "ADD RULE",
+            "security_group": "Security Group",
+            "stato": "Status",
+            "tipo": "Type",
+            "tipo_regola": "Type of rule",
+            "titolo": "Security Group Rules",
+            "verso_cidr": "To CIDR",
+            "verso_security_group": "To Security Group",
+            "crea": {
+                "error": "An error occurred while creating security rule",
+                "success": "The security rule creation operation started successfully"
+            },
+            "elimina": {
+                "error": "An error occurred while deleting the security rule",
+                "success": "Operation started successfully"
+            }
+        }
+    },
+    "vpc": {
+        "elenco": {
+            "aggiorna": "Refresh List",
+            "cidrBlock": "Blocks cidr",
+            "default": "Default",
+            "nvlName": "VPC Name",
+            "selezionati": "Selected VPCs",
+            "selezionato": "Selected VPC",
+            "titolo": "VPC list",
+            "vuoto": "There are no VPC"
+        },
+        "nuova": {
+            "bottone": "Create VPC"
+        }
+    }
+}

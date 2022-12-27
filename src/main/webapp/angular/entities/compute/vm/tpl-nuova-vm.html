@@ -1,0 +1,1023 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+    <br />
+    <md-content class="md-no-momentum">
+        <md-card>
+            <md-card-title>
+                <md-card-actions layout="row" layout-align="start center" flex="20">
+                    <md-button class="md-fab read-me "  ng-href="{{rtdVMNew}}" target="_blank">
+                        <md-icon  class="material-icons">local_library</md-icon>
+                        <md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+                    </md-button>
+                </md-card-actions>
+                <md-card-title-text layout-align="center center" flex>
+                    <span class="md-headline titolo-sezione">
+                        <md-icon class="icon-card-header-green">laptop</md-icon> {{ 'vm.nuova.titolo' | translate}}
+                    </span>
+                    <div class="callout callout-info">
+                    </div>
+                </md-card-title-text>
+                <md-card-actions layout="row" layout-align="end center" flex="20">
+                    <!-- <md-button type="submit" ng-click="actions.invia()" class="md-raised">
+                        <md-icon ng-style="iconStyle" class="material-icons">send</md-icon> CREA VM
+                    </md-button> -->
+                </md-card-actions>
+            </md-card-title>
+
+            <md-card-content>
+                <form name="vmForm">
+                    <md-tabs md-dynamic-height md-border-bottom md-center-tabs class="tab-min-200"
+                        md-selected="status.tabIndex">
+                        <md-tab label="{{ 'vm.nuova.template.titolo' | translate}}">
+                            <md-content class="md-padding">
+                             <md-card>
+                                <p>
+                                    {{ 'vm.nuova.template.scegli' | translate}}
+                                </p>
+
+
+                                <div class="container" ng-class="{'visible' : status.loading}">
+                                    <md-progress-linear md-mode="query" ng-disabled="!status.loading">
+                                    </md-progress-linear>
+                                    <div class="bottom-block" flex>
+                                        <md-grid-list md-cols="6" md-cols-sm="6" md-cols-md="8" md-cols-gt-md="8"
+                                            md-row-height="4:2" md-gutter="8px">
+                                            <md-grid-tile ng-repeat="availableTemplate in vm.availableTemplates"
+                                                md-rowspan="1" md-colspan="2"
+                                                ng-class="{'md-list-item-selected': vm.selectedIndex===$index}"
+                                                ng-click="onImageSelected(availableTemplate, $index, $event)" class="clickable">
+                                                <span class="text-inside-grid">
+                                                    <md-icon class="material-icons md-48"
+                                                        md-svg-src='{{::getOsIcon(availableTemplate)}}' aria-label="os">
+                                                    </md-icon>
+                                                    <b>{{ availableTemplate.name }}</b>
+                                                    <!-- <small>{{ availableTemplate.description }}</small> -->
+                                                </span>
+                                            </md-grid-tile>
+                                        </md-grid-list>
+                                    </div>
+                                </div>
+                             </md-card> 
+                             <md-card>
+                                
+                                <p>
+                                    {{ 'vm.nuova.template.nome_titolo' | translate}}
+                                </p>
+                                <div layout="column">
+                                    <md-input-container class="md-block">
+                                        <md-icon>computer</md-icon>
+                                        <label>{{ 'vm.nuova.template.nome' | translate}}</label>
+                                        <input id="selectedVmName" ng-model="vm.selectedVmName" required  md-maxlength="len()" name="nomevm"
+                                             ng-pattern="/^[^_]*$/"
+                                            placeholder="{{ 'vm.nuova.template.nome_placeholder' | translate}}">
+                                            <div ng-messages="vmForm.nomevm.$error" role="alert" multiple>
+                                               
+                                                <div ng-message="pattern">{{ 'vm.nuova.template.nome_error' | translate}}</div>
+                                            </div>
+                                      
+                                    </md-input-container>
+
+                                   
+
+                                </div>
+
+                             </md-card>
+                                
+
+
+
+
+                                <br />
+
+                                <div class="pull-right" ng-if="vm.selectedVmName && vm.selectedTemplate">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(1)">
+                                        {{ 'avanti' | translate}}
+                                        <md-icon ng-style="iconStyle" class="material-icons">keyboard_arrow_right</md-icon> 
+                                    </md-button>
+                                </div>
+
+                               
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="{{ 'vm.nuova.tipo.titolo' | translate}}" ng-disabled="!(vm.selectedVmName && vm.selectedTemplate)" > 
+                            <md-content class="md-padding">
+                                
+                              
+                                
+                                <md-card>
+                                    <md-toolbar class="md-table-toolbar alternate">
+                                        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                                            <div flex>
+                                                <span  ng-show="vm.selectedSize.length && options.rowSelection">
+                                                    <b>{{ 'vm.nuova.tipo.selezionato' | translate}}:</b> {{vm.selectedSize[0].descrizione}}
+                                                </span>
+                                                <span ng-hide="vm.selectedSize.length && options.rowSelection">
+                                                    <b>{{ 'vm.nuova.tipo.dimensione' | translate}}</b>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </md-toolbar>
+                                  
+                                    <md-table-container>
+                                        <table md-table md-row-select="options.rowSelection"
+                                            multiple="{{options.multiSelect}}" ng-model="vm.selectedSize"
+                                            md-progress="promise">
+                                            <thead ng-if="!options.decapitate" md-head md-order="query.order">
+                                                <tr md-row>
+                                                    <th md-column><span>{{ 'vm.nuova.tipo.tipo' | translate}}</span></th>
+                                                    <th md-column><span>{{ 'vm.nuova.tipo.vcpus' | translate}}</span></th>
+                                                    <th md-column><span>{{ 'vm.nuova.tipo.ram' | translate}}</span></th>
+                                                    <th md-column><span>{{ 'vm.nuova.tipo.disco' | translate}}</span></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody md-body>
+                                                <tr md-row md-select="availableSizing.item"
+                                                    md-auto-select="options.autoSelect" md-on-select="onFlavourSelected" 
+                                                    ng-repeat="availableSizing in vm.availableSizings |  orderBy:['cpusOrderBy','ramOrderBy']">
+                                                    <td md-cell>{{availableSizing.item.nome}}</td>
+                                                    <td md-cell md-numeric>
+                                                        {{availableSizing.item.vcpus}}
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{availableSizing.item.ram}}
+                                                    </td>
+                                                    <td md-cell>
+                                                        {{availableSizing.item.disco}}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </md-table-container>
+                                </md-card>
+
+                                <div class="pull-right" ng-if="vm.selectedSize.length">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(2)">
+                                        {{ 'avanti' | translate}}
+                                        <md-icon ng-style="iconStyle" class="material-icons">keyboard_arrow_right
+                                        </md-icon>
+                                    </md-button>
+                                </div>
+
+
+                                <div class="pull-left" >
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(0)">
+                                        <md-icon ng-style="iconStyle" class="material-icons">chevron_left
+                                        </md-icon> {{ 'indietro' | translate}}
+                                    </md-button>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="{{ 'vm.nuova.disco.titolo' | translate}}" ng-disabled="!(vm.selectedSize.length && options.rowSelection && vm.selectedVmName && vm.selectedTemplate)" >  
+                            <md-content class="md-padding">
+                                <p>
+                                    {{ 'vm.nuova.disco.scegli' | translate}}
+                                </p>
+
+                               
+
+                                <md-card>
+                                    <table md-table>
+                                        <thead md-head>
+                                            <tr md-row>
+                                                <th md-column>{{ 'vm.nuova.disco.dimensione' | translate}}</th>
+                                                <th md-column>{{ 'vm.nuova.disco.tipologia' | translate}}</th>
+                                                <!-- <th md-column>Crittografia</th> -->
+                                                <th md-column></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody md-body>
+                                            <tr md-row>
+                                                <td md-cell>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label>{{ 'vm.nuova.disco.dimensione_estesa' | translate}}</label>
+                                                        <md-select ng-model="vm.selectedDiskSize">
+                                                            <md-option
+                                                                ng-repeat="opt in vm.availableDiskSizings | filter: greaterThan"
+                                                                value="{{opt}}">
+                                                                {{opt}}
+                                                            </md-option>
+                                                        </md-select>
+                                                    </md-input-container>
+                                                </td>
+                                                <td md-cell>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label>{{ 'vm.nuova.disco.tipologia_estesa' | translate}}</label>
+                                                        <md-select ng-model="vm.selectedDiskType">
+                                                            <md-option ng-repeat="opt in vm.availableDiskTypes"
+                                                                value="{{opt.id}}">
+                                                                {{opt.name}} - {{opt.description}}
+                                                            </md-option>
+                                                        </md-select>
+                                                    </md-input-container>
+                                                </td>
+                                                <!-- <td md-cell>
+                                                    <md-switch class="md-primary" ng-model="vm.enableCryptography"
+                                                        aria-label="Abilita la crittografia">
+                                                        Abilita
+                                                    </md-switch>
+                                                </td> -->
+                                                <td md-cell>
+                                                    <md-button class="md-icon-button md-warn" disabled>
+                                                        <md-icon></md-icon>
+                                                    </md-button>
+                                                </td>
+                                            </tr>
+                                            <tr md-row ng-if="vm.additionalStorages"
+                                                ng-repeat="n in [] | range:vm.additionalStorages">
+                                                <td md-cell>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label>{{ 'vm.nuova.disco.dimensione_estesa' | translate}}</label>
+                                                        <md-select ng-model="vm.selectedAdditionalStoragesSize[$index]">
+                                                            <md-option ng-repeat="opt in vm.availableDiskSizings"
+                                                                value="{{opt}}">
+                                                                {{opt}}GB
+                                                            </md-option>
+                                                        </md-select>
+                                                    </md-input-container>
+                                                </td>
+                                                <td md-cell>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label>{{ 'vm.nuova.disco.tipologia_estesa' | translate}}</label>
+                                                        <md-select ng-model="vm.selectedAdditionalStoragesType[$index]">
+                                                            <md-option ng-repeat="opt in vm.availableDiskTypes"
+                                                                value="{{opt.id}}">
+                                                                {{opt.name}} - {{opt.description}}
+                                                            </md-option>
+                                                        </md-select>
+                                                    </md-input-container>
+                                                </td>
+                                                <td md-cell>
+                                                    <md-button class="md-icon-button md-warn"
+                                                        ng-click="onAdditionalStorageRemoved($index)"
+                                                        aria-label="{{ 'vm.nuova.disco.rimuovi' | translate}}">
+                                                        <md-icon>highlight_off</md-icon>
+                                                        <md-tooltip md-direction="top">{{ 'vm.nuova.disco.rimuovi' | translate}}
+                                                        </md-tooltip>
+                                                    </md-button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </md-card>
+                                <div layout="row">
+                                    <md-button class="md-raised" ng-click="onAdditionalStorageAdded()">
+                                        <md-icon ng-style="iconStyle" class="material-icons">add
+                                        </md-icon> {{ 'vm.nuova.disco.aggiungi' | translate}}
+                                    </md-button>
+                                </div>
+
+                                <div class="pull-right" ng-if="vm.selectedDiskSize && vm.selectedDiskType">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(3)">
+                                        {{ 'avanti' | translate}}
+                                        <md-icon ng-style="iconStyle" class="material-icons">keyboard_arrow_right
+                                        </md-icon>
+                                    </md-button>
+                                </div>
+
+                                <div class="pull-left" ng-if="vm.selectedVmName && vm.selectedTemplate">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(1)">
+                                        <md-icon ng-style="iconStyle" class="material-icons">chevron_left
+                                        </md-icon> {{ 'indietro' | translate}}
+                                    </md-button>
+                                </div>
+
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="{{ 'vm.nuova.network.titolo' | translate}}" ng-disabled="!( vm.selectedDiskSize && vm.selectedDiskType && vm.selectedSize.length && options.rowSelection && vm.selectedVmName && vm.selectedTemplate)" >
+                            <md-content class="md-padding">
+                                <p>
+                                    {{ 'vm.nuova.network.scegli_region' | translate}}
+                                </p>
+
+                                <div layout="row">
+                                    <md-input-container class="md-block" flex>
+                                        <md-icon>public</md-icon>
+                                        <label>{{ 'vm.nuova.network.regione' | translate}}</label>
+                                        <md-select ng-model="vm.selectedRegion" ng-change="onInfoVmChanged('region')">
+                                            <md-option ng-repeat="opt in vm.availableRegions" value="{{opt.id}}">
+                                                {{opt.description}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex>
+                                        <md-icon>location_on</md-icon>
+                                        <label>{{ 'vm.nuova.network.zona_disponibilita' | translate}}</label>
+                                        <md-select ng-model="vm.selectedAvailabilityZone"
+                                            ng-change="onInfoVmChanged('az')">
+                                            <md-option
+                                                ng-repeat="opt in vm.availableAvailabilityZones | filter: {regionName: vm.selectedRegion}"
+                                                value="{{opt.id}}">
+                                                {{opt.description}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+
+                                <p>
+                                    {{ 'vm.nuova.network.scegli_subnet' | translate}}
+                                </p>
+
+                                <div layout="column">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>router</md-icon>
+                                        <label>{{ 'vm.nuova.network.subnet' | translate}}</label>
+                                        <md-select ng-model="vm.selectedSubnet" ng-change="onInfoVmChanged('subnet')">
+                                            <md-option
+                                                ng-repeat="opt in vm.availableSubnets | filter: {availabilityZone: fromIdToObj(vm.availableAvailabilityZones, vm.selectedAvailabilityZone).description}"
+                                                value="{{opt.id}}">
+                                                {{opt.description}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+
+                                <p>
+                                    {{ 'vm.nuova.network.scegli_gruppo_sicurezza' | translate}}
+                                </p>
+
+                                <div layout="column">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <md-icon>security</md-icon>
+                                        <label>{{ 'vm.nuova.network.gruppo_sicurezza' | translate}}</label>
+                                        <md-select ng-model="vm.selectedSecurityGroup">
+                                            <md-option 
+                                                ng-repeat="group in vm.availableSecurityGroups | filter: {vpcId: fromIdToObj(vm.availableSubnets, vm.selectedSubnet).vpcId}"
+                                                value="{{group.id}}">
+                                                {{group.description}}
+                                            </md-option>
+                                    
+                                        </md-select>
+                                      
+                                        <span style="color: orange;" ng-if="vm.availableSecurityGroups.length==0 && vm.selectedSubnet">Nessun security group disponibile per la subnet selezionata</span>
+                                        
+                                    </md-input-container>
+                                </div>
+
+                                <br />
+                                <div class="pull-right">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(4)">
+                                        {{ 'avanti' | translate}}
+                                        <md-icon ng-style="iconStyle" class="material-icons">
+                                            keyboard_arrow_right
+                                        </md-icon>
+                                       
+                                    </md-button>
+                                </div>
+
+                                <div class="pull-left" ng-if="vm.selectedVmName && vm.selectedTemplate">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(2)">
+                                        <md-icon ng-style="iconStyle" class="material-icons">chevron_left
+                                        </md-icon> {{ 'indietro' | translate}}
+                                    </md-button>
+                                </div>
+                               
+                        <md-tab label="{{ 'vm.nuova.sicurezza.titolo' | translate}}" ng-disabled="!(vm.selectedVmName && vm.selectedTemplate && vm.selectedSize.length && vm.selectedRegion && vm.selectedAvailabilityZone  && vm.selectedSubnet && vm.selectedSecurityGroup )">
+                        <!-- ng-disabled="!(vm.selectedVmName && vm.selectedTemplate && vm.selectedSize.length && vm.selectedRegion && vm.selectedAvailabilityZone  && vm.selectedSubnet && vm.selectedSecurityGroup )" -->
+                            <md-content class="md-padding">
+                                <!-- <md-card ng-hide="vm.availableVirtualizationOptions.length===1 && vm.availableVirtualizationOptions[0]==='vsphere' "> -->
+                                <md-card ng-hide="isTemplateWindows()">
+                                    <p ng-show="vm.availableKeypairs.length === 0 && !(vm.selectedKeypair.length && options.rowKeypairSelection)" style="color:red;">{{ 'vm.nuova.sicurezza.chiavi_non_disponibili' | translate}} </p>
+                                    <md-toolbar class="md-table-toolbar alternate" layout="row" layout-align="center center">
+                                        <div class="md-toolbar-tools" flex=85 layout-align="space-between center">
+                                                <span ng-show="vm.selectedKeypair.length && options.rowKeypairSelection">
+                                                    <b>{{ 'vm.nuova.sicurezza.selezionato' | translate}}:</b> {{vm.selectedKeypair[0].nome}}
+                                                </span>
+                                                <span ng-show="vm.availableKeypairs.length > 0 && !(vm.selectedKeypair.length && options.rowKeypairSelection)">
+                                                    <b>{{ 'vm.nuova.sicurezza.scegli_chiave' | translate}}</b>
+                                                </span>
+                                                <ol ng-show="vm.availableKeypairs.length === 0 && !(vm.selectedKeypair.length && options.rowKeypairSelection)" class="ol-without-style">
+                                                        <li>{{ 'vm.nuova.sicurezza.chiavi_creazione_01' | translate}}</li>
+                                                        <li>{{ 'vm.nuova.sicurezza.chiavi_creazione_02' | translate}}</li>
+                                                        <li><a class ="clickable" ng-click="actions.navigateToListSSH()"><b>{{ 'vm.nuova.sicurezza.chiavi_creazione_link_desc_01' | translate}}</b></a>{{ 'vm.nuova.sicurezza.chiavi_creazione_link_desc_02' | translate}}</li>
+                                                </ol>
+                                        </div>
+                                        <div flex=15 layout-align="end center">
+                                                <md-button class="animation-target md-fab md-mini md-primary md-hue-2" ng-click="actions.crea()"
+                                                    require-uc="{{::actions.auth.newKeypair}}">
+                                                    <md-icon>add</md-icon>
+                                                    <md-tooltip>{{ 'vm.nuova.sicurezza.crea_chiave' | translate}}</md-tooltip>
+                                                </md-button>
+                                                <md-button class="animation-target md-fab md-mini md-primary md-hue-2" ng-click="actions.importa()"
+                                                require-uc="{{::actions.auth.import}}">
+                                                <md-icon>post_add</md-icon>
+                                                <md-tooltip>{{ 'vm.nuova.sicurezza.importa_chiave' | translate}}</md-tooltip>
+                                                </md-button>
+                                        </div>
+                                    </md-toolbar>
+
+
+
+
+
+                                       
+
+                                    <md-table-container ng-show="vm.availableKeypairs.length > 0">
+                                        <table md-table md-row-select="options.rowKeypairSelection"
+                                            multiple="{{options.multiSelect}}" ng-model="vm.selectedKeypair"
+                                            md-progress="promise">
+                                            <thead ng-if="!options.decapitate" md-head md-order="query.order">
+                                                <tr md-row>
+                                                    <th md-column><span>{{ 'vm.nuova.sicurezza.chiave.nome' | translate}}</span></th>
+                                                    <th md-column><span>{{ 'vm.nuova.sicurezza.chiave.impronta' | translate}}</span></th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody md-body>
+                                                <tr md-row md-select="availableKeypair"
+                                                    md-auto-select="options.autoSelect" 
+                                                    ng-repeat="availableKeypair in vm.availableKeypairs | orderBy: queryKeypair.order">
+                                                    <td md-cell>{{availableKeypair.nome}}</td>
+                                                    <td md-cell md-numeric>
+                                                        {{availableKeypair.impronta}}
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </md-table-container> 
+                                </md-card>
+
+
+
+                                <!-- <md-card ng-show="vm.availableVirtualizationOptions.length===1 && vm.availableVirtualizationOptions[0]==='vsphere' " class="md-padding" > -->
+                                    <md-card ng-show="isTemplateWindows()" class="md-padding" >
+
+                                    <br/>
+                                    <div layout="row" layout-align="start center">
+                                        <p flex="80"> {{ 'vm.nuova.sicurezza.scegli_password' | translate}} </p>
+                                        <md-card-actions layout="row" layout-align="end center" flex="20">
+                                            <md-button ng-if="!sicurezza.showpass" class=" md-fab md-mini " layout-align="end center" ng-click="mostraPass()">
+                                                <md-icon  class="material-icons">visibility</md-icon>
+                                                <md-tooltip>{{ 'vm.nuova.sicurezza.mostra_password' | translate}}</md-tooltip>
+                                            </md-button>
+
+                                            <md-button ng-if="sicurezza.showpass" class=" md-fab md-mini " layout-align="end center" ng-click="nascondiPass()">
+                                                <md-icon  class="material-icons">visibility_off</md-icon>
+                                                <md-tooltip>{{ 'vm.nuova.sicurezza.nascondi_password' | translate}}</md-tooltip>
+                                            </md-button>
+                                        </md-card-actions>
+
+
+                                    </div>
+                                   
+                                    <md-content class="md-no-momentum">
+                                       
+                                      <md-input-container class="md-icon-float md-block">
+                                        <!-- Use floating label instead of placeholder -->
+                                        <label>password</label>
+                                        <md-icon class="material-icons">vpn_key</md-icon>
+                                                <input ng-attr-type="{{ sicurezza.showpass ? 'text' : 'password' }}" name="uPass"  ng-model="sicurezza.password" ng-trim="false"
+                                              ng-required="true" validate-pass limit-to="16" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{10,16}$/"/> 
+
+                                                            <div ng-messages="vmForm.uPass.$error" multiple md-auto-hide="false">
+                                                                <div ng-message="required">
+                                                                    {{ 'vm.nuova.sicurezza.password_necessaria' | translate}}
+                                                                </div>
+                                                      
+                                                                <div ng-message="pattern" ng-bind-html="'vm.nuova.sicurezza.password_pattern' | translate">
+                                                                    <!-- {{ 'vm.nuova.sicurezza.password_pattern' | translate}} -->
+                                                                </div>
+                                                               
+                                                            </div>
+                                               
+                                               
+                                      </md-input-container>
+                                  
+                                      <md-input-container md-no-float class="md-block" >
+                                        <md-icon class="material-icons">vpn_key</md-icon>
+                                        <input  ng-attr-type="{{ sicurezza.showpass ? 'text' : 'password' }}" name="confPass"   ng-model="sicurezza.confermapwd" 
+                                        ng-change="checkPwd()" placeholder="{{ 'vm.nuova.sicurezza.password_conferma' | translate}}"
+                                                ng-required="true" validate-pass limit-to="16"  /> 
+                                                <div ng-if="sicurezza.confermapwd!==null && sicurezza.password!==sicurezza.confermapwd">
+                                                    <div style="color:red;">{{ 'vm.nuova.sicurezza.password_uguali' | translate}}</div>
+                                                </div>
+                                               
+                                      </md-input-container>
+                                  
+                                     
+                                    </md-content>
+                                    <div>
+                                        <p  style="color:orange;">
+                                            <md-icon style="color:orange;">report_problem</md-icon> 
+                                            {{ 'vm.nuova.sicurezza.password_memo' | translate}}
+                                        </p>
+                                    </div>
+                                    
+                                 
+                                </md-card>
+
+                                <div class="pull-right" ng-if="vm.selectedKeypair.length || sicurezza.matchPwd">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(6)">
+                                        {{ 'avanti' | translate}}
+                                        <md-icon ng-style="iconStyle" class="material-icons">keyboard_arrow_right
+                                        </md-icon>
+                                    </md-button>
+                                </div>
+
+                                <div class="pull-left" ng-if="vm.selectedVmName && vm.selectedTemplate">
+                                    <md-button class="md-raised" ng-click="actions.gotoTab(3)">
+                                        <md-icon ng-style="iconStyle" class="material-icons">chevron_left
+                                        </md-icon> {{ 'indietro' | translate}}
+                                    </md-button>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="{{ 'vm.nuova.riepilogo.titolo' | translate}}"   md-on-select="actions.onTabSelected(6)" 
+                        ng-disabled="!(vm.selectedVmName && vm.selectedTemplate && vm.selectedSize.length && vm.selectedRegion && vm.selectedAvailabilityZone  
+                                        && vm.selectedSubnet && vm.selectedSecurityGroup && vm.selectedKeypair.length > 0) && !(vm.selectedKeypair.length>0 || sicurezza.matchPwd) ">
+               
+                            <md-content class="md-padding">
+                               
+                                <!-- <br /> -->
+
+                                <p>
+                                    {{ 'vm.nuova.riepilogo.descrizione' | translate}}
+                                </p>
+
+                                <div layout="row" layout-align="space-around start">
+                                    <md-card>
+                                        <md-table-container>
+                                            <table md-table>
+                                                <thead md-head>
+                                                    <tr md-row>
+                                                        <th md-column><span>{{ 'vm.nuova.riepilogo.proprieta' | translate}}</span></th>
+                                                        <th md-column><span>{{ 'vm.nuova.riepilogo.valore' | translate}}</span></th>
+                                                        <th md-column><span>{{ 'vm.nuova.riepilogo.modifica' | translate}}</span></th>
+                                                        <th md-column><span layout="row" layout-align="center">{{ 'vm.nuova.riepilogo.costi_stimati' | translate}}</span></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody md-body>
+                                                    <!-- FQDN (Nome VM) -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>computer</md-icon>
+                                                                    <b>{{ 'vm.nuova.riepilogo.FQDN' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{vm.selectedVmName.toLowerCase()}}{{vm.selectedVirtualizationOption==='vsphere'?'':vm.acronimoAccount}}.{{fromIdToObj(vm.availableAvailabilityZones, vm.selectedAvailabilityZone).site.toLowerCase()}}.nivolapiemonte.it
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(0)"
+                                                                aria-label="{{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.FQDN' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.FQDN' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">-</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Template -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>album</md-icon>
+                                                                    <b>{{ 'vm.nuova.riepilogo.template' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{ vm.selectedTemplate.name }}
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(0)"
+                                                                aria-label="{{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.template' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.template' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">{{ 'vm.nuova.riepilogo.costo_incluso' | translate}}</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Tipo VM -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>tune</md-icon>
+                                                                    <b>{{ 'vm.nuova.riepilogo.tipo' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            vcpus:{{vm.selectedSize[0].vcpus}}  ram:{{vm.selectedSize[0].ram}}
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(1)"
+                                                                aria-label="{{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.tipo' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.tipo' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <nobr>
+                                                                    <h6 class="md-subhead">{{costi.costoTotaleCpu + costi.costoTotaleRam | number : 2}} {{ 'vm.nuova.riepilogo.costo_al_mese' | translate}}</h6>
+                                                                    
+                                                                </nobr>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Disco -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>storage</md-icon>
+                                                                    <b>{{ 'vm.nuova.riepilogo.disco' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{fromIdToObj(vm.availableDiskTypes, vm.selectedDiskType).description}}:
+                                                            {{vm.selectedDiskSize}}GB
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(2)"
+                                                                aria-label="{{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.disco' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.disco' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell >
+                                                            <div layout="column" layout-align="center center">
+                                                                <nobr>
+                                                                    <h6 class="md-subhead">
+                                                                        <!-- {{vm.price.disk}} €/mese -->
+                                                                        {{vm.selectedDiskPrice | number : 2}} {{ 'vm.nuova.riepilogo.costo_al_mese' | translate}}
+                                                                        <!-- {{ costi.costoTotaleDiscoBase | number : 2}}  €/mese -->
+                                                        
+                                                                    </h6>
+                                                                </nobr>
+                                                            </div>
+                                                        </td>
+                                                        <!-- <td md-cell ng-if="!vm.additionalStorages">
+                                                            <div layout="column" layout-align="center center">
+                                                                <nobr>
+                                                                    <h6 class="md-subhead">
+                                                                        {{vm.price.disk}} €/mese
+                                                                    </h6>
+                                                                </nobr>
+                                                            </div>
+                                                        </td> -->
+                                                    </tr>
+                                                    <!-- Disco Aggiuntivo -->
+                                                    <tr md-row ng-if="vm.additionalStorages"
+                                                        ng-repeat="n in [] | range:vm.additionalStorages">
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>storage</md-icon>
+                                                                    <b>{{ 'vm.nuova.riepilogo.disco' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{fromIdToObj(vm.availableDiskTypes, vm.selectedAdditionalStoragesType[$index]).description}}:
+                                                            {{vm.selectedAdditionalStoragesSize[$index]}}GB
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(2)"
+                                                                aria-label="{{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.disco' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.disco' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <nobr>
+                                                                    <h6 class="md-subhead">
+                                                                        {{vm.selectedAdditionalStoragesPrice[$index] | number : 2}} {{ 'vm.nuova.riepilogo.costo_al_mese' | translate}}
+                                                                    </h6>
+                                                                </nobr>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                   
+                                                    <!-- Region - A.Z. -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>public</md-icon>
+                                                                    <b>{{ 'vm.nuova.riepilogo.region' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{fromIdToObj(vm.availableRegions, vm.selectedRegion).description}}
+                                                            -
+                                                            {{fromIdToObj(vm.availableAvailabilityZones, vm.selectedAvailabilityZone).description}}
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(3)"
+                                                                aria-label="{{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.region' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.region' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">{{ 'vm.nuova.riepilogo.costo_incluso' | translate}}</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Subnet -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>router</md-icon>
+                                                                    <b>{{ 'vm.nuova.riepilogo.subnet' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{fromIdToObj(vm.availableSubnets, vm.selectedSubnet).description}}
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(3)"
+                                                                aria-label="{{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.subnet' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.subnet' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">{{ 'vm.nuova.riepilogo.costo_incluso' | translate}}</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Security Group -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>security</md-icon>
+                                                                    <b>{{ 'vm.nuova.riepilogo.security_group' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{fromIdToObj(vm.availableSecurityGroups, vm.selectedSecurityGroup).description}}
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(3)"
+                                                                aria-label="{{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.security_group' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.security_group' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">{{ 'vm.nuova.riepilogo.costo_incluso' | translate}}</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Tecnologia -->
+                                                    <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>memory</md-icon>
+                                                                    <b>{{ 'vm.nuova.riepilogo.tecnologia' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-select ng-model="vm.selectedVirtualizationOption"  >
+                                                                <md-option
+                                                                    ng-repeat="opt in vm.availableVirtualizationOptions"
+                                                                    value="{{opt}}">
+                                                                    {{opt}}
+                                                                </md-option>
+                                                            </md-select>
+                                                        </td>
+                                                        <td md-cell></td>
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">{{ 'vm.nuova.riepilogo.costo_incluso' | translate}}</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Tags -->
+                                                    <!-- <tr md-row>
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>label</md-icon>
+                                                                    <b>Tags</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{ vm.tags.toString() }}
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(4)"
+                                                                aria-label="modifica tags">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    Modifica Tags
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">-</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr> -->
+                                                    <!-- CHIAVE SSH -->
+                                                    <tr md-row ng-if="vm.selectedKeypair.length">
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>label</md-icon>
+                                                                    <b>{{ 'vm.nuova.riepilogo.chiaveSSH' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            {{ vm.selectedKeypair[0].nome }}
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(5)"
+                                                                aria-label="{{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.chiaveSSH' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.chiaveSSH' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">-</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+
+                                                    <!-- PASSWORD -->
+                                                    <tr md-row ng-if="sicurezza.password.length && vm.selectedKeypair.length===0 ">
+                                                        <td md-cell>
+                                                            <span>
+                                                                <nobr>
+                                                                    <md-icon>label</md-icon>
+                                                                    <b>{{ 'vm.nuova.riepilogo.chiaveSSH' | translate}}</b>
+                                                                </nobr>
+                                                            </span>
+                                                        </td>
+                                                        <td md-cell>
+                                                            *************
+                                                        </td>
+                                                        <td md-cell>
+                                                            <md-button class="md-icon-button md-primary"
+                                                                ng-click="actions.gotoTab(5)"
+                                                                aria-label="{{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.chiaveSSH' | translate}}">
+                                                                <md-icon>edit</md-icon>
+                                                                <md-tooltip>
+                                                                    {{ 'modifica' | translate}} {{ 'vm.nuova.riepilogo.chiaveSSH' | translate}}
+                                                                </md-tooltip>
+                                                            </md-button>
+                                                        </td>
+                                                        
+                                                        <td md-cell>
+                                                            <div layout="column" layout-align="center center">
+                                                                <h6 class="md-subhead">-</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </md-table-container>
+
+                                        
+                                 
+                                    </md-card>
+
+
+
+                                    <md-card>
+                                        <md-card-content>
+                                            <div layout="column" layout-align="space-around start">
+                                                <h6 class="md-subhead">
+                                                    <nobr>
+                                                        {{ 'vm.nuova.riepilogo.stima_mensile' | translate}} <span
+                                                            class="md-title">{{ costoTotDischi + costi.costoTotaleCpu + costi.costoTotaleRam | number:2}}
+                                                            €</span>
+                                                    </nobr>
+                                                    <md-progress-circular md-mode="indeterminate" ng-if="!(costi && costoTotDischi)"></md-progress-circular>
+                                                </h6>
+                                            </div>
+
+                                            <br />
+                                            <md-divider></md-divider>
+                                            <br />
+
+                                            <div layout="column" layout-align="center center" flex>
+                                                <p align="center">
+                                                    <small>
+                                                        {{ 'vm.nuova.riepilogo.creazione_msg01' | translate}}
+                                                    </small>
+
+                                                    <br />
+
+                                                    <small>
+                                                        {{ 'vm.nuova.riepilogo.creazione_msg02' | translate}}
+                                                    </small>
+                                                </p>
+
+                                                <div layout="column" layout-align="start center" layout-margin
+                                                    ng-if="vm.selectedVirtualizationOption">
+                                                    <div layout="row" layout-sm="column" layout-align="space-around">
+                                                        <md-progress-circular md-mode="indeterminate"
+                                                            ng-if="status.pending">
+                                                        </md-progress-circular>
+                                                    </div>
+                                                    <md-button class="md-raised md-primary" ng-click="submit()"
+                                                        ng-disabled="status.pending">
+                                                        {{ 'avanti' | translate}}
+                                                        <md-icon ng-style="iconStyle" class="material-icons">
+                                                            keyboard_arrow_right
+                                                        </md-icon>
+                                                    </md-button>
+                                                </div>
+                                            </div>
+                                        </md-card-content>
+                                    </md-card>
+
+                                   
+                                </div>
+                            </md-content>
+
+                            <br />
+                               
+                            <div class="pull-left" ng-if="vm.selectedVmName && vm.selectedTemplate">
+                                <md-button class="md-raised" ng-click="actions.gotoTab(4)">
+                                    <md-icon ng-style="iconStyle" class="material-icons">chevron_left
+                                    </md-icon> {{ 'indietro' | translate}}
+                                </md-button>
+                            </div>
+                            
+                        </md-tab>
+                    </md-tabs>
+                </form>
+            </md-card-content>
+            <md-divider></md-divider>
+            <md-card-actions layout="row" layout-align="space-between center">
+                <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+                    <md-icon class="material-icons">keyboard_backspace</md-icon>  {{ ('abbandona' | translate) }} 
+                </md-button>
+            </md-card-actions>
+        </md-card>
+    </md-content>
+</div>

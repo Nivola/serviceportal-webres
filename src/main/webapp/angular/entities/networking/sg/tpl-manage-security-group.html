@@ -1,0 +1,332 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+    <br />
+    <md-content class="md-no-momentum">
+        <md-card>
+            <md-card-title>
+                <div flex=20>
+                    <md-card-actions layout="row" layout-align="start center">
+                        <md-button class="md-fab read-me " ng-href="{{rtdsecGroupManage}}" target="_blank">
+                            <md-icon  class="material-icons">local_library</md-icon>
+                            <md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+                        </md-button>
+                    </md-card-actions>
+                </div>
+                <md-card-title-text layout-align="center center" flex>
+                    <span class="md-headline titolo-sezione">
+                        <md-icon class="icon-card-header-green">dns</md-icon> {{ 'security_group.regole.titolo' | translate}} {{groupName}}
+                    </span>
+                    <div class="callout callout-info">
+                    </div>
+                </md-card-title-text>
+                <md-card-actions layout="row" layout-align="end center" flex="20">
+                        <md-button class="animation-target md-fab md-mini md-primary" ng-click="actions.refresh()">
+                            <md-icon>autorenew</md-icon>
+                            <md-tooltip>{{ 'security_group.regole.aggiorna' | translate}}</md-tooltip>
+                        </md-button>
+                </md-card-actions>
+            </md-card-title>
+            <form name="ruleForm" ng-if="!readOnly">
+            <!-- <div ng-if="!readOnly"> -->
+                <md-card-content>
+                    <md-content class="md-padding">
+                        <!-- <md-card-title-text layout="row" layout-align="center center">
+                            <span class="md-headline">{{groupName}}</span>
+                        </md-card-title-text> -->
+
+                        <b>
+                            {{ 'security_group.regole.aggiungi' | translate}}
+                        </b>
+
+                        <md-card>
+                            <form name="ruleForm">
+                                <table md-table>
+                                    <thead md-head>
+                                        <tr md-row>
+                                            <th md-column><span>{{ 'security_group.regole.tipo' | translate}}</span></th>
+                                            <th md-column><span>{{ 'security_group.regole.dominio' | translate}}</span></th>
+                                            <th md-column ng-if="newRule.domainType === 'SG'">
+                                                <span>{{ 'security_group.regole.security_group' | translate}}</span>
+                                            </th>
+                                            <th md-column ng-if="newRule.domainType !== 'SG'">
+                                                <span>{{ 'security_group.regole.domain' | translate}}</span>
+                                            </th>
+                                            <th md-column><span>{{ 'security_group.regole.protocollo' | translate}}</span></th>
+                                            <th md-column><span>{{ 'security_group.regole.da_porta' | translate}}</span></th>
+                                            <th md-column><span>{{ 'security_group.regole.a_porta' | translate}}</span></th>
+                                            <!-- <th md-column><span>Riservato</span></th> -->
+                                            <!-- <th md-column><span>Descrizione</span>
+                                            </th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody md-body>
+                                        <tr md-row>
+                                            <td md-cell>
+                                                <md-input-container class="md-block">
+                                                    <label>{{ 'security_group.regole.tipo_regola' | translate}}</label>
+                                                    <md-select required style="height: 30px;" ng-model="newRule.type">
+                                                        <md-option ng-repeat="opt in optionsRules.types"
+                                                            value="{{opt.value}}">
+                                                            {{opt.view}}
+                                                        </md-option>
+                                                    </md-select>
+                                                </md-input-container>
+                                            </td>
+                                            <td md-cell>
+                                                <md-input-container class="md-block">
+                                                    <label>{{ 'security_group.regole.cidr' | translate}}</label>
+                                                    <md-select required style="height: 30px;"
+                                                        ng-model="newRule.domainType" ng-change="newRule.domain = null">
+                                                        <md-option ng-repeat="opt in optionsRules.domainTypes"
+                                                            value="{{opt}}">
+                                                            {{opt}}
+                                                        </md-option>
+                                                    </md-select>
+                                                </md-input-container>
+                                            </td>
+                                            <td md-cell>
+                                                <md-input-container class="md-block hide-validation-error"
+                                                    ng-if="newRule.domainType === 'SG'">
+                                                    <label>{{ 'security_group.regole.nome' | translate}}</label>
+                                                    <md-select required style="height: 30px;"
+                                                        ng-model="newRule.domain">
+                                                        <md-option ng-repeat="opt in groupNames"
+                                                            value="{{opt.id}}">
+                                                            {{opt.account}} - {{opt.name}}
+                                                        </md-option>
+                                                    </md-select>
+
+                                                    <!-- <input ng-model="newRule.domain" name="domain" required> -->
+                                                </md-input-container>
+                                                <md-input-container class="md-block hide-validation-error"
+                                                    ng-if="newRule.domainType !== 'SG'">
+                                                    <label>{{ 'security_group.regole.ip_range' | translate}}</label>
+                                                    <input id="domain" ng-model="newRule.domain" name="domain" 
+                                                        placeholder="{{ 'security_group.regole.ip_range_placeholder' | translate}}"
+                                                        pattern="^([1-9]|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])(\.(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])){3}\/(([89]|[12][0-9]|3[0-2]))$"
+                                                        required>
+                                                </md-input-container>
+                                            </td>
+                                            <td md-cell>
+                                                <md-input-container class="md-block">
+                                                    <label>{{ 'security_group.regole.protocollo' | translate}}</label>
+                                                    <md-select required style="height: 30px;"
+                                                        ng-model="newRule.protocol"
+                                                        ng-change ="onProtocoleChange()">
+                                                        <md-option ng-repeat="opt in optionsRules.protocols"
+                                                            value="{{opt.value}}">
+                                                            {{opt.view}}
+                                                        </md-option>
+                                                    </md-select>
+                                                </md-input-container>
+                                            </td>
+                                            <td md-cell>
+                                                <md-input-container class="md-block hide-validation-error">
+                                                    <input id="fromPort" ng-model="newRule.fromPort" name="fromPort" 
+                                                        placeholder="0-65535" 
+                                                        required
+                                                        ng-change="checkFromPort()"
+                                                        ng-readonly="!isPorteditable"
+                                                        pattern="^(0|[1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])(-([1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]))?$|^(\*)$">
+                                                        <md-tooltip md-direction="bottom">{{ 'security_group.regole.porta_tooltip' | translate}}</md-tooltip>
+                                                        <div ng-messages="ruleForm.fromPort.$error" role="alert" multiple>
+                                                            <div ng-message="pattern" ng-bind-html="'security_group.regole.porta_pattern' | translate"></div>
+                                                        </div>
+                                                    </md-input-container>
+                                            </td>
+                                            <td md-cell>
+                                                <md-input-container class="md-block hide-validation-error">
+                                                    <input id="toPort" ng-model="newRule.toPort" name="toPort" 
+                                                        placeholder="0-65535"  min="0"
+                                                        max="65535" step="1"
+                                                        required
+                                                        ng-change="checkToPort()"
+                                                        ng-readonly="!isPorteditable"
+                                                        pattern="^(0|[1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])(-([1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]))?$|^(\*)$">
+                                                        <md-tooltip md-direction="bottom">{{ 'security_group.regole.porta_tooltip' | translate}}</md-tooltip>
+                                                        <div ng-messages="ruleForm.toPort.$error" role="alert" multiple>
+                                                            <div ng-message="pattern" ng-bind-html="'security_group.regole.porta_pattern' | translate"></div>
+                                                        </div>
+                                                </md-input-container>
+                                            </td>
+                                            <!-- <td md-cell>
+                                                <md-checkbox class="md-block" ng-model="newRule.reserved"
+                                                    aria-label="Riservato">
+                                                </md-checkbox>
+                                            </td> -->
+                                            <!-- <td md-cell ng-click="editDescription($event, newRule)"
+                                                ng-class="{'md-placeholder': !newRule.descrizione}">
+                                                {{newRule.descrizione || 'Aggiungi una descrizione'}}
+                                            </td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <md-card-actions layout="row" layout-align="end center" flex>
+                                    <md-button type="submit" ng-click="actions.addRule($event,ruleForm)"
+                                        class="md-raised md-primary md-hue-2" 
+                                        ng-disabled="!(newRule.type && newRule.domainType && newRule.domain && newRule.protocol && newRule.fromPort  
+                                        && newRule.toPort && newRule.reserved)  || (btnDisabled) ">
+                                        <md-icon ng-style="iconStyle" class="material-icons">playlist_add_check
+                                        </md-icon>
+                                        {{ 'security_group.regole.salva' | translate}}
+                                    </md-button>
+                                </md-card-actions>
+                            </form>
+                        </md-card>
+
+                    </md-content>
+                </md-card-content>
+            <!-- </div> -->
+            </form>
+            <md-card-content>
+                <md-content class="md-padding">
+                    <md-card-title-text layout="row" layout-align="center center" ng-if="readOnly">
+                        <span class="md-headline">{{groupName}}</span>
+                    </md-card-title-text>
+
+                    <div id="regoleUscita">
+                        <b>
+                            {{ 'security_group.regole.di_uscita' | translate}}
+                        </b>
+
+                        <md-card>
+                            <md-table-container>
+                                <table md-table md-progress="promise">
+                                    <thead md-head>
+                                        <tr md-row>
+                                            <th md-column><span>{{ 'security_group.regole.verso_security_group' | translate}} </span></th>
+                                            <th md-column><span>{{ 'security_group.regole.verso_cidr' | translate}} </span></th>
+                                            <th md-column><span>{{ 'security_group.regole.protocollo' | translate}}</span></th>
+                                            <th md-column><span>{{ 'security_group.regole.da_porta' | translate}}</span></th>
+                                            <th md-column><span>{{ 'security_group.regole.a_porta' | translate}}</span></th>
+                                            <th md-column hide-gt-xs hide-xs show-gt-sm><span>{{ 'security_group.regole.default' | translate}}</span></th>
+                                            <th md-column hide-xs show-gt-xs><span>{{ 'security_group.regole.stato' | translate}}</span></th>
+                                            <th md-column hide-gt-xs hide-xs show-gt-sm><span>{{ 'security_group.regole.descrizione' | translate}}</span></th>
+                                            <th md-column ng-if="!readOnly"><span>{{ 'elimina' | translate}}</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody md-body>
+                                        <tr md-row ng-repeat="rule in egressRules">
+                                            <td md-cell>{{rule.nvlUsername}}-{{rule.securityGroup}}</td>
+                                            <td md-cell>{{rule.cidr}}</td>
+                                            <td md-cell>{{rule.ipProtocol !== '-1' ? rule.ipProtocol.toUpperCase() : '*'}}</td>
+                                            <td md-cell>{{rule.fromPort ? rule.fromPort : '*'}}</td>
+                                            <td md-cell>{{rule.toPort ? rule.toPort : '*'}}</td>
+                                            <!-- <td md-cell>{{rule['nvl-reserved']}}</td> -->
+                                            <td md-cell hide-gt-xs hide-xs show-gt-sm>
+                                                <span
+                                                    ng-class="rule['nvl-reserved'] ? 'badge badge-success' : 'badge badge-danger'">
+                                                    {{codificaReserved(rule['nvl-reserved'])}}
+                                                </span>
+                                            </td>
+                                            <!-- <td md-cell>{{rule['nvl-state']}}</td> -->
+                                            <td md-cell hide-xs show-gt-xs>
+                                                <md-icon class="material-icons"
+                                                    ng-style="{ 'color': rule['nvl-state'].color }">
+                                                    {{rule['nvl-state'].icon}}
+                                                </md-icon>
+                                            </td>
+                                            <td md-cell hide-gt-xs hide-xs show-gt-sm>{{rule.descrizione}}</td>
+                                            <td md-cell ng-if="!readOnly">
+                                                <md-button class="md-icon-button md-warn" ng-show="!rule['nvl-reserved']" aria-label="modifica regola"
+                                                    ng-click="actions.removeRule(rule)"
+                                                    ng-disabled="DeleteSecGroupBTNDisabled">
+                                                    <md-icon>highlight_off</md-icon>
+                                                    <md-tooltip>
+                                                        {{ 'security_group.regole.rimuovi' | translate}}
+                                                    </md-tooltip>
+                                                </md-button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </md-table-container>
+                        </md-card>
+                    </div>
+
+                    <br />
+
+                    <div id="regoleIngresso">
+                        <b>
+                            {{ 'security_group.regole.di_ingresso' | translate}}
+                        </b>
+
+                        <md-card>
+                            <md-table-container>
+                                <table md-table md-progress="promise">
+                                    <thead md-head>
+                                        <tr md-row>
+                                            <th md-column><span>{{ 'security_group.regole.da_security_group' | translate}}</span></th>
+                                            <th md-column><span>{{ 'security_group.regole.da_cidr' | translate}}</span></th>
+                                            <th md-column><span>{{ 'security_group.regole.protocollo' | translate}}</span></th>
+                                            <th md-column><span>{{ 'security_group.regole.da_porta' | translate}}</span></th>
+                                            <th md-column><span>{{ 'security_group.regole.a_porta' | translate}}</span></th>
+                                            <th md-column hide-gt-xs hide-xs show-gt-sm><span>{{ 'security_group.regole.default' | translate}}</span></th>
+                                            <th md-column hide-xs show-gt-xs><span>{{ 'security_group.regole.stato' | translate}}</span></th>
+                                            <th md-column hide-gt-xs hide-xs show-gt-sm><span>{{ 'security_group.regole.descrizione' | translate}}</span></th>
+                                            <th md-column ng-if="!readOnly"><span>{{ 'modifica' | translate}}</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody md-body>
+                                        <tr md-row ng-repeat="rule in ingressRules">
+                                            <td md-cell>{{rule.nvlUsername}}-{{rule.securityGroup}}</td>
+                                            <td md-cell>{{rule.cidr}}</td>
+                                            <td md-cell>{{rule.ipProtocol !== '-1' ? rule.ipProtocol.toUpperCase() : '*'}}</td>
+                                            <td md-cell>{{rule.fromPort ? rule.fromPort : '*'}}</td>
+                                            <td md-cell>{{rule.toPort ? rule.toPort : '*'}}</td>
+                                            <!-- <td md-cell>{{rule['nvl-reserved']}}</td> -->
+                                            <td md-cell hide-gt-xs hide-xs show-gt-sm>
+                                                <span
+                                                    ng-class="rule['nvl-reserved'] ? 'badge badge-success' : 'badge badge-danger'">
+                                                    {{codificaReserved(rule['nvl-reserved'])}}
+                                                </span>
+                                            </td>
+                                            <!-- <td md-cell>{{rule['nvl-state']}}</td> -->
+                                            <td md-cell hide-xs show-gt-xs>
+                                                <md-icon class="material-icons"
+                                                    ng-style="{ 'color': rule['nvl-state'].color }">
+                                                    {{rule['nvl-state'].icon}}
+                                                </md-icon>
+                                            </td>
+                                            <td md-cell hide-gt-xs hide-xs show-gt-sm>{{rule.descrizione}}</td>
+                                            <td md-cell ng-if="!readOnly">
+                                                <md-button class="md-icon-button md-warn" aria-label="modifica regola"
+                                                    ng-click="actions.removeRule(rule)"
+                                                    ng-show="!rule['nvl-reserved']"
+                                                    ng-disabled="DeleteSecGroupBTNDisabled">
+                                                    <md-icon>highlight_off</md-icon>
+                                                    <md-tooltip>
+                                                        {{ 'security_group.regole.rimuovi' | translate}}
+                                                    </md-tooltip>
+                                                </md-button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </md-table-container>
+                        </md-card>
+                    </div>
+                </md-content>
+
+                <md-card-actions layout="row" layout-align="space-between center">
+                    <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+                        <md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate}}
+                    </md-button>
+                </md-card-actions>
+
+
+
+            </md-card-content>
+        </md-card>
+    </md-content>
+</div>

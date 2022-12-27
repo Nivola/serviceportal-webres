@@ -1,0 +1,127 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<md-content class ="md-no-momentum" layout="column">
+	
+		<md-card>
+			<md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+				<div class="md-toolbar-tools">
+					<div flex=20>
+						<md-card-actions layout="row" layout-align="start center" flex="20">
+							<md-button class="md-fab read-me "  ng-href="{{}}" target="_blank">
+								<md-icon  class="material-icons">local_library</md-icon>
+								<md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+							</md-button>
+						</md-card-actions> 
+					</div>
+					<div flex>
+						<md-card-title>
+							<md-card-title-text layout-align="center center">
+								<div class="md-headline titolo-sezione">
+									<md-icon class="icon-card-header-green">payments</md-icon> {{ 'listini.elenco.titolo' | translate }}
+								</div>
+							</md-card-title-text>
+						</md-card-title>
+					</div>
+					<div flex=20 layout="row" layout-align="end center">
+						<!-- <md-button class="md-fab md-mini md-warn" ng-click="actions.advancedSearch($event)"
+							aria-label="advancedSearch" ng-if="filter.form.$dirty && filter.search.length !== 0"
+							require-uc="{{::actions.auth.advancedSearch}}">
+							<md-icon class="material-icons">location_searching</md-icon>
+							<md-tooltip>Ricerca avanzata</md-tooltip>
+						</md-button> -->
+						<md-button class="md-fab md-mini md-primary" ng-click="actions.add()" aria-label="register"
+							require-uc="{{::actions.auth.add}}">
+							<md-icon class="material-icons">plus_one</md-icon>
+							<md-tooltip>Registra nuovo Listino</md-tooltip>
+						</md-button>
+						<md-button class="md-fab md-mini md-primary md-hue-2" ng-click="actions.refresh()">
+							<md-icon>refresh</md-icon>
+							<md-tooltip>{{ 'listini.elenco.ricarica' | translate }}</md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+
+			<md-toolbar class="md-table-toolbar alternate" ng-show="options.rowSelection && selected.length">
+				<div class="md-toolbar-tools">
+					<md-button class="md-icon-button" ng-click="unselectAll()" aria-label="Unselect items">
+						<md-icon class="material-icons">close</md-icon>
+					</md-button>
+					<div flex>
+						<span>
+							{{selected.length}} {{selected.length > 1 ? ('listini.elenco.selezionati' | translate):('listini.elenco.selezionato' | translate) }}
+						</span>
+					</div>
+					<div layout="row" layout-align="end center">
+						<md-button ng-if="selected.length === 1" class="md-fab md-mini md-primary"
+						 	ng-click="actions.view($event)" aria-label="details">
+							<md-icon class="material-icons">visibility</md-icon>
+						<md-tooltip>{{ 'listini.dettaglio.bottone' | translate }}</md-tooltip>
+					</md-button>
+						
+						<md-button class="md-fab md-mini md-warn" ng-click="actions.delete($event)" aria-label="delete"
+							require-uc="{{::actions.auth.delete}}">
+							<md-icon class="material-icons">delete</md-icon>
+							<md-tooltip> {{selected.length > 1 ? ('listini.elimina.bottone' | translate):('listini.elimina.bottones' | translate)}}</md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+
+			<md-toolbar class="md-table-toolbar md-default">
+				<div class="md-toolbar-tools">
+					<form name="filter.form" flex>
+						<md-input-container class="md-icon-float md-block" flex>
+							<!-- Use floating label instead of placeholder -->
+							<label>{{ 'ricerca' | translate }}</label>
+							<md-icon class="material-icons">search</md-icon>
+							<input id="search" class="layout-fill" type="text" ng-model="filter.search"
+								ng-model-options="filter.options" esc-key="resetFilter()">
+						</md-input-container>
+					</form>
+				</div>
+			</md-toolbar>
+
+			<md-table-container>
+				<table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}"
+					ng-model="selected" md-progress="promise">
+					<thead ng-if="!options.decapitate" md-head md-order="query.order" md-on-reorder="logOrder">
+						<tr md-row>
+							<th md-column md-order-by="nome"><span>{{ 'listini.nome' | translate }}</span></th>
+							<th md-column md-order-by="descrizione"><span>{{ 'listini.descrizione' | translate }}</span></th>
+							<th md-column md-order-by="dataCreazione" hide-gt-xs hide-xs show-gt-sm><span>{{ 'listini.data_creazione' | translate }}</span></th>
+							<th md-column md-order-by="dataInizioValidita" hide-gt-xs hide-xs show-gt-sm><span>{{ 'listini.data_inizio' | translate }}</span></th>
+							<th md-column md-order-by="dataFineValidita" hide-gt-xs hide-xs show-gt-sm><span>{{ 'listini.data_fine' | translate }}</span></th>
+							<th md-column md-order-by="dataModifica" hide-gt-xs hide-xs show-gt-sm><span>{{ 'listini.data_modifica' | translate }}</span></th>
+						</tr>
+					</thead>
+					<tbody md-body>
+						<tr md-row md-select="listino" md-on-select="logItem" md-auto-select="options.autoSelect"
+							ng-repeat="listino in  filteredListini = (listini | filter: actions.searchTable()) | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+							<td md-cell>{{listino.nome}}</td>
+							<td md-cell>{{listino.descrizione}}</td>
+							<td md-cell>{{listino.dataCreazione  | date:'MM-dd-yyyy'}}</td>
+							<td md-cell>{{listino.dataInizioValidita  | date:'MM-dd-yyyy'}}</td>
+							<td md-cell>{{listino.dataFineValidita  | date:'MM-dd-yyyy'}}</td>
+							<td md-cell>{{listino.dataModifica  | date:'MM-dd-yyyy'}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>
+
+			<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+				md-total="{{filteredListini.length}}" md-page-select="options.pageSelect"
+				md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination">
+			</md-table-pagination>
+		</md-card>
+	</md-content>
+</div>

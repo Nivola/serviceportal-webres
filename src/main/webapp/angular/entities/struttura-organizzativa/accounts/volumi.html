@@ -1,0 +1,72 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-card>
+    <md-toolbar class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools">
+            <form name="filter.form" flex>
+                <md-input-container class="md-icon-float md-block" flex>
+                    <label>{{ 'ricerca' | translate }}</label>
+                    <md-icon class="material-icons">search</md-icon>
+                    <input id="search" class="layout-fill" type="text" ng-model="filter.search"
+                        ng-model-options="filter.options" esc-key="resetFilter()">
+                </md-input-container>
+            </form>
+        </div>
+
+        
+
+
+
+
+    </md-toolbar>
+    <div  ng-if="volumi && volumi.length==0" layout-align="center center">
+        <p style="color:red;">{{ 'volume.lista.emptyLit' | translate }}</p>
+    </div>
+   
+        <md-table-container ng-if="!(volumi && volumi.length==0)">
+            <table md-table  multiple="{{options.multiSelect}}"
+                ng-model="selected" md-progress="promise">
+                <thead ng-if="!options.decapitate" md-head md-order="query.order" md-on-reorder="logOrder">
+                    <tr md-row>
+                        <th md-column ><span>{{ 'volume.lista.name' | translate}}</span></th>
+                        <th md-column ><span>{{ 'volume.lista.size' | translate}}</span></th>
+                        <th md-column ><span>{{ 'volume.lista.availabilityZone' | translate}}</span></th>
+                        <th md-column ><span>{{ 'volume.lista.createTime' | translate}}</span></th>
+                        <th md-column ><span>{{ 'volume.lista.hypervisor' | translate}}</span></th>
+                        <th md-column ><span>{{ 'volume.lista.status' | translate}}</span></th>
+                    </tr>
+                </thead>
+
+
+                <tbody md-body>
+                        <tr md-row md-select="vol" md-auto-select="options.autoSelect"  
+                        ng-repeat="vol in volumi | filter: filter.search | orderBy: 'createTime' : 'desc' | limitTo: query.limit : (query.page -1) * query.limit">
+                        <td md-cell  >{{vol['nvl-name']}}</td>
+                        <td md-cell  >{{vol.size }}</td>
+                        <td md-cell  >{{vol.availabilityZone }}</td>
+                        <td md-cell>{{vol.createTime | date:'dd/MM/yyyy'}}</td>
+                        <td md-cell  >{{vol['nvl-hypervisor'] }}</td>
+                        <td md-cell  >
+                            <span ng-class="vol.stato.badge">
+                                 {{vol.stato.stato}}
+                            </span>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+
+        <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+                md-total="{{volumi.length}}" md-page-select="options.pageSelect"
+                md-boundary-links="options.boundaryLinks">
+        </md-table-pagination>
+</md-card>

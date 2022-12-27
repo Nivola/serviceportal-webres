@@ -1,0 +1,202 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+
+						
+						<div layout="column" ng-cloak>
+							<md-content class="md-no-momentum" layout="column">
+						
+								<md-card>
+									
+
+									
+
+										<md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+											<div class="md-toolbar-tools">
+												
+												<div flex=20>
+													
+													<md-button class="md-fab md-mini md-primary" ng-click="actions.loadInviati()">
+														<md-icon class="material-icons">near_me</md-icon>
+														<md-tooltip>{{ 'menu.assistenza.inviate' | translate}}</md-tooltip>
+													</md-button>
+													<md-button class="md-fab md-mini md-primary" ng-click="actions.loadBozze()">
+														<md-icon class="material-icons" >edit_note</md-icon>
+														<md-tooltip>{{ 'menu.assistenza.bozze' | translate}}</md-tooltip>
+													</md-button>
+													
+												</div>
+												<div flex>
+													<md-card-title flex>
+														<md-card-title-text layout-align="center center">
+															<div class="md-headline titolo-sezione">
+																<md-icon class="icon-card-header-green">support</md-icon>
+																
+																<span >{{ 'menu.assistenza.bozze' | translate}}</span>
+															</div>
+														</md-card-title-text>
+													</md-card-title>
+												</div>
+												<div flex=20 layout="row" layout-align="end center">
+													
+													<md-button class="md-fab md-mini md-warn" ng-click="actions.advancedSearch($event)"
+														aria-label="advancedSearch" ng-if="filter.form.$dirty && filter.search.length !== 0"
+														require-uc="{{::actions.auth.advancedSearch}}">
+														<md-icon class="material-icons">location_searching</md-icon>
+														<md-tooltip>{{ 'assistenza.elenco.ricerca_avanzata' | translate}}</md-tooltip>
+													</md-button> 
+													<md-button class="md-fab md-mini md-primary" ng-if="usaRemedy" ui-sref="app.formAssistenza" aria-label="register">
+														<md-icon class="material-icons">add</md-icon>
+														<md-tooltip>{{ 'assistenza.elenco.nuova' | translate}}</md-tooltip>
+													</md-button>
+													<md-button class="md-fab md-mini md-primary md-hue-2" ng-click="actions.refresh()">
+														<md-icon>refresh</md-icon>
+														<md-tooltip>{{ 'assistenza.elenco.ricarica' | translate}}</md-tooltip>
+													</md-button>
+													
+												</div>
+											</div>
+										</md-toolbar>
+
+										<md-toolbar class="md-table-toolbar alternate" ng-show="options.rowSelection && selected.length">
+											<div class="md-toolbar-tools">
+												<md-button class="md-icon-button" ng-click="unselectAll()" aria-label="Unselect items">
+													<md-icon class="material-icons">close</md-icon>
+												</md-button>
+												<div flex>
+													<span>
+														{{selected.length}} {{selected.length > 1 ? ('assistenza.elenco.selezionate' | translate) : ('assistenza.elenco.selezionata' | translate)}}
+													</span>
+												</div>
+
+												
+												<div layout="row" layout-align="end center">
+													<md-button class=" animation-target md-fab md-mini md-primary md-hue-2" ng-click="actions.change()"  	ng-if="isBOAdmin && selected.length === 1" >
+														<md-icon>edit</md-icon>
+														<md-tooltip>{{ 'modifica' | translate}}</md-tooltip>
+													</md-button>
+													<md-button ng-if="selected.length === 1" class="md-fab md-mini md-primary"
+														ng-click="actions.view($event)" aria-label="details">
+														<md-icon class="material-icons">visibility</md-icon>
+													<md-tooltip>{{ 'assistenza.dettagli.bottone' | translate}}</md-tooltip>
+													</md-button>
+													
+													<md-button class="md-fab md-mini md-warn" ng-click="actions.delete($event)" aria-label="delete"
+														ng-if="isBOAdmin">
+														<md-icon class="material-icons">delete</md-icon>
+														<md-tooltip> {{selected.length > 1 ? ('assistenza.elenco.elimina.notizie' | translate) : ('assistenza.elenco.elimina.notizia' | translate)}}</md-tooltip>
+													</md-button>
+												</div>
+											</div>
+										</md-toolbar>
+
+										<md-toolbar class="md-table-toolbar md-default">
+											
+											<div class="md-toolbar-tools">
+
+											
+
+												<form name="filter.form" flex >
+													<md-input-container class="md-icon-float md-block" flex>
+														
+														<label>{{ 'ricerca' | translate}}</label>
+														<md-icon class="material-icons">search</md-icon>
+														<input id="search" class="layout-fill" type="text" ng-model="filter.search"
+															ng-model-options="filter.options" esc-key="resetFilter()">
+													</md-input-container>
+												</form>
+											</div>
+										</md-toolbar>
+
+
+
+
+
+								
+								
+										
+
+							
+									<md-table-container >
+										<table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}"
+										ng-model="selected" md-progress="promise">
+											<thead  md-head md-order="query.order_bozze">
+												<tr md-row >
+													<!-- <th md-column md-order-by="accountName" ><span ng-bind-html="'assistenza.elenco.accountName' | translate"></span></th> -->
+													<th md-column md-order-by="tipoSegnalazione" ><span ng-bind-html="'assistenza.elenco.tipo_segnalazione' | translate"></span></th>
+													
+													<th md-column md-order-by="oggetto"><span ng-bind-html="'assistenza.elenco.oggetto' | translate"></span></th>
+													
+										
+													<th md-column md-order-by="stato" ><span ng-bind-html="'assistenza.elenco.stato' | translate"></span></th>
+												
+												
+													<th md-column md-order-by="inviato"><span ng-bind-html="'assistenza.elenco.inviata' | translate"></span></th>
+													<th md-column md-order-by="utenteInserimento"><span ng-bind-html="'assistenza.elenco.iserita_da' | translate"></span></th>
+													<th md-column md-order-by="dataInserimento" ><span ng-bind-html="'assistenza.elenco.data_inserimento' | translate"></span></th> 
+													
+												</tr>
+											</thead>
+											<tbody md-body>
+												<tr md-row md-select="richiesta" md-auto-select="options.autoSelect"
+													ng-repeat="richiesta in richieste  | filter: filter.search  | orderBy: query.order_bozze  | limitTo: query.limit : (query.page -1) * query.limit">
+													
+													<td md-cell >
+														<ng-bind-html ng-bind-html="richiesta.tipologiaProblema"></ng-bind-html>
+													</td>
+
+													
+													<td md-cell>
+														<ng-bind-html ng-bind-html="richiesta.oggetto "></ng-bind-html>
+													</td>
+													
+													<td md-cell>
+														 <ng-bind-html ng-bind-html="richiesta.stato" ></ng-bind-html> 
+														
+													</td>
+												
+
+
+													<td md-cell >
+														<ng-bind-html  ng-class="richiesta.badge" ng-bind-html="richiesta.inviato"></ng-bind-html>
+													</td>
+													
+													<td md-cell>
+														<ng-bind-html ng-bind-html="richiesta.utenteInserimento"  ></ng-bind-html>
+													</td>
+													
+													<td md-cell>
+														<ng-bind-html ng-bind-html="richiesta.dataInserimento | date:'dd/MM/yyyy  @ h:mma'" ></ng-bind-html>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</md-table-container>
+						
+									<md-table-pagination  md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+										md-total="{{richieste.length}}" md-page-select="options.pageSelect"
+										md-boundary-links="options.boundaryLinks"></md-table-pagination>
+
+
+										
+										<div   layout-align="center center" ng-show="options.elencoVuoto && areRequestSent">
+											<strong><p style="color:rgb(247, 136, 10);">{{ 'assistenza.elenco.vuoto' | translate}}</p></strong>
+										</div>
+
+										<div   layout-align="center center" ng-show="options.elencoVuoto && !areRequestSent">
+											<strong><p style="color:rgb(247, 136, 10);">{{ 'assistenza.elenco.bozze_vuote' | translate}}</p></strong>
+										</div>
+										
+								</md-card>
+						
+							</md-content>
+						</div>
+			
+

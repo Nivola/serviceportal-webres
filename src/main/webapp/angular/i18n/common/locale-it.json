@@ -1,0 +1,307 @@
+{   "al" : "al",
+    "abbandona": "Abbandona",
+    "account": "Account",
+    "aggiorna": "Aggiorna",
+    "annulla": "Annulla",
+    "annulla_modifica": "Annulla modifica",
+    "campi_non_validi": "Campi non validi",
+    "campo_necessario": "Campo necessario",
+    "cerca...": "Cerca ...",
+    "chiudi" : "chiudi", 
+    "conferma": "Conferma",
+    "costi_stimati": "Costi stimati",
+    "costo_al_mese": "\u20ac/mese",
+    "costo_incluso": "incluso",
+    "di": "di",
+    "da"  : "da", 
+    "dal"  : "dal", 
+    "dalla" : "dalla",
+    "divisione": "Divisione",
+    "elimina": "Elimina",
+    "errore": "Errore",
+    "finito": "Finito",
+    "guida": "Guida utente",
+    "indietro": "Indietro",
+    "invia": "Invia",
+    "istanza": "Istanza",
+    "istanze": "Istanze",
+    "logout": "Logout",
+    "logout_msg": "Sei sicuro di voler terminare la sessione?",
+    "modifica": "Modifica",
+    "no": "no",
+    "organizzazione": "Organizzazione",
+    "procedi": "Procedi",
+    "proprieta": "Proprietà",
+    "resize": "Resize",
+    "ricerca": "Ricerca",
+    "ricerca_avanzata": "Ricerca avanzata",
+    "ruoli": "Ruoli",
+    "ruolo": "Ruolo",
+    "salva": "Salva",
+    "salva_modifiche": "Salva modifiche",
+    "scarica_csv" : "Scarica report csv",
+    "selezionata": "selezionata",
+    "si": "si",
+    "stima_mensile_di": "Stima mensile di",
+    "utente": "Utente",
+    "utenti": "Utenti",
+    "valore": "Valore",
+    "avanti" : "Avanti",
+    "YES" : "  Sì  ",
+    "NO" : "  No  ",
+    
+    "ambienti": {
+        "col": "Collaudo",
+        "dev": "Sviluppo",
+        "prd": "Produzione",
+        "tst": "Test"
+    },
+    "caricamento": {
+        "controlla": "Controlla la connessione ad internet",
+        "dati_non_disponibili": "Dati non disponibili",
+        "fallito": "Caricamento fallito",
+        "in_corso": "caricamento in corso ..."
+    },
+    "error": {
+        "campo_obbligatorio": "Campo obbligatorio",
+        "download_file": "Si è verificato un errore durante il download del file",
+        "errore_download": "Si è verificato un errore durante il download del file",
+        "loading_account": "Si è verificato un errore durante il caricamento del dettaglio dell'account",
+        "loading_account_anagrafica": "Si è verificato un errore durante il caricamento del dettaglio anagrafico dell'account",
+        "loading_accounts": "Si è verificato un errore durante il caricamento degli account",
+        "loading_andamento_costi": "Si è verificato un errore durante il caricamento dei dati relativi all'andamento dei costi",
+        "loading_attivita": "Si è verificato un errore durante il caricamento di attivita",
+        "loading_autorizzazioni": "Si è verificato un errore durante il caricamento delle autorizzazioni",
+        "loading_capabilities": "Si è verificato un errore durante il caricamento delle capabilities",
+        "loading_chiavi": "Si è verificato un errore durante il caricamento delle chiavi",
+        "loading_consumi_non_rendicontati": "Si è verificato un errore durante il caricamento dell'elenco dei Consumi non rendicontati",
+        "loading_allegato": "Si è verificato un errore durante il caricamento del documento",
+        "loading_consumi_rendicontati": "Si è verificato un errore durante il caricamento dell'elenco dei consumi rendicontati",
+        "loading_costi": "Si è verificato un errore durante il caricamento di costi",
+        "loading_divisione": "Si è verificato un errore durante il caricamento del dettaglio anagrafico della divisione",
+        "loading_divisioni": "Si è verificato un errore durante il caricamento dell'elenco (divisioni/organizzazioni)",
+        "loading_engines": "Si è verificato un errore durante il caricamento degli engines",
+        "loading_entita": "Si è verificato un errore durante il caricamento delle entità",
+        "loading_flavour": "Si è verificato un errore durante il caricamento dei flavour",
+        "loading_grafico_dettaglio": "Si è verificato un errore durante il caricamento dei dati per il grafico di dettaglio",
+        "loading_istanze": "Si è verificato un errore durante il caricamento delle istanze",
+        "loading_listini": "Si è verificato un errore durante il caricamento dei listini",
+        "loading_notizia": "Si è verificato un errore durante il caricamento della notizia",
+        "loading_notizie": "Si è verificato un errore durante il caricamento di notizie",
+        "loading_organizzazioni": "Si è verificato un errore durante il caricamento delle organizzazioni",
+        "loading_prezzari": "Si è verificato un errore durante il caricamento del listino Prezzari",
+        "loading_regioni": "Si è verificato un errore durante il caricamento delle regioni",
+        "loading_remedy": "Si è verificato un errore durante il caricamento delle remedy",
+        "loading_rendicontazioni_account": "Si è verificato un errore durante il caricamento delle informazioni di rendicontazioni dell'account",
+        "loading_security_group": "Si è verificato un errore durante il caricamento dei Security Group",
+        "loading_security_group_info": "Si è verificato un errore durante il caricamento delle informazioni del security group",
+        "loading_servizi_account": "Si è verificato un errore durante il caricamento di  servizi attivi dell'account",
+        "loading_shares": "Si è verificato un errore durante il caricamento delle Shares",
+        "loading_shares_associati": "Si è verificato un errore durante il caricamento delle Shares associati",
+        "loading_snapshot": "Si è verificato un errore durante il caricamento degli snapshots",
+        "loading_staas": "Si è verificato un errore durante il caricamento dei tipi dello STAAS",
+        "loading_storage": "Si è verificato un errore durante il caricamento dei servizi Storage",
+        "loading_subnet": "Si è verificato un errore durante il caricamento delle subnet",
+        "loading_template": "Si è verificato un errore durante il caricamento dei template",
+        "loading_templates": "Si è verificato un errore durante il caricamento dei templates",
+        "loading_utente": "Si è verificato un errore durante il caricamento delle informazioni dell'utente",
+        "loading_utenti": "Si è verificato un errore durante il caricamento degli utenti",
+        "loading_vm": "Si è verificato un errore durante il caricamento delle macchine virtuali",
+        "loading_voci_di_costo": "Si è verificato un errore durante caricamento delle voci di costo",
+        "loading_volumi": "Si è verificato un errore durante il caricamento dei volumi",
+        "loading_vpc": "Si è verificato un errore durante il caricamento dei Vpc",
+        "loading_wbs": "Si è verificato un errore durante il caricamento delle wbs",
+        "loading_zone": "Si è verificato un errore durante il caricamento delle availability zone",
+        "non_autorizzato": "non sei autorizzato ad accedere al contenuto richiesto.",
+        "operazione_non_consentita": "Operazione non consentita"
+    },
+    "success":{
+        "default_price_list":"Le impostazioni di rendicontazione di default sono state associate con successo all'Account!",
+        "price_list_update":"Le impostazioni di listino sono state aggiornate con successo!"
+    },
+    "header": {
+        "cambia_profilo": "Cambia profilo",
+        "contatta_assistenza": "Contatta l'assistenza",
+        "csi_piemonte": "CSI Piemonte",
+        "documentazione_nivola": "Documentazione Nivola",
+        "esci": "Esci da Nivola",
+        "selezione_account": "Il mio profilo",
+        "visualizza_info_utente": "Visualizza informazioni utente"
+    },
+    "menu": {
+        "amministrazione": {
+            "titolo": "Amministrazione",
+            "catalogo": {
+                "cataloghi": "Cataloghi",
+                "titolo": "Catalogo"
+            },
+            "listini": {
+                "elenco": "Elenco listini",
+                "registra": "Registra nuovo listino",
+                "titolo": "Listini"
+            },
+            "portafoglio": {
+                "titolo": "Portafoglio",
+                "wallets": "Wallets Org-Divisioni"
+            },
+            "report": {
+                "report": "Report",
+                "titolo": "Report"
+            },
+            "struttura_organizzativa": {
+                "accounts": "Accounts",
+                "divisioni": "Divisioni",
+                "organizzazioni": "Organizzazioni",
+                "titolo": "Struttura organizzativa"
+            },
+            "utenti": {
+                "accreditamento": "Accreditamento",
+                "lista_registrati": "Lista utenti registrati",
+                "registra": "Registra nuovo utente",
+                "titolo": "Utenti"
+            }
+        },
+        "assistenza": {
+            "area_condivisione": "Area di condivisione",
+            "chat": "Chat",
+            "inviate": "Tickets inviati", 
+            "aperti"  : "Tickets aperti",
+            "bozze" : "Bozze", 
+            "nuova_remedy" : "Nuovo Ticket",
+            "richiesta_supporto": "Richiesta supporto",
+            "titolo": "Assistenza"
+        },
+        "avvisi_notifiche": {
+            "titolo": "Avvisi e Notifiche"
+        },
+        "documentazione": {
+            "compliance": "Compliance",
+            "condizioni_generali": "Condizioni Generali",
+            "sla": "SLA",
+            "titolo": "Documentazione",
+            "guida_utente": {
+                "titolo": "Guida Utente",
+                "url": "https://nivola-userguide.readthedocs.io/it/latest/index.html",
+                "url_test": "https://www.csipiemonte.it/web/it"
+            }
+        },
+        "gestione_account": {
+            "allegati": "Allegati",
+            "attivita": "Cronologia attività",
+            "costi_consumi": "Costi e consumi",
+            "listino" : "Listino",
+            "quote_servizi": "Quote servizi",
+            "servizi_gestione": "Servizi di gestione",
+            "titolo": "Gestione account",
+            "utenti": {
+                "lista_accreditati": "Lista utenti accreditati",
+                "titolo": "Utenti"
+            }
+        },
+        "gestione_divisione": {
+            "costi_consumi": "Costi e consumi",
+            "titolo": "Gestione Divisione",
+            "struttura_organizzativa": {
+                "accounts": "Accounts",
+                "titolo": "Struttura organizzativa"
+            },
+            "utenti": {
+                "lista_accreditati": "Lista utenti accreditati",
+                "titolo": "Utenti"
+            }
+        },
+        "gestione_organizzazione": {
+            "costi_consumi": "Costi e consumi",
+            "titolo": "Gestione Organizzazione"
+        },
+        "homepage": {
+            "titolo": "Home Page / Dashboard"
+        },
+        "notizie": {
+            "titolo": "Notizie"
+        },
+        "servizi": {
+            "titolo": "Servizi",
+            "appengine": {
+                "istanze": "Istanze AppEngine",
+                "titolo": "AppEngine"
+            },
+            "compute": {
+                "chiavi_ssh": "Chiavi SSH",
+                "titolo": "Compute",
+                "vm": "VM",
+                "volumi": "Volumi"
+            },
+            "database": {
+                "dbaas": "Istanze DBAAS",
+                "titolo": "Database"
+            },
+            "networking": {
+                "security_group": "Security Group",
+                "titolo": "Reti e Sicurezza",
+                "vpc": "VPC"
+            },
+            "storage": {
+                "shares": "Shares",
+                "titolo": "Storage"
+            }
+        },
+        "strumenti": {
+            "log_management": "Log Management",
+            "monitoraggio": "Monitoraggio",
+            "titolo": "Strumenti"
+        },
+        "task_richieste": {
+            "titolo": "Task e richieste"
+        }
+    },
+    "paginazione": {
+        "elementi_di": "di",
+        "pagina": "Pagina",
+        "righe": "Righe per pagina"
+    },
+    "ruoli_elenco": {
+        "AccountAdminRole": "Master di Account",
+        "AccountOperatorRole": "Operatore di Account",
+        "AccountViewerRole": "Viewer di Account",
+        "BOADMIN": "Amministratore di backoffice",
+        "BOMONITORING": "Monitoraggio di backoffice",
+        "CatalogAdminRole": "Amministratore del catalogo dei servizi",
+        "DivAdminRole": "Master di Division",
+        "DivOperatorRole": "Operatore di Division",
+        "DivViewerRole": "Viewer di Division",
+        "OrgAdminRole": "Master di Organization",
+        "OrgOperatorRole": "Operatore di Organization",
+        "OrgViewerRole": "Viewer di Organization",
+        "Ospite" : "Ospite"
+    },
+    "tags": {
+        "elimina_error": "Si è verificato un errore durante la rimozione del Tag",
+        "elimina_success": "Tag Rimosso con successo !",
+        "save_error": "Si è verificato un errore durante la creazione del Tag",
+        "save_error_pattern": "Tag Non Salvato! Può contenere numeri e lettere (minuscole,maiuscole, no lettere accentate) e i caratteri speciali : \"-\", \"_\" ",
+        "save_success": "Tag salvato con successo"
+    },
+    "available":"DISPONIBILE",
+    "unavailable":"INACCESSIBILE",
+    "failure":"IN ERRORE",
+    "completed":"COMPLETATO",
+    "active":"ATTIVA",
+    "inactive":"INATTIVA",
+    "buttons":{
+        "back":"INDIETRO",
+        "cancel":"ANNULLA",
+        "confirm":"CONFERMA"
+
+    },
+    "restore_point":{
+        "modal_title":"Ripristino VM ad uno specifico punto",
+        "text01":"Con questa operazione verrà ripristinata la VM selezionata",
+        "text02":"Si desidera procedere?",
+        "vm":"Virtual Machine",
+        "name":"Nome",
+        "name_placeholder":"Scegli il nome per la nuova istanza"
+    },
+"attention":"Attenzione"
+
+}

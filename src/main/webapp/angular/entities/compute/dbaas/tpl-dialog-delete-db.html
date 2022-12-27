@@ -1,0 +1,55 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-dialog aria-label="textConferma">
+    <form ng-cloak name="deleteDbaasForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 ng-show="dbass.isShowInfo">{{title}}</h2>
+                <h2 ng-show="!dbass.isShowInfo">{{textConferma}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon class="md-icon-button" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content class="md-dialog-content ng-scope">
+            <div ng-show="dbass.isShowInfo">
+                <b class="ng-binding ">{{ 'dbaas.elimina.info01' | translate}}</b><br>
+                <p class="ng-binding">{{ 'dbaas.elimina.info02' | translate}}</b>
+                <br><br>
+                <b>{{textProsegui}}</b>
+            </div>
+            <div ng-show="!dbass.isShowInfo">
+                <b>{{ 'dbaas.elimina.msg_inserisci_nome' | translate}}</b>
+                <div layout="column" flex="50">
+                    <md-input-container class="md-block" flex-gt-sm id="md-input-container-dialog-dbaas">
+                        <input ng-model="dbass.nome" id="nome" name="nome" ng-model-options="{ debounce: 250 }"
+                            ng-change="nomeChange()" placeholder="{{ 'dbaas.elimina.placeholder' | translate}}">
+        
+                        <div ng-messages="deleteDbaasForm.nome.$error" role="alert" multiple>
+                            <div ng-if="dbass.errorNameNotMatching">{{ 'dbaas.elimina.errorNameNotMatching' | translate}} </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <p class="ng-binding">{{textInfo}}</p>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+                <span flex></span>
+                <button class="md-primary md-button ng-scope md-default-theme md-ink-ripple" type="button"
+                    ng-click="closeDialog()"><span class="ng-binding ng-scope">{{ 'annulla' | translate}}</span></button>
+                <button ng-show="dbass.isShowInfo" class="md-primary md-button md-default-theme md-ink-ripple"
+                 type="button" ng-click="procedi()"><span class="ng-binding ng-scope">{{ 'procedi' | translate}}</span></button>
+                <button ng-show="!dbass.isShowInfo" ng-disabled="!dbass.enableConferma"  class="md-primary md-button md-default-theme md-ink-ripple"
+                    type="button" ng-click="elimina()"><span class="ng-binding ng-scope">{{ 'conferma' | translate}}</span></button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

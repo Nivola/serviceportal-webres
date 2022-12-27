@@ -1,0 +1,34 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="row" layout-align="center center">
+    <h3 flex="50" style="text-align: center;">{{'attention'|translate}}</h3>
+</div>
+<div ng-if="!sended">
+
+    <div layout="row" layout-align="center center" >
+        <p flex="90" style="font-size: 1.5em;" ng-bind-html="'assistenza.popup.configuration_account.msg_1' | translate"></p>
+    </div>
+    <div layout="row"       layout-align="center center">
+        <md-button class="md-primary badge-green md-raised" ng-click="reqConfigAcc()">{{'assistenza.popup.configuration_account.req_button'|translate}}</md-button>
+    </div>
+    <div layout="row" layout-align="center center" >
+        <p flex="90" style="font-size: 1.5em;" ng-bind-html="'assistenza.popup.configuration_account.msg_2' | translate"></p>
+    </div>
+</div>
+<div ng-if="sended">
+    <div layout="row" layout-align="center center" >
+        <p flex="90" style="font-size: 1.25em;text-align: center;" ng-bind-html="'assistenza.popup.configuration_account.msg_3' | translate"></p>
+    </div> 
+</div>
+
+<div layout="row" layout-align="center center">
+    <md-button class="md-primary md-raised" ng-click="endRequestAccConfig()">{{'chiudi'|translate|capitalize}}</md-button>
+</div>

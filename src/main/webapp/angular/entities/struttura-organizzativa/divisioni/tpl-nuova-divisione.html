@@ -1,0 +1,247 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div id="nuovaDivisione">
+    <div layout="row" layout-fill layout-align="start start">
+        <md-card flex="grow">
+           <md-progress-linear id="chartProgressBar" ng-show="!options.isDataLoaded" md-mode="indeterminate"></md-progress-linear>
+            <md-card-title>
+                <md-card-title-text layout-align="center center">
+                    <span class="md-headline titolo-sezione">
+                        <md-icon class="icon-card-header-green">group_work</md-icon> {{ 'divisioni.nuova.titolo' | translate }}
+                    </span>
+                    <div class="callout callout-info">
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-divider></md-divider>
+            <md-card-content>
+                <form name="formNuovaDivisione" id="formNuovaDivisione">
+                    <div class="step" >
+                        <div>
+                            <div class="circle">1</div>
+                            <div class="line"></div>
+                        </div>
+ 
+                        <div>
+                            <div class="title-step  text-dark">{{ 'organizzazione' | translate }}</div>
+                            <div class="body">
+
+                                <span id="idCompilaCampo" style="color: white">{{ 'divisioni.denominazione_required' | translate }}</span>
+                                <script>
+                                    // per sostituire il messaggio html5 "Compila questo campo" se il campo è required
+                                    var compilaCampo = document.getElementById('idCompilaCampo').innerText;
+                                    function setTraduzione() {
+                                        compilaCampo = document.getElementById('idCompilaCampo').innerText;
+                                        if (compilaCampo.indexOf('{{') != -1) {
+                                            setTimeout(setTraduzione, 200);
+                                        } else {
+                                            console.log("setTraduzione OK");
+                                        }
+                                    }
+                                    setTimeout(setTraduzione, 200);
+                                </script>
+
+                                <div layout="row">
+                                    <div flex="45" layout-margin>
+                                        <md-input-container class="md-icon-float md-icon-left md-block">
+                                            <md-icon ng-style="iconStyle">account_balance</md-icon>
+                                            <label>{{ 'organizzazione' | translate }}</label>
+                                            <md-select ng-model="nuovaDivisione.organizzazione" ng-required="true" flex ng-disabled="options.isorganizzazionieSoloLettura" ng-change="onOrganizzazioneChange()">
+                                                <md-option layout-align="start start" ng-value="org"
+                                                    ng-repeat="org in organizzazioni | orderBy: 'name' ">
+                                                    {{ org.name }} - {{ org.desc }}
+                                                </md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                    <div flex="30">
+                                        <md-input-container class="md-icon-float md-icon-left md-block">
+                                            <md-icon ng-style="iconStyle">toc</md-icon>
+                                            <label>{{ 'divisioni.categoria.label' | translate }}</label>
+                                            <md-select ng-model="nuovaDivisione.categoriaDiv" ng-disabled="true">
+                                                <md-option ng-value="categoria" ng-repeat="categoria in categorieDiv" layout-align="start start">{{ categoria.nome }}</md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Anagrafica Account -->
+                    <div class="step" ng-if="options.showSteps">
+                        <div>
+                            <div class="circle">2</div>
+                            <div class="line"></div>
+                        </div>
+ 
+                        <div>
+                            <div class="title-step  text-dark">{{ 'divisioni.nuova.anagrafica' | translate }}</div>
+                            <div class="body">
+                                <div layout="row">
+                                    <div flex="30">
+                                        <md-input-container class="md-icon-float md-icon-left md-block">
+                                            <label>{{ 'divisioni.denominazione' | translate }}</label>
+                                            <md-icon ng-style="iconStyle">picture_in_picture</md-icon>
+                                            <input id="divisioneName" ng-model="nuovaDivisione.name" type="text" ng-required="true"
+                                                name="name" oninvalid="this.setCustomValidity(compilaCampo)" oninput="setCustomValidity('')" title="">
+                                            <div ng-messages="formNuovaDivisione.name.$error">
+                                                <div ng-message="required">{{ 'divisioni.denominazione_required' | translate }}</div>
+                                                <div ng-message="md-maxlength">{{ 'divisioni.denominazione_maxlegth' | translate }}</div>
+                                            </div>
+                                        </md-input-container>
+                                    </div>
+                                    <div flex="60">
+                                        <md-input-container class="md-icon-float md-icon-left md-block">
+                                            <label>{{ 'divisioni.descrizione' | translate }}</label>
+                                            <input id="divisioneDesc" ng-model="nuovaDivisione.desc" type="text" 
+                                                name="desc">
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Indirizzo -->
+                    <div class="step" ng-if="options.showSteps">
+                        <div>
+                            <div class="circle">3</div>
+                            <div class="line"></div>
+                        </div>
+                        <div>
+                            <div class="title-step  text-dark">{{ 'divisioni.indirizzo_divisione' | translate }}</div>
+                            <div class="body">
+                                <div layout="row">
+                                    <div flex="50">
+                                        <md-input-container class="md-icon-float md-icon-left md-block">
+                                            <label>{{ 'divisioni.indirizzo' | translate }}</label>
+                                            <md-icon ng-style="iconStyle">place</md-icon>
+                                            <input id="divisionePostalAddress" ng-model="nuovaDivisione.postaladdress" type="text" ng-required="false"
+                                                name="postaladdress">
+                                            <div ng-messages="formNuovaDivisione.postaladdress.$error">
+                                                <div ng-message="required">{{ 'divisioni.indirizzo_required' | translate }}</div>
+                                            </div>
+                                        </md-input-container>
+                                    </div>
+                                    <div flex="50">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Recapiti Mail -->
+                    <div class="step" ng-if="options.showSteps">
+                        <div>
+                            <div class="circle">4</div>
+                            <div class="line"></div>
+                        </div>
+                        <div>
+                            <div class="title-step  text-dark">{{ 'divisioni.recapiti_email' | translate }}</div>
+                            <div class="body">
+                                <div layout="row">
+                                    <div flex="50">
+                                        <md-input-container class="md-icon-float md-icon-left md-block">
+                                            <label>{{ 'divisioni.email' | translate }}</label>
+                                            <md-icon ng-style="iconStyle">email</md-icon>
+                                            <input id="divisioneEmail" ng-model="nuovaDivisione.email" type="email" ng-required="false"
+                                                name="email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+                                            <div ng-messages="formNuovaDivisione.email.$error">
+                                                <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
+                                                    {{ 'divisioni.email_required' | translate }}
+                                                </div>
+                                            </div>
+                                        </md-input-container>
+                                    </div>
+                                    <div flex="50">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Referente -->
+                    <div class="step" ng-if="options.showSteps">
+                        <div>
+                            <div class="circle">5</div>
+                            <div class="line"></div>
+                        </div>
+                        <div>
+                            <div class="title-step  text-dark">{{ 'divisioni.referente' | translate }}</div>
+                            <div class="body">
+                                <div layout="row">
+                                    <div flex="30">
+                                        <md-input-container class="md-icon-float md-icon-left md-block">
+                                            <label>{{ 'divisioni.referente' | translate }}</label>
+                                            <md-icon ng-style="iconStyle">supervisor_account</md-icon>
+                                            <input id="divisioneContact" ng-model="nuovaDivisione.contact" type="text" ng-required="false"
+                                                name="contact">
+                                            <div ng-messages="formNuovaDivisione.contact.$error">
+                                                <div ng-message="required">{{ 'divisioni.referente_required' | translate }}</div>
+                                            </div>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ente di Remedy associato -->
+                    <div class="step" ng-if="options.showSteps">
+                        <div>
+                            <div class="circle">5</div>
+                            <div class="line"></div>
+                        </div>
+                        <div>
+                            <div class="title-step  text-dark">{{ 'divisioni.ente_riferimento' | translate }}</div>
+                            <div class="body">
+                                <div layout="row">
+                                    <div flex="50">
+                                        <md-input-container class="md-icon-float md-icon-left md-block">
+                                            <label>{{ 'divisioni.ente' | translate }}</label>
+                                            <md-icon ng-style="iconStyle">account_balance</md-icon>
+                                            <md-autocomplete md-no-cache="true" md-selected-item="nuovaDivisione.enteSelezionato" 
+                                                md-search-text="ricercaEnte" 
+                                                md-items="ente in cercaEnti(ricercaEnte)"
+                                                md-item-text="ente.descrizioneEnte">
+                                                <md-item-template>
+                                                    <span md-highlight-text="ricercaEnte">{{ente.descrizioneEnte}}</span>
+                                                  </md-item-template>
+                                                  <md-not-found>
+                                                    {{ 'divisioni.ente_not_found' | translate }}
+                                                  </md-not-found>
+                                            </md-autocomplete>
+                                           
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <br />
+                        <md-divider></md-divider>
+                    </div>
+                    <md-card-actions layout="row" layout-align="space-between center">
+                        <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+                            <md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro'}}
+                        </md-button>
+
+                        <md-button type="submit" ng-click="actions.invia()" class="md-raised md-primary md-hue-2" ng-if="options.showSteps">
+                            <md-icon ng-style="iconStyle" class="material-icons">send</md-icon> {{ 'divisioni.nuova.crea' | translate }}
+                        </md-button>
+                    </md-card-actions>
+                </form>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>

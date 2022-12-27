@@ -1,0 +1,37 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div>
+    <md-toolbar class="badge-warning">
+      <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <h2 class="mx-auto">
+            <span>{{ 'accounts.modifica.modal.title_warn' | translate }}</span>
+        </h2>
+        <md-button class="md-icon-button" ng-click="$ctrl.closeDialog()">
+          <md-icon>clear</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+  <md-dialog-content>
+    <div class="md-dialog-content ng-binding">
+      {{'accounts.modifica.modal.text_open_price' | translate}}
+    </br>
+    <b>{{'accounts.modifica.modal.text_close_price' | translate}}</b>
+  </br>
+</div>
+</md-dialog-content>
+  
+    <md-dialog-actions layout="row" layout-align="center center">
+      <md-button class="badge-warning md-raised" ng-click="$ctrl.complete()">
+        {{'accounts.modifica.modal.update' | translate}}
+      </md-button>
+    </md-dialog-actions>
+  </div>

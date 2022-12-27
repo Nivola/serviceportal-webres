@@ -1,0 +1,158 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<md-content class="md-no-momentum" layout="column">
+
+		<md-card>
+			<md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length || filter.show">
+				<div class="md-toolbar-tools">
+					<div flex=20>
+						<md-card-actions layout="row" layout-align="start center" flex="20">
+							<md-button class="md-fab read-me " ng-href="{{rtdStaas }}" target="_blank">
+								<md-icon  class="material-icons">local_library</md-icon>
+								<md-tooltip>{{ 'guida' | translate}}</md-tooltip>
+							</md-button>
+						</md-card-actions>
+					</div>
+					<div flex>
+						<md-card-title flex>
+							<md-card-title-text layout-align="center center">
+								<div class="md-headline titolo-sezione">
+									<md-icon class="icon-card-header-green">sd_storage</md-icon>
+									{{ 'shares.elenco' | translate}}
+								</div>
+							</md-card-title-text>
+						</md-card-title>
+					</div>
+					<div flex=20 layout="row" layout-align="end center">
+						<md-button class="animation-target md-fab md-mini md-primary md-hue-2" ng-click="actions.add()"
+							require-uc="{{::actions.auth.new}}">
+							<md-icon>add</md-icon>
+							<md-tooltip>{{ 'shares.crea' | translate}}</md-tooltip>
+						</md-button>
+						<md-button class="animation-target md-fab md-mini md-primary md-hue-2"
+							require-uc="{{::actions.auth.new}}" ng-click="actions.downloadCSV($event)">
+							<md-icon>get_app</md-icon>
+							<md-tooltip>{{ 'scarica_csv' | translate}}</md-tooltip>
+						</md-button>
+						<md-button class="animation-target md-fab md-mini md-primary" ng-click="actions.refresh()">
+							<md-icon>autorenew</md-icon>
+							<md-tooltip>{{ 'shares.aggiorna' | translate}}</md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+
+			<md-toolbar class="md-table-toolbar alternate" ng-show="selected.length && options.rowSelection">
+				<div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+					<md-button class="md-icon-button" ng-click="unselectAll()" aria-label="Unselect items">
+						<md-icon class="material-icons">close</md-icon>
+					</md-button>
+					<div flex>
+						<span>
+							{{ selected.length }}
+							{{selected.length > 1 ? ('shares.selezionati' | translate) : ('shares.selezionato' | translate) }}
+						</span>
+					</div>
+					<div layout="row" layout-align="end center">
+						<md-button class="animation-target md-fab md-mini md-primary md-hue-2"
+							ng-click="actions.manage()" require-uc="{{::actions.auth.manage}}">
+							<md-icon>dns</md-icon>
+							<md-tooltip>{{ 'shares.gestione' | translate}}</md-tooltip>
+						</md-button>
+						<md-button class=" animation-target md-fab md-mini md-primary md-hue-2"
+							ng-click="actions.change()"  require-uc="{{::actions.auth.change}}">
+							<md-icon>assignment_turned_in</md-icon>
+							<md-tooltip>{{ 'shares.autorizzazioni.bottone' | translate}}</md-tooltip>
+						</md-button>
+						<md-button  class="animation-target md-fab md-mini md-warn" ng-click="actions.delete($event)"
+							require-uc="{{::actions.auth.delete}}">
+							<md-icon>delete</md-icon>
+							<md-tooltip>{{ 'shares.elimina.bottone' | translate}}</md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+
+			<md-toolbar class="md-table-toolbar md-default">
+				<div class="md-toolbar-tools">
+					<form name="filter.form" flex>
+						<md-input-container class="md-icon-float md-block" flex>
+							<label>{{ 'ricerca' | translate}}</label>
+							<md-icon class="material-icons">search</md-icon>
+							<input id="search" class="layout-fill" type="text" ng-model="filter.search"
+								ng-model-options="filter.options" esc-key="resetFilter()">
+						</md-input-container>
+					</form>
+				</div>
+			</md-toolbar>
+			
+			<md-table-container>
+				<table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}"
+					ng-model="selected" md-progress="promise">
+					<thead ng-if="!options.decapitate" md-head md-order="query.order">
+						
+						<div  ng-if="options.elencoVuoto" layout-align="center center">
+							<p style="color:orange;">{{ 'shares.lista.vuota' | translate}}</p>
+						</div>
+						<tr md-row>
+							<th md-column md-order-by="nome"><span>{{ 'shares.lista.nome' | translate}}</span></th>
+							<th md-column md-order-by="dimensioneInByte"><span>{{ 'shares.lista.dimensione' | translate}}</span></th>
+							<th md-column md-order-by="dataCreazione"><span>{{ 'shares.lista.data_creazione' | translate}}</span></th>
+							<th md-column><span>tag(s)</span></th>
+							<th md-column><span>{{ 'shares.lista.protocol' | translate}}</span></th>
+							<th md-column><span>{{ 'shares.lista.mount_targets' | translate}}</span></th>
+							<th md-column><span>{{ 'shares.lista.ip_address' | translate}}</span></th>
+							<th md-column md-order-by="statoFileSystem"><span>{{ 'shares.lista.stato' | translate}}</span></th>
+						
+
+						</tr>
+					</thead>
+					<tbody md-body>
+						
+						<tr md-row md-select="volume" md-auto-select="options.autoSelect"
+							ng-repeat="volume in volumes | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+							<td md-cell>{{volume.nome}}</td>
+							<td md-cell>
+								<ng-bind-html ng-bind-html="volume.dimensione"></ng-bind-html>
+							</td>
+							<td md-cell>{{volume.dataCreazione}}</td>
+							<td md-cell>
+								<ng-bind-html ng-bind-html="volume.tags"></ng-bind-html>
+							</td>
+							<td md-cell>
+								<ng-bind-html ng-bind-html="volume.protocols"></ng-bind-html>
+							</td>
+							<td md-cell>
+								<ng-bind-html ng-bind-html="volume.mountTargetsIds"></ng-bind-html>
+							</td>
+							<td md-cell>
+								<ng-bind-html ng-bind-html="volume.ipAddresses"></ng-bind-html>
+							</td>
+							<td md-cell>
+								<ng-bind-html ng-bind-html="volume.stato"></ng-bind-html>
+							</td>
+						</tr>
+					</tbody>
+					
+				</table>
+			</md-table-container>
+
+			<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+				md-total="{{volumes.length}}" md-page-select="options.pageSelect"
+				md-boundary-links="options.boundaryLinks"></md-table-pagination>
+		</md-card>
+
+		
+			
+		
+	</md-content>
+</div>

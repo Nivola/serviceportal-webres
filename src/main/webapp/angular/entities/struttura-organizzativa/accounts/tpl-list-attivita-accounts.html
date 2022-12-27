@@ -1,0 +1,127 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<md-content class="md-no-momentum" layout="column">
+		<md-card>
+			<md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length || filter.show">
+				<div class="md-toolbar-tools">
+					<div flex="20"></div>
+					<div flex>
+						<md-card-title flex>
+							<md-card-title-text layout-align="center center">
+								<div class="md-headline titolo-sezione">
+									<md-icon class="icon-card-header-green">history</md-icon>{{ 'accounts.attivita.titolo' | translate }}
+									<span ng-if="nomeAcc">({{ 'accounts.attivita.di' | translate }} {{nomeAcc}})</span>
+								</div>
+							</md-card-title-text>
+						</md-card-title>
+					</div>
+					<div flex=20 layout="row" layout-align="end center">
+						<md-button class="animation-target md-fab md-mini md-primary md-hue-2"  ng-click="actions.downloadCSV($event)">
+							<md-icon>get_app</md-icon>
+							<md-tooltip>{{ 'scarica_csv' | translate}}</md-tooltip>
+						</md-button>
+						<md-button class="animation-target md-fab md-mini md-primary" ng-click="actions.refresh()">
+							<md-icon>autorenew</md-icon>
+							<md-tooltip>{{ 'accounts.attivita.aggiorna' | translate }}</md-tooltip>
+						</md-button>
+					</div>
+				</div>
+			</md-toolbar>
+
+			<md-toolbar class="md-table-toolbar alternate" ng-show="selected.length && options.rowSelection">
+				<div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+					<md-button class="md-icon-button" ng-click="unselectAll()" aria-label="Unselect items">
+						<md-icon class="material-icons">close</md-icon>
+					</md-button>
+					<div flex>
+						<span>
+							{{ selected.length }}
+							{{selected.length > 1 ? ('accounts.attivita.selezionate' | translate):('accounts.attivita.selezionata' | translate) }}
+						</span>
+					</div>
+					<md-button class="animation-target md-fab md-mini md-primary md-hue-2" ng-click="actions.view()">
+						<md-icon>visibility</md-icon>
+						<md-tooltip>{{ 'accounts.attivita.visualizza.bottone' | translate }}</md-tooltip>
+					</md-button>
+				</div>
+			</md-toolbar>
+
+			<md-toolbar class="md-table-toolbar md-default">
+				<div class="md-toolbar-tools">
+					<form name="filter.form" flex>
+						<md-input-container class="md-icon-float md-block" flex>
+							<label>{{ 'ricerca' | translate }}</label>
+							<md-icon class="material-icons">search</md-icon>
+							<input id="search" class="layout-fill" type="text" ng-model="filter.search"
+								ng-model-options="filter.options" esc-key="resetFilter()">
+						</md-input-container>
+					</form>
+				</div>
+			</md-toolbar>
+
+		
+			<div  ng-if="listAttivita.length===0" layout-align="start center">
+					<p  style="color:red;">{{ 'accounts.attivita.vuoto' | translate }} </p>
+			</div>
+			<md-table-container>
+				
+			<md-table-container >
+				<table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}"
+					ng-model="selected" md-progress="promise">
+					<thead ng-if="!options.decapitate" md-head md-order="query.order">
+						<tr md-row>
+							<th md-column md-order-by="dataAzione"><span>{{ 'accounts.attivita.data' | translate }}</span></th>
+							<th md-column md-order-by="username"><span>{{ 'accounts.attivita.utente' | translate }}</span></th>
+							<th md-column md-order-by="oggetto"><span>{{ 'accounts.attivita.oggetto' | translate }}</span></th>
+							<th md-column md-order-by="descrizione"><span>{{ 'accounts.attivita.descrizione' | translate }}</span></th>
+							<th md-column md-order-by="parametri"><span>{{ 'accounts.attivita.parametri' | translate }}</span></th>
+							<th md-column md-order-by="indirizzoIp"><span>{{ 'accounts.attivita.ip' | translate }}</span></th>
+							<th md-column md-order-by="ruolo"><span>{{ 'accounts.attivita.ruolo' | translate }}</span></th>
+						</tr>
+					</thead>
+					
+					<tbody md-body>
+						<tr md-row md-select="attivita" md-auto-select="options.autoSelect"
+							ng-repeat="attivita in listAttivita | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+							<td md-cell>{{attivita.dataAzione | date:'d MMM, y h:mm:ss a'}}</td>
+							<td md-cell>{{attivita.nome}}</td>
+							<td md-cell>{{attivita.oggetto}}</td>
+							<td md-cell>{{attivita.descrizione}}</td>
+							<td md-cell>
+								{{attivita.parametri | limitTo: 100 }}
+								<span ng-if="attivita.parametri.length > 100">
+									<md-button ng-click="openFromLeft(attivita.parametri)" class="md-icon-button" aria-label="More">
+										<md-icon style="color: blue;">more_horiz</md-icon>
+							  		</md-button>
+								</span>
+							</td>
+							<td md-cell>{{attivita.indirizzoIp}}</td>
+							<td md-cell>{{attivita.ruolo}}</td> 
+							
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>
+
+			<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+				md-total="{{listAttivita.length}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks">
+			</md-table-pagination>
+			<md-divider></md-divider>
+			<md-card-actions layout="row" layout-align="space-between center" >
+				<md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+					<md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate }}
+				</md-button>
+			</md-card-actions>
+		</md-card>
+
+	</md-content>
+</div>

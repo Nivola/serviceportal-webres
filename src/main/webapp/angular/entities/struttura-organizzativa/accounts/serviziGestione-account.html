@@ -1,0 +1,123 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="column" ng-cloak>
+	<md-content class="md-no-momentum" layout="column">
+		<md-card>
+			<md-toolbar class="md-table-toolbar md-default" ng-hide="selected.length || filter.show">
+				<div class="md-toolbar-tools">
+					
+					<div flex>
+						<md-card-title flex>
+							<md-card-title-text layout-align="center center">
+								<div class="md-headline titolo-sezione">
+                                    <md-icon class="icon-card-header-green">date_range</md-icon>
+                                    {{ 'accounts.servizi_gestione.titolo' | translate }}
+								</div>
+							</md-card-title-text>
+						</md-card-title>
+					</div>
+					
+				</div>
+			</md-toolbar>
+			
+
+
+
+            <div layout="column" ng-cloak>
+                <md-content class="md-no-momentum" layout="column">
+                    <md-tab-body>
+                        <div class="b-all m-t-20" id="newInfoRendicontazione">
+                            <div class="bg-warning m-0">
+                                <h4 class="m-t-0 m-l-10 p-t-10 p-b-10 " style="color:white"> {{ 'accounts.servizi_gestione.elenco' | translate }} </h4>
+                            </div>
+                            <md-toolbar class="md-table-toolbar md-default" layout="row">
+                                <div class="md-toolbar-tools" flex="70">
+                                    <form name="filter.form" flex ng-show="infoRendicontazioniAccount.length > 0">
+                                        <md-input-container class="md-icon-float md-block" flex>
+                                            <label>{{ 'ricerca' | translate }}</label>
+                                            <md-icon class="material-icons">search</md-icon>
+                                            <input id="search" class="layout-fill" type="text"
+                                                ng-model="filter.search" ng-model-options="filter.options"
+                                                esc-key="resetFilter()">
+                                        </md-input-container>
+                                    </form>
+                                    <p ng-show="infoRendicontazioniAccount.length === 0" style="color:red;">
+                                        {{ 'accounts.servizi_gestione.no_data' | translate }} </p>
+                                </div>
+                                
+                                <div flex="30">
+                                    <md-datepicker ng-hide="infoRendicontazioniAccount.length === 0" ng-model="myDate"
+                                    md-current-view="year"  ng-change="onChangeFiltroPeriodo()"  
+                                    md-placeholder="{{ 'accounts.servizi_gestione.label_filtra_data' | translate }}">
+                                    </md-datepicker>
+                                    <md-button class="animation-target md-fab md-mini md-primary md-hue-2"
+                                        ng-click="actions.nuovaInfoRendicontazione()"
+                                        require-uc="{{::actions.auth.newInfoRendicontazione}}">
+                                        <md-icon>add</md-icon>
+                                        <md-tooltip>{{ 'accounts.info_rendicontazione.nuova.bottone' | translate }}</md-tooltip>
+                                    </md-button>
+                                    <md-button class="animation-target md-fab md-mini md-primary"
+                                        ng-click="aggiornaInfoRendicontazioni()" layout-align="end center">
+                                        <md-icon>autorenew</md-icon>
+                                        <md-tooltip>{{ 'accounts.servizi_gestione.aggiorna' | translate }}</md-tooltip>
+                                    </md-button>
+                                </div>
+                            </md-toolbar>
+                            <div ng-show="infoRendicontazioniAccount.length > 0">
+                                <md-table-container id="tableInfoRendicontazione">
+                                    <table md-table md-row-select="options.rowSelection"
+                                        multiple="{{options.multiSelect}}" ng-model="selected"
+                                        md-progress="promise">
+                                        <thead ng-if="!options.decapitate" md-head md-order="query.order">
+                                            <tr md-row style="background-color:#e3f2fd">
+                                                <th md-column md-order-by="descrizioneMetrica" class="th-bold"><span>{{ 'accounts.info_rendicontazione.info' | translate }}</span></th>
+                                                <th md-column md-order-by="dataDa" class="th-bold "
+                                                    style="padding-left: 10px;"><span>{{ 'accounts.info_rendicontazione.data_inizio' | translate }}</span></th>
+                                                <th md-column md-order-by="dataA" class="th-bold"><span>{{ 'accounts.info_rendicontazione.data_fine' | translate }}</span></th>
+                                                <th md-column class="th-bold"><span>{{ 'accounts.info_rendicontazione.valore' | translate }}</span></th>
+                                                <!-- <th md-column class="th-bold"><span>Azioni</span></th> -->
+
+                                            </tr>
+                                        </thead>
+                                        <tbody md-body>
+
+                                            <tr md-row md-select="info" md-auto-select="options.autoSelect"
+                                                ng-repeat="info in infoRendicontazioniAccount | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                                                <td md-cell style="background-color:#e3f2fd;">
+                                                    <b>{{info.descrizioneMetrica | uppercase}}</b></td>
+                                                <td md-cell style="padding-left: 10px;">
+                                                    {{info.dataDa | date:'dd/MM/yyyy'}}</td>
+                                                <td md-cell>{{info.dataA | date:'dd/MM/yyyy'}}</td>
+                                                <td md-cell>
+                                                    <span ng-if="isInfoTenant(info)" class="badge badge-success">
+                                                        {{info.etichettaValore}}
+                                                    </span>
+                                                    <span ng-if="!isInfoTenant(info)">{{info.quantita}}</span>
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </md-table-container>
+                                <md-table-pagination style="background-color:#e3f2fd" md-limit="query.limit"
+                                    md-limit-options="limitOptions" md-page="query.page"
+                                    md-total="{{infoRendicontazioniAccount.length}}"
+                                    md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks">
+                                </md-table-pagination>
+                            </div>
+                        </div>
+                        <md-divider></md-divider>
+                    </md-tab-body>
+                </md-content>
+            </div>
+		</md-card>
+	</md-content>
+</div>

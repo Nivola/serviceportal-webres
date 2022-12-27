@@ -1,0 +1,131 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<style>
+.card-auth-provider:hover {
+    background-color: rgb(240,240,240);
+}
+
+.login-provider-image {
+	max-width: 200px;
+	height: 125px;
+}
+</style>
+
+<div layout="row" layout-fill layout-margin layout-padding layout-align="start start">
+	<div flex="15">
+	</div>
+	<md-card flex="70">
+		<md-card-title>
+	    	<md-card-title-text layout-align="center center">
+	      		<span class="md-headline">  	
+		      		Accesso al sistema
+	      		</span>
+	    	</md-card-title-text>
+	  	</md-card-title>
+	  
+	  	<md-card-content>
+	  		<md-content class="md-padding" layout-xs="column" layout="row" ng-if="!vm.provider">
+			    <div flex-xs flex-gt-xs="50" layout="column">
+			    	<md-card md-theme="{{ showDarkTheme ? 'dark-orange' : 'default' }}" 
+		               md-theme-watch 
+		               class="card-auth-provider clickable" 
+		               ng-click="actions.doSelectProvider('SHIBB-CSI')" >
+		        		<md-card-title>
+		          			<md-card-title-text>
+		            			<span class="md-headline">Login con utenza CSI</span>
+		            			<span class="md-subhead">utenza interna CSI</span>
+		          			</md-card-title-text>
+		        		</md-card-title>
+		        		<md-card-content layout="row" layout-align="center center">
+		          			<div class="md-media-md card-media">
+		          				<img src='./img/login/logo-csi.jpg' class='login-provider-image' />
+		          			</div>
+		        		</md-card-content>
+					</md-card>
+					
+		      		<md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch 
+		      			class="card-auth-provider clickable" ng-click="actions.doSelectProvider('SHIBB-SISP')" >
+		        		<md-card-title>
+		          			<md-card-title-text>
+		            			<span class="md-headline">Login con Sistema Piemonte</span>
+		            			<span class="md-subhead">credenziali sistema piemonte</span>
+		          			</md-card-title-text>
+		        		</md-card-title>
+		        		<md-card-content layout="row" layout-align="center center">
+		          			<div class="md-media-md card-media">
+									<!--<img src='/img/login/logo-certificate.png' class='login-provider-image' />-->
+								<img src='./img/login/logo-regione.jpg' class='login-provider-image' />
+		          			</div>
+				        </md-card-content>
+			      	</md-card>
+				</div>
+				
+		    	<div flex-xs flex-gt-xs="50" layout="column">
+		      		<md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch 
+		      			class="card-auth-provider clickable" ng-click="actions.doSelectProvider('SPID')" >
+		        		<md-card-title>
+		          			<md-card-title-text>
+		            			<span class="md-headline">Login con SPID</span>
+		            			<span class="md-subhead">credenziali SPID</span>
+		          			</md-card-title-text>
+		        		</md-card-title>
+		        		<md-card-content layout="row" layout-align="center center">
+		          			<div class="md-media-md card-media">
+									<!--<img src='/img/login/logo-certificate.png' class='login-provider-image' />-->
+								<img src='./img/login/logo-spid.png' class='login-provider-image' />
+		          			</div>
+				        </md-card-content>
+			      	</md-card>
+
+		      		<md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch 
+		      			class="card-auth-provider clickable" ng-click="actions.doSelectProvider('SHIBB-WRUP')" >
+		        		<md-card-title>
+		          			<md-card-title-text>
+		            			<span class="md-headline">Login Pubblica Amministrazione</span>
+		            			<span class="md-subhead">credenziali Rupar</span>
+		          			</md-card-title-text>
+		        		</md-card-title>
+		        		<md-card-content layout="row" layout-align="center center">
+		          			<div class="md-media-md card-media">
+								<img src='./img/login/logo-rupar.jpg' class='login-provider-image' />
+		          			</div>
+				        </md-card-content>
+			      	</md-card>
+		    	</div>
+		  </md-content>
+		
+		<div ng-if="vm.provider 
+		            && vm.provider.code != 'LOCALAUTH'
+		            && vm.provider.code != 'SHIBB-CSI'
+		            && vm.provider.code != 'SHIBB-SISP'
+		            && vm.provider.code != 'SHIBB-WRUP'
+		            && vm.provider.code != 'SPID'" 
+		     layout="column" 
+		     layout-align="center center">
+			<img src='./img/login/csipiemonte.png' style="max-height:150px;" />
+			<p class="md-warn">
+				Provider di autenticazione non supportato  
+			</p>
+			
+			<img src='./img/login/unsupported-provider.png' style="max-width:200px;" />
+			
+			<div layout="row" flex>
+				<div flex="25"></div>
+				<div flex="50" layout="row" layout-align="center center">
+					<md-button class="md-raised button-big"
+						onclick="window.history.back();"
+						style="min-width:125px;margin-left:20px;"> 
+						Indietro
+					</md-button>
+				</div>
+			</div>
+		</div>
+</div>

@@ -1,0 +1,69 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-card>
+    <md-toolbar class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools">
+            <form name="filter.form" flex>
+                <md-input-container class="md-icon-float md-block" flex>
+                    <label>{{ 'ricerca' | translate }}</label>
+                    <md-icon class="material-icons">search</md-icon>
+                    <input id="search" class="layout-fill" type="text" ng-model="filter.search"
+                        ng-model-options="filter.options" esc-key="resetFilter()">
+                </md-input-container>
+            </form>
+        </div>
+    </md-toolbar>
+    <div  ng-if="volumes && options.elencoVuoto" layout-align="center center">
+        <p style="color:red;">{{ 'shares.lista.vuota' | translate }}</p>
+    </div>
+    <md-table-container ng-if="!options.elencoVuoto">
+        <table md-table  multiple="{{options.multiSelect}}"
+            ng-model="selected" md-progress="promise">
+            <thead ng-if="!options.decapitate" md-head md-order="query.order">
+                <tr md-row>
+                    <th md-column md-order-by="nome"><span>{{ 'shares.lista.nome' | translate }}</span></th>
+                    <th md-column md-order-by="dimensioneInByte"><span>{{ 'shares.lista.dimensione' | translate }}</span></th>
+                    <th md-column md-order-by="dataCreazione"><span>{{ 'shares.lista.data_creazione' | translate }}</span></th>
+                    <th md-column><span>{{ 'shares.lista.protocol' | translate }}</span></th>
+                    <th md-column><span>{{ 'shares.lista.mount_targets' | translate }}</span></th>
+                    <th md-column><span>{{ 'shares.lista.ip' | translate }}</span></th>
+                    <th md-column md-order-by="statoFileSystem"><span>{{ 'shares.lista.stato' | translate }}</span></th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row md-select="volume" md-auto-select="options.autoSelect"
+                    ng-repeat="volume in volumes | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                    <td md-cell>{{volume.nome}}</td>
+                    <td md-cell>
+                        <ng-bind-html ng-bind-html="volume.dimensione"></ng-bind-html>
+                    </td>
+                    <td md-cell>{{volume.dataCreazione}}</td>
+                    <td md-cell>
+                        <ng-bind-html ng-bind-html="volume.protocols"></ng-bind-html>
+                    </td>
+                    <td md-cell>
+                        <ng-bind-html ng-bind-html="volume.mountTargetsIds"></ng-bind-html>
+                    </td>
+                    <td md-cell>
+                        <ng-bind-html ng-bind-html="volume.ipAddresses"></ng-bind-html>
+                    </td>
+                    <td md-cell>
+                        <ng-bind-html ng-bind-html="volume.stato"></ng-bind-html>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+        md-total="{{volumes.length}}" md-page-select="options.pageSelect"
+        md-boundary-links="options.boundaryLinks"></md-table-pagination>
+</md-card>

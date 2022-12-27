@@ -1,0 +1,304 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<form name="formAccount" id="formAccount">
+<div class="body">
+                
+    <span id="idCompilaCampo" style="color: white">{{ 'accounts.denominazione_required' | translate }}</span>
+      
+    <div layout="row">
+        <div flex="60" layout-margin>
+            <md-input-container class="md-icon-float md-icon-left md-block">
+                <md-icon ng-style="iconStyle">account_balance</md-icon>
+                <label>{{ 'organizzazione' | translate }}</label>
+                <md-select ng-if="!$ctrl.isUpdate" ng-model="$ctrl.account.organizzazione" ng-required="true" flex ng-change="$ctrl.onOrganizzazioneChange()">
+                    <md-option layout-align="start start" ng-value="org"
+                        ng-repeat="org in $ctrl.organizzazioni | orderBy: 'name' "
+                        ng-selected="org.uuid === $ctrl.account.organization_id" >
+                        {{ org.name }}<span ng-if="org.desc&&org.desc!==''"> - {{ org.desc }}</span>
+                    </md-option>
+                </md-select>
+                <input ng-if="$ctrl.isUpdate" ng-disabled="$ctrl.options.isOrganizzazioneDivisioneSoloLettura" ng-model="$ctrl.organizzazione"></input>
+            </md-input-container>
+        </div>
+
+    </div>
+
+    <div layout="row">
+        <div flex="60" layout-margin>
+            <md-input-container class="md-icon-float md-icon-left md-block">
+                <md-icon ng-style="iconStyle">group_work</md-icon>
+                <label>{{ 'divisione' | translate }}</label>
+                <md-select ng-if="!$ctrl.isUpdate" ng-model="$ctrl.account.divisione" ng-required="true" flex ng-change="$ctrl.onDivisioneChange()">
+                    <md-option layout-align="start start" ng-value="div"
+                        ng-repeat="div in $ctrl.divisioni | orderBy: 'name' "
+                        ng-selected="div.uuid === $ctrl.account.division_id" >
+                        {{ div.name }}<span ng-if="org.desc&&org.desc!==''"> - {{ div.desc }}</span>
+                    </md-option>
+                </md-select>
+                <input ng-if="$ctrl.isUpdate" ng-disabled="$ctrl.options.isOrganizzazioneDivisioneSoloLettura" ng-model="$ctrl.divisione"></input>
+            </md-input-container>
+        </div>
+        <div flex="30">
+            <md-input-container class="md-icon-float md-icon-left md-block">
+                <md-icon ng-style="iconStyle">toc</md-icon>
+                <label>{{ 'accounts.categoria' | translate }}</label>
+                <md-select ng-if="!$ctrl.isUpdate" ng-model="$ctrl.account.categoria">
+                    <md-option ng-value="categoria" ng-repeat="categoria in $ctrl.categorie" layout-align="start start" ng-selected="categoria.value === $ctrl.account.categoria.value ? 'true':'false'">{{ categoria.nome }}</md-option>
+                </md-select>
+                <input ng-if="$ctrl.isUpdate" ng-disabled="$ctrl.options.isOrganizzazioneDivisioneSoloLettura" ng-model="$ctrl.account.categoria.nome"></input>
+            </md-input-container>
+        </div>
+    </div>
+</div>
+
+            <md-content class="m-t-15"  ng-if="$ctrl.options.showSteps">
+<!-- Anagrafica Account -->
+<div class="step">
+    <div>
+        <div class="circle">{{ 'accounts.steps.label_1' | translate }}</div>
+        <div class="line"></div>
+    </div>
+
+    <div>
+        <div class="title-step  text-dark">{{ 'accounts.anagrafica' | translate }}</div>
+        <div class="body">
+            <div layout="row">
+                <div flex="30">
+                    <md-input-container class="md-icon-float md-icon-left md-block">
+                        <label>{{ 'accounts.denominazione' | translate }}</label>
+                        <md-icon ng-style="iconStyle">picture_in_picture</md-icon>
+                        <input id="accountName" ng-model="$ctrl.account.name" type="text" ng-required="true" ng-disabled="$ctrl.isUpdate"
+                            name="name" oninvalid="this.setCustomValidity(compilaCampo)" oninput="setCustomValidity('')" title="">
+                        <div ng-messages="$ctrl.formAccount.name.$error">
+                            <div ng-message="required">{{ 'accounts.denominazione_required' | translate }}</div>
+                            <div ng-message="md-maxlength">{{ 'accounts.denominazione_maxlength' | translate }}</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div flex="60">
+                    <md-input-container class="md-icon-float md-icon-left md-block">
+                        <label>{{ 'accounts.descrizione' | translate }}</label>
+                        <input id="accountDesc" ng-model="$ctrl.account.desc" type="text" ng-required="true"
+                            name="desc" oninvalid="this.setCustomValidity(compilaCampo)" oninput="setCustomValidity('')" title="">
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="row">
+                    <div flex="60">
+                        <md-input-container class="md-icon-float md-icon-left md-block">
+                            <label>{{ 'accounts.nota' | translate }}</label>
+                            <md-icon ng-style="iconStyle">notes</md-icon>
+                            <input id="accountNote" ng-model="$ctrl.account.note" type="text" ng-required="false" name="note">
+                            <div ng-messages="$ctrl.formAccount.note.$error">
+                                <div ng-message="required">{{ 'accounts.nota_required' | translate }}</div>
+                                <div ng-message="md-maxlength">{{ 'accounts.nota_maxlength' | translate }}</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<!-- Indirizzo -->
+<div class="step">
+    <div>
+        <div class="circle">{{ 'accounts.steps.label_2' | translate }}</div>
+        <div class="line"></div>
+    </div>
+    <div>
+        <div class="title-step  text-dark">{{ 'accounts.indirizzo_account' | translate }}</div>
+        <div class="body">
+            <div layout="row">
+                <div flex="50">
+                    <md-input-container class="md-icon-float md-icon-left md-block">
+                        <label>{{ 'accounts.indirizzo' | translate }}</label>
+                        <md-icon ng-style="iconStyle">place</md-icon>
+                        <input id="accountPostalAddress" ng-model="$ctrl.account.postaladdress" type="text" ng-required="false"
+                            name="postaladdress">
+                        <div ng-messages="$ctrl.formAccount.postaladdress.$error">
+                            <div ng-message="required">{{ 'accounts.indirizzo_required' | translate }}</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div flex="50">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<!-- Recapiti Mail -->
+<div class="step">
+    <div>
+        <div class="circle">{{ 'accounts.steps.label_3' | translate }}</div>
+        <div class="line"></div>
+    </div>
+    <div>
+        <div class="title-step  text-dark">{{ 'accounts.recapiti_email' | translate }}</div>
+        <div class="body">
+            <div layout="row">
+                <div flex="50">
+                    <md-input-container class="md-icon-float md-icon-left md-block">
+                        <label>{{ 'accounts.email' | translate }}</label>
+                        <md-icon ng-style="iconStyle">email</md-icon>
+                        <input id="accountEmail" ng-model="$ctrl.account.email" type="email" ng-required="false"
+                            name="email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+                        <div ng-messages="$ctrl.formAccount.email.$error">
+                            <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
+                                {{ 'accounts.email_required' | translate }}
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div flex="50">
+                </div>
+            </div>
+            <div layout="row">
+                <div flex="50">
+                    <md-input-container class="md-icon-float md-icon-left md-block">
+                        <label>{{ 'accounts.email_supporto' | translate }}</label>
+                        <md-icon ng-style="iconStyle">email</md-icon>
+                        <input id="accountEmailSupport" ng-model="$ctrl.account.email_support" type="email_support"
+                            ng-required="false" name="email" minlength="10" maxlength="100"
+                            ng-pattern="/^.+@.+\..+$/">
+                        <div ng-messages="$ctrl.formAccount.email_support.$error">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                {{ 'accounts.email_supporto_required' | translate }}
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div flex="50">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Referente -->
+<div class="step">
+    <div>
+        <div class="circle">{{ 'accounts.steps.label_4' | translate }}</div>
+        <div class="line"></div>
+    </div>
+    <div>
+        <div class="title-step  text-dark">{{ 'accounts.referente' | translate }}</div>
+        <div class="body">
+            <div layout="row">
+                <div flex="30">
+                    <md-input-container class="md-icon-float md-icon-left md-block">
+                        <label>{{ 'accounts.referente' | translate }}</label>
+                        <md-icon ng-style="iconStyle">supervisor_account</md-icon>
+                        <input id="accountContact" ng-model="$ctrl.account.contact" type="text" ng-required="false"
+                            name="contact">
+                        <div ng-messages="$ctrl.formAccount.contact.$error">
+                            <div ng-message="required">{{ 'accounts.referente_required' | translate }}</div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Abilitazioni -->
+<div class="step">
+    <div>
+        <div class="circle">{{ 'accounts.steps.label_5' | translate }}</div>
+        <div class="line"></div>
+    </div>
+    <div>
+        <div class="title-step  text-dark">{{ 'accounts.abilitazioni' | translate }}</div>
+        <div class="body">
+            <div layout="row">
+                <div flex="25">
+                    <md-input-container>
+                        {{ 'accounts.impostazione_account' | translate }}
+                        <md-switch class="md-invert md-inline md-primary" aria-label="Stato" ng-model="$ctrl.account.managed">
+                            {{$ctrl.account.managed ? ('accounts.managed' | translate) : ('accounts.not_managed' | translate) }}
+                        </md-switch>
+                    </md-input-container>
+                </div>
+                <div flex="35" ng-show="$ctrl.account.managed" >
+                    <md-input-container class="md-block hide-validation-error">
+                        {{ 'accounts.acronimo' | translate }}
+                        <input id="accountAcronimo" ng-model="$ctrl.account.acronimo" name="acronimo"  required
+                            ng-change="$ctrl.onCheckAcronimo()" pattern="^[a-z][a-z0-9_]{2,11}">
+                        <div ng-messages="$ctrl.formAccount.acronimo.$error" role="alert" multiple>
+                            <div ng-message="required" ng-bind-html="'accounts.acronimo_required' | translate"></div>
+                            <div ng-message="pattern" ng-bind-html="'accounts.acronimo_pattern' | translate">
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div flex="40" ng-show="$ctrl.account.managed" layout-margin >
+                   <md-input-container style="color:#4285f4;" class="md-caption">
+                        <span ng-bind-html="'accounts.acronimo_info' | translate">
+                        </span>
+                    </md-input-container>        
+                </div>
+            </div>
+
+            <div layout="row" layout-wrap flex ng-if="!$ctrl.account.managed">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="step" ng-if="$ctrl.isUpdate">
+    <div>
+        <div class="circle">{{ 'accounts.steps.label_6' | translate }}</div>
+        <div class="line"></div>
+    </div>
+
+
+
+    <div>
+        <div class="title-step  text-dark">{{ 'accounts.person_id' | translate }}</div>
+            <div class="body">
+                <div layout="row">
+                    <div flex="60" >
+                        <md-input-container class="md-icon-float md-icon-left md-block">
+                            <md-icon ng-style="iconStyle">person</md-icon>
+                            <label>{{ 'accounts.person_id_select' | translate }}</label>
+                            <input id="personId" ng-model="$ctrl.account.personId" type="text" ng-required="false"
+                            name="personId"/>
+
+                        </md-input-container>
+                    </div>
+
+                </div>
+            
+            </div>
+    </div>
+</div> 
+
+
+<div class="step">
+    <br />
+    <md-divider></md-divider>
+</div>
+<md-card-actions layout="row" layout-align="space-between center" ng-if="!$ctrl.isUpdate">
+    <md-button class="animation-target md-raised  md-primary md-hue-2" ng-click="historyBack()">
+        <md-icon class="material-icons">keyboard_backspace</md-icon> {{ 'indietro' | translate }} 
+    </md-button>
+
+    <md-button type="submit" ng-click="$ctrl.clickSaveAccount()" class="md-raised md-primary md-hue-2"  
+                ng-disabled="(!formAccount.$dirty||formAccount.$pristine)">
+        <md-icon ng-style="iconStyle" class="material-icons">send</md-icon> {{ 'accounts.nuovo.crea' | translate }}
+    </md-button>
+</md-card-actions>
+</md-content>
+
+</form>

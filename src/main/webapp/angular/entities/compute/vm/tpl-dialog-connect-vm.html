@@ -1,0 +1,65 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-dialog aria-label="{{ 'vm.connetti.titolo' | translate}}">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{ 'vm.connetti.titolo' | translate}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon class="md-icon-button" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-card>
+                    <md-card-content>
+                        <b>{{ 'vm.connetti.sottotitolo' | translate}}:</b>
+                        <p>
+                            <ol>
+                                <li>
+                                    {{ 'vm.connetti.msg01' | translate}}
+                                </li>
+                                <li>
+                                    {{ 'vm.connetti.msg02' | translate}}
+                                </li>
+                                <li>
+                                    {{ 'vm.connetti.msg03' | translate}}:
+                                    <p style="text-indent: 1.5em">
+                                        <b>chmod 400 my-nivola-key.pem</b>
+                                    </p style="text-indent: 1.5em">
+                                </li>
+                                <li>
+                                    {{ 'vm.connetti.msg04' | translate}}:
+                                    <p style="text-indent: 1.5em">
+                                        <b>{{ vmDetails.ip }}</b>
+                                    </p style="text-indent: 1.5em">
+                                </li>
+                            </ol>
+                        </p>
+
+
+                        <b>{{ 'vm.connetti.esempio' | translate}}:</b>
+                        <p style="text-indent: 1.5em">
+                            <b>ssh -i "my-nivola-key.pem" nivola-user@{{ vmDetails.ip }}</b>
+                        </p style="text-indent: 1.5em">
+
+                        <p>
+                            {{ 'vm.connetti.msg05' | translate}}
+                        </p>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

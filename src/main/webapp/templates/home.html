@@ -1,0 +1,58 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<md-card ng-if="benvenuto">
+    <md-card-content layout="row">
+        <div layout="column">
+
+            <h3>Benvenuto sul Nivola Service Portal.</h3>
+            <p>
+                Per maggiori informazioni e iniziare il tuo viaggio su "Nivola", il cloud Piemontese, visita <a href="http://www.nivolapiemonte.it" target='_blank'>http://www.nivolapiemonte.it</a>
+            </p>
+            <p>
+                Se ancora non lo sai, il CSI-Piemonte è diventato Cloud Service Provider ed è presente all'interno
+                 del "Catalogo dei servizi Cloud qualificati per la PA" pubblicato da Agid.
+                 Ulteriori dettagli sono reperibili direttamente sul sito Cloud Marketplace di Agid: <a href="https://cloud.italia.it/marketplace/supplier/market/index_Iaas_fornitore_numero_1835.html" target='_blank'>
+                    Catalogo dei servizi Cloud qualificati per la PA</a>.
+            </p>
+            Vuoi iniziare ad usare i servizi di Nivola ?
+        </div>
+    </md-card-content>
+    <md-card-actions layout="row" layout-align="center center">
+        <md-button class="md-default" ng-click="actions.register()" flex=50>
+            <md-icon ng-style="iconStyle" class="material-icons">support_agent</md-icon> CONTATTA IL SUPPORTO
+        </md-button>
+        <md-button class="md-default" ng-click="actions.guestSignIn()" flex=50>
+            <md-icon ng-style="iconStyle" class="material-icons">person_add_alt_1</md-icon> Registrati
+        </md-button>
+    </md-card-actions>
+</md-card>
+
+<md-card ng-if="nonAttivo">
+    <md-card-content layout="row">
+        <div layout="column">
+            <h3><span style="color:red">Utente disattivato</span><br/> contattare l'assistenza all'indirizzo email nivola.supportcenter@csi.it fornendo nome, cognome e codice fiscale</h3>
+        </div>
+    </md-card-content>
+</md-card>
+
+
+
+
+<md-widget-engine configuration="dashboard.configuration" callback="dashboard.callback" ng-show="dashboard"
+    displayxs="displayxs" flex layout-fill></md-widget-engine>
+
+<md-button class="md-fab pull-right"
+    ng-class="{'md-warn':dashboard.unsavedChanges, 'md-primary':!dashboard.unsavedChanges}"
+    aria-label="Modifica dashboard" ng-click="toggleEditMode()"
+    style="position:fixed; right:30px; bottom:40px; z-index:10000">
+    <md-icon ng-show="!dashboard.editMode">visibility</md-icon>
+    <md-icon ng-show="dashboard.editMode">done</md-icon>
+</md-button>

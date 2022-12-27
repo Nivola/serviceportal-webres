@@ -1,0 +1,51 @@
+<!--
+  ========================LICENSE_START=================================
+  Nivola Service Portal Web Resources
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+<div layout="row" layout-fill layout-align="start start">
+
+    <md-card flex="grow">
+        <md-card-title>
+            <md-card-title-text layout-align="center center">
+                <span class="md-headline"> Gestione Documenti </span>
+                <span class="md-subhead"> Documentazione, manuali e link</span>
+            </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content>
+            <div flex="grow" layout="row" layout-padding>
+                <md-list>
+                    <md-list-item ng-click="openNewWindows(linkDoc.documentazione)">
+                        <md-icon>link</md-icon>
+                        <p> Link alla User Guide Nivola</p>
+                    </md-list-item>
+                    <md-list-item ng-click="openNewWindows(linkDoc.catalogoPdf)">
+                        <md-icon>picture_as_pdf</md-icon>
+                        <p>Catalogo Servizi Nivola</p>
+                    </md-list-item>
+                    <md-list-item ng-click="openNewWindows(linkDoc.condizioniPdf)">
+                        <md-icon>picture_as_pdf</md-icon>
+                        <p>Condizioni generali</p>
+                    </md-list-item>
+                    <md-list-item ng-click="openNewWindows(linkDoc.manualePdf)">
+                        <md-icon>picture_as_pdf</md-icon>
+                        <p>Manuale utente</p>
+                    </md-list-item>
+
+                </md-list>
+            </div>
+
+            <md-button class="animation-target md-raised  md-primary md-hue-2"  ng-click="historyBack()">
+                <md-icon>keyboard_backspace</md-icon> indietro
+            </md-button>
+
+        </md-card-content>
+    </md-card>
+
+</div>
